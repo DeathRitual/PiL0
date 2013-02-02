@@ -14,8 +14,8 @@ typedef struct _tag_list *list;
 
 extern void l_init(list *);
 extern int l_IsEmpty(list);
-extern void l_append(list *, int *);
+extern void l_append(list *, char*, int *);
 extern void l_remove(list *);
-extern int l_top(list);
-extern int l_last(list);
+extern list l_top(list);
+extern list l_last(list);
 
