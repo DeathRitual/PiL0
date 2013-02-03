@@ -1,0 +1,125 @@
+\subsection{/home/nirvash/\-Projects/\-Pi\-L0/tokdef.c}
+
+\begin{DoxyCode}
+00001 
+00013 \textcolor{preprocessor}{#include "tokdef.h"}
+00014 \textcolor{preprocessor}{#include<stddef.h>}
+00015 \textcolor{preprocessor}{#include<stdio.h>}
+00016 \textcolor{preprocessor}{#include<stdlib.h>}
+00017 \textcolor{preprocessor}{#include<string.h>}
+00018 \textcolor{preprocessor}{#include<ctype.h>}
+00019 \textcolor{preprocessor}{#ifndef tokdef\_C}
+00020 \textcolor{preprocessor}{}
+00021 \textcolor{comment}{/*}
+00022 \textcolor{comment}{ * }
+00023 \textcolor{comment}{ * Error Handling}
+00024 \textcolor{comment}{ * }
+00025 \textcolor{comment}{*/}
+00026 
+00031 \textcolor{keyword}{static} \textcolor{keywordtype}{char} *err_msg[] = \{
+00032     \textcolor{stringliteral}{"Null-Pointer"}, \textcolor{stringliteral}{"Kein Speicher frei"},
+00033     \textcolor{stringliteral}{"Liste ist leer"}
+00034   \}; 
+00035   
+00039 \textcolor{keyword}{enum} err_codes \{
+00040     NULL_POINTER, ERR_MEMORY, EMPTY_LIST
+00041   \};
+00042   
+00043 
+00049 \textcolor{keyword}{static} \textcolor{keywordtype}{void} error(\textcolor{keyword}{enum} err_codes msg\_nr) \{
+00050   fprintf(stderr, \textcolor{stringliteral}{"FEHLER(intlist): %s!\(\backslash\)n"}, err_msg[msg\_nr]);
+00051   exit(10);
+00052 \}
+00053 
+00054 
+00055 \textcolor{comment}{/*}
+00056 \textcolor{comment}{ * }
+00057 \textcolor{comment}{ * FIFO Implementation}
+00058 \textcolor{comment}{ * }
+00059 \textcolor{comment}{ */}
+00060 
+00069 \textcolor{keyword}{struct }_tag_list \{
+00078   \textcolor{keyword}{union }\{
+00084     \textcolor{keyword}{struct }\_token \{
+00085       \textcolor{keywordtype}{char} t; 
+00086     \}token;
+00087     
+00093     \textcolor{keyword}{struct }\_number \{
+00094       \textcolor{keywordtype}{int} n; 
+00095       \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} ID; 
+00096     \}number;
+00097     
+00103     \textcolor{keyword}{struct }\_word \{
+00104       \textcolor{keywordtype}{char} w[50]; 
+00105       \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} ID; 
+00106     \}word;
+00107   \};
+00108 
+00109   \textcolor{keywordtype}{char} type; 
+00110   \textcolor{keyword}{struct }_tag_list *next; 
+00111   \textcolor{keyword}{struct }_tag_list *previous; 
+00112 \};
+00113 
+00118 \textcolor{keyword}{struct }_tag_list *head;
+00119 
+00126 \textcolor{keywordtype}{void} l_init(list *l) \{
+00127 
+00128   \textcolor{keywordflow}{if} (l == NULL) error(NULL_POINTER);
+00129   *l = NULL; 
+00130 \}
+00131 
+00138 \textcolor{keywordtype}{int} l_IsEmpty(list l) \{
+00139   \textcolor{keywordflow}{return} l == NULL;
+00140 \} 
+00141 
+00150 \textcolor{keywordtype}{void} l_append(list *l, \textcolor{keywordtype}{char} *t, \textcolor{keywordtype}{int} *n) \{
+00151   \textcolor{keywordflow}{if} (l == NULL) error(NULL_POINTER);
+00152   \textcolor{keyword}{struct }_tag_list *el; 
+00153   \textcolor{keywordflow}{if} ((el = malloc(\textcolor{keyword}{sizeof}(list))) == NULL) error(ERR_MEMORY);
+00154   \textcolor{keywordflow}{if} (strlen(t) == 1) \{
+00155     el->token.t = *t;
+00156     el->type = \textcolor{charliteral}{'t'};
+00157   \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (isdigit(*t) > 0) \{
+00158     el->number.n = atoi(t);
+00159     el->number.ID = *n;
+00160     el->type = \textcolor{charliteral}{'n'};
+00161   \} \textcolor{keywordflow}{else} \{
+00162     strcpy(el->word.w, t);
+00163     el->word.ID = *n;
+00164     el->type = \textcolor{charliteral}{'w'};
+00165   \}
+00166   el->next = *l;
+00167   el->previous = NULL;
+00168   \textcolor{keywordflow}{if} (!l_IsEmpty(*l)) (*l)->previous = el;
+00169   \textcolor{keywordflow}{if} (l_IsEmpty(*l)) head = el;
+00170   *l = el;
+00171 \}
+00172 
+00179 \textcolor{keywordtype}{void} l_remove(list *l) \{
+00180   \textcolor{keywordflow}{if} (l == NULL) error(NULL_POINTER);
+00181   \textcolor{keywordflow}{if} (l_IsEmpty(*l)) error(EMPTY_LIST);
+00182   \textcolor{keywordflow}{if} (head == *l) \{
+00183     free(head);
+00184     *l = NULL;
+00185   \} \textcolor{keywordflow}{else} \{
+00186   \textcolor{keyword}{struct }_tag_list *ptr; 
+00187   ptr = head->previous;
+00188   ptr->next = NULL;
+00189   head->previous = NULL;
+00190   free(head);
+00191   head = ptr;
+00192   \}
+00193 \}
+00194 
+00201 list l_top(list l) \{
+00202   \textcolor{keywordflow}{if} (l_IsEmpty(l)) error(NULL_POINTER);
+00203   \textcolor{keywordflow}{return} head;
+00204 \}
+00205 
+00212 list l_last(list l) \{
+00213   \textcolor{keywordflow}{if} (l_IsEmpty(l)) error(NULL_POINTER);
+00214   \textcolor{keywordflow}{return} l;
+00215 \}
+00216 
+00217 \textcolor{preprocessor}{#endif}
+\end{DoxyCode}

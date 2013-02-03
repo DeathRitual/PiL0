@@ -1,0 +1,317 @@
+\subsection{/home/nirvash/\-Projects/\-Pi\-L0/tokdef.h \-File \-Reference}
+\label{tokdef_8h}\index{/home/nirvash/\-Projects/\-Pi\-L0/tokdef.\-h@{/home/nirvash/\-Projects/\-Pi\-L0/tokdef.\-h}}
+\-This graph shows which files directly or indirectly include this file\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=268pt]{tokdef_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsubsection*{\-Functions}
+\begin{DoxyCompactItemize}
+\item 
+void {\bf l\-\_\-init} (list $\ast$)
+\begin{DoxyCompactList}\small\item\em \-Initialize new token stream with \-N\-U\-L\-L-\/\-Pointer. \end{DoxyCompactList}\item 
+int {\bf l\-\_\-\-Is\-Empty} (list)
+\begin{DoxyCompactList}\small\item\em check if token stream is empty or not \end{DoxyCompactList}\item 
+void {\bf l\-\_\-append} (list $\ast$, char $\ast$, int $\ast$)
+\begin{DoxyCompactList}\small\item\em add new element to token stream \end{DoxyCompactList}\item 
+void {\bf l\-\_\-remove} (list $\ast$)
+\begin{DoxyCompactList}\small\item\em remove oldest element in stream \end{DoxyCompactList}\item 
+list {\bf l\-\_\-top} (list)
+\begin{DoxyCompactList}\small\item\em get the oldest element of stream \end{DoxyCompactList}\item 
+list {\bf l\-\_\-last} (list)
+\begin{DoxyCompactList}\small\item\em get the newest element of stream \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{\-Detailed \-Description}
+\-Header-\/\-File for \-Token-\/\-Stream library
+
+\-Forwards the functions of the \-Token-\/\-Stream library to another file which includes this header file. 
+
+\-Definition in file {\bf tokdef.\-h}.
+
+
+
+\subsubsection{\-Function \-Documentation}
+\index{tokdef.\-h@{tokdef.\-h}!l\-\_\-append@{l\-\_\-append}}
+\index{l\-\_\-append@{l\-\_\-append}!tokdef.h@{tokdef.\-h}}
+\paragraph[{l\-\_\-append}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf l\-\_\-append} (
+\begin{DoxyParamCaption}
+\item[{list $\ast$}]{l, }
+\item[{char $\ast$}]{t, }
+\item[{int $\ast$}]{n}
+\end{DoxyParamCaption}
+)}\label{tokdef_8h_a81ffeff3bff153b2a5e8576bad3c1145}
+
+
+add new element to token stream 
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em l} & pointer on last element of token stream \\
+\hline
+{\em t} & symbol, keyword, identifier or number to generate new token of \\
+\hline
+{\em n} & identifier number of keyword, identifier or number \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{\-Returns}
+void 
+\end{DoxyReturn}
+
+
+\-Definition at line {\bf 150} of file {\bf tokdef.\-c}.
+
+
+\begin{DoxyCode}
+                                        \{
+  \textcolor{keywordflow}{if} (l == NULL) error(NULL_POINTER);
+  \textcolor{keyword}{struct }_tag_list *el; 
+  \textcolor{keywordflow}{if} ((el = malloc(\textcolor{keyword}{sizeof}(list))) == NULL) error(ERR_MEMORY);
+  \textcolor{keywordflow}{if} (strlen(t) == 1) \{
+    el->token.t = *t;
+    el->type = \textcolor{charliteral}{'t'};
+  \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (isdigit(*t) > 0) \{
+    el->number.n = atoi(t);
+    el->number.ID = *n;
+    el->type = \textcolor{charliteral}{'n'};
+  \} \textcolor{keywordflow}{else} \{
+    strcpy(el->word.w, t);
+    el->word.ID = *n;
+    el->type = \textcolor{charliteral}{'w'};
+  \}
+  el->next = *l;
+  el->previous = NULL;
+  \textcolor{keywordflow}{if} (!l_IsEmpty(*l)) (*l)->previous = el;
+  \textcolor{keywordflow}{if} (l_IsEmpty(*l)) head = el;
+  *l = el;
+\}
+\end{DoxyCode}
+
+
+\-Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=240pt]{tokdef_8h_a81ffeff3bff153b2a5e8576bad3c1145_cgraph}
+\end{center}
+\end{figure}
+
+
+\index{tokdef.\-h@{tokdef.\-h}!l\-\_\-init@{l\-\_\-init}}
+\index{l\-\_\-init@{l\-\_\-init}!tokdef.h@{tokdef.\-h}}
+\paragraph[{l\-\_\-init}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf l\-\_\-init} (
+\begin{DoxyParamCaption}
+\item[{list $\ast$}]{l}
+\end{DoxyParamCaption}
+)}\label{tokdef_8h_ac9f8b5800165d01c9c53895ab3027f5d}
+
+
+\-Initialize new token stream with \-N\-U\-L\-L-\/\-Pointer. 
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em l} & pointer on beginning of new token stream \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{\-Returns}
+void 
+\end{DoxyReturn}
+
+
+\-Definition at line {\bf 126} of file {\bf tokdef.\-c}.
+
+
+\begin{DoxyCode}
+                     \{
+
+  \textcolor{keywordflow}{if} (l == NULL) error(NULL_POINTER);
+  *l = NULL; 
+\}
+\end{DoxyCode}
+
+
+\-Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=194pt]{tokdef_8h_ac9f8b5800165d01c9c53895ab3027f5d_cgraph}
+\end{center}
+\end{figure}
+
+
+\index{tokdef.\-h@{tokdef.\-h}!l\-\_\-\-Is\-Empty@{l\-\_\-\-Is\-Empty}}
+\index{l\-\_\-\-Is\-Empty@{l\-\_\-\-Is\-Empty}!tokdef.h@{tokdef.\-h}}
+\paragraph[{l\-\_\-\-Is\-Empty}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf l\-\_\-\-Is\-Empty} (
+\begin{DoxyParamCaption}
+\item[{list}]{l}
+\end{DoxyParamCaption}
+)}\label{tokdef_8h_ad38fb956f3e8b88088d0c3dbd9b0b1cd}
+
+
+check if token stream is empty or not 
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em l} & pointer on token stream \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{\-Returns}
+int value 1 or 0 
+\end{DoxyReturn}
+
+
+\-Definition at line {\bf 138} of file {\bf tokdef.\-c}.
+
+
+\begin{DoxyCode}
+                      \{
+  \textcolor{keywordflow}{return} l == NULL;
+\} 
+\end{DoxyCode}
+
+
+\-Here is the caller graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=240pt]{tokdef_8h_ad38fb956f3e8b88088d0c3dbd9b0b1cd_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{tokdef.\-h@{tokdef.\-h}!l\-\_\-last@{l\-\_\-last}}
+\index{l\-\_\-last@{l\-\_\-last}!tokdef.h@{tokdef.\-h}}
+\paragraph[{l\-\_\-last}]{\setlength{\rightskip}{0pt plus 5cm}list {\bf l\-\_\-last} (
+\begin{DoxyParamCaption}
+\item[{list}]{l}
+\end{DoxyParamCaption}
+)}\label{tokdef_8h_a5a84ca70ef422afe2fbb8d4472f55e15}
+
+
+get the newest element of stream 
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em l} & pointer on last element of token stream \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{\-Returns}
+list point to newest element 
+\end{DoxyReturn}
+
+
+\-Definition at line {\bf 212} of file {\bf tokdef.\-c}.
+
+
+\begin{DoxyCode}
+                    \{
+  \textcolor{keywordflow}{if} (l_IsEmpty(l)) error(NULL_POINTER);
+  \textcolor{keywordflow}{return} l;
+\}
+\end{DoxyCode}
+
+
+\-Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=220pt]{tokdef_8h_a5a84ca70ef422afe2fbb8d4472f55e15_cgraph}
+\end{center}
+\end{figure}
+
+
+\index{tokdef.\-h@{tokdef.\-h}!l\-\_\-remove@{l\-\_\-remove}}
+\index{l\-\_\-remove@{l\-\_\-remove}!tokdef.h@{tokdef.\-h}}
+\paragraph[{l\-\_\-remove}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf l\-\_\-remove} (
+\begin{DoxyParamCaption}
+\item[{list $\ast$}]{l}
+\end{DoxyParamCaption}
+)}\label{tokdef_8h_a9a72d95129580ef11dc9778edb80004f}
+
+
+remove oldest element in stream 
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em l} & pointer on last element of token stream \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{\-Returns}
+void 
+\end{DoxyReturn}
+
+
+\-Definition at line {\bf 179} of file {\bf tokdef.\-c}.
+
+
+\begin{DoxyCode}
+                       \{
+  \textcolor{keywordflow}{if} (l == NULL) error(NULL_POINTER);
+  \textcolor{keywordflow}{if} (l_IsEmpty(*l)) error(EMPTY_LIST);
+  \textcolor{keywordflow}{if} (head == *l) \{
+    free(head);
+    *l = NULL;
+  \} \textcolor{keywordflow}{else} \{
+  \textcolor{keyword}{struct }_tag_list *ptr; 
+  ptr = head->previous;
+  ptr->next = NULL;
+  head->previous = NULL;
+  free(head);
+  head = ptr;
+  \}
+\}
+\end{DoxyCode}
+
+
+\-Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=238pt]{tokdef_8h_a9a72d95129580ef11dc9778edb80004f_cgraph}
+\end{center}
+\end{figure}
+
+
+\index{tokdef.\-h@{tokdef.\-h}!l\-\_\-top@{l\-\_\-top}}
+\index{l\-\_\-top@{l\-\_\-top}!tokdef.h@{tokdef.\-h}}
+\paragraph[{l\-\_\-top}]{\setlength{\rightskip}{0pt plus 5cm}list {\bf l\-\_\-top} (
+\begin{DoxyParamCaption}
+\item[{list}]{l}
+\end{DoxyParamCaption}
+)}\label{tokdef_8h_aa04f7ac992f12dbdcc80fdf4c624f7e9}
+
+
+get the oldest element of stream 
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em l} & pointer on last element of token stream \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{\-Returns}
+list pointer to oldest element 
+\end{DoxyReturn}
+
+
+\-Definition at line {\bf 201} of file {\bf tokdef.\-c}.
+
+
+\begin{DoxyCode}
+                   \{
+  \textcolor{keywordflow}{if} (l_IsEmpty(l)) error(NULL_POINTER);
+  \textcolor{keywordflow}{return} head;
+\}
+\end{DoxyCode}
+
+
+\-Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=218pt]{tokdef_8h_aa04f7ac992f12dbdcc80fdf4c624f7e9_cgraph}
+\end{center}
+\end{figure}
+
+
