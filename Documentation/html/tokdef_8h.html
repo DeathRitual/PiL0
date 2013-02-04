@@ -121,6 +121,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 Data Structures</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tokdef_8h.html#struct__tag__list">list</a></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Element-Structure which builds Token-Stream.  <a href="tokdef_8h.html#struct__tag__list">More...</a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tokdef_8h.html#structkeyword">keyword</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Keyword structure for storing initial keywords.  <a href="tokdef_8h.html#structkeyword">More...</a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">union &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tokdef_8h.html#union__tag__list_8____unnamed____">_tag_list.__unnamed__</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tokdef_8h.html#struct__tag__list_1_1__token_8____unnamed_____8token">_token.__unnamed__.token</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tokdef_8h.html#struct__tag__list_1_1__number_8____unnamed_____8number">_number.__unnamed__.number</a></td></tr>
@@ -139,6 +141,42 @@ Functions</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">get the oldest element of stream  <a href="#aa04f7ac992f12dbdcc80fdf4c624f7e9"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">list&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tokdef_8h.html#a5a84ca70ef422afe2fbb8d4472f55e15">l_last</a> (list)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">get the newest element of stream  <a href="#a5a84ca70ef422afe2fbb8d4472f55e15"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="tokdef_8h.html#structkeyword">keyword</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tokdef_8h.html#a2e5119b19a8d11244e9af9555dba5f66">ini_BEGIN</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">initialise keyword BEGIN  <a href="#a2e5119b19a8d11244e9af9555dba5f66"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="tokdef_8h.html#structkeyword">keyword</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tokdef_8h.html#acd9099ba07f5918fcecfb174f29b267b">ini_CALL</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">initialise keyword CALL  <a href="#acd9099ba07f5918fcecfb174f29b267b"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="tokdef_8h.html#structkeyword">keyword</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tokdef_8h.html#a153311284cd712008980a20135dd5fa3">ini_CONST</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">initialise keyword CONST  <a href="#a153311284cd712008980a20135dd5fa3"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="tokdef_8h.html#structkeyword">keyword</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tokdef_8h.html#adf1f24a77a6d6f72f76e7e2dba2bc048">ini_DO</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">initialise keyword DO  <a href="#adf1f24a77a6d6f72f76e7e2dba2bc048"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="tokdef_8h.html#structkeyword">keyword</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tokdef_8h.html#a41926a474714a535fe6ab94b09c1ec58">ini_END</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">initialise keyword END  <a href="#a41926a474714a535fe6ab94b09c1ec58"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="tokdef_8h.html#structkeyword">keyword</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tokdef_8h.html#a59df98f4f9e2462ba38059c21729698c">ini_IF</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">initialise keyword IF  <a href="#a59df98f4f9e2462ba38059c21729698c"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="tokdef_8h.html#structkeyword">keyword</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tokdef_8h.html#a0f9272daacf3da2d8e84b5823b198854">ini_ODD</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">initialise keyword ODD  <a href="#a0f9272daacf3da2d8e84b5823b198854"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="tokdef_8h.html#structkeyword">keyword</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tokdef_8h.html#afe2a95df81d5d0296e1a03e1d0eec690">ini_PRINT</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">initialise keyword PRINT  <a href="#afe2a95df81d5d0296e1a03e1d0eec690"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="tokdef_8h.html#structkeyword">keyword</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tokdef_8h.html#a7f70e514a9b918ecea16bbbb8dc7dc5a">ini_PROCEDURE</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">initialise keyword PROCEDURE  <a href="#a7f70e514a9b918ecea16bbbb8dc7dc5a"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="tokdef_8h.html#structkeyword">keyword</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tokdef_8h.html#a1ce32c3234be6e50832e306329658240">ini_READ</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">initialise keyword READ  <a href="#a1ce32c3234be6e50832e306329658240"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="tokdef_8h.html#structkeyword">keyword</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tokdef_8h.html#a6c3cbb287339e979208c720ddce34aa0">ini_THEN</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">initialise keyword THEN  <a href="#a6c3cbb287339e979208c720ddce34aa0"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="tokdef_8h.html#structkeyword">keyword</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tokdef_8h.html#a31c3ddcea0020c1e08f300c48fe783d3">ini_VAR</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">initialise keyword VAR  <a href="#a31c3ddcea0020c1e08f300c48fe783d3"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="tokdef_8h.html#structkeyword">keyword</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tokdef_8h.html#a58f3a75145550870497c2517db9d100b">ini_WHILE</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">initialise keyword WHILE  <a href="#a58f3a75145550870497c2517db9d100b"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="tokdef_8h.html#structkeyword">keyword</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tokdef_8h.html#afbc12afdc22344562084703f9a7ffc83">ini_PASS</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">initialise keyword PASS  <a href="#afbc12afdc22344562084703f9a7ffc83"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="tokdef_8h.html#structkeyword">keyword</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tokdef_8h.html#aeef061af1fffa52edd7eaa510b82c16c">ini_EQ</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">initialise keyword ==  <a href="#aeef061af1fffa52edd7eaa510b82c16c"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="tokdef_8h.html#structkeyword">keyword</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tokdef_8h.html#af278058c4829574ed15f6943f39bacad">ini_GE</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">initialise keyword &gt;=  <a href="#af278058c4829574ed15f6943f39bacad"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="tokdef_8h.html#structkeyword">keyword</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tokdef_8h.html#a5255ae956b6faf8fd1e6221368ce0295">ini_LE</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">initialise keyword &lt;=  <a href="#a5255ae956b6faf8fd1e6221368ce0295"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="tokdef_8h.html#structkeyword">keyword</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tokdef_8h.html#a700de1f32ddf4df29374bb22c928801f">ini_NE</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">initialise keyword !=  <a href="#a700de1f32ddf4df29374bb22c928801f"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="var-members"></a>
 Variables</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="tokdef_8h.html#struct__tag__list">_tag_list</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tokdef_8h.html#a6b08a68dd0458ee419869b9852116c9f">tag_list</a></td></tr>
@@ -201,7 +239,39 @@ Token-Type. </td></tr>
 
 </div>
 </div>
-<!-- doxytag: class="_tag_list" --><a name="union__tag__list_8____unnamed____" id="union__tag__list_8____unnamed____"></a>
+<!-- doxytag: class="_tag_list" --><a name="structkeyword" id="structkeyword"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct keyword</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<div class="textblock"><p>Keyword structure for storing initial keywords. </p>
+<p>Stores string and ID of the language keywords like DO, WHILE, IF, etc. </p>
+
+<p>Definition at line <a class="el" href="tokdef_8h_source.html#l00066">66</a> of file <a class="el" href="tokdef_8h_source.html">tokdef.h</a>.</p>
+</div><table class="fieldtable">
+<tr><th colspan="3">Data Fields</th></tr>
+<tr><td class="fieldtype">
+<a class="anchor" id="a79da3556d7a0b19c9d1ce39e9d4a0bc7"></a><!-- doxytag: member="ID" ref="a79da3556d7a0b19c9d1ce39e9d4a0bc7" args="" -->int</td>
+<td class="fieldname">
+ID</td>
+<td class="fielddoc">
+keyword identifier </td></tr>
+<tr><td class="fieldtype">
+<a class="anchor" id="a02d5d49fc221e244cfc4f7196c1a2251"></a><!-- doxytag: member="w" ref="a02d5d49fc221e244cfc4f7196c1a2251" args="[10]" -->char</td>
+<td class="fieldname">
+w</td>
+<td class="fielddoc">
+keyword </td></tr>
+</table>
+
+</div>
+</div>
+<!-- doxytag: class="keyword" --><a name="union__tag__list_8____unnamed____" id="union__tag__list_8____unnamed____"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -280,7 +350,7 @@ single character </td></tr>
 <td class="fieldname">
 ID</td>
 <td class="fielddoc">
-identifier </td></tr>
+number identifier </td></tr>
 <tr><td class="fieldtype">
 <a class="anchor" id="a7b8b965ad4bca0e41ab51de7b31363a1"></a><!-- doxytag: member="n" ref="a7b8b965ad4bca0e41ab51de7b31363a1" args="" -->int</td>
 <td class="fieldname">
@@ -310,9 +380,9 @@ number </td></tr>
 <td class="fieldname">
 ID</td>
 <td class="fielddoc">
-identifier </td></tr>
+keyword / identifier identifier </td></tr>
 <tr><td class="fieldtype">
-<a class="anchor" id="a4140654ec46bd61087726571a573fe17"></a><!-- doxytag: member="w" ref="a4140654ec46bd61087726571a573fe17" args="[50]" -->char</td>
+<a class="anchor" id="ac03ff61f5183c6a978dc4d3be36105b7"></a><!-- doxytag: member="w" ref="ac03ff61f5183c6a978dc4d3be36105b7" args="[20]" -->char</td>
 <td class="fieldname">
 w</td>
 <td class="fielddoc">
@@ -322,6 +392,744 @@ keyword / identifer </td></tr>
 </div>
 </div>
 <!-- doxytag: class="_tag_list::_word.__unnamed__.word" --><hr/><h2>Function Documentation</h2>
+<a class="anchor" id="a2e5119b19a8d11244e9af9555dba5f66"></a><!-- doxytag: member="tokdef.h::ini_BEGIN" ref="a2e5119b19a8d11244e9af9555dba5f66" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="tokdef_8h.html#structkeyword">keyword</a>* <a class="el" href="tokdef_8c.html#a2e5119b19a8d11244e9af9555dba5f66">ini_BEGIN</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>initialise keyword BEGIN </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>keyword* </dd></dl>
+
+<p>Definition at line <a class="el" href="tokdef_8c_source.html#l00199">199</a> of file <a class="el" href="tokdef_8c_source.html">tokdef.c</a>.</p>
+
+<p>References <a class="el" href="tokdef_8c_source.html#l00190">BEGIN</a>, <a class="el" href="tokdef_8c_source.html#l00046">ERR_MEMORY</a>, <a class="el" href="tokdef_8c_source.html#l00055">error()</a>, <a class="el" href="tokdef_8h_source.html#l00068">keyword::ID</a>, <a class="el" href="tokdef_8c_source.html#l00179">keywords</a>, and <a class="el" href="tokdef_8h_source.html#l00067">keyword::w</a>.</p>
+<div class="fragment"><pre class="fragment">                     {
+  <a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a> *BEGIN_PTR;
+  <span class="keywordflow">if</span> ((BEGIN_PTR = malloc(<span class="keyword">sizeof</span>(<a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a>))) == NULL) <a class="code" href="tokdef_8c.html#a8b4b6428a8bf1450cf23b6032dec56cf" title="Print error message.">error</a>(<a class="code" href="tokdef_8c.html#ad7109e2dccd18353c3bdd5f55ad94b55afb88c5fa6e7d51074ec36bd4578e03a0">ERR_MEMORY</a>);
+  strcpy(BEGIN_PTR-&gt;<a class="code" href="tokdef_8h.html#a02d5d49fc221e244cfc4f7196c1a2251" title="keyword">w</a>, <a class="code" href="tokdef_8c.html#a378b0ae598a7cfd7eb28be463d4cc909" title="Stringtable of all keywords longer than 1 character.">keywords</a>[<a class="code" href="tokdef_8c.html#acf2488b95c97e0378c9bf49de3b50f28a368db50032da622d4c456ef7eaf9cb67">BEGIN</a> - 256]);
+  BEGIN_PTR-&gt;<a class="code" href="tokdef_8h.html#a79da3556d7a0b19c9d1ce39e9d4a0bc7" title="keyword identifier">ID</a> = <a class="code" href="tokdef_8c.html#acf2488b95c97e0378c9bf49de3b50f28a368db50032da622d4c456ef7eaf9cb67">BEGIN</a>;
+  <span class="keywordflow">return</span> BEGIN_PTR;
+}
+</pre></div>
+<p><div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-2-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-2-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-2-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="tokdef_8h_a2e5119b19a8d11244e9af9555dba5f66_cgraph.png" border="0" usemap="#tokdef_8h_a2e5119b19a8d11244e9af9555dba5f66_cgraph" alt=""/></div>
+<map name="tokdef_8h_a2e5119b19a8d11244e9af9555dba5f66_cgraph" id="tokdef_8h_a2e5119b19a8d11244e9af9555dba5f66_cgraph">
+<area shape="rect" id="node3" href="tokdef_8c.html#a8b4b6428a8bf1450cf23b6032dec56cf" title="Print error message." alt="" coords="141,5,195,35"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="acd9099ba07f5918fcecfb174f29b267b"></a><!-- doxytag: member="tokdef.h::ini_CALL" ref="acd9099ba07f5918fcecfb174f29b267b" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="tokdef_8h.html#structkeyword">keyword</a>* <a class="el" href="tokdef_8c.html#acd9099ba07f5918fcecfb174f29b267b">ini_CALL</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>initialise keyword CALL </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>keyword* </dd></dl>
+
+<p>Definition at line <a class="el" href="tokdef_8c_source.html#l00212">212</a> of file <a class="el" href="tokdef_8c_source.html">tokdef.c</a>.</p>
+
+<p>References <a class="el" href="tokdef_8c_source.html#l00190">CALL</a>, <a class="el" href="tokdef_8c_source.html#l00046">ERR_MEMORY</a>, <a class="el" href="tokdef_8c_source.html#l00055">error()</a>, <a class="el" href="tokdef_8h_source.html#l00068">keyword::ID</a>, <a class="el" href="tokdef_8c_source.html#l00179">keywords</a>, and <a class="el" href="tokdef_8h_source.html#l00067">keyword::w</a>.</p>
+<div class="fragment"><pre class="fragment">                    {
+  <a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a> *CALL_PTR;
+  <span class="keywordflow">if</span> ((CALL_PTR = malloc(<span class="keyword">sizeof</span>(<a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a>))) == NULL) <a class="code" href="tokdef_8c.html#a8b4b6428a8bf1450cf23b6032dec56cf" title="Print error message.">error</a>(<a class="code" href="tokdef_8c.html#ad7109e2dccd18353c3bdd5f55ad94b55afb88c5fa6e7d51074ec36bd4578e03a0">ERR_MEMORY</a>);
+  strcpy(CALL_PTR-&gt;<a class="code" href="tokdef_8h.html#a02d5d49fc221e244cfc4f7196c1a2251" title="keyword">w</a>, <a class="code" href="tokdef_8c.html#a378b0ae598a7cfd7eb28be463d4cc909" title="Stringtable of all keywords longer than 1 character.">keywords</a>[<a class="code" href="tokdef_8c.html#acf2488b95c97e0378c9bf49de3b50f28abd0ebc08c262bab82a1882256d2d66e8">CALL</a> - 256]);
+  CALL_PTR-&gt;<a class="code" href="tokdef_8h.html#a79da3556d7a0b19c9d1ce39e9d4a0bc7" title="keyword identifier">ID</a> = <a class="code" href="tokdef_8c.html#acf2488b95c97e0378c9bf49de3b50f28abd0ebc08c262bab82a1882256d2d66e8">CALL</a>;
+  <span class="keywordflow">return</span> CALL_PTR;
+}
+</pre></div>
+<p><div id="dynsection-3" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-3-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-3-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-3-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="tokdef_8h_acd9099ba07f5918fcecfb174f29b267b_cgraph.png" border="0" usemap="#tokdef_8h_acd9099ba07f5918fcecfb174f29b267b_cgraph" alt=""/></div>
+<map name="tokdef_8h_acd9099ba07f5918fcecfb174f29b267b_cgraph" id="tokdef_8h_acd9099ba07f5918fcecfb174f29b267b_cgraph">
+<area shape="rect" id="node3" href="tokdef_8c.html#a8b4b6428a8bf1450cf23b6032dec56cf" title="Print error message." alt="" coords="133,5,187,35"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a153311284cd712008980a20135dd5fa3"></a><!-- doxytag: member="tokdef.h::ini_CONST" ref="a153311284cd712008980a20135dd5fa3" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="tokdef_8h.html#structkeyword">keyword</a>* <a class="el" href="tokdef_8c.html#a153311284cd712008980a20135dd5fa3">ini_CONST</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>initialise keyword CONST </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>keyword* </dd></dl>
+
+<p>Definition at line <a class="el" href="tokdef_8c_source.html#l00225">225</a> of file <a class="el" href="tokdef_8c_source.html">tokdef.c</a>.</p>
+
+<p>References <a class="el" href="tokdef_8c_source.html#l00190">CONST</a>, <a class="el" href="tokdef_8c_source.html#l00046">ERR_MEMORY</a>, <a class="el" href="tokdef_8c_source.html#l00055">error()</a>, <a class="el" href="tokdef_8h_source.html#l00068">keyword::ID</a>, <a class="el" href="tokdef_8c_source.html#l00179">keywords</a>, and <a class="el" href="tokdef_8h_source.html#l00067">keyword::w</a>.</p>
+<div class="fragment"><pre class="fragment">                     {
+  <a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a> *CONST_PTR;
+  <span class="keywordflow">if</span> ((CONST_PTR = malloc(<span class="keyword">sizeof</span>(<a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a>))) == NULL) <a class="code" href="tokdef_8c.html#a8b4b6428a8bf1450cf23b6032dec56cf" title="Print error message.">error</a>(<a class="code" href="tokdef_8c.html#ad7109e2dccd18353c3bdd5f55ad94b55afb88c5fa6e7d51074ec36bd4578e03a0">ERR_MEMORY</a>);
+  strcpy(CONST_PTR-&gt;<a class="code" href="tokdef_8h.html#a02d5d49fc221e244cfc4f7196c1a2251" title="keyword">w</a>, <a class="code" href="tokdef_8c.html#a378b0ae598a7cfd7eb28be463d4cc909" title="Stringtable of all keywords longer than 1 character.">keywords</a>[<a class="code" href="tokdef_8c.html#acf2488b95c97e0378c9bf49de3b50f28a3d044162d972156d897cea80f216b9ca">CONST</a> - 256]);
+  CONST_PTR-&gt;<a class="code" href="tokdef_8h.html#a79da3556d7a0b19c9d1ce39e9d4a0bc7" title="keyword identifier">ID</a> = <a class="code" href="tokdef_8c.html#acf2488b95c97e0378c9bf49de3b50f28a3d044162d972156d897cea80f216b9ca">CONST</a>;
+  <span class="keywordflow">return</span> CONST_PTR;
+}
+</pre></div>
+<p><div id="dynsection-4" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-4-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-4-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-4-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="tokdef_8h_a153311284cd712008980a20135dd5fa3_cgraph.png" border="0" usemap="#tokdef_8h_a153311284cd712008980a20135dd5fa3_cgraph" alt=""/></div>
+<map name="tokdef_8h_a153311284cd712008980a20135dd5fa3_cgraph" id="tokdef_8h_a153311284cd712008980a20135dd5fa3_cgraph">
+<area shape="rect" id="node3" href="tokdef_8c.html#a8b4b6428a8bf1450cf23b6032dec56cf" title="Print error message." alt="" coords="147,5,200,35"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="adf1f24a77a6d6f72f76e7e2dba2bc048"></a><!-- doxytag: member="tokdef.h::ini_DO" ref="adf1f24a77a6d6f72f76e7e2dba2bc048" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="tokdef_8h.html#structkeyword">keyword</a>* <a class="el" href="tokdef_8c.html#adf1f24a77a6d6f72f76e7e2dba2bc048">ini_DO</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>initialise keyword DO </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>keyword* </dd></dl>
+
+<p>Definition at line <a class="el" href="tokdef_8c_source.html#l00238">238</a> of file <a class="el" href="tokdef_8c_source.html">tokdef.c</a>.</p>
+
+<p>References <a class="el" href="tokdef_8c_source.html#l00190">DO</a>, <a class="el" href="tokdef_8c_source.html#l00046">ERR_MEMORY</a>, <a class="el" href="tokdef_8c_source.html#l00055">error()</a>, <a class="el" href="tokdef_8h_source.html#l00068">keyword::ID</a>, <a class="el" href="tokdef_8c_source.html#l00179">keywords</a>, and <a class="el" href="tokdef_8h_source.html#l00067">keyword::w</a>.</p>
+<div class="fragment"><pre class="fragment">                  {
+  <a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a> *DO_PTR;
+  <span class="keywordflow">if</span> ((DO_PTR = malloc(<span class="keyword">sizeof</span>(<a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a>))) == NULL) <a class="code" href="tokdef_8c.html#a8b4b6428a8bf1450cf23b6032dec56cf" title="Print error message.">error</a>(<a class="code" href="tokdef_8c.html#ad7109e2dccd18353c3bdd5f55ad94b55afb88c5fa6e7d51074ec36bd4578e03a0">ERR_MEMORY</a>);
+  strcpy(DO_PTR-&gt;<a class="code" href="tokdef_8h.html#a02d5d49fc221e244cfc4f7196c1a2251" title="keyword">w</a>, <a class="code" href="tokdef_8c.html#a378b0ae598a7cfd7eb28be463d4cc909" title="Stringtable of all keywords longer than 1 character.">keywords</a>[<a class="code" href="tokdef_8c.html#acf2488b95c97e0378c9bf49de3b50f28abfea6036e64d9c7c773d277a57d2f959">DO</a> - 256]);
+  DO_PTR-&gt;<a class="code" href="tokdef_8h.html#a79da3556d7a0b19c9d1ce39e9d4a0bc7" title="keyword identifier">ID</a> = <a class="code" href="tokdef_8c.html#acf2488b95c97e0378c9bf49de3b50f28abfea6036e64d9c7c773d277a57d2f959">DO</a>;
+  <span class="keywordflow">return</span> DO_PTR;
+}
+</pre></div>
+<p><div id="dynsection-5" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-5-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-5-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-5-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="tokdef_8h_adf1f24a77a6d6f72f76e7e2dba2bc048_cgraph.png" border="0" usemap="#tokdef_8h_adf1f24a77a6d6f72f76e7e2dba2bc048_cgraph" alt=""/></div>
+<map name="tokdef_8h_adf1f24a77a6d6f72f76e7e2dba2bc048_cgraph" id="tokdef_8h_adf1f24a77a6d6f72f76e7e2dba2bc048_cgraph">
+<area shape="rect" id="node3" href="tokdef_8c.html#a8b4b6428a8bf1450cf23b6032dec56cf" title="Print error message." alt="" coords="120,5,173,35"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a41926a474714a535fe6ab94b09c1ec58"></a><!-- doxytag: member="tokdef.h::ini_END" ref="a41926a474714a535fe6ab94b09c1ec58" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="tokdef_8h.html#structkeyword">keyword</a>* <a class="el" href="tokdef_8c.html#a41926a474714a535fe6ab94b09c1ec58">ini_END</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>initialise keyword END </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>keyword* </dd></dl>
+
+<p>Definition at line <a class="el" href="tokdef_8c_source.html#l00251">251</a> of file <a class="el" href="tokdef_8c_source.html">tokdef.c</a>.</p>
+
+<p>References <a class="el" href="tokdef_8c_source.html#l00190">END</a>, <a class="el" href="tokdef_8c_source.html#l00046">ERR_MEMORY</a>, <a class="el" href="tokdef_8c_source.html#l00055">error()</a>, <a class="el" href="tokdef_8h_source.html#l00068">keyword::ID</a>, <a class="el" href="tokdef_8c_source.html#l00179">keywords</a>, and <a class="el" href="tokdef_8h_source.html#l00067">keyword::w</a>.</p>
+<div class="fragment"><pre class="fragment">                   {
+  <a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a> *END_PTR;
+  <span class="keywordflow">if</span> ((END_PTR = malloc(<span class="keyword">sizeof</span>(<a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a>))) == NULL) <a class="code" href="tokdef_8c.html#a8b4b6428a8bf1450cf23b6032dec56cf" title="Print error message.">error</a>(<a class="code" href="tokdef_8c.html#ad7109e2dccd18353c3bdd5f55ad94b55afb88c5fa6e7d51074ec36bd4578e03a0">ERR_MEMORY</a>);
+  strcpy(END_PTR-&gt;<a class="code" href="tokdef_8h.html#a02d5d49fc221e244cfc4f7196c1a2251" title="keyword">w</a>, <a class="code" href="tokdef_8c.html#a378b0ae598a7cfd7eb28be463d4cc909" title="Stringtable of all keywords longer than 1 character.">keywords</a>[<a class="code" href="tokdef_8c.html#acf2488b95c97e0378c9bf49de3b50f28adc6f24fd6915a3f2786a1b7045406924">END</a> - 256]);
+  END_PTR-&gt;<a class="code" href="tokdef_8h.html#a79da3556d7a0b19c9d1ce39e9d4a0bc7" title="keyword identifier">ID</a> = <a class="code" href="tokdef_8c.html#acf2488b95c97e0378c9bf49de3b50f28adc6f24fd6915a3f2786a1b7045406924">END</a>;
+  <span class="keywordflow">return</span> END_PTR;
+}
+</pre></div>
+<p><div id="dynsection-6" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-6-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-6-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-6-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="tokdef_8h_a41926a474714a535fe6ab94b09c1ec58_cgraph.png" border="0" usemap="#tokdef_8h_a41926a474714a535fe6ab94b09c1ec58_cgraph" alt=""/></div>
+<map name="tokdef_8h_a41926a474714a535fe6ab94b09c1ec58_cgraph" id="tokdef_8h_a41926a474714a535fe6ab94b09c1ec58_cgraph">
+<area shape="rect" id="node3" href="tokdef_8c.html#a8b4b6428a8bf1450cf23b6032dec56cf" title="Print error message." alt="" coords="128,5,181,35"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="aeef061af1fffa52edd7eaa510b82c16c"></a><!-- doxytag: member="tokdef.h::ini_EQ" ref="aeef061af1fffa52edd7eaa510b82c16c" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="tokdef_8h.html#structkeyword">keyword</a>* <a class="el" href="tokdef_8c.html#aeef061af1fffa52edd7eaa510b82c16c">ini_EQ</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>initialise keyword == </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>keyword* </dd></dl>
+
+<p>Definition at line <a class="el" href="tokdef_8c_source.html#l00381">381</a> of file <a class="el" href="tokdef_8c_source.html">tokdef.c</a>.</p>
+
+<p>References <a class="el" href="tokdef_8c_source.html#l00191">EQ</a>, <a class="el" href="tokdef_8c_source.html#l00046">ERR_MEMORY</a>, <a class="el" href="tokdef_8c_source.html#l00055">error()</a>, <a class="el" href="tokdef_8h_source.html#l00068">keyword::ID</a>, <a class="el" href="tokdef_8c_source.html#l00179">keywords</a>, and <a class="el" href="tokdef_8h_source.html#l00067">keyword::w</a>.</p>
+<div class="fragment"><pre class="fragment">                  {
+  <a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a> *EQ_PTR;
+  <span class="keywordflow">if</span> ((EQ_PTR = malloc(<span class="keyword">sizeof</span>(<a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a>))) == NULL) <a class="code" href="tokdef_8c.html#a8b4b6428a8bf1450cf23b6032dec56cf" title="Print error message.">error</a>(<a class="code" href="tokdef_8c.html#ad7109e2dccd18353c3bdd5f55ad94b55afb88c5fa6e7d51074ec36bd4578e03a0">ERR_MEMORY</a>);
+  strcpy(EQ_PTR-&gt;<a class="code" href="tokdef_8h.html#a02d5d49fc221e244cfc4f7196c1a2251" title="keyword">w</a>, <a class="code" href="tokdef_8c.html#a378b0ae598a7cfd7eb28be463d4cc909" title="Stringtable of all keywords longer than 1 character.">keywords</a>[<a class="code" href="tokdef_8c.html#acf2488b95c97e0378c9bf49de3b50f28a9efdc855f3c1477957fb50affec07f8f">EQ</a> - 256]);
+  EQ_PTR-&gt;<a class="code" href="tokdef_8h.html#a79da3556d7a0b19c9d1ce39e9d4a0bc7" title="keyword identifier">ID</a> = <a class="code" href="tokdef_8c.html#acf2488b95c97e0378c9bf49de3b50f28a9efdc855f3c1477957fb50affec07f8f">EQ</a>;
+  <span class="keywordflow">return</span> EQ_PTR;
+}
+</pre></div>
+<p><div id="dynsection-7" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-7-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-7-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-7-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="tokdef_8h_aeef061af1fffa52edd7eaa510b82c16c_cgraph.png" border="0" usemap="#tokdef_8h_aeef061af1fffa52edd7eaa510b82c16c_cgraph" alt=""/></div>
+<map name="tokdef_8h_aeef061af1fffa52edd7eaa510b82c16c_cgraph" id="tokdef_8h_aeef061af1fffa52edd7eaa510b82c16c_cgraph">
+<area shape="rect" id="node3" href="tokdef_8c.html#a8b4b6428a8bf1450cf23b6032dec56cf" title="Print error message." alt="" coords="117,5,171,35"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="af278058c4829574ed15f6943f39bacad"></a><!-- doxytag: member="tokdef.h::ini_GE" ref="af278058c4829574ed15f6943f39bacad" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="tokdef_8h.html#structkeyword">keyword</a>* <a class="el" href="tokdef_8c.html#af278058c4829574ed15f6943f39bacad">ini_GE</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>initialise keyword &gt;= </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>keyword* </dd></dl>
+
+<p>Definition at line <a class="el" href="tokdef_8c_source.html#l00394">394</a> of file <a class="el" href="tokdef_8c_source.html">tokdef.c</a>.</p>
+
+<p>References <a class="el" href="tokdef_8c_source.html#l00046">ERR_MEMORY</a>, <a class="el" href="tokdef_8c_source.html#l00055">error()</a>, <a class="el" href="tokdef_8c_source.html#l00191">GE</a>, <a class="el" href="tokdef_8h_source.html#l00068">keyword::ID</a>, <a class="el" href="tokdef_8c_source.html#l00179">keywords</a>, and <a class="el" href="tokdef_8h_source.html#l00067">keyword::w</a>.</p>
+<div class="fragment"><pre class="fragment">                  {
+  <a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a> *GE_PTR;
+  <span class="keywordflow">if</span> ((GE_PTR = malloc(<span class="keyword">sizeof</span>(<a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a>))) == NULL) <a class="code" href="tokdef_8c.html#a8b4b6428a8bf1450cf23b6032dec56cf" title="Print error message.">error</a>(<a class="code" href="tokdef_8c.html#ad7109e2dccd18353c3bdd5f55ad94b55afb88c5fa6e7d51074ec36bd4578e03a0">ERR_MEMORY</a>);
+  strcpy(GE_PTR-&gt;<a class="code" href="tokdef_8h.html#a02d5d49fc221e244cfc4f7196c1a2251" title="keyword">w</a>, <a class="code" href="tokdef_8c.html#a378b0ae598a7cfd7eb28be463d4cc909" title="Stringtable of all keywords longer than 1 character.">keywords</a>[<a class="code" href="tokdef_8c.html#acf2488b95c97e0378c9bf49de3b50f28a558711b4a2a25070b970d85f5926d5ce">GE</a> - 256]);
+  GE_PTR-&gt;<a class="code" href="tokdef_8h.html#a79da3556d7a0b19c9d1ce39e9d4a0bc7" title="keyword identifier">ID</a> = <a class="code" href="tokdef_8c.html#acf2488b95c97e0378c9bf49de3b50f28a558711b4a2a25070b970d85f5926d5ce">GE</a>;
+  <span class="keywordflow">return</span> GE_PTR;
+}
+</pre></div>
+<p><div id="dynsection-8" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-8-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-8-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-8-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="tokdef_8h_af278058c4829574ed15f6943f39bacad_cgraph.png" border="0" usemap="#tokdef_8h_af278058c4829574ed15f6943f39bacad_cgraph" alt=""/></div>
+<map name="tokdef_8h_af278058c4829574ed15f6943f39bacad_cgraph" id="tokdef_8h_af278058c4829574ed15f6943f39bacad_cgraph">
+<area shape="rect" id="node3" href="tokdef_8c.html#a8b4b6428a8bf1450cf23b6032dec56cf" title="Print error message." alt="" coords="117,5,171,35"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a59df98f4f9e2462ba38059c21729698c"></a><!-- doxytag: member="tokdef.h::ini_IF" ref="a59df98f4f9e2462ba38059c21729698c" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="tokdef_8h.html#structkeyword">keyword</a>* <a class="el" href="tokdef_8c.html#a59df98f4f9e2462ba38059c21729698c">ini_IF</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>initialise keyword IF </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>keyword* </dd></dl>
+
+<p>Definition at line <a class="el" href="tokdef_8c_source.html#l00264">264</a> of file <a class="el" href="tokdef_8c_source.html">tokdef.c</a>.</p>
+
+<p>References <a class="el" href="tokdef_8c_source.html#l00046">ERR_MEMORY</a>, <a class="el" href="tokdef_8c_source.html#l00055">error()</a>, <a class="el" href="tokdef_8h_source.html#l00068">keyword::ID</a>, <a class="el" href="tokdef_8c_source.html#l00190">IF</a>, <a class="el" href="tokdef_8c_source.html#l00179">keywords</a>, and <a class="el" href="tokdef_8h_source.html#l00067">keyword::w</a>.</p>
+<div class="fragment"><pre class="fragment">                  {
+  <a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a> *IF_PTR;
+  <span class="keywordflow">if</span> ((IF_PTR = malloc(<span class="keyword">sizeof</span>(<a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a>))) == NULL) <a class="code" href="tokdef_8c.html#a8b4b6428a8bf1450cf23b6032dec56cf" title="Print error message.">error</a>(<a class="code" href="tokdef_8c.html#ad7109e2dccd18353c3bdd5f55ad94b55afb88c5fa6e7d51074ec36bd4578e03a0">ERR_MEMORY</a>);
+  strcpy(IF_PTR-&gt;<a class="code" href="tokdef_8h.html#a02d5d49fc221e244cfc4f7196c1a2251" title="keyword">w</a>, <a class="code" href="tokdef_8c.html#a378b0ae598a7cfd7eb28be463d4cc909" title="Stringtable of all keywords longer than 1 character.">keywords</a>[<a class="code" href="tokdef_8c.html#acf2488b95c97e0378c9bf49de3b50f28a252802eda493fb6b4a279c4452acb547">IF</a> - 256]);
+  IF_PTR-&gt;<a class="code" href="tokdef_8h.html#a79da3556d7a0b19c9d1ce39e9d4a0bc7" title="keyword identifier">ID</a> = <a class="code" href="tokdef_8c.html#acf2488b95c97e0378c9bf49de3b50f28a252802eda493fb6b4a279c4452acb547">IF</a>;
+  <span class="keywordflow">return</span> IF_PTR;
+}
+</pre></div>
+<p><div id="dynsection-9" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-9-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-9-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-9-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="tokdef_8h_a59df98f4f9e2462ba38059c21729698c_cgraph.png" border="0" usemap="#tokdef_8h_a59df98f4f9e2462ba38059c21729698c_cgraph" alt=""/></div>
+<map name="tokdef_8h_a59df98f4f9e2462ba38059c21729698c_cgraph" id="tokdef_8h_a59df98f4f9e2462ba38059c21729698c_cgraph">
+<area shape="rect" id="node3" href="tokdef_8c.html#a8b4b6428a8bf1450cf23b6032dec56cf" title="Print error message." alt="" coords="109,5,163,35"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a5255ae956b6faf8fd1e6221368ce0295"></a><!-- doxytag: member="tokdef.h::ini_LE" ref="a5255ae956b6faf8fd1e6221368ce0295" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="tokdef_8h.html#structkeyword">keyword</a>* <a class="el" href="tokdef_8c.html#a5255ae956b6faf8fd1e6221368ce0295">ini_LE</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>initialise keyword &lt;= </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>keyword* </dd></dl>
+
+<p>Definition at line <a class="el" href="tokdef_8c_source.html#l00407">407</a> of file <a class="el" href="tokdef_8c_source.html">tokdef.c</a>.</p>
+
+<p>References <a class="el" href="tokdef_8c_source.html#l00046">ERR_MEMORY</a>, <a class="el" href="tokdef_8c_source.html#l00055">error()</a>, <a class="el" href="tokdef_8h_source.html#l00068">keyword::ID</a>, <a class="el" href="tokdef_8c_source.html#l00179">keywords</a>, <a class="el" href="tokdef_8c_source.html#l00191">LE</a>, and <a class="el" href="tokdef_8h_source.html#l00067">keyword::w</a>.</p>
+<div class="fragment"><pre class="fragment">                  {
+  <a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a> *LE_PTR;
+  <span class="keywordflow">if</span> ((LE_PTR = malloc(<span class="keyword">sizeof</span>(<a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a>))) == NULL) <a class="code" href="tokdef_8c.html#a8b4b6428a8bf1450cf23b6032dec56cf" title="Print error message.">error</a>(<a class="code" href="tokdef_8c.html#ad7109e2dccd18353c3bdd5f55ad94b55afb88c5fa6e7d51074ec36bd4578e03a0">ERR_MEMORY</a>);
+  strcpy(LE_PTR-&gt;<a class="code" href="tokdef_8h.html#a02d5d49fc221e244cfc4f7196c1a2251" title="keyword">w</a>, <a class="code" href="tokdef_8c.html#a378b0ae598a7cfd7eb28be463d4cc909" title="Stringtable of all keywords longer than 1 character.">keywords</a>[<a class="code" href="tokdef_8c.html#acf2488b95c97e0378c9bf49de3b50f28a662ed4b51721a45f07d645d4ca099a61">LE</a> - 256]);
+  LE_PTR-&gt;<a class="code" href="tokdef_8h.html#a79da3556d7a0b19c9d1ce39e9d4a0bc7" title="keyword identifier">ID</a> = <a class="code" href="tokdef_8c.html#acf2488b95c97e0378c9bf49de3b50f28a662ed4b51721a45f07d645d4ca099a61">LE</a>;
+  <span class="keywordflow">return</span> LE_PTR;
+}
+</pre></div>
+<p><div id="dynsection-10" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-10-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-10-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-10-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="tokdef_8h_a5255ae956b6faf8fd1e6221368ce0295_cgraph.png" border="0" usemap="#tokdef_8h_a5255ae956b6faf8fd1e6221368ce0295_cgraph" alt=""/></div>
+<map name="tokdef_8h_a5255ae956b6faf8fd1e6221368ce0295_cgraph" id="tokdef_8h_a5255ae956b6faf8fd1e6221368ce0295_cgraph">
+<area shape="rect" id="node3" href="tokdef_8c.html#a8b4b6428a8bf1450cf23b6032dec56cf" title="Print error message." alt="" coords="115,5,168,35"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a700de1f32ddf4df29374bb22c928801f"></a><!-- doxytag: member="tokdef.h::ini_NE" ref="a700de1f32ddf4df29374bb22c928801f" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="tokdef_8h.html#structkeyword">keyword</a>* <a class="el" href="tokdef_8c.html#a700de1f32ddf4df29374bb22c928801f">ini_NE</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>initialise keyword != </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>keyword* </dd></dl>
+
+<p>Definition at line <a class="el" href="tokdef_8c_source.html#l00420">420</a> of file <a class="el" href="tokdef_8c_source.html">tokdef.c</a>.</p>
+
+<p>References <a class="el" href="tokdef_8c_source.html#l00046">ERR_MEMORY</a>, <a class="el" href="tokdef_8c_source.html#l00055">error()</a>, <a class="el" href="tokdef_8h_source.html#l00068">keyword::ID</a>, <a class="el" href="tokdef_8c_source.html#l00179">keywords</a>, <a class="el" href="tokdef_8c_source.html#l00191">NE</a>, and <a class="el" href="tokdef_8h_source.html#l00067">keyword::w</a>.</p>
+<div class="fragment"><pre class="fragment">                  {
+  <a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a> *NE_PTR;
+  <span class="keywordflow">if</span> ((NE_PTR = malloc(<span class="keyword">sizeof</span>(<a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a>))) == NULL) <a class="code" href="tokdef_8c.html#a8b4b6428a8bf1450cf23b6032dec56cf" title="Print error message.">error</a>(<a class="code" href="tokdef_8c.html#ad7109e2dccd18353c3bdd5f55ad94b55afb88c5fa6e7d51074ec36bd4578e03a0">ERR_MEMORY</a>);
+  strcpy(NE_PTR-&gt;<a class="code" href="tokdef_8h.html#a02d5d49fc221e244cfc4f7196c1a2251" title="keyword">w</a>, <a class="code" href="tokdef_8c.html#a378b0ae598a7cfd7eb28be463d4cc909" title="Stringtable of all keywords longer than 1 character.">keywords</a>[<a class="code" href="tokdef_8c.html#acf2488b95c97e0378c9bf49de3b50f28a4d3f872f5054b256b01ee4f2c8cf51db">NE</a> - 256]);
+  NE_PTR-&gt;<a class="code" href="tokdef_8h.html#a79da3556d7a0b19c9d1ce39e9d4a0bc7" title="keyword identifier">ID</a> = <a class="code" href="tokdef_8c.html#acf2488b95c97e0378c9bf49de3b50f28a4d3f872f5054b256b01ee4f2c8cf51db">NE</a>;
+  <span class="keywordflow">return</span> NE_PTR;
+}
+</pre></div>
+<p><div id="dynsection-11" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-11-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-11-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-11-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="tokdef_8h_a700de1f32ddf4df29374bb22c928801f_cgraph.png" border="0" usemap="#tokdef_8h_a700de1f32ddf4df29374bb22c928801f_cgraph" alt=""/></div>
+<map name="tokdef_8h_a700de1f32ddf4df29374bb22c928801f_cgraph" id="tokdef_8h_a700de1f32ddf4df29374bb22c928801f_cgraph">
+<area shape="rect" id="node3" href="tokdef_8c.html#a8b4b6428a8bf1450cf23b6032dec56cf" title="Print error message." alt="" coords="117,5,171,35"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a0f9272daacf3da2d8e84b5823b198854"></a><!-- doxytag: member="tokdef.h::ini_ODD" ref="a0f9272daacf3da2d8e84b5823b198854" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="tokdef_8h.html#structkeyword">keyword</a>* <a class="el" href="tokdef_8c.html#a0f9272daacf3da2d8e84b5823b198854">ini_ODD</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>initialise keyword ODD </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>keyword* </dd></dl>
+
+<p>Definition at line <a class="el" href="tokdef_8c_source.html#l00277">277</a> of file <a class="el" href="tokdef_8c_source.html">tokdef.c</a>.</p>
+
+<p>References <a class="el" href="tokdef_8c_source.html#l00046">ERR_MEMORY</a>, <a class="el" href="tokdef_8c_source.html#l00055">error()</a>, <a class="el" href="tokdef_8h_source.html#l00068">keyword::ID</a>, <a class="el" href="tokdef_8c_source.html#l00179">keywords</a>, <a class="el" href="tokdef_8c_source.html#l00190">ODD</a>, and <a class="el" href="tokdef_8h_source.html#l00067">keyword::w</a>.</p>
+<div class="fragment"><pre class="fragment">                   {
+  <a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a> *ODD_PTR;
+  <span class="keywordflow">if</span> ((ODD_PTR = malloc(<span class="keyword">sizeof</span>(<a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a>))) == NULL) <a class="code" href="tokdef_8c.html#a8b4b6428a8bf1450cf23b6032dec56cf" title="Print error message.">error</a>(<a class="code" href="tokdef_8c.html#ad7109e2dccd18353c3bdd5f55ad94b55afb88c5fa6e7d51074ec36bd4578e03a0">ERR_MEMORY</a>);
+  strcpy(ODD_PTR-&gt;<a class="code" href="tokdef_8h.html#a02d5d49fc221e244cfc4f7196c1a2251" title="keyword">w</a>, <a class="code" href="tokdef_8c.html#a378b0ae598a7cfd7eb28be463d4cc909" title="Stringtable of all keywords longer than 1 character.">keywords</a>[<a class="code" href="tokdef_8c.html#acf2488b95c97e0378c9bf49de3b50f28aa29cedab858353a26006af9db7cd1ed8">ODD</a> - 256]);
+  ODD_PTR-&gt;<a class="code" href="tokdef_8h.html#a79da3556d7a0b19c9d1ce39e9d4a0bc7" title="keyword identifier">ID</a> = <a class="code" href="tokdef_8c.html#acf2488b95c97e0378c9bf49de3b50f28aa29cedab858353a26006af9db7cd1ed8">ODD</a>;
+  <span class="keywordflow">return</span> ODD_PTR;
+}
+</pre></div>
+<p><div id="dynsection-12" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-12-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-12-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-12-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="tokdef_8h_a0f9272daacf3da2d8e84b5823b198854_cgraph.png" border="0" usemap="#tokdef_8h_a0f9272daacf3da2d8e84b5823b198854_cgraph" alt=""/></div>
+<map name="tokdef_8h_a0f9272daacf3da2d8e84b5823b198854_cgraph" id="tokdef_8h_a0f9272daacf3da2d8e84b5823b198854_cgraph">
+<area shape="rect" id="node3" href="tokdef_8c.html#a8b4b6428a8bf1450cf23b6032dec56cf" title="Print error message." alt="" coords="128,5,181,35"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="afbc12afdc22344562084703f9a7ffc83"></a><!-- doxytag: member="tokdef.h::ini_PASS" ref="afbc12afdc22344562084703f9a7ffc83" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="tokdef_8h.html#structkeyword">keyword</a>* <a class="el" href="tokdef_8c.html#afbc12afdc22344562084703f9a7ffc83">ini_PASS</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>initialise keyword PASS </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>keyword* </dd></dl>
+
+<p>Definition at line <a class="el" href="tokdef_8c_source.html#l00368">368</a> of file <a class="el" href="tokdef_8c_source.html">tokdef.c</a>.</p>
+
+<p>References <a class="el" href="tokdef_8c_source.html#l00046">ERR_MEMORY</a>, <a class="el" href="tokdef_8c_source.html#l00055">error()</a>, <a class="el" href="tokdef_8h_source.html#l00068">keyword::ID</a>, <a class="el" href="tokdef_8c_source.html#l00179">keywords</a>, <a class="el" href="tokdef_8c_source.html#l00191">PASS</a>, and <a class="el" href="tokdef_8h_source.html#l00067">keyword::w</a>.</p>
+<div class="fragment"><pre class="fragment">                    {
+  <a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a> *PASS_PTR;
+  <span class="keywordflow">if</span> ((PASS_PTR = malloc(<span class="keyword">sizeof</span>(<a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a>))) == NULL) <a class="code" href="tokdef_8c.html#a8b4b6428a8bf1450cf23b6032dec56cf" title="Print error message.">error</a>(<a class="code" href="tokdef_8c.html#ad7109e2dccd18353c3bdd5f55ad94b55afb88c5fa6e7d51074ec36bd4578e03a0">ERR_MEMORY</a>);
+  strcpy(PASS_PTR-&gt;<a class="code" href="tokdef_8h.html#a02d5d49fc221e244cfc4f7196c1a2251" title="keyword">w</a>, <a class="code" href="tokdef_8c.html#a378b0ae598a7cfd7eb28be463d4cc909" title="Stringtable of all keywords longer than 1 character.">keywords</a>[<a class="code" href="tokdef_8c.html#acf2488b95c97e0378c9bf49de3b50f28a0afa825567e442a46d131be6c71cb40f">PASS</a> - 256]);
+  PASS_PTR-&gt;<a class="code" href="tokdef_8h.html#a79da3556d7a0b19c9d1ce39e9d4a0bc7" title="keyword identifier">ID</a> = <a class="code" href="tokdef_8c.html#acf2488b95c97e0378c9bf49de3b50f28a0afa825567e442a46d131be6c71cb40f">PASS</a>;
+  <span class="keywordflow">return</span> PASS_PTR;
+}
+</pre></div>
+<p><div id="dynsection-13" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-13-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-13-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-13-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="tokdef_8h_afbc12afdc22344562084703f9a7ffc83_cgraph.png" border="0" usemap="#tokdef_8h_afbc12afdc22344562084703f9a7ffc83_cgraph" alt=""/></div>
+<map name="tokdef_8h_afbc12afdc22344562084703f9a7ffc83_cgraph" id="tokdef_8h_afbc12afdc22344562084703f9a7ffc83_cgraph">
+<area shape="rect" id="node3" href="tokdef_8c.html#a8b4b6428a8bf1450cf23b6032dec56cf" title="Print error message." alt="" coords="133,5,187,35"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="afe2a95df81d5d0296e1a03e1d0eec690"></a><!-- doxytag: member="tokdef.h::ini_PRINT" ref="afe2a95df81d5d0296e1a03e1d0eec690" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="tokdef_8h.html#structkeyword">keyword</a>* <a class="el" href="tokdef_8c.html#afe2a95df81d5d0296e1a03e1d0eec690">ini_PRINT</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>initialise keyword PRINT </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>keyword* </dd></dl>
+
+<p>Definition at line <a class="el" href="tokdef_8c_source.html#l00290">290</a> of file <a class="el" href="tokdef_8c_source.html">tokdef.c</a>.</p>
+
+<p>References <a class="el" href="tokdef_8c_source.html#l00046">ERR_MEMORY</a>, <a class="el" href="tokdef_8c_source.html#l00055">error()</a>, <a class="el" href="tokdef_8h_source.html#l00068">keyword::ID</a>, <a class="el" href="tokdef_8c_source.html#l00179">keywords</a>, <a class="el" href="tokdef_8c_source.html#l00190">PRINT</a>, and <a class="el" href="tokdef_8h_source.html#l00067">keyword::w</a>.</p>
+<div class="fragment"><pre class="fragment">                     {
+  <a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a> *PRINT_PTR;
+  <span class="keywordflow">if</span> ((PRINT_PTR = malloc(<span class="keyword">sizeof</span>(<a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a>))) == NULL) <a class="code" href="tokdef_8c.html#a8b4b6428a8bf1450cf23b6032dec56cf" title="Print error message.">error</a>(<a class="code" href="tokdef_8c.html#ad7109e2dccd18353c3bdd5f55ad94b55afb88c5fa6e7d51074ec36bd4578e03a0">ERR_MEMORY</a>);
+  strcpy(PRINT_PTR-&gt;<a class="code" href="tokdef_8h.html#a02d5d49fc221e244cfc4f7196c1a2251" title="keyword">w</a>, <a class="code" href="tokdef_8c.html#a378b0ae598a7cfd7eb28be463d4cc909" title="Stringtable of all keywords longer than 1 character.">keywords</a>[<a class="code" href="tokdef_8c.html#acf2488b95c97e0378c9bf49de3b50f28ab107229d44d042caa8ab8df4c8acaa1f">PRINT</a> - 256]);
+  PRINT_PTR-&gt;<a class="code" href="tokdef_8h.html#a79da3556d7a0b19c9d1ce39e9d4a0bc7" title="keyword identifier">ID</a> = <a class="code" href="tokdef_8c.html#acf2488b95c97e0378c9bf49de3b50f28ab107229d44d042caa8ab8df4c8acaa1f">PRINT</a>;
+  <span class="keywordflow">return</span> PRINT_PTR;
+}
+</pre></div>
+<p><div id="dynsection-14" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-14-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-14-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-14-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="tokdef_8h_afe2a95df81d5d0296e1a03e1d0eec690_cgraph.png" border="0" usemap="#tokdef_8h_afe2a95df81d5d0296e1a03e1d0eec690_cgraph" alt=""/></div>
+<map name="tokdef_8h_afe2a95df81d5d0296e1a03e1d0eec690_cgraph" id="tokdef_8h_afe2a95df81d5d0296e1a03e1d0eec690_cgraph">
+<area shape="rect" id="node3" href="tokdef_8c.html#a8b4b6428a8bf1450cf23b6032dec56cf" title="Print error message." alt="" coords="141,5,195,35"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a7f70e514a9b918ecea16bbbb8dc7dc5a"></a><!-- doxytag: member="tokdef.h::ini_PROCEDURE" ref="a7f70e514a9b918ecea16bbbb8dc7dc5a" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="tokdef_8h.html#structkeyword">keyword</a>* <a class="el" href="tokdef_8c.html#a7f70e514a9b918ecea16bbbb8dc7dc5a">ini_PROCEDURE</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>initialise keyword PROCEDURE </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>keyword* </dd></dl>
+
+<p>Definition at line <a class="el" href="tokdef_8c_source.html#l00303">303</a> of file <a class="el" href="tokdef_8c_source.html">tokdef.c</a>.</p>
+
+<p>References <a class="el" href="tokdef_8c_source.html#l00046">ERR_MEMORY</a>, <a class="el" href="tokdef_8c_source.html#l00055">error()</a>, <a class="el" href="tokdef_8h_source.html#l00068">keyword::ID</a>, <a class="el" href="tokdef_8c_source.html#l00179">keywords</a>, <a class="el" href="tokdef_8c_source.html#l00191">PROCEDURE</a>, and <a class="el" href="tokdef_8h_source.html#l00067">keyword::w</a>.</p>
+<div class="fragment"><pre class="fragment">                         {
+  <a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a> *PROCEDURE_PTR;
+  <span class="keywordflow">if</span> ((PROCEDURE_PTR = malloc(<span class="keyword">sizeof</span>(<a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a>))) == NULL) <a class="code" href="tokdef_8c.html#a8b4b6428a8bf1450cf23b6032dec56cf" title="Print error message.">error</a>(<a class="code" href="tokdef_8c.html#ad7109e2dccd18353c3bdd5f55ad94b55afb88c5fa6e7d51074ec36bd4578e03a0">ERR_MEMORY</a>);
+  strcpy(PROCEDURE_PTR-&gt;<a class="code" href="tokdef_8h.html#a02d5d49fc221e244cfc4f7196c1a2251" title="keyword">w</a>, <a class="code" href="tokdef_8c.html#a378b0ae598a7cfd7eb28be463d4cc909" title="Stringtable of all keywords longer than 1 character.">keywords</a>[<a class="code" href="tokdef_8c.html#acf2488b95c97e0378c9bf49de3b50f28ad95bbb705a560daadfaa6c72329fbd61">PROCEDURE</a> - 256]);
+  PROCEDURE_PTR-&gt;<a class="code" href="tokdef_8h.html#a79da3556d7a0b19c9d1ce39e9d4a0bc7" title="keyword identifier">ID</a> = <a class="code" href="tokdef_8c.html#acf2488b95c97e0378c9bf49de3b50f28ad95bbb705a560daadfaa6c72329fbd61">PROCEDURE</a>;
+  <span class="keywordflow">return</span> PROCEDURE_PTR;
+}
+</pre></div>
+<p><div id="dynsection-15" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-15-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-15-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-15-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="tokdef_8h_a7f70e514a9b918ecea16bbbb8dc7dc5a_cgraph.png" border="0" usemap="#tokdef_8h_a7f70e514a9b918ecea16bbbb8dc7dc5a_cgraph" alt=""/></div>
+<map name="tokdef_8h_a7f70e514a9b918ecea16bbbb8dc7dc5a_cgraph" id="tokdef_8h_a7f70e514a9b918ecea16bbbb8dc7dc5a_cgraph">
+<area shape="rect" id="node3" href="tokdef_8c.html#a8b4b6428a8bf1450cf23b6032dec56cf" title="Print error message." alt="" coords="187,5,240,35"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a1ce32c3234be6e50832e306329658240"></a><!-- doxytag: member="tokdef.h::ini_READ" ref="a1ce32c3234be6e50832e306329658240" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="tokdef_8h.html#structkeyword">keyword</a>* <a class="el" href="tokdef_8c.html#a1ce32c3234be6e50832e306329658240">ini_READ</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>initialise keyword READ </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>keyword* </dd></dl>
+
+<p>Definition at line <a class="el" href="tokdef_8c_source.html#l00316">316</a> of file <a class="el" href="tokdef_8c_source.html">tokdef.c</a>.</p>
+
+<p>References <a class="el" href="tokdef_8c_source.html#l00046">ERR_MEMORY</a>, <a class="el" href="tokdef_8c_source.html#l00055">error()</a>, <a class="el" href="tokdef_8h_source.html#l00068">keyword::ID</a>, <a class="el" href="tokdef_8c_source.html#l00179">keywords</a>, <a class="el" href="tokdef_8c_source.html#l00191">READ</a>, and <a class="el" href="tokdef_8h_source.html#l00067">keyword::w</a>.</p>
+<div class="fragment"><pre class="fragment">                    {
+  <a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a> *READ_PTR;
+  <span class="keywordflow">if</span> ((READ_PTR = malloc(<span class="keyword">sizeof</span>(<a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a>))) == NULL) <a class="code" href="tokdef_8c.html#a8b4b6428a8bf1450cf23b6032dec56cf" title="Print error message.">error</a>(<a class="code" href="tokdef_8c.html#ad7109e2dccd18353c3bdd5f55ad94b55afb88c5fa6e7d51074ec36bd4578e03a0">ERR_MEMORY</a>);
+  strcpy(READ_PTR-&gt;<a class="code" href="tokdef_8h.html#a02d5d49fc221e244cfc4f7196c1a2251" title="keyword">w</a>, <a class="code" href="tokdef_8c.html#a378b0ae598a7cfd7eb28be463d4cc909" title="Stringtable of all keywords longer than 1 character.">keywords</a>[<a class="code" href="tokdef_8c.html#acf2488b95c97e0378c9bf49de3b50f28acb9be765f361bb7efb9073730aac92c6">READ</a> - 256]);
+  READ_PTR-&gt;<a class="code" href="tokdef_8h.html#a79da3556d7a0b19c9d1ce39e9d4a0bc7" title="keyword identifier">ID</a> = <a class="code" href="tokdef_8c.html#acf2488b95c97e0378c9bf49de3b50f28acb9be765f361bb7efb9073730aac92c6">READ</a>;
+  <span class="keywordflow">return</span> READ_PTR;
+}
+</pre></div>
+<p><div id="dynsection-16" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-16-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-16-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-16-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="tokdef_8h_a1ce32c3234be6e50832e306329658240_cgraph.png" border="0" usemap="#tokdef_8h_a1ce32c3234be6e50832e306329658240_cgraph" alt=""/></div>
+<map name="tokdef_8h_a1ce32c3234be6e50832e306329658240_cgraph" id="tokdef_8h_a1ce32c3234be6e50832e306329658240_cgraph">
+<area shape="rect" id="node3" href="tokdef_8c.html#a8b4b6428a8bf1450cf23b6032dec56cf" title="Print error message." alt="" coords="136,5,189,35"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a6c3cbb287339e979208c720ddce34aa0"></a><!-- doxytag: member="tokdef.h::ini_THEN" ref="a6c3cbb287339e979208c720ddce34aa0" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="tokdef_8h.html#structkeyword">keyword</a>* <a class="el" href="tokdef_8c.html#a6c3cbb287339e979208c720ddce34aa0">ini_THEN</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>initialise keyword THEN </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>keyword* </dd></dl>
+
+<p>Definition at line <a class="el" href="tokdef_8c_source.html#l00329">329</a> of file <a class="el" href="tokdef_8c_source.html">tokdef.c</a>.</p>
+
+<p>References <a class="el" href="tokdef_8c_source.html#l00046">ERR_MEMORY</a>, <a class="el" href="tokdef_8c_source.html#l00055">error()</a>, <a class="el" href="tokdef_8h_source.html#l00068">keyword::ID</a>, <a class="el" href="tokdef_8c_source.html#l00179">keywords</a>, <a class="el" href="tokdef_8c_source.html#l00191">THEN</a>, and <a class="el" href="tokdef_8h_source.html#l00067">keyword::w</a>.</p>
+<div class="fragment"><pre class="fragment">                    {
+  <a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a> *THEN_PTR;
+  <span class="keywordflow">if</span> ((THEN_PTR = malloc(<span class="keyword">sizeof</span>(<a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a>))) == NULL) <a class="code" href="tokdef_8c.html#a8b4b6428a8bf1450cf23b6032dec56cf" title="Print error message.">error</a>(<a class="code" href="tokdef_8c.html#ad7109e2dccd18353c3bdd5f55ad94b55afb88c5fa6e7d51074ec36bd4578e03a0">ERR_MEMORY</a>);
+  strcpy(THEN_PTR-&gt;<a class="code" href="tokdef_8h.html#a02d5d49fc221e244cfc4f7196c1a2251" title="keyword">w</a>, <a class="code" href="tokdef_8c.html#a378b0ae598a7cfd7eb28be463d4cc909" title="Stringtable of all keywords longer than 1 character.">keywords</a>[<a class="code" href="tokdef_8c.html#acf2488b95c97e0378c9bf49de3b50f28abb40477a291c07277e13d096645f4305">THEN</a> - 256]);
+  THEN_PTR-&gt;<a class="code" href="tokdef_8h.html#a79da3556d7a0b19c9d1ce39e9d4a0bc7" title="keyword identifier">ID</a> = <a class="code" href="tokdef_8c.html#acf2488b95c97e0378c9bf49de3b50f28abb40477a291c07277e13d096645f4305">THEN</a>;
+  <span class="keywordflow">return</span> THEN_PTR;
+}
+</pre></div>
+<p><div id="dynsection-17" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-17-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-17-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-17-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="tokdef_8h_a6c3cbb287339e979208c720ddce34aa0_cgraph.png" border="0" usemap="#tokdef_8h_a6c3cbb287339e979208c720ddce34aa0_cgraph" alt=""/></div>
+<map name="tokdef_8h_a6c3cbb287339e979208c720ddce34aa0_cgraph" id="tokdef_8h_a6c3cbb287339e979208c720ddce34aa0_cgraph">
+<area shape="rect" id="node3" href="tokdef_8c.html#a8b4b6428a8bf1450cf23b6032dec56cf" title="Print error message." alt="" coords="136,5,189,35"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a31c3ddcea0020c1e08f300c48fe783d3"></a><!-- doxytag: member="tokdef.h::ini_VAR" ref="a31c3ddcea0020c1e08f300c48fe783d3" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="tokdef_8h.html#structkeyword">keyword</a>* <a class="el" href="tokdef_8c.html#a31c3ddcea0020c1e08f300c48fe783d3">ini_VAR</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>initialise keyword VAR </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>keyword* </dd></dl>
+
+<p>Definition at line <a class="el" href="tokdef_8c_source.html#l00342">342</a> of file <a class="el" href="tokdef_8c_source.html">tokdef.c</a>.</p>
+
+<p>References <a class="el" href="tokdef_8c_source.html#l00046">ERR_MEMORY</a>, <a class="el" href="tokdef_8c_source.html#l00055">error()</a>, <a class="el" href="tokdef_8h_source.html#l00068">keyword::ID</a>, <a class="el" href="tokdef_8c_source.html#l00179">keywords</a>, <a class="el" href="tokdef_8c_source.html#l00191">VAR</a>, and <a class="el" href="tokdef_8h_source.html#l00067">keyword::w</a>.</p>
+<div class="fragment"><pre class="fragment">                   {
+  <a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a> *VAR_PTR;
+  <span class="keywordflow">if</span> ((VAR_PTR = malloc(<span class="keyword">sizeof</span>(<a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a>))) == NULL) <a class="code" href="tokdef_8c.html#a8b4b6428a8bf1450cf23b6032dec56cf" title="Print error message.">error</a>(<a class="code" href="tokdef_8c.html#ad7109e2dccd18353c3bdd5f55ad94b55afb88c5fa6e7d51074ec36bd4578e03a0">ERR_MEMORY</a>);
+  strcpy(VAR_PTR-&gt;<a class="code" href="tokdef_8h.html#a02d5d49fc221e244cfc4f7196c1a2251" title="keyword">w</a>, <a class="code" href="tokdef_8c.html#a378b0ae598a7cfd7eb28be463d4cc909" title="Stringtable of all keywords longer than 1 character.">keywords</a>[<a class="code" href="tokdef_8c.html#acf2488b95c97e0378c9bf49de3b50f28af68346ce0bfce7ab2ca0a240f5132863">VAR</a> - 256]);
+  VAR_PTR-&gt;<a class="code" href="tokdef_8h.html#a79da3556d7a0b19c9d1ce39e9d4a0bc7" title="keyword identifier">ID</a> = <a class="code" href="tokdef_8c.html#acf2488b95c97e0378c9bf49de3b50f28af68346ce0bfce7ab2ca0a240f5132863">VAR</a>;
+  <span class="keywordflow">return</span> VAR_PTR;
+}
+</pre></div>
+<p><div id="dynsection-18" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-18-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-18-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-18-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="tokdef_8h_a31c3ddcea0020c1e08f300c48fe783d3_cgraph.png" border="0" usemap="#tokdef_8h_a31c3ddcea0020c1e08f300c48fe783d3_cgraph" alt=""/></div>
+<map name="tokdef_8h_a31c3ddcea0020c1e08f300c48fe783d3_cgraph" id="tokdef_8h_a31c3ddcea0020c1e08f300c48fe783d3_cgraph">
+<area shape="rect" id="node3" href="tokdef_8c.html#a8b4b6428a8bf1450cf23b6032dec56cf" title="Print error message." alt="" coords="125,5,179,35"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a58f3a75145550870497c2517db9d100b"></a><!-- doxytag: member="tokdef.h::ini_WHILE" ref="a58f3a75145550870497c2517db9d100b" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="tokdef_8h.html#structkeyword">keyword</a>* <a class="el" href="tokdef_8c.html#a58f3a75145550870497c2517db9d100b">ini_WHILE</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>initialise keyword WHILE </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>keyword* </dd></dl>
+
+<p>Definition at line <a class="el" href="tokdef_8c_source.html#l00355">355</a> of file <a class="el" href="tokdef_8c_source.html">tokdef.c</a>.</p>
+
+<p>References <a class="el" href="tokdef_8c_source.html#l00046">ERR_MEMORY</a>, <a class="el" href="tokdef_8c_source.html#l00055">error()</a>, <a class="el" href="tokdef_8h_source.html#l00068">keyword::ID</a>, <a class="el" href="tokdef_8c_source.html#l00179">keywords</a>, <a class="el" href="tokdef_8h_source.html#l00067">keyword::w</a>, and <a class="el" href="tokdef_8c_source.html#l00191">WHILE</a>.</p>
+<div class="fragment"><pre class="fragment">                     {
+  <a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a> *WHILE_PTR;
+  <span class="keywordflow">if</span> ((WHILE_PTR = malloc(<span class="keyword">sizeof</span>(<a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a>))) == NULL) <a class="code" href="tokdef_8c.html#a8b4b6428a8bf1450cf23b6032dec56cf" title="Print error message.">error</a>(<a class="code" href="tokdef_8c.html#ad7109e2dccd18353c3bdd5f55ad94b55afb88c5fa6e7d51074ec36bd4578e03a0">ERR_MEMORY</a>);
+  strcpy(WHILE_PTR-&gt;<a class="code" href="tokdef_8h.html#a02d5d49fc221e244cfc4f7196c1a2251" title="keyword">w</a>, <a class="code" href="tokdef_8c.html#a378b0ae598a7cfd7eb28be463d4cc909" title="Stringtable of all keywords longer than 1 character.">keywords</a>[<a class="code" href="tokdef_8c.html#acf2488b95c97e0378c9bf49de3b50f28a3278fd035226215822c903790a1eee73">WHILE</a> - 256]);
+  WHILE_PTR-&gt;<a class="code" href="tokdef_8h.html#a79da3556d7a0b19c9d1ce39e9d4a0bc7" title="keyword identifier">ID</a> = <a class="code" href="tokdef_8c.html#acf2488b95c97e0378c9bf49de3b50f28a3278fd035226215822c903790a1eee73">WHILE</a>;
+  <span class="keywordflow">return</span> WHILE_PTR;
+}
+</pre></div>
+<p><div id="dynsection-19" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-19-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-19-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-19-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="tokdef_8h_a58f3a75145550870497c2517db9d100b_cgraph.png" border="0" usemap="#tokdef_8h_a58f3a75145550870497c2517db9d100b_cgraph" alt=""/></div>
+<map name="tokdef_8h_a58f3a75145550870497c2517db9d100b_cgraph" id="tokdef_8h_a58f3a75145550870497c2517db9d100b_cgraph">
+<area shape="rect" id="node3" href="tokdef_8c.html#a8b4b6428a8bf1450cf23b6032dec56cf" title="Print error message." alt="" coords="141,5,195,35"/></map>
+</div>
+</p>
+
+</div>
+</div>
 <a class="anchor" id="a81ffeff3bff153b2a5e8576bad3c1145"></a><!-- doxytag: member="tokdef.h::l_append" ref="a81ffeff3bff153b2a5e8576bad3c1145" args="(list *, char *, int *)" -->
 <div class="memitem">
 <div class="memproto">
@@ -364,9 +1172,9 @@ keyword / identifer </td></tr>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="tokdef_8c_source.html#l00099">99</a> of file <a class="el" href="tokdef_8c_source.html">tokdef.c</a>.</p>
+<p>Definition at line <a class="el" href="tokdef_8c_source.html#l00102">102</a> of file <a class="el" href="tokdef_8c_source.html">tokdef.c</a>.</p>
 
-<p>References <a class="el" href="tokdef_8c_source.html#l00040">ERR_MEMORY</a>, <a class="el" href="tokdef_8c_source.html#l00049">error()</a>, <a class="el" href="tokdef_8c_source.html#l00087">l_IsEmpty()</a>, <a class="el" href="tokdef_8h_source.html#l00056">list::next</a>, <a class="el" href="tokdef_8c_source.html#l00040">NULL_POINTER</a>, <a class="el" href="tokdef_8h_source.html#l00057">list::previous</a>, and <a class="el" href="tokdef_8h_source.html#l00055">list::type</a>.</p>
+<p>References <a class="el" href="tokdef_8c_source.html#l00046">ERR_MEMORY</a>, <a class="el" href="tokdef_8c_source.html#l00055">error()</a>, <a class="el" href="tokdef_8c_source.html#l00090">l_IsEmpty()</a>, <a class="el" href="tokdef_8h_source.html#l00056">list::next</a>, <a class="el" href="tokdef_8c_source.html#l00046">NULL_POINTER</a>, <a class="el" href="tokdef_8h_source.html#l00057">list::previous</a>, and <a class="el" href="tokdef_8h_source.html#l00055">list::type</a>.</p>
 <div class="fragment"><pre class="fragment">                                        {
   <span class="keywordflow">if</span> (l == NULL) <a class="code" href="tokdef_8c.html#a8b4b6428a8bf1450cf23b6032dec56cf" title="Print error message.">error</a>(<a class="code" href="tokdef_8c.html#ad7109e2dccd18353c3bdd5f55ad94b55a4fb873dc451927ef6a70af3a1e7f08bd">NULL_POINTER</a>);
   <span class="keyword">struct </span><a class="code" href="tokdef_8h.html#struct__tag__list" title="Element-Structure which builds Token-Stream.">_tag_list</a> *el; 
@@ -390,11 +1198,11 @@ keyword / identifer </td></tr>
   *l = el;
 }
 </pre></div>
-<p><div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-2-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
-<div id="dynsection-2-summary" class="dynsummary" style="display:block;">
+<p><div id="dynsection-20" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-20-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-20-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-2-content" class="dyncontent" style="display:none;">
+<div id="dynsection-20-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="tokdef_8h_a81ffeff3bff153b2a5e8576bad3c1145_cgraph.png" border="0" usemap="#tokdef_8h_a81ffeff3bff153b2a5e8576bad3c1145_cgraph" alt=""/></div>
 <map name="tokdef_8h_a81ffeff3bff153b2a5e8576bad3c1145_cgraph" id="tokdef_8h_a81ffeff3bff153b2a5e8576bad3c1145_cgraph">
 <area shape="rect" id="node3" href="tokdef_8c.html#a8b4b6428a8bf1450cf23b6032dec56cf" title="Print error message." alt="" coords="151,5,204,35"/><area shape="rect" id="node5" href="tokdef_8h.html#ad38fb956f3e8b88088d0c3dbd9b0b1cd" title="check if token stream is empty or not" alt="" coords="136,59,219,88"/></map>
@@ -427,20 +1235,19 @@ keyword / identifer </td></tr>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="tokdef_8c_source.html#l00075">75</a> of file <a class="el" href="tokdef_8c_source.html">tokdef.c</a>.</p>
+<p>Definition at line <a class="el" href="tokdef_8c_source.html#l00079">79</a> of file <a class="el" href="tokdef_8c_source.html">tokdef.c</a>.</p>
 
-<p>References <a class="el" href="tokdef_8c_source.html#l00049">error()</a>, and <a class="el" href="tokdef_8c_source.html#l00040">NULL_POINTER</a>.</p>
+<p>References <a class="el" href="tokdef_8c_source.html#l00055">error()</a>, and <a class="el" href="tokdef_8c_source.html#l00046">NULL_POINTER</a>.</p>
 <div class="fragment"><pre class="fragment">                     {
-
   <span class="keywordflow">if</span> (l == NULL) <a class="code" href="tokdef_8c.html#a8b4b6428a8bf1450cf23b6032dec56cf" title="Print error message.">error</a>(<a class="code" href="tokdef_8c.html#ad7109e2dccd18353c3bdd5f55ad94b55a4fb873dc451927ef6a70af3a1e7f08bd">NULL_POINTER</a>);
   *l = NULL; 
 }
 </pre></div>
-<p><div id="dynsection-3" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-3-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
-<div id="dynsection-3-summary" class="dynsummary" style="display:block;">
+<p><div id="dynsection-21" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-21-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-21-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-3-content" class="dyncontent" style="display:none;">
+<div id="dynsection-21-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="tokdef_8h_ac9f8b5800165d01c9c53895ab3027f5d_cgraph.png" border="0" usemap="#tokdef_8h_ac9f8b5800165d01c9c53895ab3027f5d_cgraph" alt=""/></div>
 <map name="tokdef_8h_ac9f8b5800165d01c9c53895ab3027f5d_cgraph" id="tokdef_8h_ac9f8b5800165d01c9c53895ab3027f5d_cgraph">
 <area shape="rect" id="node3" href="tokdef_8c.html#a8b4b6428a8bf1450cf23b6032dec56cf" title="Print error message." alt="" coords="104,5,157,35"/></map>
@@ -473,18 +1280,18 @@ keyword / identifer </td></tr>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>int value 1 or 0 </dd></dl>
 
-<p>Definition at line <a class="el" href="tokdef_8c_source.html#l00087">87</a> of file <a class="el" href="tokdef_8c_source.html">tokdef.c</a>.</p>
+<p>Definition at line <a class="el" href="tokdef_8c_source.html#l00090">90</a> of file <a class="el" href="tokdef_8c_source.html">tokdef.c</a>.</p>
 
-<p>Referenced by <a class="el" href="tokdef_8c_source.html#l00099">l_append()</a>, <a class="el" href="tokdef_8c_source.html#l00161">l_last()</a>, <a class="el" href="tokdef_8c_source.html#l00128">l_remove()</a>, and <a class="el" href="tokdef_8c_source.html#l00150">l_top()</a>.</p>
+<p>Referenced by <a class="el" href="tokdef_8c_source.html#l00102">l_append()</a>, <a class="el" href="tokdef_8c_source.html#l00164">l_last()</a>, <a class="el" href="tokdef_8c_source.html#l00131">l_remove()</a>, and <a class="el" href="tokdef_8c_source.html#l00153">l_top()</a>.</p>
 <div class="fragment"><pre class="fragment">                      {
   <span class="keywordflow">return</span> l == NULL;
 } 
 </pre></div>
-<p><div id="dynsection-4" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-4-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
-<div id="dynsection-4-summary" class="dynsummary" style="display:block;">
+<p><div id="dynsection-22" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-22-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-22-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-4-content" class="dyncontent" style="display:none;">
+<div id="dynsection-22-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="tokdef_8h_ad38fb956f3e8b88088d0c3dbd9b0b1cd_icgraph.png" border="0" usemap="#tokdef_8h_ad38fb956f3e8b88088d0c3dbd9b0b1cd_icgraph" alt=""/></div>
 <map name="tokdef_8h_ad38fb956f3e8b88088d0c3dbd9b0b1cd_icgraph" id="tokdef_8h_ad38fb956f3e8b88088d0c3dbd9b0b1cd_icgraph">
 <area shape="rect" id="node3" href="tokdef_8c.html#a46cdfdb54ba6b79debb3745f650bcdbe" title="add new element to token stream" alt="" coords="137,5,217,35"/><area shape="rect" id="node5" href="tokdef_8c.html#a3e647acbc5d046872adef10908ea44b4" title="get the newest element of stream" alt="" coords="151,59,204,88"/><area shape="rect" id="node7" href="tokdef_8c.html#a597a6fc15d83dfb2d062ac6ca1039c06" title="remove oldest element in stream" alt="" coords="137,112,217,141"/><area shape="rect" id="node9" href="tokdef_8c.html#a662de1b392ef548996d646fdac76fdf4" title="get the oldest element of stream" alt="" coords="151,165,204,195"/></map>
@@ -517,19 +1324,19 @@ keyword / identifer </td></tr>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>list point to newest element </dd></dl>
 
-<p>Definition at line <a class="el" href="tokdef_8c_source.html#l00161">161</a> of file <a class="el" href="tokdef_8c_source.html">tokdef.c</a>.</p>
+<p>Definition at line <a class="el" href="tokdef_8c_source.html#l00164">164</a> of file <a class="el" href="tokdef_8c_source.html">tokdef.c</a>.</p>
 
-<p>References <a class="el" href="tokdef_8c_source.html#l00049">error()</a>, <a class="el" href="tokdef_8c_source.html#l00087">l_IsEmpty()</a>, and <a class="el" href="tokdef_8c_source.html#l00040">NULL_POINTER</a>.</p>
+<p>References <a class="el" href="tokdef_8c_source.html#l00055">error()</a>, <a class="el" href="tokdef_8c_source.html#l00090">l_IsEmpty()</a>, and <a class="el" href="tokdef_8c_source.html#l00046">NULL_POINTER</a>.</p>
 <div class="fragment"><pre class="fragment">                    {
   <span class="keywordflow">if</span> (<a class="code" href="tokdef_8h.html#ad38fb956f3e8b88088d0c3dbd9b0b1cd" title="check if token stream is empty or not">l_IsEmpty</a>(l)) <a class="code" href="tokdef_8c.html#a8b4b6428a8bf1450cf23b6032dec56cf" title="Print error message.">error</a>(<a class="code" href="tokdef_8c.html#ad7109e2dccd18353c3bdd5f55ad94b55a4fb873dc451927ef6a70af3a1e7f08bd">NULL_POINTER</a>);
   <span class="keywordflow">return</span> l;
 }
 </pre></div>
-<p><div id="dynsection-5" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-5-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
-<div id="dynsection-5-summary" class="dynsummary" style="display:block;">
+<p><div id="dynsection-23" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-23-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-23-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-5-content" class="dyncontent" style="display:none;">
+<div id="dynsection-23-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="tokdef_8h_a5a84ca70ef422afe2fbb8d4472f55e15_cgraph.png" border="0" usemap="#tokdef_8h_a5a84ca70ef422afe2fbb8d4472f55e15_cgraph" alt=""/></div>
 <map name="tokdef_8h_a5a84ca70ef422afe2fbb8d4472f55e15_cgraph" id="tokdef_8h_a5a84ca70ef422afe2fbb8d4472f55e15_cgraph">
 <area shape="rect" id="node3" href="tokdef_8c.html#a8b4b6428a8bf1450cf23b6032dec56cf" title="Print error message." alt="" coords="124,5,177,35"/><area shape="rect" id="node5" href="tokdef_8h.html#ad38fb956f3e8b88088d0c3dbd9b0b1cd" title="check if token stream is empty or not" alt="" coords="109,59,192,88"/></map>
@@ -562,9 +1369,9 @@ keyword / identifer </td></tr>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="tokdef_8c_source.html#l00128">128</a> of file <a class="el" href="tokdef_8c_source.html">tokdef.c</a>.</p>
+<p>Definition at line <a class="el" href="tokdef_8c_source.html#l00131">131</a> of file <a class="el" href="tokdef_8c_source.html">tokdef.c</a>.</p>
 
-<p>References <a class="el" href="tokdef_8c_source.html#l00040">EMPTY_LIST</a>, <a class="el" href="tokdef_8c_source.html#l00049">error()</a>, <a class="el" href="tokdef_8c_source.html#l00087">l_IsEmpty()</a>, <a class="el" href="tokdef_8h_source.html#l00056">list::next</a>, <a class="el" href="tokdef_8c_source.html#l00040">NULL_POINTER</a>, and <a class="el" href="tokdef_8h_source.html#l00057">list::previous</a>.</p>
+<p>References <a class="el" href="tokdef_8c_source.html#l00046">EMPTY_LIST</a>, <a class="el" href="tokdef_8c_source.html#l00055">error()</a>, <a class="el" href="tokdef_8c_source.html#l00090">l_IsEmpty()</a>, <a class="el" href="tokdef_8h_source.html#l00056">list::next</a>, <a class="el" href="tokdef_8c_source.html#l00046">NULL_POINTER</a>, and <a class="el" href="tokdef_8h_source.html#l00057">list::previous</a>.</p>
 <div class="fragment"><pre class="fragment">                       {
   <span class="keywordflow">if</span> (l == NULL) <a class="code" href="tokdef_8c.html#a8b4b6428a8bf1450cf23b6032dec56cf" title="Print error message.">error</a>(<a class="code" href="tokdef_8c.html#ad7109e2dccd18353c3bdd5f55ad94b55a4fb873dc451927ef6a70af3a1e7f08bd">NULL_POINTER</a>);
   <span class="keywordflow">if</span> (<a class="code" href="tokdef_8h.html#ad38fb956f3e8b88088d0c3dbd9b0b1cd" title="check if token stream is empty or not">l_IsEmpty</a>(*l)) <a class="code" href="tokdef_8c.html#a8b4b6428a8bf1450cf23b6032dec56cf" title="Print error message.">error</a>(<a class="code" href="tokdef_8c.html#ad7109e2dccd18353c3bdd5f55ad94b55a60202b752d64be3e9634f160ce5dca7d">EMPTY_LIST</a>);
@@ -581,11 +1388,11 @@ keyword / identifer </td></tr>
   }
 }
 </pre></div>
-<p><div id="dynsection-6" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-6-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
-<div id="dynsection-6-summary" class="dynsummary" style="display:block;">
+<p><div id="dynsection-24" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-24-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-24-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-6-content" class="dyncontent" style="display:none;">
+<div id="dynsection-24-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="tokdef_8h_a9a72d95129580ef11dc9778edb80004f_cgraph.png" border="0" usemap="#tokdef_8h_a9a72d95129580ef11dc9778edb80004f_cgraph" alt=""/></div>
 <map name="tokdef_8h_a9a72d95129580ef11dc9778edb80004f_cgraph" id="tokdef_8h_a9a72d95129580ef11dc9778edb80004f_cgraph">
 <area shape="rect" id="node3" href="tokdef_8c.html#a8b4b6428a8bf1450cf23b6032dec56cf" title="Print error message." alt="" coords="148,5,201,35"/><area shape="rect" id="node5" href="tokdef_8h.html#ad38fb956f3e8b88088d0c3dbd9b0b1cd" title="check if token stream is empty or not" alt="" coords="133,59,216,88"/></map>
@@ -618,19 +1425,19 @@ keyword / identifer </td></tr>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>list pointer to oldest element </dd></dl>
 
-<p>Definition at line <a class="el" href="tokdef_8c_source.html#l00150">150</a> of file <a class="el" href="tokdef_8c_source.html">tokdef.c</a>.</p>
+<p>Definition at line <a class="el" href="tokdef_8c_source.html#l00153">153</a> of file <a class="el" href="tokdef_8c_source.html">tokdef.c</a>.</p>
 
-<p>References <a class="el" href="tokdef_8c_source.html#l00049">error()</a>, <a class="el" href="tokdef_8c_source.html#l00067">head</a>, <a class="el" href="tokdef_8c_source.html#l00087">l_IsEmpty()</a>, and <a class="el" href="tokdef_8c_source.html#l00040">NULL_POINTER</a>.</p>
+<p>References <a class="el" href="tokdef_8c_source.html#l00055">error()</a>, <a class="el" href="tokdef_8c_source.html#l00071">head</a>, <a class="el" href="tokdef_8c_source.html#l00090">l_IsEmpty()</a>, and <a class="el" href="tokdef_8c_source.html#l00046">NULL_POINTER</a>.</p>
 <div class="fragment"><pre class="fragment">                   {
   <span class="keywordflow">if</span> (<a class="code" href="tokdef_8h.html#ad38fb956f3e8b88088d0c3dbd9b0b1cd" title="check if token stream is empty or not">l_IsEmpty</a>(l)) <a class="code" href="tokdef_8c.html#a8b4b6428a8bf1450cf23b6032dec56cf" title="Print error message.">error</a>(<a class="code" href="tokdef_8c.html#ad7109e2dccd18353c3bdd5f55ad94b55a4fb873dc451927ef6a70af3a1e7f08bd">NULL_POINTER</a>);
   <span class="keywordflow">return</span> <a class="code" href="tokdef_8c.html#ac89b2e52a88dfd9ed05bbacf90176fcd" title="pointer to oldest element in stream">head</a>;
 }
 </pre></div>
-<p><div id="dynsection-7" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-7-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
-<div id="dynsection-7-summary" class="dynsummary" style="display:block;">
+<p><div id="dynsection-25" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-25-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-25-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-7-content" class="dyncontent" style="display:none;">
+<div id="dynsection-25-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="tokdef_8h_aa04f7ac992f12dbdcc80fdf4c624f7e9_cgraph.png" border="0" usemap="#tokdef_8h_aa04f7ac992f12dbdcc80fdf4c624f7e9_cgraph" alt=""/></div>
 <map name="tokdef_8h_aa04f7ac992f12dbdcc80fdf4c624f7e9_cgraph" id="tokdef_8h_aa04f7ac992f12dbdcc80fdf4c624f7e9_cgraph">
 <area shape="rect" id="node3" href="tokdef_8c.html#a8b4b6428a8bf1450cf23b6032dec56cf" title="Print error message." alt="" coords="121,5,175,35"/><area shape="rect" id="node5" href="tokdef_8h.html#ad38fb956f3e8b88088d0c3dbd9b0b1cd" title="check if token stream is empty or not" alt="" coords="107,59,189,88"/></map>
@@ -675,7 +1482,7 @@ keyword / identifer </td></tr>
     <ul>
       <li class="navelem"><a class="el" href="tokdef_8h.html">tokdef.h</a>      </li>
 
-    <li class="footer">Generated on Mon Feb 4 2013 19:22:24 for PiL0 by
+    <li class="footer">Generated on Mon Feb 4 2013 22:19:01 for PiL0 by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

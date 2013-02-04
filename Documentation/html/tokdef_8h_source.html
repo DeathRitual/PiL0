@@ -99,7 +99,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 <a href="tokdef_8h.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 
-<a name="l00015"></a><a class="code" href="tokdef_8h.html">00015</a> <span class="keyword">extern</span> <span class="keyword">struct </span><a class="code" href="tokdef_8h.html#struct__tag__list" title="Element-Structure which builds Token-Stream.">_tag_list</a> {
+<a name="l00015"></a><a class="code" href="tokdef_8h.html">00015</a> <span class="keyword">extern</span> <span class="keyword">struct </span><a class="code" href="tokdef_8h.html#struct__tag__list" title="Element-Structure which builds Token-Stream.">_tag_list</a>{
 <a name="l00024"></a><a class="code" href="tokdef_8h.html">00024</a>   <span class="keyword">union </span>{
 <a name="l00030"></a><a class="code" href="tokdef_8h.html">00030</a>     <span class="keyword">struct </span>_token {
 <a name="l00031"></a>00031       <span class="keywordtype">char</span> t; 
@@ -111,7 +111,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00042"></a>00042     }<a class="code" href="namespace_3globalScope_4.html#structnumber" title="Stores numbers.">number</a>;
 <a name="l00043"></a>00043     
 <a name="l00049"></a><a class="code" href="tokdef_8h.html">00049</a>     <span class="keyword">struct </span>_word {
-<a name="l00050"></a>00050       <span class="keywordtype">char</span> w[50]; 
+<a name="l00050"></a>00050       <span class="keywordtype">char</span> w[20]; 
 <a name="l00051"></a>00051       <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> ID; 
 <a name="l00052"></a>00052     }<a class="code" href="namespace_3globalScope_4.html#structword" title="Stores keywords and identifier.">word</a>;
 <a name="l00053"></a>00053   };
@@ -122,12 +122,36 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00058"></a>00058 }<a class="code" href="tokdef_8h.html#a6b08a68dd0458ee419869b9852116c9f" title="dummy element to quit compiler">tag_list</a>; 
 <a name="l00064"></a>00064 <span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="tokdef_8h.html#struct__tag__list" title="Element-Structure which builds Token-Stream.">_tag_list</a> *list;
 <a name="l00065"></a>00065 
-<a name="l00066"></a>00066 <span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code" href="tokdef_8h.html#ac9f8b5800165d01c9c53895ab3027f5d" title="Initialize new token stream with NULL-Pointer.">l_init</a>(list *);
-<a name="l00067"></a>00067 <span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="tokdef_8h.html#ad38fb956f3e8b88088d0c3dbd9b0b1cd" title="check if token stream is empty or not">l_IsEmpty</a>(list);
-<a name="l00068"></a>00068 <span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code" href="tokdef_8h.html#a81ffeff3bff153b2a5e8576bad3c1145" title="add new element to token stream">l_append</a>(list *, <span class="keywordtype">char</span>*, <span class="keywordtype">int</span> *);
-<a name="l00069"></a>00069 <span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code" href="tokdef_8h.html#a9a72d95129580ef11dc9778edb80004f" title="remove oldest element in stream">l_remove</a>(list *);
-<a name="l00070"></a>00070 <span class="keyword">extern</span> list <a class="code" href="tokdef_8h.html#aa04f7ac992f12dbdcc80fdf4c624f7e9" title="get the oldest element of stream">l_top</a>(list);
-<a name="l00071"></a>00071 <span class="keyword">extern</span> list <a class="code" href="tokdef_8h.html#a5a84ca70ef422afe2fbb8d4472f55e15" title="get the newest element of stream">l_last</a>(list);
+<a name="l00066"></a><a class="code" href="tokdef_8h.html">00066</a> <span class="keyword">typedef</span> <span class="keyword">struct</span>{
+<a name="l00067"></a><a class="code" href="tokdef_8h.html#a02d5d49fc221e244cfc4f7196c1a2251">00067</a>   <span class="keywordtype">char</span> w[10]; 
+<a name="l00068"></a><a class="code" href="tokdef_8h.html#a79da3556d7a0b19c9d1ce39e9d4a0bc7">00068</a>   <span class="keywordtype">int</span> <a class="code" href="tokdef_8h.html#a79da3556d7a0b19c9d1ce39e9d4a0bc7" title="keyword identifier">ID</a>; 
+<a name="l00076"></a>00076 } <a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a>;
+<a name="l00077"></a>00077 
+<a name="l00078"></a>00078 <span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code" href="tokdef_8h.html#ac9f8b5800165d01c9c53895ab3027f5d" title="Initialize new token stream with NULL-Pointer.">l_init</a>(list *);
+<a name="l00079"></a>00079 <span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="tokdef_8h.html#ad38fb956f3e8b88088d0c3dbd9b0b1cd" title="check if token stream is empty or not">l_IsEmpty</a>(list);
+<a name="l00080"></a>00080 <span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code" href="tokdef_8h.html#a81ffeff3bff153b2a5e8576bad3c1145" title="add new element to token stream">l_append</a>(list *, <span class="keywordtype">char</span>*, <span class="keywordtype">int</span> *);
+<a name="l00081"></a>00081 <span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code" href="tokdef_8h.html#a9a72d95129580ef11dc9778edb80004f" title="remove oldest element in stream">l_remove</a>(list *);
+<a name="l00082"></a>00082 <span class="keyword">extern</span> list <a class="code" href="tokdef_8h.html#aa04f7ac992f12dbdcc80fdf4c624f7e9" title="get the oldest element of stream">l_top</a>(list);
+<a name="l00083"></a>00083 <span class="keyword">extern</span> list <a class="code" href="tokdef_8h.html#a5a84ca70ef422afe2fbb8d4472f55e15" title="get the newest element of stream">l_last</a>(list);
+<a name="l00084"></a>00084 
+<a name="l00085"></a>00085 <span class="keyword">extern</span> <a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a>* <a class="code" href="tokdef_8h.html#a2e5119b19a8d11244e9af9555dba5f66" title="initialise keyword BEGIN">ini_BEGIN</a>();
+<a name="l00086"></a>00086 <span class="keyword">extern</span> <a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a>* <a class="code" href="tokdef_8h.html#acd9099ba07f5918fcecfb174f29b267b" title="initialise keyword CALL">ini_CALL</a>();
+<a name="l00087"></a>00087 <span class="keyword">extern</span> <a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a>* <a class="code" href="tokdef_8h.html#a153311284cd712008980a20135dd5fa3" title="initialise keyword CONST">ini_CONST</a>();
+<a name="l00088"></a>00088 <span class="keyword">extern</span> <a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a>* <a class="code" href="tokdef_8h.html#adf1f24a77a6d6f72f76e7e2dba2bc048" title="initialise keyword DO">ini_DO</a>();
+<a name="l00089"></a>00089 <span class="keyword">extern</span> <a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a>* <a class="code" href="tokdef_8h.html#a41926a474714a535fe6ab94b09c1ec58" title="initialise keyword END">ini_END</a>();
+<a name="l00090"></a>00090 <span class="keyword">extern</span> <a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a>* <a class="code" href="tokdef_8h.html#a59df98f4f9e2462ba38059c21729698c" title="initialise keyword IF">ini_IF</a>();
+<a name="l00091"></a>00091 <span class="keyword">extern</span> <a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a>* <a class="code" href="tokdef_8h.html#a0f9272daacf3da2d8e84b5823b198854" title="initialise keyword ODD">ini_ODD</a>();
+<a name="l00092"></a>00092 <span class="keyword">extern</span> <a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a>* <a class="code" href="tokdef_8h.html#afe2a95df81d5d0296e1a03e1d0eec690" title="initialise keyword PRINT">ini_PRINT</a>();
+<a name="l00093"></a>00093 <span class="keyword">extern</span> <a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a>* <a class="code" href="tokdef_8h.html#a7f70e514a9b918ecea16bbbb8dc7dc5a" title="initialise keyword PROCEDURE">ini_PROCEDURE</a>();
+<a name="l00094"></a>00094 <span class="keyword">extern</span> <a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a>* <a class="code" href="tokdef_8h.html#a1ce32c3234be6e50832e306329658240" title="initialise keyword READ">ini_READ</a>();
+<a name="l00095"></a>00095 <span class="keyword">extern</span> <a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a>* <a class="code" href="tokdef_8h.html#a6c3cbb287339e979208c720ddce34aa0" title="initialise keyword THEN">ini_THEN</a>();
+<a name="l00096"></a>00096 <span class="keyword">extern</span> <a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a>* <a class="code" href="tokdef_8h.html#a31c3ddcea0020c1e08f300c48fe783d3" title="initialise keyword VAR">ini_VAR</a>();
+<a name="l00097"></a>00097 <span class="keyword">extern</span> <a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a>* <a class="code" href="tokdef_8h.html#a58f3a75145550870497c2517db9d100b" title="initialise keyword WHILE">ini_WHILE</a>();
+<a name="l00098"></a>00098 <span class="keyword">extern</span> <a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a>* <a class="code" href="tokdef_8h.html#afbc12afdc22344562084703f9a7ffc83" title="initialise keyword PASS">ini_PASS</a>();
+<a name="l00099"></a>00099 <span class="keyword">extern</span> <a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a>* <a class="code" href="tokdef_8h.html#aeef061af1fffa52edd7eaa510b82c16c" title="initialise keyword ==">ini_EQ</a>();
+<a name="l00100"></a>00100 <span class="keyword">extern</span> <a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a>* <a class="code" href="tokdef_8h.html#af278058c4829574ed15f6943f39bacad" title="initialise keyword &gt;=">ini_GE</a>();
+<a name="l00101"></a>00101 <span class="keyword">extern</span> <a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a>* <a class="code" href="tokdef_8h.html#a5255ae956b6faf8fd1e6221368ce0295" title="initialise keyword &lt;=">ini_LE</a>();
+<a name="l00102"></a>00102 <span class="keyword">extern</span> <a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a>* <a class="code" href="tokdef_8h.html#a700de1f32ddf4df29374bb22c928801f" title="initialise keyword !=">ini_NE</a>();  
 </pre></div></div><!-- contents -->
 </div>
 <!-- window showing the filter options -->
@@ -148,7 +172,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul>
       <li class="navelem"><a class="el" href="tokdef_8h.html">tokdef.h</a>      </li>
 
-    <li class="footer">Generated on Mon Feb 4 2013 19:22:24 for PiL0 by
+    <li class="footer">Generated on Mon Feb 4 2013 22:19:01 for PiL0 by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

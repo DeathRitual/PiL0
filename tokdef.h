@@ -12,7 +12,7 @@
  * One element can only contain one token, whereas each element is connected with its last
  * and previous neighbour.
  **/
-extern struct _tag_list {
+extern struct _tag_list{
   /**
    * @union Token  
    * 
@@ -38,7 +38,7 @@ extern struct _tag_list {
      **/
     struct _number {
       int n; /**< number */ 
-      unsigned int ID; /**< identifier */
+      unsigned int ID; /**< number identifier */
     }number;
     
     /**
@@ -47,8 +47,8 @@ extern struct _tag_list {
      * Stores keywords and identifier.
      **/
     struct _word {
-      char w[50]; /**< keyword / identifer */
-      unsigned int ID; /**< identifier */
+      char w[20]; /**< keyword / identifer */
+      unsigned int ID; /**< keyword / identifier identifier */
     }word;
   };
 
@@ -63,9 +63,40 @@ extern struct _tag_list {
  */
 typedef struct _tag_list *list;
 
+typedef struct{
+  char w[10]; /**< keyword */
+  int ID; /**< keyword identifier */
+  /**
+  * @struct keyword  
+  * 
+  * @brief Keyword structure for storing initial keywords
+  * 
+  * Stores string and ID of the language keywords like DO, WHILE, IF, etc.
+  **/
+} keyword;
+
 extern void l_init(list *);
 extern int l_IsEmpty(list);
 extern void l_append(list *, char*, int *);
 extern void l_remove(list *);
 extern list l_top(list);
 extern list l_last(list);
+
+extern keyword* ini_BEGIN();
+extern keyword* ini_CALL();
+extern keyword* ini_CONST();
+extern keyword* ini_DO();
+extern keyword* ini_END();
+extern keyword* ini_IF();
+extern keyword* ini_ODD();
+extern keyword* ini_PRINT();
+extern keyword* ini_PROCEDURE();
+extern keyword* ini_READ();
+extern keyword* ini_THEN();
+extern keyword* ini_VAR();
+extern keyword* ini_WHILE();
+extern keyword* ini_PASS();
+extern keyword* ini_EQ();
+extern keyword* ini_GE();
+extern keyword* ini_LE();
+extern keyword* ini_NE();  

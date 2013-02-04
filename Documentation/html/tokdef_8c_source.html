@@ -99,106 +99,264 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 <a href="tokdef_8c.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 
-<a name="l00013"></a>00013 <span class="preprocessor">#include &quot;<a class="code" href="tokdef_8h.html" title="Header-File for Token-Stream library.">tokdef.h</a>&quot;</span>
-<a name="l00014"></a>00014 <span class="preprocessor">#include&lt;stddef.h&gt;</span>
-<a name="l00015"></a>00015 <span class="preprocessor">#include&lt;stdio.h&gt;</span>
-<a name="l00016"></a>00016 <span class="preprocessor">#include&lt;stdlib.h&gt;</span>
-<a name="l00017"></a>00017 <span class="preprocessor">#include&lt;string.h&gt;</span>
-<a name="l00018"></a>00018 <span class="preprocessor">#include&lt;ctype.h&gt;</span>
-<a name="l00019"></a>00019 <span class="preprocessor">#ifndef tokdef_C</span>
-<a name="l00020"></a>00020 <span class="preprocessor"></span>
-<a name="l00021"></a>00021 <span class="comment">/*</span>
-<a name="l00022"></a>00022 <span class="comment"> * </span>
-<a name="l00023"></a>00023 <span class="comment"> * Error Handling</span>
-<a name="l00024"></a>00024 <span class="comment"> * </span>
-<a name="l00025"></a>00025 <span class="comment">*/</span>
-<a name="l00026"></a>00026 
-<a name="l00031"></a><a class="code" href="tokdef_8c.html#a404a364e08451a6c51c14b31e237453c">00031</a> <span class="keyword">static</span> <span class="keywordtype">char</span> *<a class="code" href="tokdef_8c.html#a404a364e08451a6c51c14b31e237453c" title="Stringtable which stores all error messages.">err_msg</a>[] = {
-<a name="l00032"></a>00032     <span class="stringliteral">&quot;Null-Pointer&quot;</span>, <span class="stringliteral">&quot;Kein Speicher frei&quot;</span>,
-<a name="l00033"></a>00033     <span class="stringliteral">&quot;Liste ist leer&quot;</span>
-<a name="l00034"></a>00034   }; 
-<a name="l00035"></a>00035   
-<a name="l00039"></a><a class="code" href="tokdef_8c.html#ad7109e2dccd18353c3bdd5f55ad94b55">00039</a> <span class="keyword">enum</span> <a class="code" href="tokdef_8c.html#ad7109e2dccd18353c3bdd5f55ad94b55" title="short strings used as variables for error messages">err_codes</a> {
-<a name="l00040"></a><a class="code" href="tokdef_8c.html#ad7109e2dccd18353c3bdd5f55ad94b55a4fb873dc451927ef6a70af3a1e7f08bd">00040</a>     <a class="code" href="tokdef_8c.html#ad7109e2dccd18353c3bdd5f55ad94b55a4fb873dc451927ef6a70af3a1e7f08bd">NULL_POINTER</a>, <a class="code" href="tokdef_8c.html#ad7109e2dccd18353c3bdd5f55ad94b55afb88c5fa6e7d51074ec36bd4578e03a0">ERR_MEMORY</a>, <a class="code" href="tokdef_8c.html#ad7109e2dccd18353c3bdd5f55ad94b55a60202b752d64be3e9634f160ce5dca7d">EMPTY_LIST</a>
-<a name="l00041"></a>00041   };
-<a name="l00042"></a>00042   
-<a name="l00043"></a>00043 
-<a name="l00049"></a><a class="code" href="tokdef_8c.html#a8b4b6428a8bf1450cf23b6032dec56cf">00049</a> <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="tokdef_8c.html#a8b4b6428a8bf1450cf23b6032dec56cf" title="Print error message.">error</a>(<span class="keyword">enum</span> <a class="code" href="tokdef_8c.html#ad7109e2dccd18353c3bdd5f55ad94b55" title="short strings used as variables for error messages">err_codes</a> msg_nr) {
-<a name="l00050"></a>00050   fprintf(stderr, <span class="stringliteral">&quot;FEHLER(intlist): %s!\n&quot;</span>, <a class="code" href="tokdef_8c.html#a404a364e08451a6c51c14b31e237453c" title="Stringtable which stores all error messages.">err_msg</a>[msg_nr]);
-<a name="l00051"></a>00051   exit(10);
-<a name="l00052"></a>00052 }
-<a name="l00053"></a>00053 
-<a name="l00054"></a>00054 
-<a name="l00055"></a>00055 <span class="comment">/*</span>
-<a name="l00056"></a>00056 <span class="comment"> * </span>
-<a name="l00057"></a>00057 <span class="comment"> * FIFO Implementation</span>
-<a name="l00058"></a>00058 <span class="comment"> * </span>
-<a name="l00059"></a>00059 <span class="comment"> */</span>
+<a name="l00019"></a>00019 <span class="preprocessor">#include &quot;<a class="code" href="tokdef_8h.html" title="Header-File for Token-Stream library.">tokdef.h</a>&quot;</span>
+<a name="l00020"></a>00020 <span class="preprocessor">#include&lt;stddef.h&gt;</span>
+<a name="l00021"></a>00021 <span class="preprocessor">#include&lt;stdio.h&gt;</span>
+<a name="l00022"></a>00022 <span class="preprocessor">#include&lt;stdlib.h&gt;</span>
+<a name="l00023"></a>00023 <span class="preprocessor">#include&lt;string.h&gt;</span>
+<a name="l00024"></a>00024 <span class="preprocessor">#include&lt;ctype.h&gt;</span>
+<a name="l00025"></a>00025 <span class="preprocessor">#ifndef tokdef_C</span>
+<a name="l00026"></a>00026 <span class="preprocessor"></span>
+<a name="l00027"></a>00027 <span class="comment">/*</span>
+<a name="l00028"></a>00028 <span class="comment"> * </span>
+<a name="l00029"></a>00029 <span class="comment"> * Error Handling</span>
+<a name="l00030"></a>00030 <span class="comment"> * </span>
+<a name="l00031"></a>00031 <span class="comment">*/</span>
+<a name="l00032"></a>00032 
+<a name="l00037"></a><a class="code" href="tokdef_8c.html#ac904322e9cd774d033d702016491a991">00037</a> <span class="keyword">static</span> <span class="keywordtype">char</span> *<a class="code" href="tokdef_8c.html#ac904322e9cd774d033d702016491a991" title="Stringtable which stores all error messages.">err_msg</a>[] = {
+<a name="l00038"></a>00038     <span class="stringliteral">&quot;Null-Pointer&quot;</span>, <span class="stringliteral">&quot;Kein Speicher frei&quot;</span>,
+<a name="l00039"></a>00039     <span class="stringliteral">&quot;Liste ist leer&quot;</span>
+<a name="l00040"></a>00040   }; 
+<a name="l00041"></a>00041   
+<a name="l00045"></a><a class="code" href="tokdef_8c.html#ad7109e2dccd18353c3bdd5f55ad94b55">00045</a> <span class="keyword">enum</span> <a class="code" href="tokdef_8c.html#ad7109e2dccd18353c3bdd5f55ad94b55" title="short strings used as variables for error messages">err_codes</a> {
+<a name="l00046"></a><a class="code" href="tokdef_8c.html#ad7109e2dccd18353c3bdd5f55ad94b55a4fb873dc451927ef6a70af3a1e7f08bd">00046</a>     <a class="code" href="tokdef_8c.html#ad7109e2dccd18353c3bdd5f55ad94b55a4fb873dc451927ef6a70af3a1e7f08bd">NULL_POINTER</a>, <a class="code" href="tokdef_8c.html#ad7109e2dccd18353c3bdd5f55ad94b55afb88c5fa6e7d51074ec36bd4578e03a0">ERR_MEMORY</a>, <a class="code" href="tokdef_8c.html#ad7109e2dccd18353c3bdd5f55ad94b55a60202b752d64be3e9634f160ce5dca7d">EMPTY_LIST</a>
+<a name="l00047"></a>00047   };
+<a name="l00048"></a>00048   
+<a name="l00049"></a>00049 
+<a name="l00055"></a><a class="code" href="tokdef_8c.html#a8b4b6428a8bf1450cf23b6032dec56cf">00055</a> <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="tokdef_8c.html#a8b4b6428a8bf1450cf23b6032dec56cf" title="Print error message.">error</a>(<span class="keyword">enum</span> <a class="code" href="tokdef_8c.html#ad7109e2dccd18353c3bdd5f55ad94b55" title="short strings used as variables for error messages">err_codes</a> msg_nr) {
+<a name="l00056"></a>00056   fprintf(stderr, <span class="stringliteral">&quot;FEHLER(intlist): %s!\n&quot;</span>, <a class="code" href="tokdef_8c.html#ac904322e9cd774d033d702016491a991" title="Stringtable which stores all error messages.">err_msg</a>[msg_nr]);
+<a name="l00057"></a>00057   exit(10);
+<a name="l00058"></a>00058 }
+<a name="l00059"></a>00059 
 <a name="l00060"></a>00060 
-<a name="l00061"></a>00061 
-<a name="l00062"></a>00062 
-<a name="l00067"></a><a class="code" href="tokdef_8c.html#ac89b2e52a88dfd9ed05bbacf90176fcd">00067</a> <span class="keyword">struct </span><a class="code" href="tokdef_8h.html#struct__tag__list" title="Element-Structure which builds Token-Stream.">_tag_list</a> *<a class="code" href="tokdef_8c.html#ac89b2e52a88dfd9ed05bbacf90176fcd" title="pointer to oldest element in stream">head</a>;
-<a name="l00068"></a>00068 
-<a name="l00075"></a><a class="code" href="tokdef_8c.html#aeaf25962d905093a69389e62796e237b">00075</a> <span class="keywordtype">void</span> <a class="code" href="tokdef_8h.html#ac9f8b5800165d01c9c53895ab3027f5d" title="Initialize new token stream with NULL-Pointer.">l_init</a>(list *l) {
-<a name="l00076"></a>00076 
-<a name="l00077"></a>00077   <span class="keywordflow">if</span> (l == NULL) <a class="code" href="tokdef_8c.html#a8b4b6428a8bf1450cf23b6032dec56cf" title="Print error message.">error</a>(<a class="code" href="tokdef_8c.html#ad7109e2dccd18353c3bdd5f55ad94b55a4fb873dc451927ef6a70af3a1e7f08bd">NULL_POINTER</a>);
-<a name="l00078"></a>00078   *l = NULL; 
-<a name="l00079"></a>00079 }
-<a name="l00080"></a>00080 
-<a name="l00087"></a><a class="code" href="tokdef_8c.html#a6b9833eb6c0963b6d2e4b76d7e460caa">00087</a> <span class="keywordtype">int</span> <a class="code" href="tokdef_8h.html#ad38fb956f3e8b88088d0c3dbd9b0b1cd" title="check if token stream is empty or not">l_IsEmpty</a>(list l) {
-<a name="l00088"></a>00088   <span class="keywordflow">return</span> l == NULL;
-<a name="l00089"></a>00089 } 
-<a name="l00090"></a>00090 
-<a name="l00099"></a><a class="code" href="tokdef_8c.html#a46cdfdb54ba6b79debb3745f650bcdbe">00099</a> <span class="keywordtype">void</span> <a class="code" href="tokdef_8h.html#a81ffeff3bff153b2a5e8576bad3c1145" title="add new element to token stream">l_append</a>(list *l, <span class="keywordtype">char</span> *t, <span class="keywordtype">int</span> *n) {
-<a name="l00100"></a>00100   <span class="keywordflow">if</span> (l == NULL) <a class="code" href="tokdef_8c.html#a8b4b6428a8bf1450cf23b6032dec56cf" title="Print error message.">error</a>(<a class="code" href="tokdef_8c.html#ad7109e2dccd18353c3bdd5f55ad94b55a4fb873dc451927ef6a70af3a1e7f08bd">NULL_POINTER</a>);
-<a name="l00101"></a>00101   <span class="keyword">struct </span><a class="code" href="tokdef_8h.html#struct__tag__list" title="Element-Structure which builds Token-Stream.">_tag_list</a> *el; 
-<a name="l00102"></a>00102   <span class="keywordflow">if</span> ((el = malloc(<span class="keyword">sizeof</span>(list))) == NULL) <a class="code" href="tokdef_8c.html#a8b4b6428a8bf1450cf23b6032dec56cf" title="Print error message.">error</a>(<a class="code" href="tokdef_8c.html#ad7109e2dccd18353c3bdd5f55ad94b55afb88c5fa6e7d51074ec36bd4578e03a0">ERR_MEMORY</a>);
-<a name="l00103"></a>00103   <span class="keywordflow">if</span> (strlen(t) == 1) {
-<a name="l00104"></a>00104     el-&gt;token.t = *t;
-<a name="l00105"></a>00105     el-&gt;<a class="code" href="tokdef_8h.html#a1b949e00a2c76f6830b80942c1d65341" title="Token-Type.">type</a> = <span class="charliteral">&#39;t&#39;</span>;
-<a name="l00106"></a>00106   } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (isdigit(*t) &gt; 0) {
-<a name="l00107"></a>00107     el-&gt;number.n = atoi(t);
-<a name="l00108"></a>00108     el-&gt;number.ID = *n;
-<a name="l00109"></a>00109     el-&gt;<a class="code" href="tokdef_8h.html#a1b949e00a2c76f6830b80942c1d65341" title="Token-Type.">type</a> = <span class="charliteral">&#39;n&#39;</span>;
-<a name="l00110"></a>00110   } <span class="keywordflow">else</span> {
-<a name="l00111"></a>00111     strcpy(el-&gt;word.w, t);
-<a name="l00112"></a>00112     el-&gt;word.ID = *n;
-<a name="l00113"></a>00113     el-&gt;<a class="code" href="tokdef_8h.html#a1b949e00a2c76f6830b80942c1d65341" title="Token-Type.">type</a> = <span class="charliteral">&#39;w&#39;</span>;
-<a name="l00114"></a>00114   }
-<a name="l00115"></a>00115   el-&gt;<a class="code" href="tokdef_8h.html#a3778a8980f4cc9236d8288e5e364b9d3" title="pointer to next element">next</a> = *l;
-<a name="l00116"></a>00116   el-&gt;<a class="code" href="tokdef_8h.html#aff2d3980f345bfd4ed08d44550f481bf" title="pointer to previous element">previous</a> = NULL;
-<a name="l00117"></a>00117   <span class="keywordflow">if</span> (!<a class="code" href="tokdef_8h.html#ad38fb956f3e8b88088d0c3dbd9b0b1cd" title="check if token stream is empty or not">l_IsEmpty</a>(*l)) (*l)-&gt;<a class="code" href="tokdef_8h.html#aff2d3980f345bfd4ed08d44550f481bf" title="pointer to previous element">previous</a> = el;
-<a name="l00118"></a>00118   <span class="keywordflow">if</span> (<a class="code" href="tokdef_8h.html#ad38fb956f3e8b88088d0c3dbd9b0b1cd" title="check if token stream is empty or not">l_IsEmpty</a>(*l)) head = el;
-<a name="l00119"></a>00119   *l = el;
-<a name="l00120"></a>00120 }
-<a name="l00121"></a>00121 
-<a name="l00128"></a><a class="code" href="tokdef_8c.html#a597a6fc15d83dfb2d062ac6ca1039c06">00128</a> <span class="keywordtype">void</span> <a class="code" href="tokdef_8h.html#a9a72d95129580ef11dc9778edb80004f" title="remove oldest element in stream">l_remove</a>(list *l) {
-<a name="l00129"></a>00129   <span class="keywordflow">if</span> (l == NULL) <a class="code" href="tokdef_8c.html#a8b4b6428a8bf1450cf23b6032dec56cf" title="Print error message.">error</a>(<a class="code" href="tokdef_8c.html#ad7109e2dccd18353c3bdd5f55ad94b55a4fb873dc451927ef6a70af3a1e7f08bd">NULL_POINTER</a>);
-<a name="l00130"></a>00130   <span class="keywordflow">if</span> (<a class="code" href="tokdef_8h.html#ad38fb956f3e8b88088d0c3dbd9b0b1cd" title="check if token stream is empty or not">l_IsEmpty</a>(*l)) <a class="code" href="tokdef_8c.html#a8b4b6428a8bf1450cf23b6032dec56cf" title="Print error message.">error</a>(<a class="code" href="tokdef_8c.html#ad7109e2dccd18353c3bdd5f55ad94b55a60202b752d64be3e9634f160ce5dca7d">EMPTY_LIST</a>);
-<a name="l00131"></a>00131   <span class="keywordflow">if</span> (head == *l) {
-<a name="l00132"></a>00132     free(head);
-<a name="l00133"></a>00133     *l = NULL;
-<a name="l00134"></a>00134   } <span class="keywordflow">else</span> {
-<a name="l00135"></a>00135   <span class="keyword">struct </span><a class="code" href="tokdef_8h.html#struct__tag__list" title="Element-Structure which builds Token-Stream.">_tag_list</a> *ptr; 
-<a name="l00136"></a>00136   ptr = head-&gt;<a class="code" href="tokdef_8h.html#aff2d3980f345bfd4ed08d44550f481bf" title="pointer to previous element">previous</a>;
-<a name="l00137"></a>00137   ptr-&gt;<a class="code" href="tokdef_8h.html#a3778a8980f4cc9236d8288e5e364b9d3" title="pointer to next element">next</a> = NULL;
-<a name="l00138"></a>00138   head-&gt;<a class="code" href="tokdef_8h.html#aff2d3980f345bfd4ed08d44550f481bf" title="pointer to previous element">previous</a> = NULL;
-<a name="l00139"></a>00139   free(head);
-<a name="l00140"></a>00140   head = ptr;
-<a name="l00141"></a>00141   }
-<a name="l00142"></a>00142 }
-<a name="l00143"></a>00143 
-<a name="l00150"></a><a class="code" href="tokdef_8c.html#a662de1b392ef548996d646fdac76fdf4">00150</a> list <a class="code" href="tokdef_8h.html#aa04f7ac992f12dbdcc80fdf4c624f7e9" title="get the oldest element of stream">l_top</a>(list l) {
-<a name="l00151"></a>00151   <span class="keywordflow">if</span> (<a class="code" href="tokdef_8h.html#ad38fb956f3e8b88088d0c3dbd9b0b1cd" title="check if token stream is empty or not">l_IsEmpty</a>(l)) <a class="code" href="tokdef_8c.html#a8b4b6428a8bf1450cf23b6032dec56cf" title="Print error message.">error</a>(<a class="code" href="tokdef_8c.html#ad7109e2dccd18353c3bdd5f55ad94b55a4fb873dc451927ef6a70af3a1e7f08bd">NULL_POINTER</a>);
-<a name="l00152"></a>00152   <span class="keywordflow">return</span> <a class="code" href="tokdef_8c.html#ac89b2e52a88dfd9ed05bbacf90176fcd" title="pointer to oldest element in stream">head</a>;
-<a name="l00153"></a>00153 }
-<a name="l00154"></a>00154 
-<a name="l00161"></a><a class="code" href="tokdef_8c.html#a3e647acbc5d046872adef10908ea44b4">00161</a> list <a class="code" href="tokdef_8h.html#a5a84ca70ef422afe2fbb8d4472f55e15" title="get the newest element of stream">l_last</a>(list l) {
-<a name="l00162"></a>00162   <span class="keywordflow">if</span> (<a class="code" href="tokdef_8h.html#ad38fb956f3e8b88088d0c3dbd9b0b1cd" title="check if token stream is empty or not">l_IsEmpty</a>(l)) <a class="code" href="tokdef_8c.html#a8b4b6428a8bf1450cf23b6032dec56cf" title="Print error message.">error</a>(<a class="code" href="tokdef_8c.html#ad7109e2dccd18353c3bdd5f55ad94b55a4fb873dc451927ef6a70af3a1e7f08bd">NULL_POINTER</a>);
-<a name="l00163"></a>00163   <span class="keywordflow">return</span> l;
-<a name="l00164"></a>00164 }
-<a name="l00165"></a>00165 
-<a name="l00166"></a>00166 <span class="preprocessor">#endif</span>
+<a name="l00061"></a>00061 <span class="comment">/*</span>
+<a name="l00062"></a>00062 <span class="comment"> * </span>
+<a name="l00063"></a>00063 <span class="comment"> * FIFO Implementation</span>
+<a name="l00064"></a>00064 <span class="comment"> * </span>
+<a name="l00065"></a>00065 <span class="comment"> */</span>
+<a name="l00066"></a>00066 
+<a name="l00071"></a><a class="code" href="tokdef_8c.html#ac89b2e52a88dfd9ed05bbacf90176fcd">00071</a> <span class="keyword">struct </span><a class="code" href="tokdef_8h.html#struct__tag__list" title="Element-Structure which builds Token-Stream.">_tag_list</a> *<a class="code" href="tokdef_8c.html#ac89b2e52a88dfd9ed05bbacf90176fcd" title="pointer to oldest element in stream">head</a>;
+<a name="l00072"></a>00072 
+<a name="l00079"></a><a class="code" href="tokdef_8c.html#aeaf25962d905093a69389e62796e237b">00079</a> <span class="keywordtype">void</span> <a class="code" href="tokdef_8h.html#ac9f8b5800165d01c9c53895ab3027f5d" title="Initialize new token stream with NULL-Pointer.">l_init</a>(list *l) {
+<a name="l00080"></a>00080   <span class="keywordflow">if</span> (l == NULL) <a class="code" href="tokdef_8c.html#a8b4b6428a8bf1450cf23b6032dec56cf" title="Print error message.">error</a>(<a class="code" href="tokdef_8c.html#ad7109e2dccd18353c3bdd5f55ad94b55a4fb873dc451927ef6a70af3a1e7f08bd">NULL_POINTER</a>);
+<a name="l00081"></a>00081   *l = NULL; 
+<a name="l00082"></a>00082 }
+<a name="l00083"></a>00083 
+<a name="l00090"></a><a class="code" href="tokdef_8c.html#a6b9833eb6c0963b6d2e4b76d7e460caa">00090</a> <span class="keywordtype">int</span> <a class="code" href="tokdef_8h.html#ad38fb956f3e8b88088d0c3dbd9b0b1cd" title="check if token stream is empty or not">l_IsEmpty</a>(list l) {
+<a name="l00091"></a>00091   <span class="keywordflow">return</span> l == NULL;
+<a name="l00092"></a>00092 } 
+<a name="l00093"></a>00093 
+<a name="l00102"></a><a class="code" href="tokdef_8c.html#a46cdfdb54ba6b79debb3745f650bcdbe">00102</a> <span class="keywordtype">void</span> <a class="code" href="tokdef_8h.html#a81ffeff3bff153b2a5e8576bad3c1145" title="add new element to token stream">l_append</a>(list *l, <span class="keywordtype">char</span> *t, <span class="keywordtype">int</span> *n) {
+<a name="l00103"></a>00103   <span class="keywordflow">if</span> (l == NULL) <a class="code" href="tokdef_8c.html#a8b4b6428a8bf1450cf23b6032dec56cf" title="Print error message.">error</a>(<a class="code" href="tokdef_8c.html#ad7109e2dccd18353c3bdd5f55ad94b55a4fb873dc451927ef6a70af3a1e7f08bd">NULL_POINTER</a>);
+<a name="l00104"></a>00104   <span class="keyword">struct </span><a class="code" href="tokdef_8h.html#struct__tag__list" title="Element-Structure which builds Token-Stream.">_tag_list</a> *el; 
+<a name="l00105"></a>00105   <span class="keywordflow">if</span> ((el = malloc(<span class="keyword">sizeof</span>(list))) == NULL) <a class="code" href="tokdef_8c.html#a8b4b6428a8bf1450cf23b6032dec56cf" title="Print error message.">error</a>(<a class="code" href="tokdef_8c.html#ad7109e2dccd18353c3bdd5f55ad94b55afb88c5fa6e7d51074ec36bd4578e03a0">ERR_MEMORY</a>);
+<a name="l00106"></a>00106   <span class="keywordflow">if</span> (strlen(t) == 1) {
+<a name="l00107"></a>00107     el-&gt;token.t = *t;
+<a name="l00108"></a>00108     el-&gt;<a class="code" href="tokdef_8h.html#a1b949e00a2c76f6830b80942c1d65341" title="Token-Type.">type</a> = <span class="charliteral">&#39;t&#39;</span>;
+<a name="l00109"></a>00109   } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (isdigit(*t) &gt; 0) {
+<a name="l00110"></a>00110     el-&gt;number.n = atoi(t);
+<a name="l00111"></a>00111     el-&gt;number.ID = *n;
+<a name="l00112"></a>00112     el-&gt;<a class="code" href="tokdef_8h.html#a1b949e00a2c76f6830b80942c1d65341" title="Token-Type.">type</a> = <span class="charliteral">&#39;n&#39;</span>;
+<a name="l00113"></a>00113   } <span class="keywordflow">else</span> {
+<a name="l00114"></a>00114     strcpy(el-&gt;word.w, t);
+<a name="l00115"></a>00115     el-&gt;word.ID = *n;
+<a name="l00116"></a>00116     el-&gt;<a class="code" href="tokdef_8h.html#a1b949e00a2c76f6830b80942c1d65341" title="Token-Type.">type</a> = <span class="charliteral">&#39;w&#39;</span>;
+<a name="l00117"></a>00117   }
+<a name="l00118"></a>00118   el-&gt;<a class="code" href="tokdef_8h.html#a3778a8980f4cc9236d8288e5e364b9d3" title="pointer to next element">next</a> = *l;
+<a name="l00119"></a>00119   el-&gt;<a class="code" href="tokdef_8h.html#aff2d3980f345bfd4ed08d44550f481bf" title="pointer to previous element">previous</a> = NULL;
+<a name="l00120"></a>00120   <span class="keywordflow">if</span> (!<a class="code" href="tokdef_8h.html#ad38fb956f3e8b88088d0c3dbd9b0b1cd" title="check if token stream is empty or not">l_IsEmpty</a>(*l)) (*l)-&gt;<a class="code" href="tokdef_8h.html#aff2d3980f345bfd4ed08d44550f481bf" title="pointer to previous element">previous</a> = el;
+<a name="l00121"></a>00121   <span class="keywordflow">if</span> (<a class="code" href="tokdef_8h.html#ad38fb956f3e8b88088d0c3dbd9b0b1cd" title="check if token stream is empty or not">l_IsEmpty</a>(*l)) head = el;
+<a name="l00122"></a>00122   *l = el;
+<a name="l00123"></a>00123 }
+<a name="l00124"></a>00124 
+<a name="l00131"></a><a class="code" href="tokdef_8c.html#a597a6fc15d83dfb2d062ac6ca1039c06">00131</a> <span class="keywordtype">void</span> <a class="code" href="tokdef_8h.html#a9a72d95129580ef11dc9778edb80004f" title="remove oldest element in stream">l_remove</a>(list *l) {
+<a name="l00132"></a>00132   <span class="keywordflow">if</span> (l == NULL) <a class="code" href="tokdef_8c.html#a8b4b6428a8bf1450cf23b6032dec56cf" title="Print error message.">error</a>(<a class="code" href="tokdef_8c.html#ad7109e2dccd18353c3bdd5f55ad94b55a4fb873dc451927ef6a70af3a1e7f08bd">NULL_POINTER</a>);
+<a name="l00133"></a>00133   <span class="keywordflow">if</span> (<a class="code" href="tokdef_8h.html#ad38fb956f3e8b88088d0c3dbd9b0b1cd" title="check if token stream is empty or not">l_IsEmpty</a>(*l)) <a class="code" href="tokdef_8c.html#a8b4b6428a8bf1450cf23b6032dec56cf" title="Print error message.">error</a>(<a class="code" href="tokdef_8c.html#ad7109e2dccd18353c3bdd5f55ad94b55a60202b752d64be3e9634f160ce5dca7d">EMPTY_LIST</a>);
+<a name="l00134"></a>00134   <span class="keywordflow">if</span> (head == *l) {
+<a name="l00135"></a>00135     free(head);
+<a name="l00136"></a>00136     *l = NULL;
+<a name="l00137"></a>00137   } <span class="keywordflow">else</span> {
+<a name="l00138"></a>00138   <span class="keyword">struct </span><a class="code" href="tokdef_8h.html#struct__tag__list" title="Element-Structure which builds Token-Stream.">_tag_list</a> *ptr; 
+<a name="l00139"></a>00139   ptr = head-&gt;<a class="code" href="tokdef_8h.html#aff2d3980f345bfd4ed08d44550f481bf" title="pointer to previous element">previous</a>;
+<a name="l00140"></a>00140   ptr-&gt;<a class="code" href="tokdef_8h.html#a3778a8980f4cc9236d8288e5e364b9d3" title="pointer to next element">next</a> = NULL;
+<a name="l00141"></a>00141   head-&gt;<a class="code" href="tokdef_8h.html#aff2d3980f345bfd4ed08d44550f481bf" title="pointer to previous element">previous</a> = NULL;
+<a name="l00142"></a>00142   free(head);
+<a name="l00143"></a>00143   head = ptr;
+<a name="l00144"></a>00144   }
+<a name="l00145"></a>00145 }
+<a name="l00146"></a>00146 
+<a name="l00153"></a><a class="code" href="tokdef_8c.html#a662de1b392ef548996d646fdac76fdf4">00153</a> list <a class="code" href="tokdef_8h.html#aa04f7ac992f12dbdcc80fdf4c624f7e9" title="get the oldest element of stream">l_top</a>(list l) {
+<a name="l00154"></a>00154   <span class="keywordflow">if</span> (<a class="code" href="tokdef_8h.html#ad38fb956f3e8b88088d0c3dbd9b0b1cd" title="check if token stream is empty or not">l_IsEmpty</a>(l)) <a class="code" href="tokdef_8c.html#a8b4b6428a8bf1450cf23b6032dec56cf" title="Print error message.">error</a>(<a class="code" href="tokdef_8c.html#ad7109e2dccd18353c3bdd5f55ad94b55a4fb873dc451927ef6a70af3a1e7f08bd">NULL_POINTER</a>);
+<a name="l00155"></a>00155   <span class="keywordflow">return</span> <a class="code" href="tokdef_8c.html#ac89b2e52a88dfd9ed05bbacf90176fcd" title="pointer to oldest element in stream">head</a>;
+<a name="l00156"></a>00156 }
+<a name="l00157"></a>00157 
+<a name="l00164"></a><a class="code" href="tokdef_8c.html#a3e647acbc5d046872adef10908ea44b4">00164</a> list <a class="code" href="tokdef_8h.html#a5a84ca70ef422afe2fbb8d4472f55e15" title="get the newest element of stream">l_last</a>(list l) {
+<a name="l00165"></a>00165   <span class="keywordflow">if</span> (<a class="code" href="tokdef_8h.html#ad38fb956f3e8b88088d0c3dbd9b0b1cd" title="check if token stream is empty or not">l_IsEmpty</a>(l)) <a class="code" href="tokdef_8c.html#a8b4b6428a8bf1450cf23b6032dec56cf" title="Print error message.">error</a>(<a class="code" href="tokdef_8c.html#ad7109e2dccd18353c3bdd5f55ad94b55a4fb873dc451927ef6a70af3a1e7f08bd">NULL_POINTER</a>);
+<a name="l00166"></a>00166   <span class="keywordflow">return</span> l;
+<a name="l00167"></a>00167 }
+<a name="l00168"></a>00168 
+<a name="l00169"></a>00169 <span class="comment">/*</span>
+<a name="l00170"></a>00170 <span class="comment"> * </span>
+<a name="l00171"></a>00171 <span class="comment"> * keyword definition</span>
+<a name="l00172"></a>00172 <span class="comment"> * </span>
+<a name="l00173"></a>00173 <span class="comment"> */</span>
+<a name="l00174"></a>00174 
+<a name="l00179"></a><a class="code" href="tokdef_8c.html#a378b0ae598a7cfd7eb28be463d4cc909">00179</a> <span class="keywordtype">char</span> *<a class="code" href="tokdef_8c.html#a378b0ae598a7cfd7eb28be463d4cc909" title="Stringtable of all keywords longer than 1 character.">keywords</a>[] = {
+<a name="l00180"></a>00180   <span class="stringliteral">&quot;BEGIN&quot;</span>, <span class="stringliteral">&quot;CALL&quot;</span>, <span class="stringliteral">&quot;CONST&quot;</span>, <span class="stringliteral">&quot;DO&quot;</span>, <span class="stringliteral">&quot;END&quot;</span>, <span class="stringliteral">&quot;IF&quot;</span>, <span class="stringliteral">&quot;ODD&quot;</span>, <span class="stringliteral">&quot;PRINT&quot;</span>, <span class="stringliteral">&quot;PROCEDURE&quot;</span>,
+<a name="l00181"></a>00181   <span class="stringliteral">&quot;READ&quot;</span>, <span class="stringliteral">&quot;THEN&quot;</span>, <span class="stringliteral">&quot;VAR&quot;</span>, <span class="stringliteral">&quot;WHILE&quot;</span>, <span class="stringliteral">&quot;PASS&quot;</span>, <span class="stringliteral">&quot;==&quot;</span>, <span class="stringliteral">&quot;&gt;=&quot;</span>, <span class="stringliteral">&quot;&lt;=&quot;</span>, <span class="stringliteral">&quot;!=&quot;</span>
+<a name="l00182"></a>00182 };
+<a name="l00183"></a>00183 
+<a name="l00189"></a><a class="code" href="tokdef_8c.html#acf2488b95c97e0378c9bf49de3b50f28">00189</a> <span class="keyword">enum</span> <span class="keywordtype">id</span> {
+<a name="l00190"></a><a class="code" href="tokdef_8c.html#acf2488b95c97e0378c9bf49de3b50f28ab107229d44d042caa8ab8df4c8acaa1f">00190</a>   <a class="code" href="tokdef_8c.html#acf2488b95c97e0378c9bf49de3b50f28a368db50032da622d4c456ef7eaf9cb67">BEGIN</a> = 256, <a class="code" href="tokdef_8c.html#acf2488b95c97e0378c9bf49de3b50f28abd0ebc08c262bab82a1882256d2d66e8">CALL</a>, <a class="code" href="tokdef_8c.html#acf2488b95c97e0378c9bf49de3b50f28a3d044162d972156d897cea80f216b9ca">CONST</a>, <a class="code" href="tokdef_8c.html#acf2488b95c97e0378c9bf49de3b50f28abfea6036e64d9c7c773d277a57d2f959">DO</a>, <a class="code" href="tokdef_8c.html#acf2488b95c97e0378c9bf49de3b50f28adc6f24fd6915a3f2786a1b7045406924">END</a>, <a class="code" href="tokdef_8c.html#acf2488b95c97e0378c9bf49de3b50f28a252802eda493fb6b4a279c4452acb547">IF</a>, <a class="code" href="tokdef_8c.html#acf2488b95c97e0378c9bf49de3b50f28aa29cedab858353a26006af9db7cd1ed8">ODD</a>, <a class="code" href="tokdef_8c.html#acf2488b95c97e0378c9bf49de3b50f28ab107229d44d042caa8ab8df4c8acaa1f">PRINT</a>,
+<a name="l00191"></a><a class="code" href="tokdef_8c.html#acf2488b95c97e0378c9bf49de3b50f28a3278fd035226215822c903790a1eee73">00191</a>   <a class="code" href="tokdef_8c.html#acf2488b95c97e0378c9bf49de3b50f28ad95bbb705a560daadfaa6c72329fbd61">PROCEDURE</a>, <a class="code" href="tokdef_8c.html#acf2488b95c97e0378c9bf49de3b50f28acb9be765f361bb7efb9073730aac92c6">READ</a>, <a class="code" href="tokdef_8c.html#acf2488b95c97e0378c9bf49de3b50f28abb40477a291c07277e13d096645f4305">THEN</a>, <a class="code" href="tokdef_8c.html#acf2488b95c97e0378c9bf49de3b50f28af68346ce0bfce7ab2ca0a240f5132863">VAR</a>, <a class="code" href="tokdef_8c.html#acf2488b95c97e0378c9bf49de3b50f28a3278fd035226215822c903790a1eee73">WHILE</a>, <a class="code" href="tokdef_8c.html#acf2488b95c97e0378c9bf49de3b50f28a0afa825567e442a46d131be6c71cb40f">PASS</a>, <a class="code" href="tokdef_8c.html#acf2488b95c97e0378c9bf49de3b50f28a9efdc855f3c1477957fb50affec07f8f">EQ</a>, <a class="code" href="tokdef_8c.html#acf2488b95c97e0378c9bf49de3b50f28a558711b4a2a25070b970d85f5926d5ce">GE</a>, <a class="code" href="tokdef_8c.html#acf2488b95c97e0378c9bf49de3b50f28a662ed4b51721a45f07d645d4ca099a61">LE</a>, <a class="code" href="tokdef_8c.html#acf2488b95c97e0378c9bf49de3b50f28a4d3f872f5054b256b01ee4f2c8cf51db">NE</a>, <a class="code" href="tokdef_8c.html#acf2488b95c97e0378c9bf49de3b50f28a84f8ae2490f9e4bd2321fd21f4b0e807">IDENTIFIER</a>, <a class="code" href="tokdef_8c.html#acf2488b95c97e0378c9bf49de3b50f28a17897512ed7598aeb5912e3d45bf000d">NUM</a>
+<a name="l00192"></a>00192 };
+<a name="l00193"></a>00193 
+<a name="l00199"></a><a class="code" href="tokdef_8c.html#a2e5119b19a8d11244e9af9555dba5f66">00199</a> <a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a>* <a class="code" href="tokdef_8h.html#a2e5119b19a8d11244e9af9555dba5f66" title="initialise keyword BEGIN">ini_BEGIN</a>() {
+<a name="l00200"></a>00200   <a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a> *BEGIN_PTR;
+<a name="l00201"></a>00201   <span class="keywordflow">if</span> ((BEGIN_PTR = malloc(<span class="keyword">sizeof</span>(<a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a>))) == NULL) <a class="code" href="tokdef_8c.html#a8b4b6428a8bf1450cf23b6032dec56cf" title="Print error message.">error</a>(<a class="code" href="tokdef_8c.html#ad7109e2dccd18353c3bdd5f55ad94b55afb88c5fa6e7d51074ec36bd4578e03a0">ERR_MEMORY</a>);
+<a name="l00202"></a>00202   strcpy(BEGIN_PTR-&gt;<a class="code" href="tokdef_8h.html#a02d5d49fc221e244cfc4f7196c1a2251" title="keyword">w</a>, <a class="code" href="tokdef_8c.html#a378b0ae598a7cfd7eb28be463d4cc909" title="Stringtable of all keywords longer than 1 character.">keywords</a>[<a class="code" href="tokdef_8c.html#acf2488b95c97e0378c9bf49de3b50f28a368db50032da622d4c456ef7eaf9cb67">BEGIN</a> - 256]);
+<a name="l00203"></a>00203   BEGIN_PTR-&gt;<a class="code" href="tokdef_8h.html#a79da3556d7a0b19c9d1ce39e9d4a0bc7" title="keyword identifier">ID</a> = <a class="code" href="tokdef_8c.html#acf2488b95c97e0378c9bf49de3b50f28a368db50032da622d4c456ef7eaf9cb67">BEGIN</a>;
+<a name="l00204"></a>00204   <span class="keywordflow">return</span> BEGIN_PTR;
+<a name="l00205"></a>00205 }
+<a name="l00206"></a>00206 
+<a name="l00212"></a><a class="code" href="tokdef_8c.html#acd9099ba07f5918fcecfb174f29b267b">00212</a> <a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a>* <a class="code" href="tokdef_8h.html#acd9099ba07f5918fcecfb174f29b267b" title="initialise keyword CALL">ini_CALL</a>() {
+<a name="l00213"></a>00213   <a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a> *CALL_PTR;
+<a name="l00214"></a>00214   <span class="keywordflow">if</span> ((CALL_PTR = malloc(<span class="keyword">sizeof</span>(<a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a>))) == NULL) <a class="code" href="tokdef_8c.html#a8b4b6428a8bf1450cf23b6032dec56cf" title="Print error message.">error</a>(<a class="code" href="tokdef_8c.html#ad7109e2dccd18353c3bdd5f55ad94b55afb88c5fa6e7d51074ec36bd4578e03a0">ERR_MEMORY</a>);
+<a name="l00215"></a>00215   strcpy(CALL_PTR-&gt;<a class="code" href="tokdef_8h.html#a02d5d49fc221e244cfc4f7196c1a2251" title="keyword">w</a>, <a class="code" href="tokdef_8c.html#a378b0ae598a7cfd7eb28be463d4cc909" title="Stringtable of all keywords longer than 1 character.">keywords</a>[<a class="code" href="tokdef_8c.html#acf2488b95c97e0378c9bf49de3b50f28abd0ebc08c262bab82a1882256d2d66e8">CALL</a> - 256]);
+<a name="l00216"></a>00216   CALL_PTR-&gt;<a class="code" href="tokdef_8h.html#a79da3556d7a0b19c9d1ce39e9d4a0bc7" title="keyword identifier">ID</a> = <a class="code" href="tokdef_8c.html#acf2488b95c97e0378c9bf49de3b50f28abd0ebc08c262bab82a1882256d2d66e8">CALL</a>;
+<a name="l00217"></a>00217   <span class="keywordflow">return</span> CALL_PTR;
+<a name="l00218"></a>00218 }
+<a name="l00219"></a>00219 
+<a name="l00225"></a><a class="code" href="tokdef_8c.html#a153311284cd712008980a20135dd5fa3">00225</a> <a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a>* <a class="code" href="tokdef_8h.html#a153311284cd712008980a20135dd5fa3" title="initialise keyword CONST">ini_CONST</a>() {
+<a name="l00226"></a>00226   <a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a> *CONST_PTR;
+<a name="l00227"></a>00227   <span class="keywordflow">if</span> ((CONST_PTR = malloc(<span class="keyword">sizeof</span>(<a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a>))) == NULL) <a class="code" href="tokdef_8c.html#a8b4b6428a8bf1450cf23b6032dec56cf" title="Print error message.">error</a>(<a class="code" href="tokdef_8c.html#ad7109e2dccd18353c3bdd5f55ad94b55afb88c5fa6e7d51074ec36bd4578e03a0">ERR_MEMORY</a>);
+<a name="l00228"></a>00228   strcpy(CONST_PTR-&gt;<a class="code" href="tokdef_8h.html#a02d5d49fc221e244cfc4f7196c1a2251" title="keyword">w</a>, <a class="code" href="tokdef_8c.html#a378b0ae598a7cfd7eb28be463d4cc909" title="Stringtable of all keywords longer than 1 character.">keywords</a>[<a class="code" href="tokdef_8c.html#acf2488b95c97e0378c9bf49de3b50f28a3d044162d972156d897cea80f216b9ca">CONST</a> - 256]);
+<a name="l00229"></a>00229   CONST_PTR-&gt;<a class="code" href="tokdef_8h.html#a79da3556d7a0b19c9d1ce39e9d4a0bc7" title="keyword identifier">ID</a> = <a class="code" href="tokdef_8c.html#acf2488b95c97e0378c9bf49de3b50f28a3d044162d972156d897cea80f216b9ca">CONST</a>;
+<a name="l00230"></a>00230   <span class="keywordflow">return</span> CONST_PTR;
+<a name="l00231"></a>00231 }
+<a name="l00232"></a>00232 
+<a name="l00238"></a><a class="code" href="tokdef_8c.html#adf1f24a77a6d6f72f76e7e2dba2bc048">00238</a> <a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a>* <a class="code" href="tokdef_8h.html#adf1f24a77a6d6f72f76e7e2dba2bc048" title="initialise keyword DO">ini_DO</a>() {
+<a name="l00239"></a>00239   <a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a> *DO_PTR;
+<a name="l00240"></a>00240   <span class="keywordflow">if</span> ((DO_PTR = malloc(<span class="keyword">sizeof</span>(<a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a>))) == NULL) <a class="code" href="tokdef_8c.html#a8b4b6428a8bf1450cf23b6032dec56cf" title="Print error message.">error</a>(<a class="code" href="tokdef_8c.html#ad7109e2dccd18353c3bdd5f55ad94b55afb88c5fa6e7d51074ec36bd4578e03a0">ERR_MEMORY</a>);
+<a name="l00241"></a>00241   strcpy(DO_PTR-&gt;<a class="code" href="tokdef_8h.html#a02d5d49fc221e244cfc4f7196c1a2251" title="keyword">w</a>, <a class="code" href="tokdef_8c.html#a378b0ae598a7cfd7eb28be463d4cc909" title="Stringtable of all keywords longer than 1 character.">keywords</a>[<a class="code" href="tokdef_8c.html#acf2488b95c97e0378c9bf49de3b50f28abfea6036e64d9c7c773d277a57d2f959">DO</a> - 256]);
+<a name="l00242"></a>00242   DO_PTR-&gt;<a class="code" href="tokdef_8h.html#a79da3556d7a0b19c9d1ce39e9d4a0bc7" title="keyword identifier">ID</a> = <a class="code" href="tokdef_8c.html#acf2488b95c97e0378c9bf49de3b50f28abfea6036e64d9c7c773d277a57d2f959">DO</a>;
+<a name="l00243"></a>00243   <span class="keywordflow">return</span> DO_PTR;
+<a name="l00244"></a>00244 }
+<a name="l00245"></a>00245 
+<a name="l00251"></a><a class="code" href="tokdef_8c.html#a41926a474714a535fe6ab94b09c1ec58">00251</a> <a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a>* <a class="code" href="tokdef_8h.html#a41926a474714a535fe6ab94b09c1ec58" title="initialise keyword END">ini_END</a>() {
+<a name="l00252"></a>00252   <a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a> *END_PTR;
+<a name="l00253"></a>00253   <span class="keywordflow">if</span> ((END_PTR = malloc(<span class="keyword">sizeof</span>(<a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a>))) == NULL) <a class="code" href="tokdef_8c.html#a8b4b6428a8bf1450cf23b6032dec56cf" title="Print error message.">error</a>(<a class="code" href="tokdef_8c.html#ad7109e2dccd18353c3bdd5f55ad94b55afb88c5fa6e7d51074ec36bd4578e03a0">ERR_MEMORY</a>);
+<a name="l00254"></a>00254   strcpy(END_PTR-&gt;<a class="code" href="tokdef_8h.html#a02d5d49fc221e244cfc4f7196c1a2251" title="keyword">w</a>, <a class="code" href="tokdef_8c.html#a378b0ae598a7cfd7eb28be463d4cc909" title="Stringtable of all keywords longer than 1 character.">keywords</a>[<a class="code" href="tokdef_8c.html#acf2488b95c97e0378c9bf49de3b50f28adc6f24fd6915a3f2786a1b7045406924">END</a> - 256]);
+<a name="l00255"></a>00255   END_PTR-&gt;<a class="code" href="tokdef_8h.html#a79da3556d7a0b19c9d1ce39e9d4a0bc7" title="keyword identifier">ID</a> = <a class="code" href="tokdef_8c.html#acf2488b95c97e0378c9bf49de3b50f28adc6f24fd6915a3f2786a1b7045406924">END</a>;
+<a name="l00256"></a>00256   <span class="keywordflow">return</span> END_PTR;
+<a name="l00257"></a>00257 }
+<a name="l00258"></a>00258 
+<a name="l00264"></a><a class="code" href="tokdef_8c.html#a59df98f4f9e2462ba38059c21729698c">00264</a> <a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a>* <a class="code" href="tokdef_8h.html#a59df98f4f9e2462ba38059c21729698c" title="initialise keyword IF">ini_IF</a>() {
+<a name="l00265"></a>00265   <a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a> *IF_PTR;
+<a name="l00266"></a>00266   <span class="keywordflow">if</span> ((IF_PTR = malloc(<span class="keyword">sizeof</span>(<a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a>))) == NULL) <a class="code" href="tokdef_8c.html#a8b4b6428a8bf1450cf23b6032dec56cf" title="Print error message.">error</a>(<a class="code" href="tokdef_8c.html#ad7109e2dccd18353c3bdd5f55ad94b55afb88c5fa6e7d51074ec36bd4578e03a0">ERR_MEMORY</a>);
+<a name="l00267"></a>00267   strcpy(IF_PTR-&gt;<a class="code" href="tokdef_8h.html#a02d5d49fc221e244cfc4f7196c1a2251" title="keyword">w</a>, <a class="code" href="tokdef_8c.html#a378b0ae598a7cfd7eb28be463d4cc909" title="Stringtable of all keywords longer than 1 character.">keywords</a>[<a class="code" href="tokdef_8c.html#acf2488b95c97e0378c9bf49de3b50f28a252802eda493fb6b4a279c4452acb547">IF</a> - 256]);
+<a name="l00268"></a>00268   IF_PTR-&gt;<a class="code" href="tokdef_8h.html#a79da3556d7a0b19c9d1ce39e9d4a0bc7" title="keyword identifier">ID</a> = <a class="code" href="tokdef_8c.html#acf2488b95c97e0378c9bf49de3b50f28a252802eda493fb6b4a279c4452acb547">IF</a>;
+<a name="l00269"></a>00269   <span class="keywordflow">return</span> IF_PTR;
+<a name="l00270"></a>00270 }
+<a name="l00271"></a>00271 
+<a name="l00277"></a><a class="code" href="tokdef_8c.html#a0f9272daacf3da2d8e84b5823b198854">00277</a> <a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a>* <a class="code" href="tokdef_8h.html#a0f9272daacf3da2d8e84b5823b198854" title="initialise keyword ODD">ini_ODD</a>() {
+<a name="l00278"></a>00278   <a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a> *ODD_PTR;
+<a name="l00279"></a>00279   <span class="keywordflow">if</span> ((ODD_PTR = malloc(<span class="keyword">sizeof</span>(<a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a>))) == NULL) <a class="code" href="tokdef_8c.html#a8b4b6428a8bf1450cf23b6032dec56cf" title="Print error message.">error</a>(<a class="code" href="tokdef_8c.html#ad7109e2dccd18353c3bdd5f55ad94b55afb88c5fa6e7d51074ec36bd4578e03a0">ERR_MEMORY</a>);
+<a name="l00280"></a>00280   strcpy(ODD_PTR-&gt;<a class="code" href="tokdef_8h.html#a02d5d49fc221e244cfc4f7196c1a2251" title="keyword">w</a>, <a class="code" href="tokdef_8c.html#a378b0ae598a7cfd7eb28be463d4cc909" title="Stringtable of all keywords longer than 1 character.">keywords</a>[<a class="code" href="tokdef_8c.html#acf2488b95c97e0378c9bf49de3b50f28aa29cedab858353a26006af9db7cd1ed8">ODD</a> - 256]);
+<a name="l00281"></a>00281   ODD_PTR-&gt;<a class="code" href="tokdef_8h.html#a79da3556d7a0b19c9d1ce39e9d4a0bc7" title="keyword identifier">ID</a> = <a class="code" href="tokdef_8c.html#acf2488b95c97e0378c9bf49de3b50f28aa29cedab858353a26006af9db7cd1ed8">ODD</a>;
+<a name="l00282"></a>00282   <span class="keywordflow">return</span> ODD_PTR;
+<a name="l00283"></a>00283 }
+<a name="l00284"></a>00284 
+<a name="l00290"></a><a class="code" href="tokdef_8c.html#afe2a95df81d5d0296e1a03e1d0eec690">00290</a> <a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a>* <a class="code" href="tokdef_8h.html#afe2a95df81d5d0296e1a03e1d0eec690" title="initialise keyword PRINT">ini_PRINT</a>() {
+<a name="l00291"></a>00291   <a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a> *PRINT_PTR;
+<a name="l00292"></a>00292   <span class="keywordflow">if</span> ((PRINT_PTR = malloc(<span class="keyword">sizeof</span>(<a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a>))) == NULL) <a class="code" href="tokdef_8c.html#a8b4b6428a8bf1450cf23b6032dec56cf" title="Print error message.">error</a>(<a class="code" href="tokdef_8c.html#ad7109e2dccd18353c3bdd5f55ad94b55afb88c5fa6e7d51074ec36bd4578e03a0">ERR_MEMORY</a>);
+<a name="l00293"></a>00293   strcpy(PRINT_PTR-&gt;<a class="code" href="tokdef_8h.html#a02d5d49fc221e244cfc4f7196c1a2251" title="keyword">w</a>, <a class="code" href="tokdef_8c.html#a378b0ae598a7cfd7eb28be463d4cc909" title="Stringtable of all keywords longer than 1 character.">keywords</a>[<a class="code" href="tokdef_8c.html#acf2488b95c97e0378c9bf49de3b50f28ab107229d44d042caa8ab8df4c8acaa1f">PRINT</a> - 256]);
+<a name="l00294"></a>00294   PRINT_PTR-&gt;<a class="code" href="tokdef_8h.html#a79da3556d7a0b19c9d1ce39e9d4a0bc7" title="keyword identifier">ID</a> = <a class="code" href="tokdef_8c.html#acf2488b95c97e0378c9bf49de3b50f28ab107229d44d042caa8ab8df4c8acaa1f">PRINT</a>;
+<a name="l00295"></a>00295   <span class="keywordflow">return</span> PRINT_PTR;
+<a name="l00296"></a>00296 }
+<a name="l00297"></a>00297 
+<a name="l00303"></a><a class="code" href="tokdef_8c.html#a7f70e514a9b918ecea16bbbb8dc7dc5a">00303</a> <a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a>* <a class="code" href="tokdef_8h.html#a7f70e514a9b918ecea16bbbb8dc7dc5a" title="initialise keyword PROCEDURE">ini_PROCEDURE</a>() {
+<a name="l00304"></a>00304   <a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a> *PROCEDURE_PTR;
+<a name="l00305"></a>00305   <span class="keywordflow">if</span> ((PROCEDURE_PTR = malloc(<span class="keyword">sizeof</span>(<a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a>))) == NULL) <a class="code" href="tokdef_8c.html#a8b4b6428a8bf1450cf23b6032dec56cf" title="Print error message.">error</a>(<a class="code" href="tokdef_8c.html#ad7109e2dccd18353c3bdd5f55ad94b55afb88c5fa6e7d51074ec36bd4578e03a0">ERR_MEMORY</a>);
+<a name="l00306"></a>00306   strcpy(PROCEDURE_PTR-&gt;<a class="code" href="tokdef_8h.html#a02d5d49fc221e244cfc4f7196c1a2251" title="keyword">w</a>, <a class="code" href="tokdef_8c.html#a378b0ae598a7cfd7eb28be463d4cc909" title="Stringtable of all keywords longer than 1 character.">keywords</a>[<a class="code" href="tokdef_8c.html#acf2488b95c97e0378c9bf49de3b50f28ad95bbb705a560daadfaa6c72329fbd61">PROCEDURE</a> - 256]);
+<a name="l00307"></a>00307   PROCEDURE_PTR-&gt;<a class="code" href="tokdef_8h.html#a79da3556d7a0b19c9d1ce39e9d4a0bc7" title="keyword identifier">ID</a> = <a class="code" href="tokdef_8c.html#acf2488b95c97e0378c9bf49de3b50f28ad95bbb705a560daadfaa6c72329fbd61">PROCEDURE</a>;
+<a name="l00308"></a>00308   <span class="keywordflow">return</span> PROCEDURE_PTR;
+<a name="l00309"></a>00309 }
+<a name="l00310"></a>00310 
+<a name="l00316"></a><a class="code" href="tokdef_8c.html#a1ce32c3234be6e50832e306329658240">00316</a> <a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a>* <a class="code" href="tokdef_8h.html#a1ce32c3234be6e50832e306329658240" title="initialise keyword READ">ini_READ</a>() {
+<a name="l00317"></a>00317   <a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a> *READ_PTR;
+<a name="l00318"></a>00318   <span class="keywordflow">if</span> ((READ_PTR = malloc(<span class="keyword">sizeof</span>(<a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a>))) == NULL) <a class="code" href="tokdef_8c.html#a8b4b6428a8bf1450cf23b6032dec56cf" title="Print error message.">error</a>(<a class="code" href="tokdef_8c.html#ad7109e2dccd18353c3bdd5f55ad94b55afb88c5fa6e7d51074ec36bd4578e03a0">ERR_MEMORY</a>);
+<a name="l00319"></a>00319   strcpy(READ_PTR-&gt;<a class="code" href="tokdef_8h.html#a02d5d49fc221e244cfc4f7196c1a2251" title="keyword">w</a>, <a class="code" href="tokdef_8c.html#a378b0ae598a7cfd7eb28be463d4cc909" title="Stringtable of all keywords longer than 1 character.">keywords</a>[<a class="code" href="tokdef_8c.html#acf2488b95c97e0378c9bf49de3b50f28acb9be765f361bb7efb9073730aac92c6">READ</a> - 256]);
+<a name="l00320"></a>00320   READ_PTR-&gt;<a class="code" href="tokdef_8h.html#a79da3556d7a0b19c9d1ce39e9d4a0bc7" title="keyword identifier">ID</a> = <a class="code" href="tokdef_8c.html#acf2488b95c97e0378c9bf49de3b50f28acb9be765f361bb7efb9073730aac92c6">READ</a>;
+<a name="l00321"></a>00321   <span class="keywordflow">return</span> READ_PTR;
+<a name="l00322"></a>00322 }
+<a name="l00323"></a>00323 
+<a name="l00329"></a><a class="code" href="tokdef_8c.html#a6c3cbb287339e979208c720ddce34aa0">00329</a> <a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a>* <a class="code" href="tokdef_8h.html#a6c3cbb287339e979208c720ddce34aa0" title="initialise keyword THEN">ini_THEN</a>() {
+<a name="l00330"></a>00330   <a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a> *THEN_PTR;
+<a name="l00331"></a>00331   <span class="keywordflow">if</span> ((THEN_PTR = malloc(<span class="keyword">sizeof</span>(<a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a>))) == NULL) <a class="code" href="tokdef_8c.html#a8b4b6428a8bf1450cf23b6032dec56cf" title="Print error message.">error</a>(<a class="code" href="tokdef_8c.html#ad7109e2dccd18353c3bdd5f55ad94b55afb88c5fa6e7d51074ec36bd4578e03a0">ERR_MEMORY</a>);
+<a name="l00332"></a>00332   strcpy(THEN_PTR-&gt;<a class="code" href="tokdef_8h.html#a02d5d49fc221e244cfc4f7196c1a2251" title="keyword">w</a>, <a class="code" href="tokdef_8c.html#a378b0ae598a7cfd7eb28be463d4cc909" title="Stringtable of all keywords longer than 1 character.">keywords</a>[<a class="code" href="tokdef_8c.html#acf2488b95c97e0378c9bf49de3b50f28abb40477a291c07277e13d096645f4305">THEN</a> - 256]);
+<a name="l00333"></a>00333   THEN_PTR-&gt;<a class="code" href="tokdef_8h.html#a79da3556d7a0b19c9d1ce39e9d4a0bc7" title="keyword identifier">ID</a> = <a class="code" href="tokdef_8c.html#acf2488b95c97e0378c9bf49de3b50f28abb40477a291c07277e13d096645f4305">THEN</a>;
+<a name="l00334"></a>00334   <span class="keywordflow">return</span> THEN_PTR;
+<a name="l00335"></a>00335 }
+<a name="l00336"></a>00336 
+<a name="l00342"></a><a class="code" href="tokdef_8c.html#a31c3ddcea0020c1e08f300c48fe783d3">00342</a> <a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a>* <a class="code" href="tokdef_8h.html#a31c3ddcea0020c1e08f300c48fe783d3" title="initialise keyword VAR">ini_VAR</a>() {
+<a name="l00343"></a>00343   <a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a> *VAR_PTR;
+<a name="l00344"></a>00344   <span class="keywordflow">if</span> ((VAR_PTR = malloc(<span class="keyword">sizeof</span>(<a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a>))) == NULL) <a class="code" href="tokdef_8c.html#a8b4b6428a8bf1450cf23b6032dec56cf" title="Print error message.">error</a>(<a class="code" href="tokdef_8c.html#ad7109e2dccd18353c3bdd5f55ad94b55afb88c5fa6e7d51074ec36bd4578e03a0">ERR_MEMORY</a>);
+<a name="l00345"></a>00345   strcpy(VAR_PTR-&gt;<a class="code" href="tokdef_8h.html#a02d5d49fc221e244cfc4f7196c1a2251" title="keyword">w</a>, <a class="code" href="tokdef_8c.html#a378b0ae598a7cfd7eb28be463d4cc909" title="Stringtable of all keywords longer than 1 character.">keywords</a>[<a class="code" href="tokdef_8c.html#acf2488b95c97e0378c9bf49de3b50f28af68346ce0bfce7ab2ca0a240f5132863">VAR</a> - 256]);
+<a name="l00346"></a>00346   VAR_PTR-&gt;<a class="code" href="tokdef_8h.html#a79da3556d7a0b19c9d1ce39e9d4a0bc7" title="keyword identifier">ID</a> = <a class="code" href="tokdef_8c.html#acf2488b95c97e0378c9bf49de3b50f28af68346ce0bfce7ab2ca0a240f5132863">VAR</a>;
+<a name="l00347"></a>00347   <span class="keywordflow">return</span> VAR_PTR;
+<a name="l00348"></a>00348 }
+<a name="l00349"></a>00349 
+<a name="l00355"></a><a class="code" href="tokdef_8c.html#a58f3a75145550870497c2517db9d100b">00355</a> <a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a>* <a class="code" href="tokdef_8h.html#a58f3a75145550870497c2517db9d100b" title="initialise keyword WHILE">ini_WHILE</a>() {
+<a name="l00356"></a>00356   <a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a> *WHILE_PTR;
+<a name="l00357"></a>00357   <span class="keywordflow">if</span> ((WHILE_PTR = malloc(<span class="keyword">sizeof</span>(<a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a>))) == NULL) <a class="code" href="tokdef_8c.html#a8b4b6428a8bf1450cf23b6032dec56cf" title="Print error message.">error</a>(<a class="code" href="tokdef_8c.html#ad7109e2dccd18353c3bdd5f55ad94b55afb88c5fa6e7d51074ec36bd4578e03a0">ERR_MEMORY</a>);
+<a name="l00358"></a>00358   strcpy(WHILE_PTR-&gt;<a class="code" href="tokdef_8h.html#a02d5d49fc221e244cfc4f7196c1a2251" title="keyword">w</a>, <a class="code" href="tokdef_8c.html#a378b0ae598a7cfd7eb28be463d4cc909" title="Stringtable of all keywords longer than 1 character.">keywords</a>[<a class="code" href="tokdef_8c.html#acf2488b95c97e0378c9bf49de3b50f28a3278fd035226215822c903790a1eee73">WHILE</a> - 256]);
+<a name="l00359"></a>00359   WHILE_PTR-&gt;<a class="code" href="tokdef_8h.html#a79da3556d7a0b19c9d1ce39e9d4a0bc7" title="keyword identifier">ID</a> = <a class="code" href="tokdef_8c.html#acf2488b95c97e0378c9bf49de3b50f28a3278fd035226215822c903790a1eee73">WHILE</a>;
+<a name="l00360"></a>00360   <span class="keywordflow">return</span> WHILE_PTR;
+<a name="l00361"></a>00361 }
+<a name="l00362"></a>00362 
+<a name="l00368"></a><a class="code" href="tokdef_8c.html#afbc12afdc22344562084703f9a7ffc83">00368</a> <a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a>* <a class="code" href="tokdef_8h.html#afbc12afdc22344562084703f9a7ffc83" title="initialise keyword PASS">ini_PASS</a>() {
+<a name="l00369"></a>00369   <a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a> *PASS_PTR;
+<a name="l00370"></a>00370   <span class="keywordflow">if</span> ((PASS_PTR = malloc(<span class="keyword">sizeof</span>(<a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a>))) == NULL) <a class="code" href="tokdef_8c.html#a8b4b6428a8bf1450cf23b6032dec56cf" title="Print error message.">error</a>(<a class="code" href="tokdef_8c.html#ad7109e2dccd18353c3bdd5f55ad94b55afb88c5fa6e7d51074ec36bd4578e03a0">ERR_MEMORY</a>);
+<a name="l00371"></a>00371   strcpy(PASS_PTR-&gt;<a class="code" href="tokdef_8h.html#a02d5d49fc221e244cfc4f7196c1a2251" title="keyword">w</a>, <a class="code" href="tokdef_8c.html#a378b0ae598a7cfd7eb28be463d4cc909" title="Stringtable of all keywords longer than 1 character.">keywords</a>[<a class="code" href="tokdef_8c.html#acf2488b95c97e0378c9bf49de3b50f28a0afa825567e442a46d131be6c71cb40f">PASS</a> - 256]);
+<a name="l00372"></a>00372   PASS_PTR-&gt;<a class="code" href="tokdef_8h.html#a79da3556d7a0b19c9d1ce39e9d4a0bc7" title="keyword identifier">ID</a> = <a class="code" href="tokdef_8c.html#acf2488b95c97e0378c9bf49de3b50f28a0afa825567e442a46d131be6c71cb40f">PASS</a>;
+<a name="l00373"></a>00373   <span class="keywordflow">return</span> PASS_PTR;
+<a name="l00374"></a>00374 }
+<a name="l00375"></a>00375 
+<a name="l00381"></a><a class="code" href="tokdef_8c.html#aeef061af1fffa52edd7eaa510b82c16c">00381</a> <a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a>* <a class="code" href="tokdef_8h.html#aeef061af1fffa52edd7eaa510b82c16c" title="initialise keyword ==">ini_EQ</a>() {
+<a name="l00382"></a>00382   <a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a> *EQ_PTR;
+<a name="l00383"></a>00383   <span class="keywordflow">if</span> ((EQ_PTR = malloc(<span class="keyword">sizeof</span>(<a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a>))) == NULL) <a class="code" href="tokdef_8c.html#a8b4b6428a8bf1450cf23b6032dec56cf" title="Print error message.">error</a>(<a class="code" href="tokdef_8c.html#ad7109e2dccd18353c3bdd5f55ad94b55afb88c5fa6e7d51074ec36bd4578e03a0">ERR_MEMORY</a>);
+<a name="l00384"></a>00384   strcpy(EQ_PTR-&gt;<a class="code" href="tokdef_8h.html#a02d5d49fc221e244cfc4f7196c1a2251" title="keyword">w</a>, <a class="code" href="tokdef_8c.html#a378b0ae598a7cfd7eb28be463d4cc909" title="Stringtable of all keywords longer than 1 character.">keywords</a>[<a class="code" href="tokdef_8c.html#acf2488b95c97e0378c9bf49de3b50f28a9efdc855f3c1477957fb50affec07f8f">EQ</a> - 256]);
+<a name="l00385"></a>00385   EQ_PTR-&gt;<a class="code" href="tokdef_8h.html#a79da3556d7a0b19c9d1ce39e9d4a0bc7" title="keyword identifier">ID</a> = <a class="code" href="tokdef_8c.html#acf2488b95c97e0378c9bf49de3b50f28a9efdc855f3c1477957fb50affec07f8f">EQ</a>;
+<a name="l00386"></a>00386   <span class="keywordflow">return</span> EQ_PTR;
+<a name="l00387"></a>00387 }
+<a name="l00388"></a>00388 
+<a name="l00394"></a><a class="code" href="tokdef_8c.html#af278058c4829574ed15f6943f39bacad">00394</a> <a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a>* <a class="code" href="tokdef_8h.html#af278058c4829574ed15f6943f39bacad" title="initialise keyword &gt;=">ini_GE</a>() {
+<a name="l00395"></a>00395   <a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a> *GE_PTR;
+<a name="l00396"></a>00396   <span class="keywordflow">if</span> ((GE_PTR = malloc(<span class="keyword">sizeof</span>(<a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a>))) == NULL) <a class="code" href="tokdef_8c.html#a8b4b6428a8bf1450cf23b6032dec56cf" title="Print error message.">error</a>(<a class="code" href="tokdef_8c.html#ad7109e2dccd18353c3bdd5f55ad94b55afb88c5fa6e7d51074ec36bd4578e03a0">ERR_MEMORY</a>);
+<a name="l00397"></a>00397   strcpy(GE_PTR-&gt;<a class="code" href="tokdef_8h.html#a02d5d49fc221e244cfc4f7196c1a2251" title="keyword">w</a>, <a class="code" href="tokdef_8c.html#a378b0ae598a7cfd7eb28be463d4cc909" title="Stringtable of all keywords longer than 1 character.">keywords</a>[<a class="code" href="tokdef_8c.html#acf2488b95c97e0378c9bf49de3b50f28a558711b4a2a25070b970d85f5926d5ce">GE</a> - 256]);
+<a name="l00398"></a>00398   GE_PTR-&gt;<a class="code" href="tokdef_8h.html#a79da3556d7a0b19c9d1ce39e9d4a0bc7" title="keyword identifier">ID</a> = <a class="code" href="tokdef_8c.html#acf2488b95c97e0378c9bf49de3b50f28a558711b4a2a25070b970d85f5926d5ce">GE</a>;
+<a name="l00399"></a>00399   <span class="keywordflow">return</span> GE_PTR;
+<a name="l00400"></a>00400 }
+<a name="l00401"></a>00401 
+<a name="l00407"></a><a class="code" href="tokdef_8c.html#a5255ae956b6faf8fd1e6221368ce0295">00407</a> <a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a>* <a class="code" href="tokdef_8h.html#a5255ae956b6faf8fd1e6221368ce0295" title="initialise keyword &lt;=">ini_LE</a>() {
+<a name="l00408"></a>00408   <a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a> *LE_PTR;
+<a name="l00409"></a>00409   <span class="keywordflow">if</span> ((LE_PTR = malloc(<span class="keyword">sizeof</span>(<a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a>))) == NULL) <a class="code" href="tokdef_8c.html#a8b4b6428a8bf1450cf23b6032dec56cf" title="Print error message.">error</a>(<a class="code" href="tokdef_8c.html#ad7109e2dccd18353c3bdd5f55ad94b55afb88c5fa6e7d51074ec36bd4578e03a0">ERR_MEMORY</a>);
+<a name="l00410"></a>00410   strcpy(LE_PTR-&gt;<a class="code" href="tokdef_8h.html#a02d5d49fc221e244cfc4f7196c1a2251" title="keyword">w</a>, <a class="code" href="tokdef_8c.html#a378b0ae598a7cfd7eb28be463d4cc909" title="Stringtable of all keywords longer than 1 character.">keywords</a>[<a class="code" href="tokdef_8c.html#acf2488b95c97e0378c9bf49de3b50f28a662ed4b51721a45f07d645d4ca099a61">LE</a> - 256]);
+<a name="l00411"></a>00411   LE_PTR-&gt;<a class="code" href="tokdef_8h.html#a79da3556d7a0b19c9d1ce39e9d4a0bc7" title="keyword identifier">ID</a> = <a class="code" href="tokdef_8c.html#acf2488b95c97e0378c9bf49de3b50f28a662ed4b51721a45f07d645d4ca099a61">LE</a>;
+<a name="l00412"></a>00412   <span class="keywordflow">return</span> LE_PTR;
+<a name="l00413"></a>00413 }
+<a name="l00414"></a>00414 
+<a name="l00420"></a><a class="code" href="tokdef_8c.html#a700de1f32ddf4df29374bb22c928801f">00420</a> <a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a>* <a class="code" href="tokdef_8h.html#a700de1f32ddf4df29374bb22c928801f" title="initialise keyword !=">ini_NE</a>() {
+<a name="l00421"></a>00421   <a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a> *NE_PTR;
+<a name="l00422"></a>00422   <span class="keywordflow">if</span> ((NE_PTR = malloc(<span class="keyword">sizeof</span>(<a class="code" href="tokdef_8h.html#structkeyword" title="Keyword structure for storing initial keywords.">keyword</a>))) == NULL) <a class="code" href="tokdef_8c.html#a8b4b6428a8bf1450cf23b6032dec56cf" title="Print error message.">error</a>(<a class="code" href="tokdef_8c.html#ad7109e2dccd18353c3bdd5f55ad94b55afb88c5fa6e7d51074ec36bd4578e03a0">ERR_MEMORY</a>);
+<a name="l00423"></a>00423   strcpy(NE_PTR-&gt;<a class="code" href="tokdef_8h.html#a02d5d49fc221e244cfc4f7196c1a2251" title="keyword">w</a>, <a class="code" href="tokdef_8c.html#a378b0ae598a7cfd7eb28be463d4cc909" title="Stringtable of all keywords longer than 1 character.">keywords</a>[<a class="code" href="tokdef_8c.html#acf2488b95c97e0378c9bf49de3b50f28a4d3f872f5054b256b01ee4f2c8cf51db">NE</a> - 256]);
+<a name="l00424"></a>00424   NE_PTR-&gt;<a class="code" href="tokdef_8h.html#a79da3556d7a0b19c9d1ce39e9d4a0bc7" title="keyword identifier">ID</a> = <a class="code" href="tokdef_8c.html#acf2488b95c97e0378c9bf49de3b50f28a4d3f872f5054b256b01ee4f2c8cf51db">NE</a>;
+<a name="l00425"></a>00425   <span class="keywordflow">return</span> NE_PTR;
+<a name="l00426"></a>00426 }
+<a name="l00427"></a>00427 
+<a name="l00428"></a>00428 
+<a name="l00429"></a>00429 <span class="preprocessor">#endif</span>
 </pre></div></div><!-- contents -->
 </div>
 <!-- window showing the filter options -->
@@ -219,7 +377,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul>
       <li class="navelem"><a class="el" href="tokdef_8c.html">tokdef.c</a>      </li>
 
-    <li class="footer">Generated on Mon Feb 4 2013 19:22:24 for PiL0 by
+    <li class="footer">Generated on Mon Feb 4 2013 22:19:01 for PiL0 by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

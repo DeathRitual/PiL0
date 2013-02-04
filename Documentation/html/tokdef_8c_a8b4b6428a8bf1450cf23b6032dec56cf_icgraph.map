@@ -1,7 +1,25 @@
 <map id="G" name="G">
-<area shape="rect" id="node3" href="$tokdef_8c.html#a46cdfdb54ba6b79debb3745f650bcdbe" title="add new element to token stream" alt="" coords="108,5,188,35"/>
-<area shape="rect" id="node5" href="$tokdef_8c.html#aeaf25962d905093a69389e62796e237b" title="Initialize new token stream with NULL&#45;Pointer." alt="" coords="123,59,173,88"/>
-<area shape="rect" id="node7" href="$tokdef_8c.html#a3e647acbc5d046872adef10908ea44b4" title="get the newest element of stream" alt="" coords="121,112,175,141"/>
-<area shape="rect" id="node9" href="$tokdef_8c.html#a597a6fc15d83dfb2d062ac6ca1039c06" title="remove oldest element in stream" alt="" coords="108,165,188,195"/>
-<area shape="rect" id="node11" href="$tokdef_8c.html#a662de1b392ef548996d646fdac76fdf4" title="get the oldest element of stream" alt="" coords="121,219,175,248"/>
+<area shape="rect" id="node3" href="$tokdef_8c.html#a2e5119b19a8d11244e9af9555dba5f66" title="initialise keyword BEGIN" alt="" coords="131,5,216,35"/>
+<area shape="rect" id="node5" href="$tokdef_8c.html#acd9099ba07f5918fcecfb174f29b267b" title="initialise keyword CALL" alt="" coords="135,59,212,88"/>
+<area shape="rect" id="node7" href="$tokdef_8c.html#a153311284cd712008980a20135dd5fa3" title="initialise keyword CONST" alt="" coords="127,112,220,141"/>
+<area shape="rect" id="node9" href="$tokdef_8c.html#adf1f24a77a6d6f72f76e7e2dba2bc048" title="initialise keyword DO" alt="" coords="141,165,205,195"/>
+<area shape="rect" id="node11" href="$tokdef_8c.html#a41926a474714a535fe6ab94b09c1ec58" title="initialise keyword END" alt="" coords="137,219,209,248"/>
+<area shape="rect" id="node13" href="$tokdef_8c.html#aeef061af1fffa52edd7eaa510b82c16c" title="initialise keyword ==" alt="" coords="141,272,205,301"/>
+<area shape="rect" id="node15" href="$tokdef_8c.html#af278058c4829574ed15f6943f39bacad" title="initialise keyword &gt;=" alt="" coords="141,325,205,355"/>
+<area shape="rect" id="node17" href="$tokdef_8c.html#a59df98f4f9e2462ba38059c21729698c" title="initialise keyword IF" alt="" coords="145,379,201,408"/>
+<area shape="rect" id="node19" href="$tokdef_8c.html#a5255ae956b6faf8fd1e6221368ce0295" title="initialise keyword &lt;=" alt="" coords="143,432,204,461"/>
+<area shape="rect" id="node21" href="$tokdef_8c.html#a700de1f32ddf4df29374bb22c928801f" title="initialise keyword !=" alt="" coords="143,485,204,515"/>
+<area shape="rect" id="node23" href="$tokdef_8c.html#a0f9272daacf3da2d8e84b5823b198854" title="initialise keyword ODD" alt="" coords="136,539,211,568"/>
+<area shape="rect" id="node25" href="$tokdef_8c.html#afbc12afdc22344562084703f9a7ffc83" title="initialise keyword PASS" alt="" coords="133,592,213,621"/>
+<area shape="rect" id="node27" href="$tokdef_8c.html#afe2a95df81d5d0296e1a03e1d0eec690" title="initialise keyword PRINT" alt="" coords="131,645,216,675"/>
+<area shape="rect" id="node29" href="$tokdef_8c.html#a7f70e514a9b918ecea16bbbb8dc7dc5a" title="initialise keyword PROCEDURE" alt="" coords="108,699,239,728"/>
+<area shape="rect" id="node31" href="$tokdef_8c.html#a1ce32c3234be6e50832e306329658240" title="initialise keyword READ" alt="" coords="132,752,215,781"/>
+<area shape="rect" id="node33" href="$tokdef_8c.html#a6c3cbb287339e979208c720ddce34aa0" title="initialise keyword THEN" alt="" coords="132,805,215,835"/>
+<area shape="rect" id="node35" href="$tokdef_8c.html#a31c3ddcea0020c1e08f300c48fe783d3" title="initialise keyword VAR" alt="" coords="137,859,209,888"/>
+<area shape="rect" id="node37" href="$tokdef_8c.html#a58f3a75145550870497c2517db9d100b" title="initialise keyword WHILE" alt="" coords="129,912,217,941"/>
+<area shape="rect" id="node39" href="$tokdef_8c.html#a46cdfdb54ba6b79debb3745f650bcdbe" title="add new element to token stream" alt="" coords="133,965,213,995"/>
+<area shape="rect" id="node41" href="$tokdef_8c.html#aeaf25962d905093a69389e62796e237b" title="Initialize new token stream with NULL&#45;Pointer." alt="" coords="148,1019,199,1048"/>
+<area shape="rect" id="node43" href="$tokdef_8c.html#a3e647acbc5d046872adef10908ea44b4" title="get the newest element of stream" alt="" coords="147,1072,200,1101"/>
+<area shape="rect" id="node45" href="$tokdef_8c.html#a597a6fc15d83dfb2d062ac6ca1039c06" title="remove oldest element in stream" alt="" coords="133,1125,213,1155"/>
+<area shape="rect" id="node47" href="$tokdef_8c.html#a662de1b392ef548996d646fdac76fdf4" title="get the oldest element of stream" alt="" coords="147,1179,200,1208"/>
 </map>
