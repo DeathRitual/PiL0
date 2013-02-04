@@ -95,23 +95,36 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div id="doc-content">
 <div class="header">
   <div class="summary">
-<a href="#func-members">Functions</a>  </div>
+<a href="#nested-classes">Data Structures</a> &#124;
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">/home/nirvash/Projects/PiL0/tokdef.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Header-File for Token-Stream library.  
+<a href="#details">More...</a></p>
 <div class="textblock"><div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-0-trigger" src="closed.png" alt="+"/> This graph shows which files directly or indirectly include this file:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="tokdef_8h__dep__incl.png" border="0" usemap="#_2home_2nirvash_2_projects_2_pi_l0_2tokdef_8hdep" alt=""/></div>
-<map name="_2home_2nirvash_2_projects_2_pi_l0_2tokdef_8hdep" id="_2home_2nirvash_2_projects_2_pi_l0_2tokdef_8hdep">
-<area shape="rect" id="node3" href="tokdef_8c.html" title="/home/nirvash/Projects/PiL0/tokdef.c" alt="" coords="5,83,256,112"/></map>
+<div class="center"><img src="tokdef_8h__dep__incl.png" border="0" usemap="#_2home_2nirvash_2Projects_2PiL0_2tokdef_8hdep" alt=""/></div>
+<map name="_2home_2nirvash_2Projects_2PiL0_2tokdef_8hdep" id="_2home_2nirvash_2Projects_2PiL0_2tokdef_8hdep">
+<area shape="rect" id="node3" href="tokdef_8c.html" title="Library for Token&#45;Stream." alt="" coords="5,83,256,112"/></map>
 </div>
 </div>
 <p><a href="tokdef_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
+<tr><td colspan="2"><h2><a name="nested-classes"></a>
+Data Structures</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tokdef_8h.html#struct__tag__list">list</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Element-Structure which builds Token-Stream.  <a href="tokdef_8h.html#struct__tag__list">More...</a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">union &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tokdef_8h.html#union__tag__list_8____unnamed____">_tag_list.__unnamed__</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tokdef_8h.html#struct__tag__list_1_1__token_8____unnamed_____8token">_token.__unnamed__.token</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tokdef_8h.html#struct__tag__list_1_1__number_8____unnamed_____8number">_number.__unnamed__.number</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tokdef_8h.html#struct__tag__list_1_1__word_8____unnamed_____8word">_word.__unnamed__.word</a></td></tr>
 <tr><td colspan="2"><h2><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tokdef_8h.html#ac9f8b5800165d01c9c53895ab3027f5d">l_init</a> (list *)</td></tr>
@@ -126,19 +139,195 @@ Functions</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">get the oldest element of stream  <a href="#aa04f7ac992f12dbdcc80fdf4c624f7e9"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">list&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tokdef_8h.html#a5a84ca70ef422afe2fbb8d4472f55e15">l_last</a> (list)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">get the newest element of stream  <a href="#a5a84ca70ef422afe2fbb8d4472f55e15"></a><br/></td></tr>
+<tr><td colspan="2"><h2><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="tokdef_8h.html#struct__tag__list">_tag_list</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tokdef_8h.html#a6b08a68dd0458ee419869b9852116c9f">tag_list</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">dummy element to quit compiler  <a href="#a6b08a68dd0458ee419869b9852116c9f"></a><br/></td></tr>
 </table>
 <hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
-<div class="textblock"><p>Header-File for Token-Stream library</p>
+<div class="textblock"><p>Header-File for Token-Stream library. </p>
 <p>Forwards the functions of the Token-Stream library to another file which includes this header file. </p>
 
 <p>Definition in file <a class="el" href="tokdef_8h_source.html">tokdef.h</a>.</p>
-</div><hr/><h2>Function Documentation</h2>
+</div><hr/><h2>Data Structure Documentation</h2>
+<a name="struct__tag__list" id="struct__tag__list"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct _tag_list</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<div class="textblock"><p>Element-Structure which builds Token-Stream. </p>
+<p>One element can only contain one token, whereas each element is connected with its last and previous neighbour. </p>
+
+<p>Definition at line <a class="el" href="tokdef_8h_source.html#l00015">15</a> of file <a class="el" href="tokdef_8h_source.html">tokdef.h</a>.</p>
+</div><div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for list:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="struct__tag__list__coll__graph.png" border="0" usemap="#list_coll__map" alt="Collaboration graph"/></div>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
+<table class="fieldtable">
+<tr><th colspan="3">Data Fields</th></tr>
+<tr><td class="fieldtype">
+<a class="anchor" id="af223457b2a0eb1c2fdaa6b7e3ca7a600"></a><!-- doxytag: member="__unnamed__" ref="af223457b2a0eb1c2fdaa6b7e3ca7a600" args="" -->union <a class="el" href="tokdef_8h.html#struct__tag__list">_tag_list</a></td>
+<td class="fieldname">
+__unnamed__</td>
+<td class="fielddoc">
+</td></tr>
+<tr><td class="fieldtype">
+<a class="anchor" id="a3778a8980f4cc9236d8288e5e364b9d3"></a><!-- doxytag: member="next" ref="a3778a8980f4cc9236d8288e5e364b9d3" args="" -->struct <a class="el" href="tokdef_8h.html#struct__tag__list">_tag_list</a> *</td>
+<td class="fieldname">
+next</td>
+<td class="fielddoc">
+pointer to next element </td></tr>
+<tr><td class="fieldtype">
+<a class="anchor" id="aff2d3980f345bfd4ed08d44550f481bf"></a><!-- doxytag: member="previous" ref="aff2d3980f345bfd4ed08d44550f481bf" args="" -->struct <a class="el" href="tokdef_8h.html#struct__tag__list">_tag_list</a> *</td>
+<td class="fieldname">
+previous</td>
+<td class="fielddoc">
+pointer to previous element </td></tr>
+<tr><td class="fieldtype">
+<a class="anchor" id="a1b949e00a2c76f6830b80942c1d65341"></a><!-- doxytag: member="type" ref="a1b949e00a2c76f6830b80942c1d65341" args="" -->char</td>
+<td class="fieldname">
+type</td>
+<td class="fielddoc">
+Token-Type. </td></tr>
+</table>
+
+</div>
+</div>
+<!-- doxytag: class="_tag_list" --><a name="union__tag__list_8____unnamed____" id="union__tag__list_8____unnamed____"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">union _tag_list.__unnamed__</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<div class="textblock">
+<p>Definition at line <a class="el" href="tokdef_8h_source.html#l00024">24</a> of file <a class="el" href="tokdef_8h_source.html">tokdef.h</a>.</p>
+</div><table class="fieldtable">
+<tr><th colspan="3">Data Fields</th></tr>
+<tr><td class="fieldtype">
+<a class="anchor" id="ab1bc248a7ff2b2e95569f56de68615df"></a><!-- doxytag: member="number" ref="ab1bc248a7ff2b2e95569f56de68615df" args="" -->__unnamed__</td>
+<td class="fieldname">
+number</td>
+<td class="fielddoc">
+</td></tr>
+<tr><td class="fieldtype">
+<a class="anchor" id="a94a08da1fecbb6e8b46990538c7b50b2"></a><!-- doxytag: member="token" ref="a94a08da1fecbb6e8b46990538c7b50b2" args="" -->__unnamed__</td>
+<td class="fieldname">
+token</td>
+<td class="fielddoc">
+</td></tr>
+<tr><td class="fieldtype">
+<a class="anchor" id="ac47d187067c6cf953245f128b5fde62a"></a><!-- doxytag: member="word" ref="ac47d187067c6cf953245f128b5fde62a" args="" -->__unnamed__</td>
+<td class="fieldname">
+word</td>
+<td class="fielddoc">
+</td></tr>
+</table>
+
+</div>
+</div>
+<!-- doxytag: class="_tag_list.__unnamed__" --><a name="struct__tag__list_1_1__token_8____unnamed_____8token" id="struct__tag__list_1_1__token_8____unnamed_____8token"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct _tag_list::_token.__unnamed__.token</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<div class="textblock">
+<p>Definition at line <a class="el" href="tokdef_8h_source.html#l00030">30</a> of file <a class="el" href="tokdef_8h_source.html">tokdef.h</a>.</p>
+</div><table class="fieldtable">
+<tr><th colspan="3">Data Fields</th></tr>
+<tr><td class="fieldtype">
+<a class="anchor" id="ae358efa489f58062f10dd7316b65649e"></a><!-- doxytag: member="t" ref="ae358efa489f58062f10dd7316b65649e" args="" -->char</td>
+<td class="fieldname">
+t</td>
+<td class="fielddoc">
+single character </td></tr>
+</table>
+
+</div>
+</div>
+<!-- doxytag: class="_tag_list::_token.__unnamed__.token" --><a name="struct__tag__list_1_1__number_8____unnamed_____8number" id="struct__tag__list_1_1__number_8____unnamed_____8number"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct _tag_list::_number.__unnamed__.number</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<div class="textblock">
+<p>Definition at line <a class="el" href="tokdef_8h_source.html#l00039">39</a> of file <a class="el" href="tokdef_8h_source.html">tokdef.h</a>.</p>
+</div><table class="fieldtable">
+<tr><th colspan="3">Data Fields</th></tr>
+<tr><td class="fieldtype">
+<a class="anchor" id="ab718adec73e04ce3ec720dd11a06a308"></a><!-- doxytag: member="ID" ref="ab718adec73e04ce3ec720dd11a06a308" args="" -->unsigned int</td>
+<td class="fieldname">
+ID</td>
+<td class="fielddoc">
+identifier </td></tr>
+<tr><td class="fieldtype">
+<a class="anchor" id="a7b8b965ad4bca0e41ab51de7b31363a1"></a><!-- doxytag: member="n" ref="a7b8b965ad4bca0e41ab51de7b31363a1" args="" -->int</td>
+<td class="fieldname">
+n</td>
+<td class="fielddoc">
+number </td></tr>
+</table>
+
+</div>
+</div>
+<!-- doxytag: class="_tag_list::_number.__unnamed__.number" --><a name="struct__tag__list_1_1__word_8____unnamed_____8word" id="struct__tag__list_1_1__word_8____unnamed_____8word"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct _tag_list::_word.__unnamed__.word</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<div class="textblock">
+<p>Definition at line <a class="el" href="tokdef_8h_source.html#l00049">49</a> of file <a class="el" href="tokdef_8h_source.html">tokdef.h</a>.</p>
+</div><table class="fieldtable">
+<tr><th colspan="3">Data Fields</th></tr>
+<tr><td class="fieldtype">
+<a class="anchor" id="ab718adec73e04ce3ec720dd11a06a308"></a><!-- doxytag: member="ID" ref="ab718adec73e04ce3ec720dd11a06a308" args="" -->unsigned int</td>
+<td class="fieldname">
+ID</td>
+<td class="fielddoc">
+identifier </td></tr>
+<tr><td class="fieldtype">
+<a class="anchor" id="a4140654ec46bd61087726571a573fe17"></a><!-- doxytag: member="w" ref="a4140654ec46bd61087726571a573fe17" args="[50]" -->char</td>
+<td class="fieldname">
+w</td>
+<td class="fielddoc">
+keyword / identifer </td></tr>
+</table>
+
+</div>
+</div>
+<!-- doxytag: class="_tag_list::_word.__unnamed__.word" --><hr/><h2>Function Documentation</h2>
 <a class="anchor" id="a81ffeff3bff153b2a5e8576bad3c1145"></a><!-- doxytag: member="tokdef.h::l_append" ref="a81ffeff3bff153b2a5e8576bad3c1145" args="(list *, char *, int *)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void <a class="el" href="tokdef_8h.html#a81ffeff3bff153b2a5e8576bad3c1145">l_append</a> </td>
+          <td class="memname">void <a class="el" href="tokdef_8c.html#a46cdfdb54ba6b79debb3745f650bcdbe">l_append</a> </td>
           <td>(</td>
           <td class="paramtype">list *&#160;</td>
           <td class="paramname"><em>l</em>, </td>
@@ -175,38 +364,40 @@ Functions</h2></td></tr>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="tokdef_8c_source.html#l00150">150</a> of file <a class="el" href="tokdef_8c_source.html">tokdef.c</a>.</p>
+<p>Definition at line <a class="el" href="tokdef_8c_source.html#l00099">99</a> of file <a class="el" href="tokdef_8c_source.html">tokdef.c</a>.</p>
+
+<p>References <a class="el" href="tokdef_8c_source.html#l00040">ERR_MEMORY</a>, <a class="el" href="tokdef_8c_source.html#l00049">error()</a>, <a class="el" href="tokdef_8c_source.html#l00087">l_IsEmpty()</a>, <a class="el" href="tokdef_8h_source.html#l00056">list::next</a>, <a class="el" href="tokdef_8c_source.html#l00040">NULL_POINTER</a>, <a class="el" href="tokdef_8h_source.html#l00057">list::previous</a>, and <a class="el" href="tokdef_8h_source.html#l00055">list::type</a>.</p>
 <div class="fragment"><pre class="fragment">                                        {
   <span class="keywordflow">if</span> (l == NULL) <a class="code" href="tokdef_8c.html#a8b4b6428a8bf1450cf23b6032dec56cf" title="Print error message.">error</a>(<a class="code" href="tokdef_8c.html#ad7109e2dccd18353c3bdd5f55ad94b55a4fb873dc451927ef6a70af3a1e7f08bd">NULL_POINTER</a>);
-  <span class="keyword">struct </span><a class="code" href="tokdef_8c.html#struct__tag__list" title="Element-Structure which builds Token-Stream.">_tag_list</a> *el; 
+  <span class="keyword">struct </span><a class="code" href="tokdef_8h.html#struct__tag__list" title="Element-Structure which builds Token-Stream.">_tag_list</a> *el; 
   <span class="keywordflow">if</span> ((el = malloc(<span class="keyword">sizeof</span>(list))) == NULL) <a class="code" href="tokdef_8c.html#a8b4b6428a8bf1450cf23b6032dec56cf" title="Print error message.">error</a>(<a class="code" href="tokdef_8c.html#ad7109e2dccd18353c3bdd5f55ad94b55afb88c5fa6e7d51074ec36bd4578e03a0">ERR_MEMORY</a>);
   <span class="keywordflow">if</span> (strlen(t) == 1) {
     el-&gt;token.t = *t;
-    el-&gt;<a class="code" href="tokdef_8c.html#a1b949e00a2c76f6830b80942c1d65341">type</a> = <span class="charliteral">&#39;t&#39;</span>;
+    el-&gt;<a class="code" href="tokdef_8h.html#a1b949e00a2c76f6830b80942c1d65341" title="Token-Type.">type</a> = <span class="charliteral">&#39;t&#39;</span>;
   } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (isdigit(*t) &gt; 0) {
     el-&gt;number.n = atoi(t);
     el-&gt;number.ID = *n;
-    el-&gt;<a class="code" href="tokdef_8c.html#a1b949e00a2c76f6830b80942c1d65341">type</a> = <span class="charliteral">&#39;n&#39;</span>;
+    el-&gt;<a class="code" href="tokdef_8h.html#a1b949e00a2c76f6830b80942c1d65341" title="Token-Type.">type</a> = <span class="charliteral">&#39;n&#39;</span>;
   } <span class="keywordflow">else</span> {
     strcpy(el-&gt;word.w, t);
     el-&gt;word.ID = *n;
-    el-&gt;<a class="code" href="tokdef_8c.html#a1b949e00a2c76f6830b80942c1d65341">type</a> = <span class="charliteral">&#39;w&#39;</span>;
+    el-&gt;<a class="code" href="tokdef_8h.html#a1b949e00a2c76f6830b80942c1d65341" title="Token-Type.">type</a> = <span class="charliteral">&#39;w&#39;</span>;
   }
-  el-&gt;<a class="code" href="tokdef_8c.html#a3778a8980f4cc9236d8288e5e364b9d3">next</a> = *l;
-  el-&gt;<a class="code" href="tokdef_8c.html#aff2d3980f345bfd4ed08d44550f481bf">previous</a> = NULL;
-  <span class="keywordflow">if</span> (!<a class="code" href="tokdef_8c.html#a6b9833eb6c0963b6d2e4b76d7e460caa" title="check if token stream is empty or not">l_IsEmpty</a>(*l)) (*l)-&gt;<a class="code" href="tokdef_8c.html#aff2d3980f345bfd4ed08d44550f481bf">previous</a> = el;
-  <span class="keywordflow">if</span> (<a class="code" href="tokdef_8c.html#a6b9833eb6c0963b6d2e4b76d7e460caa" title="check if token stream is empty or not">l_IsEmpty</a>(*l)) <a class="code" href="tokdef_8c.html#ac89b2e52a88dfd9ed05bbacf90176fcd" title="pointer to oldest element in stream">head</a> = el;
+  el-&gt;<a class="code" href="tokdef_8h.html#a3778a8980f4cc9236d8288e5e364b9d3" title="pointer to next element">next</a> = *l;
+  el-&gt;<a class="code" href="tokdef_8h.html#aff2d3980f345bfd4ed08d44550f481bf" title="pointer to previous element">previous</a> = NULL;
+  <span class="keywordflow">if</span> (!<a class="code" href="tokdef_8h.html#ad38fb956f3e8b88088d0c3dbd9b0b1cd" title="check if token stream is empty or not">l_IsEmpty</a>(*l)) (*l)-&gt;<a class="code" href="tokdef_8h.html#aff2d3980f345bfd4ed08d44550f481bf" title="pointer to previous element">previous</a> = el;
+  <span class="keywordflow">if</span> (<a class="code" href="tokdef_8h.html#ad38fb956f3e8b88088d0c3dbd9b0b1cd" title="check if token stream is empty or not">l_IsEmpty</a>(*l)) <a class="code" href="tokdef_8c.html#ac89b2e52a88dfd9ed05bbacf90176fcd" title="pointer to oldest element in stream">head</a> = el;
   *l = el;
 }
 </pre></div>
-<p><div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
-<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+<p><div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-2-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-2-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div id="dynsection-2-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="tokdef_8h_a81ffeff3bff153b2a5e8576bad3c1145_cgraph.png" border="0" usemap="#tokdef_8h_a81ffeff3bff153b2a5e8576bad3c1145_cgraph" alt=""/></div>
 <map name="tokdef_8h_a81ffeff3bff153b2a5e8576bad3c1145_cgraph" id="tokdef_8h_a81ffeff3bff153b2a5e8576bad3c1145_cgraph">
-<area shape="rect" id="node3" href="tokdef_8c.html#a8b4b6428a8bf1450cf23b6032dec56cf" title="Print error message." alt="" coords="151,5,204,35"/><area shape="rect" id="node5" href="tokdef_8c.html#a6b9833eb6c0963b6d2e4b76d7e460caa" title="check if token stream is empty or not" alt="" coords="136,59,219,88"/></map>
+<area shape="rect" id="node3" href="tokdef_8c.html#a8b4b6428a8bf1450cf23b6032dec56cf" title="Print error message." alt="" coords="151,5,204,35"/><area shape="rect" id="node5" href="tokdef_8h.html#ad38fb956f3e8b88088d0c3dbd9b0b1cd" title="check if token stream is empty or not" alt="" coords="136,59,219,88"/></map>
 </div>
 </p>
 
@@ -217,7 +408,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void <a class="el" href="tokdef_8h.html#ac9f8b5800165d01c9c53895ab3027f5d">l_init</a> </td>
+          <td class="memname">void <a class="el" href="tokdef_8c.html#aeaf25962d905093a69389e62796e237b">l_init</a> </td>
           <td>(</td>
           <td class="paramtype">list *&#160;</td>
           <td class="paramname"><em>l</em></td><td>)</td>
@@ -236,18 +427,20 @@ Functions</h2></td></tr>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="tokdef_8c_source.html#l00126">126</a> of file <a class="el" href="tokdef_8c_source.html">tokdef.c</a>.</p>
+<p>Definition at line <a class="el" href="tokdef_8c_source.html#l00075">75</a> of file <a class="el" href="tokdef_8c_source.html">tokdef.c</a>.</p>
+
+<p>References <a class="el" href="tokdef_8c_source.html#l00049">error()</a>, and <a class="el" href="tokdef_8c_source.html#l00040">NULL_POINTER</a>.</p>
 <div class="fragment"><pre class="fragment">                     {
 
   <span class="keywordflow">if</span> (l == NULL) <a class="code" href="tokdef_8c.html#a8b4b6428a8bf1450cf23b6032dec56cf" title="Print error message.">error</a>(<a class="code" href="tokdef_8c.html#ad7109e2dccd18353c3bdd5f55ad94b55a4fb873dc451927ef6a70af3a1e7f08bd">NULL_POINTER</a>);
   *l = NULL; 
 }
 </pre></div>
-<p><div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-2-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
-<div id="dynsection-2-summary" class="dynsummary" style="display:block;">
+<p><div id="dynsection-3" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-3-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-3-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-2-content" class="dyncontent" style="display:none;">
+<div id="dynsection-3-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="tokdef_8h_ac9f8b5800165d01c9c53895ab3027f5d_cgraph.png" border="0" usemap="#tokdef_8h_ac9f8b5800165d01c9c53895ab3027f5d_cgraph" alt=""/></div>
 <map name="tokdef_8h_ac9f8b5800165d01c9c53895ab3027f5d_cgraph" id="tokdef_8h_ac9f8b5800165d01c9c53895ab3027f5d_cgraph">
 <area shape="rect" id="node3" href="tokdef_8c.html#a8b4b6428a8bf1450cf23b6032dec56cf" title="Print error message." alt="" coords="104,5,157,35"/></map>
@@ -261,7 +454,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int <a class="el" href="tokdef_8h.html#ad38fb956f3e8b88088d0c3dbd9b0b1cd">l_IsEmpty</a> </td>
+          <td class="memname">int <a class="el" href="tokdef_8c.html#a6b9833eb6c0963b6d2e4b76d7e460caa">l_IsEmpty</a> </td>
           <td>(</td>
           <td class="paramtype">list&#160;</td>
           <td class="paramname"><em>l</em></td><td>)</td>
@@ -280,19 +473,21 @@ Functions</h2></td></tr>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>int value 1 or 0 </dd></dl>
 
-<p>Definition at line <a class="el" href="tokdef_8c_source.html#l00138">138</a> of file <a class="el" href="tokdef_8c_source.html">tokdef.c</a>.</p>
+<p>Definition at line <a class="el" href="tokdef_8c_source.html#l00087">87</a> of file <a class="el" href="tokdef_8c_source.html">tokdef.c</a>.</p>
+
+<p>Referenced by <a class="el" href="tokdef_8c_source.html#l00099">l_append()</a>, <a class="el" href="tokdef_8c_source.html#l00161">l_last()</a>, <a class="el" href="tokdef_8c_source.html#l00128">l_remove()</a>, and <a class="el" href="tokdef_8c_source.html#l00150">l_top()</a>.</p>
 <div class="fragment"><pre class="fragment">                      {
   <span class="keywordflow">return</span> l == NULL;
 } 
 </pre></div>
-<p><div id="dynsection-3" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-3-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
-<div id="dynsection-3-summary" class="dynsummary" style="display:block;">
+<p><div id="dynsection-4" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-4-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-4-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-3-content" class="dyncontent" style="display:none;">
+<div id="dynsection-4-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="tokdef_8h_ad38fb956f3e8b88088d0c3dbd9b0b1cd_icgraph.png" border="0" usemap="#tokdef_8h_ad38fb956f3e8b88088d0c3dbd9b0b1cd_icgraph" alt=""/></div>
 <map name="tokdef_8h_ad38fb956f3e8b88088d0c3dbd9b0b1cd_icgraph" id="tokdef_8h_ad38fb956f3e8b88088d0c3dbd9b0b1cd_icgraph">
-<area shape="rect" id="node3" href="tokdef_8h.html#a81ffeff3bff153b2a5e8576bad3c1145" title="add new element to token stream" alt="" coords="137,5,217,35"/><area shape="rect" id="node5" href="tokdef_8h.html#a9a72d95129580ef11dc9778edb80004f" title="remove oldest element in stream" alt="" coords="137,59,217,88"/><area shape="rect" id="node7" href="tokdef_8h.html#aa04f7ac992f12dbdcc80fdf4c624f7e9" title="get the oldest element of stream" alt="" coords="151,112,204,141"/><area shape="rect" id="node9" href="tokdef_8h.html#a5a84ca70ef422afe2fbb8d4472f55e15" title="get the newest element of stream" alt="" coords="151,165,204,195"/></map>
+<area shape="rect" id="node3" href="tokdef_8c.html#a46cdfdb54ba6b79debb3745f650bcdbe" title="add new element to token stream" alt="" coords="137,5,217,35"/><area shape="rect" id="node5" href="tokdef_8c.html#a3e647acbc5d046872adef10908ea44b4" title="get the newest element of stream" alt="" coords="151,59,204,88"/><area shape="rect" id="node7" href="tokdef_8c.html#a597a6fc15d83dfb2d062ac6ca1039c06" title="remove oldest element in stream" alt="" coords="137,112,217,141"/><area shape="rect" id="node9" href="tokdef_8c.html#a662de1b392ef548996d646fdac76fdf4" title="get the oldest element of stream" alt="" coords="151,165,204,195"/></map>
 </div>
 </p>
 
@@ -303,7 +498,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">list <a class="el" href="tokdef_8h.html#a5a84ca70ef422afe2fbb8d4472f55e15">l_last</a> </td>
+          <td class="memname">list <a class="el" href="tokdef_8c.html#a3e647acbc5d046872adef10908ea44b4">l_last</a> </td>
           <td>(</td>
           <td class="paramtype">list&#160;</td>
           <td class="paramname"><em>l</em></td><td>)</td>
@@ -322,20 +517,22 @@ Functions</h2></td></tr>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>list point to newest element </dd></dl>
 
-<p>Definition at line <a class="el" href="tokdef_8c_source.html#l00212">212</a> of file <a class="el" href="tokdef_8c_source.html">tokdef.c</a>.</p>
+<p>Definition at line <a class="el" href="tokdef_8c_source.html#l00161">161</a> of file <a class="el" href="tokdef_8c_source.html">tokdef.c</a>.</p>
+
+<p>References <a class="el" href="tokdef_8c_source.html#l00049">error()</a>, <a class="el" href="tokdef_8c_source.html#l00087">l_IsEmpty()</a>, and <a class="el" href="tokdef_8c_source.html#l00040">NULL_POINTER</a>.</p>
 <div class="fragment"><pre class="fragment">                    {
-  <span class="keywordflow">if</span> (<a class="code" href="tokdef_8c.html#a6b9833eb6c0963b6d2e4b76d7e460caa" title="check if token stream is empty or not">l_IsEmpty</a>(l)) <a class="code" href="tokdef_8c.html#a8b4b6428a8bf1450cf23b6032dec56cf" title="Print error message.">error</a>(<a class="code" href="tokdef_8c.html#ad7109e2dccd18353c3bdd5f55ad94b55a4fb873dc451927ef6a70af3a1e7f08bd">NULL_POINTER</a>);
+  <span class="keywordflow">if</span> (<a class="code" href="tokdef_8h.html#ad38fb956f3e8b88088d0c3dbd9b0b1cd" title="check if token stream is empty or not">l_IsEmpty</a>(l)) <a class="code" href="tokdef_8c.html#a8b4b6428a8bf1450cf23b6032dec56cf" title="Print error message.">error</a>(<a class="code" href="tokdef_8c.html#ad7109e2dccd18353c3bdd5f55ad94b55a4fb873dc451927ef6a70af3a1e7f08bd">NULL_POINTER</a>);
   <span class="keywordflow">return</span> l;
 }
 </pre></div>
-<p><div id="dynsection-4" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-4-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
-<div id="dynsection-4-summary" class="dynsummary" style="display:block;">
+<p><div id="dynsection-5" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-5-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-5-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-4-content" class="dyncontent" style="display:none;">
+<div id="dynsection-5-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="tokdef_8h_a5a84ca70ef422afe2fbb8d4472f55e15_cgraph.png" border="0" usemap="#tokdef_8h_a5a84ca70ef422afe2fbb8d4472f55e15_cgraph" alt=""/></div>
 <map name="tokdef_8h_a5a84ca70ef422afe2fbb8d4472f55e15_cgraph" id="tokdef_8h_a5a84ca70ef422afe2fbb8d4472f55e15_cgraph">
-<area shape="rect" id="node3" href="tokdef_8c.html#a6b9833eb6c0963b6d2e4b76d7e460caa" title="check if token stream is empty or not" alt="" coords="109,5,192,35"/><area shape="rect" id="node5" href="tokdef_8c.html#a8b4b6428a8bf1450cf23b6032dec56cf" title="Print error message." alt="" coords="124,59,177,88"/></map>
+<area shape="rect" id="node3" href="tokdef_8c.html#a8b4b6428a8bf1450cf23b6032dec56cf" title="Print error message." alt="" coords="124,5,177,35"/><area shape="rect" id="node5" href="tokdef_8h.html#ad38fb956f3e8b88088d0c3dbd9b0b1cd" title="check if token stream is empty or not" alt="" coords="109,59,192,88"/></map>
 </div>
 </p>
 
@@ -346,7 +543,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void <a class="el" href="tokdef_8h.html#a9a72d95129580ef11dc9778edb80004f">l_remove</a> </td>
+          <td class="memname">void <a class="el" href="tokdef_8c.html#a597a6fc15d83dfb2d062ac6ca1039c06">l_remove</a> </td>
           <td>(</td>
           <td class="paramtype">list *&#160;</td>
           <td class="paramname"><em>l</em></td><td>)</td>
@@ -365,31 +562,33 @@ Functions</h2></td></tr>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="tokdef_8c_source.html#l00179">179</a> of file <a class="el" href="tokdef_8c_source.html">tokdef.c</a>.</p>
+<p>Definition at line <a class="el" href="tokdef_8c_source.html#l00128">128</a> of file <a class="el" href="tokdef_8c_source.html">tokdef.c</a>.</p>
+
+<p>References <a class="el" href="tokdef_8c_source.html#l00040">EMPTY_LIST</a>, <a class="el" href="tokdef_8c_source.html#l00049">error()</a>, <a class="el" href="tokdef_8c_source.html#l00087">l_IsEmpty()</a>, <a class="el" href="tokdef_8h_source.html#l00056">list::next</a>, <a class="el" href="tokdef_8c_source.html#l00040">NULL_POINTER</a>, and <a class="el" href="tokdef_8h_source.html#l00057">list::previous</a>.</p>
 <div class="fragment"><pre class="fragment">                       {
   <span class="keywordflow">if</span> (l == NULL) <a class="code" href="tokdef_8c.html#a8b4b6428a8bf1450cf23b6032dec56cf" title="Print error message.">error</a>(<a class="code" href="tokdef_8c.html#ad7109e2dccd18353c3bdd5f55ad94b55a4fb873dc451927ef6a70af3a1e7f08bd">NULL_POINTER</a>);
-  <span class="keywordflow">if</span> (<a class="code" href="tokdef_8c.html#a6b9833eb6c0963b6d2e4b76d7e460caa" title="check if token stream is empty or not">l_IsEmpty</a>(*l)) <a class="code" href="tokdef_8c.html#a8b4b6428a8bf1450cf23b6032dec56cf" title="Print error message.">error</a>(<a class="code" href="tokdef_8c.html#ad7109e2dccd18353c3bdd5f55ad94b55a60202b752d64be3e9634f160ce5dca7d">EMPTY_LIST</a>);
+  <span class="keywordflow">if</span> (<a class="code" href="tokdef_8h.html#ad38fb956f3e8b88088d0c3dbd9b0b1cd" title="check if token stream is empty or not">l_IsEmpty</a>(*l)) <a class="code" href="tokdef_8c.html#a8b4b6428a8bf1450cf23b6032dec56cf" title="Print error message.">error</a>(<a class="code" href="tokdef_8c.html#ad7109e2dccd18353c3bdd5f55ad94b55a60202b752d64be3e9634f160ce5dca7d">EMPTY_LIST</a>);
   <span class="keywordflow">if</span> (<a class="code" href="tokdef_8c.html#ac89b2e52a88dfd9ed05bbacf90176fcd" title="pointer to oldest element in stream">head</a> == *l) {
     free(<a class="code" href="tokdef_8c.html#ac89b2e52a88dfd9ed05bbacf90176fcd" title="pointer to oldest element in stream">head</a>);
     *l = NULL;
   } <span class="keywordflow">else</span> {
-  <span class="keyword">struct </span><a class="code" href="tokdef_8c.html#struct__tag__list" title="Element-Structure which builds Token-Stream.">_tag_list</a> *ptr; 
-  ptr = <a class="code" href="tokdef_8c.html#ac89b2e52a88dfd9ed05bbacf90176fcd" title="pointer to oldest element in stream">head</a>-&gt;<a class="code" href="tokdef_8c.html#aff2d3980f345bfd4ed08d44550f481bf">previous</a>;
-  ptr-&gt;<a class="code" href="tokdef_8c.html#a3778a8980f4cc9236d8288e5e364b9d3">next</a> = NULL;
-  <a class="code" href="tokdef_8c.html#ac89b2e52a88dfd9ed05bbacf90176fcd" title="pointer to oldest element in stream">head</a>-&gt;<a class="code" href="tokdef_8c.html#aff2d3980f345bfd4ed08d44550f481bf">previous</a> = NULL;
+  <span class="keyword">struct </span><a class="code" href="tokdef_8h.html#struct__tag__list" title="Element-Structure which builds Token-Stream.">_tag_list</a> *ptr; 
+  ptr = <a class="code" href="tokdef_8c.html#ac89b2e52a88dfd9ed05bbacf90176fcd" title="pointer to oldest element in stream">head</a>-&gt;<a class="code" href="tokdef_8h.html#aff2d3980f345bfd4ed08d44550f481bf" title="pointer to previous element">previous</a>;
+  ptr-&gt;<a class="code" href="tokdef_8h.html#a3778a8980f4cc9236d8288e5e364b9d3" title="pointer to next element">next</a> = NULL;
+  <a class="code" href="tokdef_8c.html#ac89b2e52a88dfd9ed05bbacf90176fcd" title="pointer to oldest element in stream">head</a>-&gt;<a class="code" href="tokdef_8h.html#aff2d3980f345bfd4ed08d44550f481bf" title="pointer to previous element">previous</a> = NULL;
   free(<a class="code" href="tokdef_8c.html#ac89b2e52a88dfd9ed05bbacf90176fcd" title="pointer to oldest element in stream">head</a>);
   <a class="code" href="tokdef_8c.html#ac89b2e52a88dfd9ed05bbacf90176fcd" title="pointer to oldest element in stream">head</a> = ptr;
   }
 }
 </pre></div>
-<p><div id="dynsection-5" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-5-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
-<div id="dynsection-5-summary" class="dynsummary" style="display:block;">
+<p><div id="dynsection-6" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-6-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-6-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-5-content" class="dyncontent" style="display:none;">
+<div id="dynsection-6-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="tokdef_8h_a9a72d95129580ef11dc9778edb80004f_cgraph.png" border="0" usemap="#tokdef_8h_a9a72d95129580ef11dc9778edb80004f_cgraph" alt=""/></div>
 <map name="tokdef_8h_a9a72d95129580ef11dc9778edb80004f_cgraph" id="tokdef_8h_a9a72d95129580ef11dc9778edb80004f_cgraph">
-<area shape="rect" id="node3" href="tokdef_8c.html#a8b4b6428a8bf1450cf23b6032dec56cf" title="Print error message." alt="" coords="148,5,201,35"/><area shape="rect" id="node5" href="tokdef_8c.html#a6b9833eb6c0963b6d2e4b76d7e460caa" title="check if token stream is empty or not" alt="" coords="133,59,216,88"/></map>
+<area shape="rect" id="node3" href="tokdef_8c.html#a8b4b6428a8bf1450cf23b6032dec56cf" title="Print error message." alt="" coords="148,5,201,35"/><area shape="rect" id="node5" href="tokdef_8h.html#ad38fb956f3e8b88088d0c3dbd9b0b1cd" title="check if token stream is empty or not" alt="" coords="133,59,216,88"/></map>
 </div>
 </p>
 
@@ -400,7 +599,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">list <a class="el" href="tokdef_8h.html#aa04f7ac992f12dbdcc80fdf4c624f7e9">l_top</a> </td>
+          <td class="memname">list <a class="el" href="tokdef_8c.html#a662de1b392ef548996d646fdac76fdf4">l_top</a> </td>
           <td>(</td>
           <td class="paramtype">list&#160;</td>
           <td class="paramname"><em>l</em></td><td>)</td>
@@ -419,22 +618,40 @@ Functions</h2></td></tr>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>list pointer to oldest element </dd></dl>
 
-<p>Definition at line <a class="el" href="tokdef_8c_source.html#l00201">201</a> of file <a class="el" href="tokdef_8c_source.html">tokdef.c</a>.</p>
+<p>Definition at line <a class="el" href="tokdef_8c_source.html#l00150">150</a> of file <a class="el" href="tokdef_8c_source.html">tokdef.c</a>.</p>
+
+<p>References <a class="el" href="tokdef_8c_source.html#l00049">error()</a>, <a class="el" href="tokdef_8c_source.html#l00067">head</a>, <a class="el" href="tokdef_8c_source.html#l00087">l_IsEmpty()</a>, and <a class="el" href="tokdef_8c_source.html#l00040">NULL_POINTER</a>.</p>
 <div class="fragment"><pre class="fragment">                   {
-  <span class="keywordflow">if</span> (<a class="code" href="tokdef_8c.html#a6b9833eb6c0963b6d2e4b76d7e460caa" title="check if token stream is empty or not">l_IsEmpty</a>(l)) <a class="code" href="tokdef_8c.html#a8b4b6428a8bf1450cf23b6032dec56cf" title="Print error message.">error</a>(<a class="code" href="tokdef_8c.html#ad7109e2dccd18353c3bdd5f55ad94b55a4fb873dc451927ef6a70af3a1e7f08bd">NULL_POINTER</a>);
+  <span class="keywordflow">if</span> (<a class="code" href="tokdef_8h.html#ad38fb956f3e8b88088d0c3dbd9b0b1cd" title="check if token stream is empty or not">l_IsEmpty</a>(l)) <a class="code" href="tokdef_8c.html#a8b4b6428a8bf1450cf23b6032dec56cf" title="Print error message.">error</a>(<a class="code" href="tokdef_8c.html#ad7109e2dccd18353c3bdd5f55ad94b55a4fb873dc451927ef6a70af3a1e7f08bd">NULL_POINTER</a>);
   <span class="keywordflow">return</span> <a class="code" href="tokdef_8c.html#ac89b2e52a88dfd9ed05bbacf90176fcd" title="pointer to oldest element in stream">head</a>;
 }
 </pre></div>
-<p><div id="dynsection-6" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-6-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
-<div id="dynsection-6-summary" class="dynsummary" style="display:block;">
+<p><div id="dynsection-7" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-7-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-7-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-6-content" class="dyncontent" style="display:none;">
+<div id="dynsection-7-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="tokdef_8h_aa04f7ac992f12dbdcc80fdf4c624f7e9_cgraph.png" border="0" usemap="#tokdef_8h_aa04f7ac992f12dbdcc80fdf4c624f7e9_cgraph" alt=""/></div>
 <map name="tokdef_8h_aa04f7ac992f12dbdcc80fdf4c624f7e9_cgraph" id="tokdef_8h_aa04f7ac992f12dbdcc80fdf4c624f7e9_cgraph">
-<area shape="rect" id="node3" href="tokdef_8c.html#a6b9833eb6c0963b6d2e4b76d7e460caa" title="check if token stream is empty or not" alt="" coords="107,5,189,35"/><area shape="rect" id="node5" href="tokdef_8c.html#a8b4b6428a8bf1450cf23b6032dec56cf" title="Print error message." alt="" coords="121,59,175,88"/></map>
+<area shape="rect" id="node3" href="tokdef_8c.html#a8b4b6428a8bf1450cf23b6032dec56cf" title="Print error message." alt="" coords="121,5,175,35"/><area shape="rect" id="node5" href="tokdef_8h.html#ad38fb956f3e8b88088d0c3dbd9b0b1cd" title="check if token stream is empty or not" alt="" coords="107,59,189,88"/></map>
 </div>
 </p>
+
+</div>
+</div>
+<hr/><h2>Variable Documentation</h2>
+<a class="anchor" id="a6b08a68dd0458ee419869b9852116c9f"></a><!-- doxytag: member="tokdef.h::tag_list" ref="a6b08a68dd0458ee419869b9852116c9f" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct <a class="el" href="tokdef_8h.html#struct__tag__list">_tag_list</a> <a class="el" href="tokdef_8h.html#a6b08a68dd0458ee419869b9852116c9f">tag_list</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>dummy element to quit compiler </p>
 
 </div>
 </div>
@@ -458,7 +675,7 @@ Functions</h2></td></tr>
     <ul>
       <li class="navelem"><a class="el" href="tokdef_8h.html">tokdef.h</a>      </li>
 
-    <li class="footer">Generated on Sun Feb 3 2013 19:57:03 for PiL0 by
+    <li class="footer">Generated on Mon Feb 4 2013 19:22:24 for PiL0 by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

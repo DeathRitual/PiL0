@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['number',['number',['../namespace_3global_scope_4.html#structnumber',1,'']]]
+  ['number',['number',['../namespace_3globalScope_4.html#structnumber',1,'']]]
 ];

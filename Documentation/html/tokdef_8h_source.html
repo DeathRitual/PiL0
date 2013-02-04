@@ -99,14 +99,35 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 <a href="tokdef_8h.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 
-<a name="l00011"></a>00011 <span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="tokdef_8c.html#struct__tag__list" title="Element-Structure which builds Token-Stream.">_tag_list</a> *list;
-<a name="l00012"></a>00012 
-<a name="l00013"></a>00013 <span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code" href="tokdef_8c.html#aeaf25962d905093a69389e62796e237b" title="Initialize new token stream with NULL-Pointer.">l_init</a>(list *);
-<a name="l00014"></a>00014 <span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="tokdef_8c.html#a6b9833eb6c0963b6d2e4b76d7e460caa" title="check if token stream is empty or not">l_IsEmpty</a>(list);
-<a name="l00015"></a>00015 <span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code" href="tokdef_8c.html#a46cdfdb54ba6b79debb3745f650bcdbe" title="add new element to token stream">l_append</a>(list *, <span class="keywordtype">char</span>*, <span class="keywordtype">int</span> *);
-<a name="l00016"></a>00016 <span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code" href="tokdef_8c.html#a597a6fc15d83dfb2d062ac6ca1039c06" title="remove oldest element in stream">l_remove</a>(list *);
-<a name="l00017"></a>00017 <span class="keyword">extern</span> list <a class="code" href="tokdef_8c.html#a662de1b392ef548996d646fdac76fdf4" title="get the oldest element of stream">l_top</a>(list);
-<a name="l00018"></a>00018 <span class="keyword">extern</span> list <a class="code" href="tokdef_8c.html#a3e647acbc5d046872adef10908ea44b4" title="get the newest element of stream">l_last</a>(list);
+<a name="l00015"></a><a class="code" href="tokdef_8h.html">00015</a> <span class="keyword">extern</span> <span class="keyword">struct </span><a class="code" href="tokdef_8h.html#struct__tag__list" title="Element-Structure which builds Token-Stream.">_tag_list</a> {
+<a name="l00024"></a><a class="code" href="tokdef_8h.html">00024</a>   <span class="keyword">union </span>{
+<a name="l00030"></a><a class="code" href="tokdef_8h.html">00030</a>     <span class="keyword">struct </span>_token {
+<a name="l00031"></a>00031       <span class="keywordtype">char</span> t; 
+<a name="l00032"></a>00032     }<a class="code" href="namespace_3globalScope_4.html#structtoken" title="Stores single character symbols like: +, -, &gt;, &lt;, etc.">token</a>;
+<a name="l00033"></a>00033     
+<a name="l00039"></a><a class="code" href="tokdef_8h.html">00039</a>     <span class="keyword">struct </span>_number {
+<a name="l00040"></a>00040       <span class="keywordtype">int</span> n; 
+<a name="l00041"></a>00041       <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> ID; 
+<a name="l00042"></a>00042     }<a class="code" href="namespace_3globalScope_4.html#structnumber" title="Stores numbers.">number</a>;
+<a name="l00043"></a>00043     
+<a name="l00049"></a><a class="code" href="tokdef_8h.html">00049</a>     <span class="keyword">struct </span>_word {
+<a name="l00050"></a>00050       <span class="keywordtype">char</span> w[50]; 
+<a name="l00051"></a>00051       <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> ID; 
+<a name="l00052"></a>00052     }<a class="code" href="namespace_3globalScope_4.html#structword" title="Stores keywords and identifier.">word</a>;
+<a name="l00053"></a>00053   };
+<a name="l00054"></a>00054 
+<a name="l00055"></a><a class="code" href="tokdef_8h.html#a1b949e00a2c76f6830b80942c1d65341">00055</a>   <span class="keywordtype">char</span> <a class="code" href="tokdef_8h.html#a1b949e00a2c76f6830b80942c1d65341" title="Token-Type.">type</a>; 
+<a name="l00056"></a><a class="code" href="tokdef_8h.html#a3778a8980f4cc9236d8288e5e364b9d3">00056</a>   <span class="keyword">struct </span><a class="code" href="tokdef_8h.html#struct__tag__list" title="Element-Structure which builds Token-Stream.">_tag_list</a> *<a class="code" href="tokdef_8h.html#a3778a8980f4cc9236d8288e5e364b9d3" title="pointer to next element">next</a>; 
+<a name="l00057"></a><a class="code" href="tokdef_8h.html#aff2d3980f345bfd4ed08d44550f481bf">00057</a>   <span class="keyword">struct </span><a class="code" href="tokdef_8h.html#struct__tag__list" title="Element-Structure which builds Token-Stream.">_tag_list</a> *<a class="code" href="tokdef_8h.html#aff2d3980f345bfd4ed08d44550f481bf" title="pointer to previous element">previous</a>; 
+<a name="l00058"></a>00058 }<a class="code" href="tokdef_8h.html#a6b08a68dd0458ee419869b9852116c9f" title="dummy element to quit compiler">tag_list</a>; 
+<a name="l00064"></a>00064 <span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="tokdef_8h.html#struct__tag__list" title="Element-Structure which builds Token-Stream.">_tag_list</a> *list;
+<a name="l00065"></a>00065 
+<a name="l00066"></a>00066 <span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code" href="tokdef_8h.html#ac9f8b5800165d01c9c53895ab3027f5d" title="Initialize new token stream with NULL-Pointer.">l_init</a>(list *);
+<a name="l00067"></a>00067 <span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="tokdef_8h.html#ad38fb956f3e8b88088d0c3dbd9b0b1cd" title="check if token stream is empty or not">l_IsEmpty</a>(list);
+<a name="l00068"></a>00068 <span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code" href="tokdef_8h.html#a81ffeff3bff153b2a5e8576bad3c1145" title="add new element to token stream">l_append</a>(list *, <span class="keywordtype">char</span>*, <span class="keywordtype">int</span> *);
+<a name="l00069"></a>00069 <span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code" href="tokdef_8h.html#a9a72d95129580ef11dc9778edb80004f" title="remove oldest element in stream">l_remove</a>(list *);
+<a name="l00070"></a>00070 <span class="keyword">extern</span> list <a class="code" href="tokdef_8h.html#aa04f7ac992f12dbdcc80fdf4c624f7e9" title="get the oldest element of stream">l_top</a>(list);
+<a name="l00071"></a>00071 <span class="keyword">extern</span> list <a class="code" href="tokdef_8h.html#a5a84ca70ef422afe2fbb8d4472f55e15" title="get the newest element of stream">l_last</a>(list);
 </pre></div></div><!-- contents -->
 </div>
 <!-- window showing the filter options -->
@@ -127,7 +148,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul>
       <li class="navelem"><a class="el" href="tokdef_8h.html">tokdef.h</a>      </li>
 
-    <li class="footer">Generated on Sun Feb 3 2013 19:57:03 for PiL0 by
+    <li class="footer">Generated on Mon Feb 4 2013 19:22:24 for PiL0 by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

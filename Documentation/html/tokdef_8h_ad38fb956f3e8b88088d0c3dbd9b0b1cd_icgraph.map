@@ -1,6 +1,6 @@
 <map id="G" name="G">
-<area shape="rect" id="node3" href="$tokdef_8h.html#a81ffeff3bff153b2a5e8576bad3c1145" title="add new element to token stream" alt="" coords="137,5,217,35"/>
-<area shape="rect" id="node5" href="$tokdef_8h.html#a9a72d95129580ef11dc9778edb80004f" title="remove oldest element in stream" alt="" coords="137,59,217,88"/>
-<area shape="rect" id="node7" href="$tokdef_8h.html#aa04f7ac992f12dbdcc80fdf4c624f7e9" title="get the oldest element of stream" alt="" coords="151,112,204,141"/>
-<area shape="rect" id="node9" href="$tokdef_8h.html#a5a84ca70ef422afe2fbb8d4472f55e15" title="get the newest element of stream" alt="" coords="151,165,204,195"/>
+<area shape="rect" id="node3" href="$tokdef_8c.html#a46cdfdb54ba6b79debb3745f650bcdbe" title="add new element to token stream" alt="" coords="137,5,217,35"/>
+<area shape="rect" id="node5" href="$tokdef_8c.html#a3e647acbc5d046872adef10908ea44b4" title="get the newest element of stream" alt="" coords="151,59,204,88"/>
+<area shape="rect" id="node7" href="$tokdef_8c.html#a597a6fc15d83dfb2d062ac6ca1039c06" title="remove oldest element in stream" alt="" coords="137,112,217,141"/>
+<area shape="rect" id="node9" href="$tokdef_8c.html#a662de1b392ef548996d646fdac76fdf4" title="get the oldest element of stream" alt="" coords="151,165,204,195"/>
 </map>

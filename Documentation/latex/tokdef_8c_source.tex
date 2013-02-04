@@ -1,8 +1,9 @@
-\subsection{/home/nirvash/\-Projects/\-Pi\-L0/tokdef.c}
+\hypertarget{tokdef_8c_source}{\subsection{/home/nirvash/\-Projects/\-Pi\-L0/tokdef.c}
+}
 
 \begin{DoxyCode}
 00001 
-00013 \textcolor{preprocessor}{#include "tokdef.h"}
+00013 \textcolor{preprocessor}{#include "\hyperlink{tokdef_8h}{tokdef.h}"}
 00014 \textcolor{preprocessor}{#include<stddef.h>}
 00015 \textcolor{preprocessor}{#include<stdio.h>}
 00016 \textcolor{preprocessor}{#include<stdlib.h>}
@@ -16,18 +17,18 @@
 00024 \textcolor{comment}{ * }
 00025 \textcolor{comment}{*/}
 00026 
-00031 \textcolor{keyword}{static} \textcolor{keywordtype}{char} *err_msg[] = \{
+\hypertarget{tokdef_8c_source_l00031}{}\hyperlink{tokdef_8c_a404a364e08451a6c51c14b31e237453c}{00031} \textcolor{keyword}{static} \textcolor{keywordtype}{char} *\hyperlink{tokdef_8c_a404a364e08451a6c51c14b31e237453c}{err_msg}[] = \{
 00032     \textcolor{stringliteral}{"Null-Pointer"}, \textcolor{stringliteral}{"Kein Speicher frei"},
 00033     \textcolor{stringliteral}{"Liste ist leer"}
 00034   \}; 
 00035   
-00039 \textcolor{keyword}{enum} err_codes \{
-00040     NULL_POINTER, ERR_MEMORY, EMPTY_LIST
+\hypertarget{tokdef_8c_source_l00039}{}\hyperlink{tokdef_8c_ad7109e2dccd18353c3bdd5f55ad94b55}{00039} \textcolor{keyword}{enum} \hyperlink{tokdef_8c_ad7109e2dccd18353c3bdd5f55ad94b55}{err_codes} \{
+\hypertarget{tokdef_8c_source_l00040}{}\hyperlink{tokdef_8c_ad7109e2dccd18353c3bdd5f55ad94b55a4fb873dc451927ef6a70af3a1e7f08bd}{00040}     \hyperlink{tokdef_8c_ad7109e2dccd18353c3bdd5f55ad94b55a4fb873dc451927ef6a70af3a1e7f08bd}{NULL_POINTER}, \hyperlink{tokdef_8c_ad7109e2dccd18353c3bdd5f55ad94b55afb88c5fa6e7d51074ec36bd4578e03a0}{ERR_MEMORY}, \hyperlink{tokdef_8c_ad7109e2dccd18353c3bdd5f55ad94b55a60202b752d64be3e9634f160ce5dca7d}{EMPTY_LIST}
 00041   \};
 00042   
 00043 
-00049 \textcolor{keyword}{static} \textcolor{keywordtype}{void} error(\textcolor{keyword}{enum} err_codes msg\_nr) \{
-00050   fprintf(stderr, \textcolor{stringliteral}{"FEHLER(intlist): %s!\(\backslash\)n"}, err_msg[msg\_nr]);
+\hypertarget{tokdef_8c_source_l00049}{}\hyperlink{tokdef_8c_a8b4b6428a8bf1450cf23b6032dec56cf}{00049} \textcolor{keyword}{static} \textcolor{keywordtype}{void} \hyperlink{tokdef_8c_a8b4b6428a8bf1450cf23b6032dec56cf}{error}(\textcolor{keyword}{enum} \hyperlink{tokdef_8c_ad7109e2dccd18353c3bdd5f55ad94b55}{err_codes} msg\_nr) \{
+00050   fprintf(stderr, \textcolor{stringliteral}{"FEHLER(intlist): %s!\(\backslash\)n"}, \hyperlink{tokdef_8c_a404a364e08451a6c51c14b31e237453c}{err_msg}[msg\_nr]);
 00051   exit(10);
 00052 \}
 00053 
@@ -38,88 +39,68 @@
 00058 \textcolor{comment}{ * }
 00059 \textcolor{comment}{ */}
 00060 
-00069 \textcolor{keyword}{struct }_tag_list \{
-00078   \textcolor{keyword}{union }\{
-00084     \textcolor{keyword}{struct }\_token \{
-00085       \textcolor{keywordtype}{char} t; 
-00086     \}token;
-00087     
-00093     \textcolor{keyword}{struct }\_number \{
-00094       \textcolor{keywordtype}{int} n; 
-00095       \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} ID; 
-00096     \}number;
-00097     
-00103     \textcolor{keyword}{struct }\_word \{
-00104       \textcolor{keywordtype}{char} w[50]; 
-00105       \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} ID; 
-00106     \}word;
-00107   \};
-00108 
-00109   \textcolor{keywordtype}{char} type; 
-00110   \textcolor{keyword}{struct }_tag_list *next; 
-00111   \textcolor{keyword}{struct }_tag_list *previous; 
-00112 \};
-00113 
-00118 \textcolor{keyword}{struct }_tag_list *head;
-00119 
-00126 \textcolor{keywordtype}{void} l_init(list *l) \{
-00127 
-00128   \textcolor{keywordflow}{if} (l == NULL) error(NULL_POINTER);
-00129   *l = NULL; 
-00130 \}
-00131 
-00138 \textcolor{keywordtype}{int} l_IsEmpty(list l) \{
-00139   \textcolor{keywordflow}{return} l == NULL;
-00140 \} 
-00141 
-00150 \textcolor{keywordtype}{void} l_append(list *l, \textcolor{keywordtype}{char} *t, \textcolor{keywordtype}{int} *n) \{
-00151   \textcolor{keywordflow}{if} (l == NULL) error(NULL_POINTER);
-00152   \textcolor{keyword}{struct }_tag_list *el; 
-00153   \textcolor{keywordflow}{if} ((el = malloc(\textcolor{keyword}{sizeof}(list))) == NULL) error(ERR_MEMORY);
-00154   \textcolor{keywordflow}{if} (strlen(t) == 1) \{
-00155     el->token.t = *t;
-00156     el->type = \textcolor{charliteral}{'t'};
-00157   \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (isdigit(*t) > 0) \{
-00158     el->number.n = atoi(t);
-00159     el->number.ID = *n;
-00160     el->type = \textcolor{charliteral}{'n'};
-00161   \} \textcolor{keywordflow}{else} \{
-00162     strcpy(el->word.w, t);
-00163     el->word.ID = *n;
-00164     el->type = \textcolor{charliteral}{'w'};
-00165   \}
-00166   el->next = *l;
-00167   el->previous = NULL;
-00168   \textcolor{keywordflow}{if} (!l_IsEmpty(*l)) (*l)->previous = el;
-00169   \textcolor{keywordflow}{if} (l_IsEmpty(*l)) head = el;
-00170   *l = el;
-00171 \}
-00172 
-00179 \textcolor{keywordtype}{void} l_remove(list *l) \{
-00180   \textcolor{keywordflow}{if} (l == NULL) error(NULL_POINTER);
-00181   \textcolor{keywordflow}{if} (l_IsEmpty(*l)) error(EMPTY_LIST);
-00182   \textcolor{keywordflow}{if} (head == *l) \{
-00183     free(head);
-00184     *l = NULL;
-00185   \} \textcolor{keywordflow}{else} \{
-00186   \textcolor{keyword}{struct }_tag_list *ptr; 
-00187   ptr = head->previous;
-00188   ptr->next = NULL;
-00189   head->previous = NULL;
-00190   free(head);
-00191   head = ptr;
-00192   \}
-00193 \}
-00194 
-00201 list l_top(list l) \{
-00202   \textcolor{keywordflow}{if} (l_IsEmpty(l)) error(NULL_POINTER);
-00203   \textcolor{keywordflow}{return} head;
-00204 \}
-00205 
-00212 list l_last(list l) \{
-00213   \textcolor{keywordflow}{if} (l_IsEmpty(l)) error(NULL_POINTER);
-00214   \textcolor{keywordflow}{return} l;
-00215 \}
-00216 
-00217 \textcolor{preprocessor}{#endif}
+00061 
+00062 
+\hypertarget{tokdef_8c_source_l00067}{}\hyperlink{tokdef_8c_ac89b2e52a88dfd9ed05bbacf90176fcd}{00067} \textcolor{keyword}{struct }\hyperlink{tokdef_8h_struct__tag__list}{_tag_list} *\hyperlink{tokdef_8c_ac89b2e52a88dfd9ed05bbacf90176fcd}{head};
+00068 
+\hypertarget{tokdef_8c_source_l00075}{}\hyperlink{tokdef_8c_aeaf25962d905093a69389e62796e237b}{00075} \textcolor{keywordtype}{void} \hyperlink{tokdef_8h_ac9f8b5800165d01c9c53895ab3027f5d}{l_init}(list *l) \{
+00076 
+00077   \textcolor{keywordflow}{if} (l == NULL) \hyperlink{tokdef_8c_a8b4b6428a8bf1450cf23b6032dec56cf}{error}(\hyperlink{tokdef_8c_ad7109e2dccd18353c3bdd5f55ad94b55a4fb873dc451927ef6a70af3a1e7f08bd}{NULL_POINTER});
+00078   *l = NULL; 
+00079 \}
+00080 
+\hypertarget{tokdef_8c_source_l00087}{}\hyperlink{tokdef_8c_a6b9833eb6c0963b6d2e4b76d7e460caa}{00087} \textcolor{keywordtype}{int} \hyperlink{tokdef_8h_ad38fb956f3e8b88088d0c3dbd9b0b1cd}{l_IsEmpty}(list l) \{
+00088   \textcolor{keywordflow}{return} l == NULL;
+00089 \} 
+00090 
+\hypertarget{tokdef_8c_source_l00099}{}\hyperlink{tokdef_8c_a46cdfdb54ba6b79debb3745f650bcdbe}{00099} \textcolor{keywordtype}{void} \hyperlink{tokdef_8h_a81ffeff3bff153b2a5e8576bad3c1145}{l_append}(list *l, \textcolor{keywordtype}{char} *t, \textcolor{keywordtype}{int} *n) \{
+00100   \textcolor{keywordflow}{if} (l == NULL) \hyperlink{tokdef_8c_a8b4b6428a8bf1450cf23b6032dec56cf}{error}(\hyperlink{tokdef_8c_ad7109e2dccd18353c3bdd5f55ad94b55a4fb873dc451927ef6a70af3a1e7f08bd}{NULL_POINTER});
+00101   \textcolor{keyword}{struct }\hyperlink{tokdef_8h_struct__tag__list}{_tag_list} *el; 
+00102   \textcolor{keywordflow}{if} ((el = malloc(\textcolor{keyword}{sizeof}(list))) == NULL) \hyperlink{tokdef_8c_a8b4b6428a8bf1450cf23b6032dec56cf}{error}(\hyperlink{tokdef_8c_ad7109e2dccd18353c3bdd5f55ad94b55afb88c5fa6e7d51074ec36bd4578e03a0}{ERR_MEMORY});
+00103   \textcolor{keywordflow}{if} (strlen(t) == 1) \{
+00104     el->token.t = *t;
+00105     el->\hyperlink{tokdef_8h_a1b949e00a2c76f6830b80942c1d65341}{type} = \textcolor{charliteral}{'t'};
+00106   \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (isdigit(*t) > 0) \{
+00107     el->number.n = atoi(t);
+00108     el->number.ID = *n;
+00109     el->\hyperlink{tokdef_8h_a1b949e00a2c76f6830b80942c1d65341}{type} = \textcolor{charliteral}{'n'};
+00110   \} \textcolor{keywordflow}{else} \{
+00111     strcpy(el->word.w, t);
+00112     el->word.ID = *n;
+00113     el->\hyperlink{tokdef_8h_a1b949e00a2c76f6830b80942c1d65341}{type} = \textcolor{charliteral}{'w'};
+00114   \}
+00115   el->\hyperlink{tokdef_8h_a3778a8980f4cc9236d8288e5e364b9d3}{next} = *l;
+00116   el->\hyperlink{tokdef_8h_aff2d3980f345bfd4ed08d44550f481bf}{previous} = NULL;
+00117   \textcolor{keywordflow}{if} (!\hyperlink{tokdef_8h_ad38fb956f3e8b88088d0c3dbd9b0b1cd}{l_IsEmpty}(*l)) (*l)->\hyperlink{tokdef_8h_aff2d3980f345bfd4ed08d44550f481bf}{previous} = el;
+00118   \textcolor{keywordflow}{if} (\hyperlink{tokdef_8h_ad38fb956f3e8b88088d0c3dbd9b0b1cd}{l_IsEmpty}(*l)) head = el;
+00119   *l = el;
+00120 \}
+00121 
+\hypertarget{tokdef_8c_source_l00128}{}\hyperlink{tokdef_8c_a597a6fc15d83dfb2d062ac6ca1039c06}{00128} \textcolor{keywordtype}{void} \hyperlink{tokdef_8h_a9a72d95129580ef11dc9778edb80004f}{l_remove}(list *l) \{
+00129   \textcolor{keywordflow}{if} (l == NULL) \hyperlink{tokdef_8c_a8b4b6428a8bf1450cf23b6032dec56cf}{error}(\hyperlink{tokdef_8c_ad7109e2dccd18353c3bdd5f55ad94b55a4fb873dc451927ef6a70af3a1e7f08bd}{NULL_POINTER});
+00130   \textcolor{keywordflow}{if} (\hyperlink{tokdef_8h_ad38fb956f3e8b88088d0c3dbd9b0b1cd}{l_IsEmpty}(*l)) \hyperlink{tokdef_8c_a8b4b6428a8bf1450cf23b6032dec56cf}{error}(\hyperlink{tokdef_8c_ad7109e2dccd18353c3bdd5f55ad94b55a60202b752d64be3e9634f160ce5dca7d}{EMPTY_LIST});
+00131   \textcolor{keywordflow}{if} (head == *l) \{
+00132     free(head);
+00133     *l = NULL;
+00134   \} \textcolor{keywordflow}{else} \{
+00135   \textcolor{keyword}{struct }\hyperlink{tokdef_8h_struct__tag__list}{_tag_list} *ptr; 
+00136   ptr = head->\hyperlink{tokdef_8h_aff2d3980f345bfd4ed08d44550f481bf}{previous};
+00137   ptr->\hyperlink{tokdef_8h_a3778a8980f4cc9236d8288e5e364b9d3}{next} = NULL;
+00138   head->\hyperlink{tokdef_8h_aff2d3980f345bfd4ed08d44550f481bf}{previous} = NULL;
+00139   free(head);
+00140   head = ptr;
+00141   \}
+00142 \}
+00143 
+\hypertarget{tokdef_8c_source_l00150}{}\hyperlink{tokdef_8c_a662de1b392ef548996d646fdac76fdf4}{00150} list \hyperlink{tokdef_8h_aa04f7ac992f12dbdcc80fdf4c624f7e9}{l_top}(list l) \{
+00151   \textcolor{keywordflow}{if} (\hyperlink{tokdef_8h_ad38fb956f3e8b88088d0c3dbd9b0b1cd}{l_IsEmpty}(l)) \hyperlink{tokdef_8c_a8b4b6428a8bf1450cf23b6032dec56cf}{error}(\hyperlink{tokdef_8c_ad7109e2dccd18353c3bdd5f55ad94b55a4fb873dc451927ef6a70af3a1e7f08bd}{NULL_POINTER});
+00152   \textcolor{keywordflow}{return} \hyperlink{tokdef_8c_ac89b2e52a88dfd9ed05bbacf90176fcd}{head};
+00153 \}
+00154 
+\hypertarget{tokdef_8c_source_l00161}{}\hyperlink{tokdef_8c_a3e647acbc5d046872adef10908ea44b4}{00161} list \hyperlink{tokdef_8h_a5a84ca70ef422afe2fbb8d4472f55e15}{l_last}(list l) \{
+00162   \textcolor{keywordflow}{if} (\hyperlink{tokdef_8h_ad38fb956f3e8b88088d0c3dbd9b0b1cd}{l_IsEmpty}(l)) \hyperlink{tokdef_8c_a8b4b6428a8bf1450cf23b6032dec56cf}{error}(\hyperlink{tokdef_8c_ad7109e2dccd18353c3bdd5f55ad94b55a4fb873dc451927ef6a70af3a1e7f08bd}{NULL_POINTER});
+00163   \textcolor{keywordflow}{return} l;
+00164 \}
+00165 
+00166 \textcolor{preprocessor}{#endif}
 \end{DoxyCode}

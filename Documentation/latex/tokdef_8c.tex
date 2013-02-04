@@ -1,5 +1,11 @@
-\subsection{/home/nirvash/\-Projects/\-Pi\-L0/tokdef.c \-File \-Reference}
+\hypertarget{tokdef_8c}{\subsection{/home/nirvash/\-Projects/\-Pi\-L0/tokdef.c \-File \-Reference}
 \label{tokdef_8c}\index{/home/nirvash/\-Projects/\-Pi\-L0/tokdef.\-c@{/home/nirvash/\-Projects/\-Pi\-L0/tokdef.\-c}}
+}
+
+
+\-Library for \-Token-\/\-Stream.  
+
+
 {\ttfamily \#include \char`\"{}tokdef.\-h\char`\"{}}\*
 {\ttfamily \#include $<$stddef.\-h$>$}\*
 {\ttfamily \#include $<$stdio.\-h$>$}\*
@@ -13,224 +19,87 @@
 \includegraphics[width=350pt]{tokdef_8c__incl}
 \end{center}
 \end{figure}
-\subsubsection*{\-Data \-Structures}
-\begin{DoxyCompactItemize}
-\item 
-struct {\bf list}
-\begin{DoxyCompactList}\small\item\em \-Element-\/\-Structure which builds \-Token-\/\-Stream. \end{DoxyCompactList}\item 
-union {\bf \-\_\-tag\-\_\-list.\-\_\-\-\_\-unnamed\-\_\-\-\_\-}
-\item 
-struct {\bf \-\_\-token.\-\_\-\-\_\-unnamed\-\_\-\-\_\-.\-token}
-\item 
-struct {\bf \-\_\-number.\-\_\-\-\_\-unnamed\-\_\-\-\_\-.\-number}
-\item 
-struct {\bf \-\_\-word.\-\_\-\-\_\-unnamed\-\_\-\-\_\-.\-word}
-\end{DoxyCompactItemize}
 \subsubsection*{\-Enumerations}
 \begin{DoxyCompactItemize}
 \item 
-enum {\bf err\-\_\-codes} \{ {\bf \-N\-U\-L\-L\-\_\-\-P\-O\-I\-N\-T\-E\-R}, 
-{\bf \-E\-R\-R\-\_\-\-M\-E\-M\-O\-R\-Y}, 
-{\bf \-E\-M\-P\-T\-Y\-\_\-\-L\-I\-S\-T}
+enum \hyperlink{tokdef_8c_ad7109e2dccd18353c3bdd5f55ad94b55}{err\-\_\-codes} \{ \hyperlink{tokdef_8c_ad7109e2dccd18353c3bdd5f55ad94b55a4fb873dc451927ef6a70af3a1e7f08bd}{\-N\-U\-L\-L\-\_\-\-P\-O\-I\-N\-T\-E\-R}, 
+\hyperlink{tokdef_8c_ad7109e2dccd18353c3bdd5f55ad94b55afb88c5fa6e7d51074ec36bd4578e03a0}{\-E\-R\-R\-\_\-\-M\-E\-M\-O\-R\-Y}, 
+\hyperlink{tokdef_8c_ad7109e2dccd18353c3bdd5f55ad94b55a60202b752d64be3e9634f160ce5dca7d}{\-E\-M\-P\-T\-Y\-\_\-\-L\-I\-S\-T}
  \}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em short strings used as variables for error messages \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{\-Functions}
 \begin{DoxyCompactItemize}
 \item 
-static void {\bf error} (enum {\bf err\-\_\-codes} msg\-\_\-nr)
+static void \hyperlink{tokdef_8c_a8b4b6428a8bf1450cf23b6032dec56cf}{error} (enum \hyperlink{tokdef_8c_ad7109e2dccd18353c3bdd5f55ad94b55}{err\-\_\-codes} msg\-\_\-nr)
 \begin{DoxyCompactList}\small\item\em \-Print error message. \end{DoxyCompactList}\item 
-void {\bf l\-\_\-init} (list $\ast$l)
+void \hyperlink{tokdef_8c_aeaf25962d905093a69389e62796e237b}{l\-\_\-init} (list $\ast$l)
 \begin{DoxyCompactList}\small\item\em \-Initialize new token stream with \-N\-U\-L\-L-\/\-Pointer. \end{DoxyCompactList}\item 
-int {\bf l\-\_\-\-Is\-Empty} (list l)
+int \hyperlink{tokdef_8c_a6b9833eb6c0963b6d2e4b76d7e460caa}{l\-\_\-\-Is\-Empty} (list l)
 \begin{DoxyCompactList}\small\item\em check if token stream is empty or not \end{DoxyCompactList}\item 
-void {\bf l\-\_\-append} (list $\ast$l, char $\ast$t, int $\ast$n)
+void \hyperlink{tokdef_8c_a46cdfdb54ba6b79debb3745f650bcdbe}{l\-\_\-append} (list $\ast$l, char $\ast$t, int $\ast$n)
 \begin{DoxyCompactList}\small\item\em add new element to token stream \end{DoxyCompactList}\item 
-void {\bf l\-\_\-remove} (list $\ast$l)
+void \hyperlink{tokdef_8c_a597a6fc15d83dfb2d062ac6ca1039c06}{l\-\_\-remove} (list $\ast$l)
 \begin{DoxyCompactList}\small\item\em remove oldest element in stream \end{DoxyCompactList}\item 
-list {\bf l\-\_\-top} (list l)
+list \hyperlink{tokdef_8c_a662de1b392ef548996d646fdac76fdf4}{l\-\_\-top} (list l)
 \begin{DoxyCompactList}\small\item\em get the oldest element of stream \end{DoxyCompactList}\item 
-list {\bf l\-\_\-last} (list l)
+list \hyperlink{tokdef_8c_a3e647acbc5d046872adef10908ea44b4}{l\-\_\-last} (list l)
 \begin{DoxyCompactList}\small\item\em get the newest element of stream \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{\-Variables}
 \begin{DoxyCompactItemize}
 \item 
-static char $\ast$ {\bf err\-\_\-msg} [$\,$]
+static char $\ast$ \hyperlink{tokdef_8c_a404a364e08451a6c51c14b31e237453c}{err\-\_\-msg} \mbox{[}$\,$\mbox{]}
 \begin{DoxyCompactList}\small\item\em \-Stringtable which stores all error messages. \end{DoxyCompactList}\item 
-struct {\bf \-\_\-tag\-\_\-list} $\ast$ {\bf head}
+struct \hyperlink{tokdef_8h_struct__tag__list}{\-\_\-tag\-\_\-list} $\ast$ \hyperlink{tokdef_8c_ac89b2e52a88dfd9ed05bbacf90176fcd}{head}
 \begin{DoxyCompactList}\small\item\em pointer to oldest element in stream \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsubsection{\-Detailed \-Description}
-\-Library for \-Token-\/\-Stream
+\-Library for \-Token-\/\-Stream. \-Contains data structures and functions to implement a linear token stream. \-Error handling ensures that on wrong behaviour a message will be print what went wrong. \-With the functions in this file new \-Tokens can be created and connected to each other, so they represent an \-F\-I\-F\-O (new elements will be added at the end of the stream, whereas the oldest element in the stream will be deketed from the top of the stream). \-Also there are functions to read the newest and oldest element of the stream. 
 
-\-Contains data structures and functions to implement a linear token stream. \-Error handling ensures that on wrong behaviour a message will be print what went wrong. \-With the functions in this file new \-Tokens can be created and connected to each other, so they represent an \-F\-I\-F\-O (new elements will be added at the end of the stream, whereas the oldest element in the stream will be deketed from the top of the stream). \-Also there are functions to read the newest and oldest element of the stream. 
+\-Definition in file \hyperlink{tokdef_8c_source}{tokdef.\-c}.
 
-\-Definition in file {\bf tokdef.\-c}.
-
-
-
-\subsubsection{\-Data \-Structure \-Documentation}
-\index{\-\_\-tag\-\_\-list@{\-\_\-tag\-\_\-list}}\label{struct__tag__list}
-\paragraph{struct \-\_\-tag\-\_\-list}
-\-Element-\/\-Structure which builds \-Token-\/\-Stream. 
-
-\-One element can only contain one token, whereas each element is connected with its last and previous neighbour. 
-
-\-Definition at line {\bf 69} of file {\bf tokdef.\-c}.
-
-
-
-\-Collaboration diagram for list\-:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=219pt]{struct__tag__list__coll__graph}
-\end{center}
-\end{figure}
-\begin{DoxyFields}{\-Data Fields}
-union {\bf \-\_\-tag\-\_\-list}\label{tokdef_8c_af223457b2a0eb1c2fdaa6b7e3ca7a600}
-&
-\-\_\-\-\_\-unnamed\-\_\-\-\_\-&
-\\
-\hline
-
-struct {\bf \-\_\-tag\-\_\-list} $\ast$\label{tokdef_8c_a3778a8980f4cc9236d8288e5e364b9d3}
-&
-next&
-pointer to next element \\
-\hline
-
-struct {\bf \-\_\-tag\-\_\-list} $\ast$\label{tokdef_8c_aff2d3980f345bfd4ed08d44550f481bf}
-&
-previous&
-pointer to previous element \\
-\hline
-
-char\label{tokdef_8c_a1b949e00a2c76f6830b80942c1d65341}
-&
-type&
-\-Token-\/\-Type \\
-\hline
-
-\end{DoxyFields}
-\index{\-\_\-tag\-\_\-list.\-\_\-\-\_\-unnamed\-\_\-\-\_\-@{\-\_\-tag\-\_\-list.\-\_\-\-\_\-unnamed\-\_\-\-\_\-}}\label{union__tag__list_8____unnamed____}
-\paragraph{union \-\_\-tag\-\_\-list.\-\_\-\-\_\-unnamed\-\_\-\-\_\-}
-
-
-\-Definition at line {\bf 78} of file {\bf tokdef.\-c}.
-
-\begin{DoxyFields}{\-Data Fields}
-\-\_\-\-\_\-unnamed\-\_\-\-\_\-\label{tokdef_8c_ab1bc248a7ff2b2e95569f56de68615df}
-&
-number&
-\\
-\hline
-
-\-\_\-\-\_\-unnamed\-\_\-\-\_\-\label{tokdef_8c_a94a08da1fecbb6e8b46990538c7b50b2}
-&
-token&
-\\
-\hline
-
-\-\_\-\-\_\-unnamed\-\_\-\-\_\-\label{tokdef_8c_ac47d187067c6cf953245f128b5fde62a}
-&
-word&
-\\
-\hline
-
-\end{DoxyFields}
-\index{\-\_\-tag\-\_\-list\-::\-\_\-token.\-\_\-\-\_\-unnamed\-\_\-\-\_\-.\-token@{\-\_\-tag\-\_\-list\-::\-\_\-token.\-\_\-\-\_\-unnamed\-\_\-\-\_\-.\-token}}\label{struct__tag__list_1_1__token_8____unnamed_____8token}
-\paragraph{struct \-\_\-tag\-\_\-list\-:\-:\-\_\-token.\-\_\-\-\_\-unnamed\-\_\-\-\_\-.\-token}
-
-
-\-Definition at line {\bf 84} of file {\bf tokdef.\-c}.
-
-\begin{DoxyFields}{\-Data Fields}
-char\label{tokdef_8c_ae358efa489f58062f10dd7316b65649e}
-&
-t&
-single character \\
-\hline
-
-\end{DoxyFields}
-\index{\-\_\-tag\-\_\-list\-::\-\_\-number.\-\_\-\-\_\-unnamed\-\_\-\-\_\-.\-number@{\-\_\-tag\-\_\-list\-::\-\_\-number.\-\_\-\-\_\-unnamed\-\_\-\-\_\-.\-number}}\label{struct__tag__list_1_1__number_8____unnamed_____8number}
-\paragraph{struct \-\_\-tag\-\_\-list\-:\-:\-\_\-number.\-\_\-\-\_\-unnamed\-\_\-\-\_\-.\-number}
-
-
-\-Definition at line {\bf 93} of file {\bf tokdef.\-c}.
-
-\begin{DoxyFields}{\-Data Fields}
-unsigned int\label{tokdef_8c_ab718adec73e04ce3ec720dd11a06a308}
-&
-\-I\-D&
-identifier \\
-\hline
-
-int\label{tokdef_8c_a7b8b965ad4bca0e41ab51de7b31363a1}
-&
-n&
-number \\
-\hline
-
-\end{DoxyFields}
-\index{\-\_\-tag\-\_\-list\-::\-\_\-word.\-\_\-\-\_\-unnamed\-\_\-\-\_\-.\-word@{\-\_\-tag\-\_\-list\-::\-\_\-word.\-\_\-\-\_\-unnamed\-\_\-\-\_\-.\-word}}\label{struct__tag__list_1_1__word_8____unnamed_____8word}
-\paragraph{struct \-\_\-tag\-\_\-list\-:\-:\-\_\-word.\-\_\-\-\_\-unnamed\-\_\-\-\_\-.\-word}
-
-
-\-Definition at line {\bf 103} of file {\bf tokdef.\-c}.
-
-\begin{DoxyFields}{\-Data Fields}
-unsigned int\label{tokdef_8c_ab718adec73e04ce3ec720dd11a06a308}
-&
-\-I\-D&
-identifier \\
-\hline
-
-char\label{tokdef_8c_a4140654ec46bd61087726571a573fe17}
-&
-w&
-keyword / identifer \\
-\hline
-
-\end{DoxyFields}
 
 
 \subsubsection{\-Enumeration \-Type \-Documentation}
-\index{tokdef.\-c@{tokdef.\-c}!err\-\_\-codes@{err\-\_\-codes}}
+\hypertarget{tokdef_8c_ad7109e2dccd18353c3bdd5f55ad94b55}{\index{tokdef.\-c@{tokdef.\-c}!err\-\_\-codes@{err\-\_\-codes}}
 \index{err\-\_\-codes@{err\-\_\-codes}!tokdef.c@{tokdef.\-c}}
-\paragraph[{err\-\_\-codes}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf err\-\_\-codes}}\label{tokdef_8c_ad7109e2dccd18353c3bdd5f55ad94b55}
-short strings used as variables for error messages \begin{Desc}
+\paragraph[{err\-\_\-codes}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf err\-\_\-codes}}}\label{tokdef_8c_ad7109e2dccd18353c3bdd5f55ad94b55}
+
+
+short strings used as variables for error messages 
+
+\begin{Desc}
 \item[\-Enumerator\-: ]\par
 \begin{description}
 \index{\-N\-U\-L\-L\-\_\-\-P\-O\-I\-N\-T\-E\-R@{\-N\-U\-L\-L\-\_\-\-P\-O\-I\-N\-T\-E\-R}!tokdef.\-c@{tokdef.\-c}}\index{tokdef.\-c@{tokdef.\-c}!\-N\-U\-L\-L\-\_\-\-P\-O\-I\-N\-T\-E\-R@{\-N\-U\-L\-L\-\_\-\-P\-O\-I\-N\-T\-E\-R}}\item[{\em 
-\-N\-U\-L\-L\-\_\-\-P\-O\-I\-N\-T\-E\-R\label{tokdef_8c_ad7109e2dccd18353c3bdd5f55ad94b55a4fb873dc451927ef6a70af3a1e7f08bd}
+\hypertarget{tokdef_8c_ad7109e2dccd18353c3bdd5f55ad94b55a4fb873dc451927ef6a70af3a1e7f08bd}{\-N\-U\-L\-L\-\_\-\-P\-O\-I\-N\-T\-E\-R}\label{tokdef_8c_ad7109e2dccd18353c3bdd5f55ad94b55a4fb873dc451927ef6a70af3a1e7f08bd}
 }]\index{\-E\-R\-R\-\_\-\-M\-E\-M\-O\-R\-Y@{\-E\-R\-R\-\_\-\-M\-E\-M\-O\-R\-Y}!tokdef.\-c@{tokdef.\-c}}\index{tokdef.\-c@{tokdef.\-c}!\-E\-R\-R\-\_\-\-M\-E\-M\-O\-R\-Y@{\-E\-R\-R\-\_\-\-M\-E\-M\-O\-R\-Y}}\item[{\em 
-\-E\-R\-R\-\_\-\-M\-E\-M\-O\-R\-Y\label{tokdef_8c_ad7109e2dccd18353c3bdd5f55ad94b55afb88c5fa6e7d51074ec36bd4578e03a0}
+\hypertarget{tokdef_8c_ad7109e2dccd18353c3bdd5f55ad94b55afb88c5fa6e7d51074ec36bd4578e03a0}{\-E\-R\-R\-\_\-\-M\-E\-M\-O\-R\-Y}\label{tokdef_8c_ad7109e2dccd18353c3bdd5f55ad94b55afb88c5fa6e7d51074ec36bd4578e03a0}
 }]\index{\-E\-M\-P\-T\-Y\-\_\-\-L\-I\-S\-T@{\-E\-M\-P\-T\-Y\-\_\-\-L\-I\-S\-T}!tokdef.\-c@{tokdef.\-c}}\index{tokdef.\-c@{tokdef.\-c}!\-E\-M\-P\-T\-Y\-\_\-\-L\-I\-S\-T@{\-E\-M\-P\-T\-Y\-\_\-\-L\-I\-S\-T}}\item[{\em 
-\-E\-M\-P\-T\-Y\-\_\-\-L\-I\-S\-T\label{tokdef_8c_ad7109e2dccd18353c3bdd5f55ad94b55a60202b752d64be3e9634f160ce5dca7d}
+\hypertarget{tokdef_8c_ad7109e2dccd18353c3bdd5f55ad94b55a60202b752d64be3e9634f160ce5dca7d}{\-E\-M\-P\-T\-Y\-\_\-\-L\-I\-S\-T}\label{tokdef_8c_ad7109e2dccd18353c3bdd5f55ad94b55a60202b752d64be3e9634f160ce5dca7d}
 }]\end{description}
 \end{Desc}
 
 
 
-\-Definition at line {\bf 39} of file {\bf tokdef.\-c}.
+\-Definition at line \hyperlink{tokdef_8c_source_l00039}{39} of file \hyperlink{tokdef_8c_source}{tokdef.\-c}.
 
 
 \begin{DoxyCode}
                \{
-    NULL_POINTER, ERR_MEMORY, EMPTY_LIST
+    \hyperlink{tokdef_8c_ad7109e2dccd18353c3bdd5f55ad94b55a4fb873dc451927ef6a70af3a1e7f08bd}{NULL_POINTER}, \hyperlink{tokdef_8c_ad7109e2dccd18353c3bdd5f55ad94b55afb88c5fa6e7d51074ec36bd4578e03a0}{ERR_MEMORY}, \hyperlink{tokdef_8c_ad7109e2dccd18353c3bdd5f55ad94b55a60202b752d64be3e9634f160ce5dca7d}{EMPTY_LIST}
   \};
 \end{DoxyCode}
 
 
 \subsubsection{\-Function \-Documentation}
-\index{tokdef.\-c@{tokdef.\-c}!error@{error}}
+\hypertarget{tokdef_8c_a8b4b6428a8bf1450cf23b6032dec56cf}{\index{tokdef.\-c@{tokdef.\-c}!error@{error}}
 \index{error@{error}!tokdef.c@{tokdef.\-c}}
 \paragraph[{error}]{\setlength{\rightskip}{0pt plus 5cm}static void {\bf error} (
 \begin{DoxyParamCaption}
 \item[{enum {\bf err\-\_\-codes}}]{msg\-\_\-nr}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily  [static]}}\label{tokdef_8c_a8b4b6428a8bf1450cf23b6032dec56cf}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}}\label{tokdef_8c_a8b4b6428a8bf1450cf23b6032dec56cf}
 
 
 \-Print error message. 
@@ -245,12 +114,20 @@ void
 \end{DoxyReturn}
 
 
-\-Definition at line {\bf 49} of file {\bf tokdef.\-c}.
+\-Definition at line \hyperlink{tokdef_8c_source_l00049}{49} of file \hyperlink{tokdef_8c_source}{tokdef.\-c}.
+
+
+
+\-References \hyperlink{tokdef_8c_source_l00031}{err\-\_\-msg}.
+
+
+
+\-Referenced by \hyperlink{tokdef_8c_source_l00099}{l\-\_\-append()}, \hyperlink{tokdef_8c_source_l00075}{l\-\_\-init()}, \hyperlink{tokdef_8c_source_l00161}{l\-\_\-last()}, \hyperlink{tokdef_8c_source_l00128}{l\-\_\-remove()}, and \hyperlink{tokdef_8c_source_l00150}{l\-\_\-top()}.
 
 
 \begin{DoxyCode}
                                          \{
-  fprintf(stderr, \textcolor{stringliteral}{"FEHLER(intlist): %s!\(\backslash\)n"}, err_msg[msg\_nr]);
+  fprintf(stderr, \textcolor{stringliteral}{"FEHLER(intlist): %s!\(\backslash\)n"}, \hyperlink{tokdef_8c_a404a364e08451a6c51c14b31e237453c}{err_msg}[msg\_nr]);
   exit(10);
 \}
 \end{DoxyCode}
@@ -265,7 +142,7 @@ void
 \end{figure}
 
 
-\index{tokdef.\-c@{tokdef.\-c}!l\-\_\-append@{l\-\_\-append}}
+\hypertarget{tokdef_8c_a46cdfdb54ba6b79debb3745f650bcdbe}{\index{tokdef.\-c@{tokdef.\-c}!l\-\_\-append@{l\-\_\-append}}
 \index{l\-\_\-append@{l\-\_\-append}!tokdef.c@{tokdef.\-c}}
 \paragraph[{l\-\_\-append}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf l\-\_\-append} (
 \begin{DoxyParamCaption}
@@ -273,7 +150,7 @@ void
 \item[{char $\ast$}]{t, }
 \item[{int $\ast$}]{n}
 \end{DoxyParamCaption}
-)}\label{tokdef_8c_a46cdfdb54ba6b79debb3745f650bcdbe}
+)}}\label{tokdef_8c_a46cdfdb54ba6b79debb3745f650bcdbe}
 
 
 add new element to token stream 
@@ -292,30 +169,34 @@ void
 \end{DoxyReturn}
 
 
-\-Definition at line {\bf 150} of file {\bf tokdef.\-c}.
+\-Definition at line \hyperlink{tokdef_8c_source_l00099}{99} of file \hyperlink{tokdef_8c_source}{tokdef.\-c}.
+
+
+
+\-References \hyperlink{tokdef_8c_source_l00040}{\-E\-R\-R\-\_\-\-M\-E\-M\-O\-R\-Y}, \hyperlink{tokdef_8c_source_l00049}{error()}, \hyperlink{tokdef_8c_source_l00087}{l\-\_\-\-Is\-Empty()}, \hyperlink{tokdef_8h_source_l00056}{list\-::next}, \hyperlink{tokdef_8c_source_l00040}{\-N\-U\-L\-L\-\_\-\-P\-O\-I\-N\-T\-E\-R}, \hyperlink{tokdef_8h_source_l00057}{list\-::previous}, and \hyperlink{tokdef_8h_source_l00055}{list\-::type}.
 
 
 \begin{DoxyCode}
                                         \{
-  \textcolor{keywordflow}{if} (l == NULL) error(NULL_POINTER);
-  \textcolor{keyword}{struct }_tag_list *el; 
-  \textcolor{keywordflow}{if} ((el = malloc(\textcolor{keyword}{sizeof}(list))) == NULL) error(ERR_MEMORY);
+  \textcolor{keywordflow}{if} (l == NULL) \hyperlink{tokdef_8c_a8b4b6428a8bf1450cf23b6032dec56cf}{error}(\hyperlink{tokdef_8c_ad7109e2dccd18353c3bdd5f55ad94b55a4fb873dc451927ef6a70af3a1e7f08bd}{NULL_POINTER});
+  \textcolor{keyword}{struct }\hyperlink{tokdef_8h_struct__tag__list}{_tag_list} *el; 
+  \textcolor{keywordflow}{if} ((el = malloc(\textcolor{keyword}{sizeof}(list))) == NULL) \hyperlink{tokdef_8c_a8b4b6428a8bf1450cf23b6032dec56cf}{error}(\hyperlink{tokdef_8c_ad7109e2dccd18353c3bdd5f55ad94b55afb88c5fa6e7d51074ec36bd4578e03a0}{ERR_MEMORY});
   \textcolor{keywordflow}{if} (strlen(t) == 1) \{
     el->token.t = *t;
-    el->type = \textcolor{charliteral}{'t'};
+    el->\hyperlink{tokdef_8h_a1b949e00a2c76f6830b80942c1d65341}{type} = \textcolor{charliteral}{'t'};
   \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (isdigit(*t) > 0) \{
     el->number.n = atoi(t);
     el->number.ID = *n;
-    el->type = \textcolor{charliteral}{'n'};
+    el->\hyperlink{tokdef_8h_a1b949e00a2c76f6830b80942c1d65341}{type} = \textcolor{charliteral}{'n'};
   \} \textcolor{keywordflow}{else} \{
     strcpy(el->word.w, t);
     el->word.ID = *n;
-    el->type = \textcolor{charliteral}{'w'};
+    el->\hyperlink{tokdef_8h_a1b949e00a2c76f6830b80942c1d65341}{type} = \textcolor{charliteral}{'w'};
   \}
-  el->next = *l;
-  el->previous = NULL;
-  \textcolor{keywordflow}{if} (!l_IsEmpty(*l)) (*l)->previous = el;
-  \textcolor{keywordflow}{if} (l_IsEmpty(*l)) head = el;
+  el->\hyperlink{tokdef_8h_a3778a8980f4cc9236d8288e5e364b9d3}{next} = *l;
+  el->\hyperlink{tokdef_8h_aff2d3980f345bfd4ed08d44550f481bf}{previous} = NULL;
+  \textcolor{keywordflow}{if} (!\hyperlink{tokdef_8h_ad38fb956f3e8b88088d0c3dbd9b0b1cd}{l_IsEmpty}(*l)) (*l)->\hyperlink{tokdef_8h_aff2d3980f345bfd4ed08d44550f481bf}{previous} = el;
+  \textcolor{keywordflow}{if} (\hyperlink{tokdef_8h_ad38fb956f3e8b88088d0c3dbd9b0b1cd}{l_IsEmpty}(*l)) \hyperlink{tokdef_8c_ac89b2e52a88dfd9ed05bbacf90176fcd}{head} = el;
   *l = el;
 \}
 \end{DoxyCode}
@@ -330,13 +211,13 @@ void
 \end{figure}
 
 
-\index{tokdef.\-c@{tokdef.\-c}!l\-\_\-init@{l\-\_\-init}}
+\hypertarget{tokdef_8c_aeaf25962d905093a69389e62796e237b}{\index{tokdef.\-c@{tokdef.\-c}!l\-\_\-init@{l\-\_\-init}}
 \index{l\-\_\-init@{l\-\_\-init}!tokdef.c@{tokdef.\-c}}
 \paragraph[{l\-\_\-init}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf l\-\_\-init} (
 \begin{DoxyParamCaption}
 \item[{list $\ast$}]{l}
 \end{DoxyParamCaption}
-)}\label{tokdef_8c_aeaf25962d905093a69389e62796e237b}
+)}}\label{tokdef_8c_aeaf25962d905093a69389e62796e237b}
 
 
 \-Initialize new token stream with \-N\-U\-L\-L-\/\-Pointer. 
@@ -351,13 +232,17 @@ void
 \end{DoxyReturn}
 
 
-\-Definition at line {\bf 126} of file {\bf tokdef.\-c}.
+\-Definition at line \hyperlink{tokdef_8c_source_l00075}{75} of file \hyperlink{tokdef_8c_source}{tokdef.\-c}.
+
+
+
+\-References \hyperlink{tokdef_8c_source_l00049}{error()}, and \hyperlink{tokdef_8c_source_l00040}{\-N\-U\-L\-L\-\_\-\-P\-O\-I\-N\-T\-E\-R}.
 
 
 \begin{DoxyCode}
                      \{
 
-  \textcolor{keywordflow}{if} (l == NULL) error(NULL_POINTER);
+  \textcolor{keywordflow}{if} (l == NULL) \hyperlink{tokdef_8c_a8b4b6428a8bf1450cf23b6032dec56cf}{error}(\hyperlink{tokdef_8c_ad7109e2dccd18353c3bdd5f55ad94b55a4fb873dc451927ef6a70af3a1e7f08bd}{NULL_POINTER});
   *l = NULL; 
 \}
 \end{DoxyCode}
@@ -372,13 +257,13 @@ void
 \end{figure}
 
 
-\index{tokdef.\-c@{tokdef.\-c}!l\-\_\-\-Is\-Empty@{l\-\_\-\-Is\-Empty}}
+\hypertarget{tokdef_8c_a6b9833eb6c0963b6d2e4b76d7e460caa}{\index{tokdef.\-c@{tokdef.\-c}!l\-\_\-\-Is\-Empty@{l\-\_\-\-Is\-Empty}}
 \index{l\-\_\-\-Is\-Empty@{l\-\_\-\-Is\-Empty}!tokdef.c@{tokdef.\-c}}
 \paragraph[{l\-\_\-\-Is\-Empty}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf l\-\_\-\-Is\-Empty} (
 \begin{DoxyParamCaption}
 \item[{list}]{l}
 \end{DoxyParamCaption}
-)}\label{tokdef_8c_a6b9833eb6c0963b6d2e4b76d7e460caa}
+)}}\label{tokdef_8c_a6b9833eb6c0963b6d2e4b76d7e460caa}
 
 
 check if token stream is empty or not 
@@ -393,7 +278,11 @@ int value 1 or 0
 \end{DoxyReturn}
 
 
-\-Definition at line {\bf 138} of file {\bf tokdef.\-c}.
+\-Definition at line \hyperlink{tokdef_8c_source_l00087}{87} of file \hyperlink{tokdef_8c_source}{tokdef.\-c}.
+
+
+
+\-Referenced by \hyperlink{tokdef_8c_source_l00099}{l\-\_\-append()}, \hyperlink{tokdef_8c_source_l00161}{l\-\_\-last()}, \hyperlink{tokdef_8c_source_l00128}{l\-\_\-remove()}, and \hyperlink{tokdef_8c_source_l00150}{l\-\_\-top()}.
 
 
 \begin{DoxyCode}
@@ -412,13 +301,13 @@ int value 1 or 0
 \end{figure}
 
 
-\index{tokdef.\-c@{tokdef.\-c}!l\-\_\-last@{l\-\_\-last}}
+\hypertarget{tokdef_8c_a3e647acbc5d046872adef10908ea44b4}{\index{tokdef.\-c@{tokdef.\-c}!l\-\_\-last@{l\-\_\-last}}
 \index{l\-\_\-last@{l\-\_\-last}!tokdef.c@{tokdef.\-c}}
 \paragraph[{l\-\_\-last}]{\setlength{\rightskip}{0pt plus 5cm}list {\bf l\-\_\-last} (
 \begin{DoxyParamCaption}
 \item[{list}]{l}
 \end{DoxyParamCaption}
-)}\label{tokdef_8c_a3e647acbc5d046872adef10908ea44b4}
+)}}\label{tokdef_8c_a3e647acbc5d046872adef10908ea44b4}
 
 
 get the newest element of stream 
@@ -433,12 +322,16 @@ list point to newest element
 \end{DoxyReturn}
 
 
-\-Definition at line {\bf 212} of file {\bf tokdef.\-c}.
+\-Definition at line \hyperlink{tokdef_8c_source_l00161}{161} of file \hyperlink{tokdef_8c_source}{tokdef.\-c}.
+
+
+
+\-References \hyperlink{tokdef_8c_source_l00049}{error()}, \hyperlink{tokdef_8c_source_l00087}{l\-\_\-\-Is\-Empty()}, and \hyperlink{tokdef_8c_source_l00040}{\-N\-U\-L\-L\-\_\-\-P\-O\-I\-N\-T\-E\-R}.
 
 
 \begin{DoxyCode}
                     \{
-  \textcolor{keywordflow}{if} (l_IsEmpty(l)) error(NULL_POINTER);
+  \textcolor{keywordflow}{if} (\hyperlink{tokdef_8h_ad38fb956f3e8b88088d0c3dbd9b0b1cd}{l_IsEmpty}(l)) \hyperlink{tokdef_8c_a8b4b6428a8bf1450cf23b6032dec56cf}{error}(\hyperlink{tokdef_8c_ad7109e2dccd18353c3bdd5f55ad94b55a4fb873dc451927ef6a70af3a1e7f08bd}{NULL_POINTER});
   \textcolor{keywordflow}{return} l;
 \}
 \end{DoxyCode}
@@ -453,13 +346,13 @@ list point to newest element
 \end{figure}
 
 
-\index{tokdef.\-c@{tokdef.\-c}!l\-\_\-remove@{l\-\_\-remove}}
+\hypertarget{tokdef_8c_a597a6fc15d83dfb2d062ac6ca1039c06}{\index{tokdef.\-c@{tokdef.\-c}!l\-\_\-remove@{l\-\_\-remove}}
 \index{l\-\_\-remove@{l\-\_\-remove}!tokdef.c@{tokdef.\-c}}
 \paragraph[{l\-\_\-remove}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf l\-\_\-remove} (
 \begin{DoxyParamCaption}
 \item[{list $\ast$}]{l}
 \end{DoxyParamCaption}
-)}\label{tokdef_8c_a597a6fc15d83dfb2d062ac6ca1039c06}
+)}}\label{tokdef_8c_a597a6fc15d83dfb2d062ac6ca1039c06}
 
 
 remove oldest element in stream 
@@ -474,23 +367,27 @@ void
 \end{DoxyReturn}
 
 
-\-Definition at line {\bf 179} of file {\bf tokdef.\-c}.
+\-Definition at line \hyperlink{tokdef_8c_source_l00128}{128} of file \hyperlink{tokdef_8c_source}{tokdef.\-c}.
+
+
+
+\-References \hyperlink{tokdef_8c_source_l00040}{\-E\-M\-P\-T\-Y\-\_\-\-L\-I\-S\-T}, \hyperlink{tokdef_8c_source_l00049}{error()}, \hyperlink{tokdef_8c_source_l00087}{l\-\_\-\-Is\-Empty()}, \hyperlink{tokdef_8h_source_l00056}{list\-::next}, \hyperlink{tokdef_8c_source_l00040}{\-N\-U\-L\-L\-\_\-\-P\-O\-I\-N\-T\-E\-R}, and \hyperlink{tokdef_8h_source_l00057}{list\-::previous}.
 
 
 \begin{DoxyCode}
                        \{
-  \textcolor{keywordflow}{if} (l == NULL) error(NULL_POINTER);
-  \textcolor{keywordflow}{if} (l_IsEmpty(*l)) error(EMPTY_LIST);
-  \textcolor{keywordflow}{if} (head == *l) \{
-    free(head);
+  \textcolor{keywordflow}{if} (l == NULL) \hyperlink{tokdef_8c_a8b4b6428a8bf1450cf23b6032dec56cf}{error}(\hyperlink{tokdef_8c_ad7109e2dccd18353c3bdd5f55ad94b55a4fb873dc451927ef6a70af3a1e7f08bd}{NULL_POINTER});
+  \textcolor{keywordflow}{if} (\hyperlink{tokdef_8h_ad38fb956f3e8b88088d0c3dbd9b0b1cd}{l_IsEmpty}(*l)) \hyperlink{tokdef_8c_a8b4b6428a8bf1450cf23b6032dec56cf}{error}(\hyperlink{tokdef_8c_ad7109e2dccd18353c3bdd5f55ad94b55a60202b752d64be3e9634f160ce5dca7d}{EMPTY_LIST});
+  \textcolor{keywordflow}{if} (\hyperlink{tokdef_8c_ac89b2e52a88dfd9ed05bbacf90176fcd}{head} == *l) \{
+    free(\hyperlink{tokdef_8c_ac89b2e52a88dfd9ed05bbacf90176fcd}{head});
     *l = NULL;
   \} \textcolor{keywordflow}{else} \{
-  \textcolor{keyword}{struct }_tag_list *ptr; 
-  ptr = head->previous;
-  ptr->next = NULL;
-  head->previous = NULL;
-  free(head);
-  head = ptr;
+  \textcolor{keyword}{struct }\hyperlink{tokdef_8h_struct__tag__list}{_tag_list} *ptr; 
+  ptr = \hyperlink{tokdef_8c_ac89b2e52a88dfd9ed05bbacf90176fcd}{head}->\hyperlink{tokdef_8h_aff2d3980f345bfd4ed08d44550f481bf}{previous};
+  ptr->\hyperlink{tokdef_8h_a3778a8980f4cc9236d8288e5e364b9d3}{next} = NULL;
+  \hyperlink{tokdef_8c_ac89b2e52a88dfd9ed05bbacf90176fcd}{head}->\hyperlink{tokdef_8h_aff2d3980f345bfd4ed08d44550f481bf}{previous} = NULL;
+  free(\hyperlink{tokdef_8c_ac89b2e52a88dfd9ed05bbacf90176fcd}{head});
+  \hyperlink{tokdef_8c_ac89b2e52a88dfd9ed05bbacf90176fcd}{head} = ptr;
   \}
 \}
 \end{DoxyCode}
@@ -505,13 +402,13 @@ void
 \end{figure}
 
 
-\index{tokdef.\-c@{tokdef.\-c}!l\-\_\-top@{l\-\_\-top}}
+\hypertarget{tokdef_8c_a662de1b392ef548996d646fdac76fdf4}{\index{tokdef.\-c@{tokdef.\-c}!l\-\_\-top@{l\-\_\-top}}
 \index{l\-\_\-top@{l\-\_\-top}!tokdef.c@{tokdef.\-c}}
 \paragraph[{l\-\_\-top}]{\setlength{\rightskip}{0pt plus 5cm}list {\bf l\-\_\-top} (
 \begin{DoxyParamCaption}
 \item[{list}]{l}
 \end{DoxyParamCaption}
-)}\label{tokdef_8c_a662de1b392ef548996d646fdac76fdf4}
+)}}\label{tokdef_8c_a662de1b392ef548996d646fdac76fdf4}
 
 
 get the oldest element of stream 
@@ -526,13 +423,17 @@ list pointer to oldest element
 \end{DoxyReturn}
 
 
-\-Definition at line {\bf 201} of file {\bf tokdef.\-c}.
+\-Definition at line \hyperlink{tokdef_8c_source_l00150}{150} of file \hyperlink{tokdef_8c_source}{tokdef.\-c}.
+
+
+
+\-References \hyperlink{tokdef_8c_source_l00049}{error()}, \hyperlink{tokdef_8c_source_l00067}{head}, \hyperlink{tokdef_8c_source_l00087}{l\-\_\-\-Is\-Empty()}, and \hyperlink{tokdef_8c_source_l00040}{\-N\-U\-L\-L\-\_\-\-P\-O\-I\-N\-T\-E\-R}.
 
 
 \begin{DoxyCode}
                    \{
-  \textcolor{keywordflow}{if} (l_IsEmpty(l)) error(NULL_POINTER);
-  \textcolor{keywordflow}{return} head;
+  \textcolor{keywordflow}{if} (\hyperlink{tokdef_8h_ad38fb956f3e8b88088d0c3dbd9b0b1cd}{l_IsEmpty}(l)) \hyperlink{tokdef_8c_a8b4b6428a8bf1450cf23b6032dec56cf}{error}(\hyperlink{tokdef_8c_ad7109e2dccd18353c3bdd5f55ad94b55a4fb873dc451927ef6a70af3a1e7f08bd}{NULL_POINTER});
+  \textcolor{keywordflow}{return} \hyperlink{tokdef_8c_ac89b2e52a88dfd9ed05bbacf90176fcd}{head};
 \}
 \end{DoxyCode}
 
@@ -549,9 +450,9 @@ list pointer to oldest element
 
 
 \subsubsection{\-Variable \-Documentation}
-\index{tokdef.\-c@{tokdef.\-c}!err\-\_\-msg@{err\-\_\-msg}}
+\hypertarget{tokdef_8c_a404a364e08451a6c51c14b31e237453c}{\index{tokdef.\-c@{tokdef.\-c}!err\-\_\-msg@{err\-\_\-msg}}
 \index{err\-\_\-msg@{err\-\_\-msg}!tokdef.c@{tokdef.\-c}}
-\paragraph[{err\-\_\-msg}]{\setlength{\rightskip}{0pt plus 5cm}static char $\ast$ {\bf err\-\_\-msg}[$\,$]\hspace{0.3cm}{\ttfamily  [static]}}\label{tokdef_8c_a404a364e08451a6c51c14b31e237453c}
+\paragraph[{err\-\_\-msg}]{\setlength{\rightskip}{0pt plus 5cm}static char $\ast$ {\bf err\-\_\-msg}\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}}\label{tokdef_8c_a404a364e08451a6c51c14b31e237453c}
 {\bfseries \-Initial value\-:}
 \begin{DoxyCode}
  \{
@@ -565,16 +466,24 @@ list pointer to oldest element
 
 
 
-\-Definition at line {\bf 31} of file {\bf tokdef.\-c}.
+\-Definition at line \hyperlink{tokdef_8c_source_l00031}{31} of file \hyperlink{tokdef_8c_source}{tokdef.\-c}.
 
-\index{tokdef.\-c@{tokdef.\-c}!head@{head}}
+
+
+\-Referenced by \hyperlink{tokdef_8c_source_l00049}{error()}.
+
+\hypertarget{tokdef_8c_ac89b2e52a88dfd9ed05bbacf90176fcd}{\index{tokdef.\-c@{tokdef.\-c}!head@{head}}
 \index{head@{head}!tokdef.c@{tokdef.\-c}}
-\paragraph[{head}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf \-\_\-tag\-\_\-list} $\ast$ {\bf head}}\label{tokdef_8c_ac89b2e52a88dfd9ed05bbacf90176fcd}
+\paragraph[{head}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf \-\_\-tag\-\_\-list} $\ast$ {\bf head}}}\label{tokdef_8c_ac89b2e52a88dfd9ed05bbacf90176fcd}
 
 
 pointer to oldest element in stream 
 
 
 
-\-Definition at line {\bf 118} of file {\bf tokdef.\-c}.
+\-Definition at line \hyperlink{tokdef_8c_source_l00067}{67} of file \hyperlink{tokdef_8c_source}{tokdef.\-c}.
+
+
+
+\-Referenced by \hyperlink{tokdef_8c_source_l00150}{l\-\_\-top()}.
 
