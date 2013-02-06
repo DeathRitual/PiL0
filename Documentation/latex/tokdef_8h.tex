@@ -6,6 +6,14 @@
 \-Header-\/\-File for \-Token-\/\-Stream library.  
 
 
+{\ttfamily \#include $<$stddef.\-h$>$}\*
+\-Include dependency graph for tokdef.\-h\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=268pt]{tokdef_8h__incl}
+\end{center}
+\end{figure}
 \-This graph shows which files directly or indirectly include this file\-:\nopagebreak
 \begin{figure}[H]
 \begin{center}
@@ -20,6 +28,8 @@ struct \hyperlink{tokdef_8h_struct__tag__list}{list}
 \begin{DoxyCompactList}\small\item\em \-Element-\/\-Structure which builds \-Token-\/\-Stream.  \hyperlink{tokdef_8h_struct__tag__list}{\-More...}\end{DoxyCompactList}\item 
 struct \hyperlink{tokdef_8h_structkeyword}{keyword}
 \begin{DoxyCompactList}\small\item\em \-Keyword structure for storing initial keywords.  \hyperlink{tokdef_8h_structkeyword}{\-More...}\end{DoxyCompactList}\item 
+struct \hyperlink{tokdef_8h_structkey__array}{key\-\_\-array}
+\begin{DoxyCompactList}\small\item\em wrapper structure to get return an array of keywords  \hyperlink{tokdef_8h_structkey__array}{\-More...}\end{DoxyCompactList}\item 
 union \hyperlink{tokdef_8h_union__tag__list_8____unnamed____}{\-\_\-tag\-\_\-list.\-\_\-\-\_\-unnamed\-\_\-\-\_\-}
 \item 
 struct \hyperlink{tokdef_8h_struct__tag__list_1_1__token_8____unnamed_____8token}{\-\_\-token.\-\_\-\-\_\-unnamed\-\_\-\-\_\-.\-token}
@@ -27,6 +37,11 @@ struct \hyperlink{tokdef_8h_struct__tag__list_1_1__token_8____unnamed_____8token
 struct \hyperlink{tokdef_8h_struct__tag__list_1_1__number_8____unnamed_____8number}{\-\_\-number.\-\_\-\-\_\-unnamed\-\_\-\-\_\-.\-number}
 \item 
 struct \hyperlink{tokdef_8h_struct__tag__list_1_1__word_8____unnamed_____8word}{\-\_\-word.\-\_\-\-\_\-unnamed\-\_\-\-\_\-.\-word}
+\end{DoxyCompactItemize}
+\subsubsection*{\-Defines}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{tokdef_8h_a479520495408480491333d11eca16649}{\-N\-U\-M\-B\-E\-R\-\_\-\-K\-E\-Y\-W\-O\-R\-D\-S}~18
 \end{DoxyCompactItemize}
 \subsubsection*{\-Functions}
 \begin{DoxyCompactItemize}
@@ -43,47 +58,15 @@ list \hyperlink{tokdef_8h_aa04f7ac992f12dbdcc80fdf4c624f7e9}{l\-\_\-top} (list)
 \begin{DoxyCompactList}\small\item\em get the oldest element of stream \end{DoxyCompactList}\item 
 list \hyperlink{tokdef_8h_a5a84ca70ef422afe2fbb8d4472f55e15}{l\-\_\-last} (list)
 \begin{DoxyCompactList}\small\item\em get the newest element of stream \end{DoxyCompactList}\item 
-\hyperlink{tokdef_8h_structkeyword}{keyword} $\ast$ \hyperlink{tokdef_8h_a2e5119b19a8d11244e9af9555dba5f66}{ini\-\_\-\-B\-E\-G\-I\-N} ()
-\begin{DoxyCompactList}\small\item\em initialise keyword \-B\-E\-G\-I\-N \end{DoxyCompactList}\item 
-\hyperlink{tokdef_8h_structkeyword}{keyword} $\ast$ \hyperlink{tokdef_8h_acd9099ba07f5918fcecfb174f29b267b}{ini\-\_\-\-C\-A\-L\-L} ()
-\begin{DoxyCompactList}\small\item\em initialise keyword \-C\-A\-L\-L \end{DoxyCompactList}\item 
-\hyperlink{tokdef_8h_structkeyword}{keyword} $\ast$ \hyperlink{tokdef_8h_a153311284cd712008980a20135dd5fa3}{ini\-\_\-\-C\-O\-N\-S\-T} ()
-\begin{DoxyCompactList}\small\item\em initialise keyword \-C\-O\-N\-S\-T \end{DoxyCompactList}\item 
-\hyperlink{tokdef_8h_structkeyword}{keyword} $\ast$ \hyperlink{tokdef_8h_adf1f24a77a6d6f72f76e7e2dba2bc048}{ini\-\_\-\-D\-O} ()
-\begin{DoxyCompactList}\small\item\em initialise keyword \-D\-O \end{DoxyCompactList}\item 
-\hyperlink{tokdef_8h_structkeyword}{keyword} $\ast$ \hyperlink{tokdef_8h_a41926a474714a535fe6ab94b09c1ec58}{ini\-\_\-\-E\-N\-D} ()
-\begin{DoxyCompactList}\small\item\em initialise keyword \-E\-N\-D \end{DoxyCompactList}\item 
-\hyperlink{tokdef_8h_structkeyword}{keyword} $\ast$ \hyperlink{tokdef_8h_a59df98f4f9e2462ba38059c21729698c}{ini\-\_\-\-I\-F} ()
-\begin{DoxyCompactList}\small\item\em initialise keyword \-I\-F \end{DoxyCompactList}\item 
-\hyperlink{tokdef_8h_structkeyword}{keyword} $\ast$ \hyperlink{tokdef_8h_a0f9272daacf3da2d8e84b5823b198854}{ini\-\_\-\-O\-D\-D} ()
-\begin{DoxyCompactList}\small\item\em initialise keyword \-O\-D\-D \end{DoxyCompactList}\item 
-\hyperlink{tokdef_8h_structkeyword}{keyword} $\ast$ \hyperlink{tokdef_8h_afe2a95df81d5d0296e1a03e1d0eec690}{ini\-\_\-\-P\-R\-I\-N\-T} ()
-\begin{DoxyCompactList}\small\item\em initialise keyword \-P\-R\-I\-N\-T \end{DoxyCompactList}\item 
-\hyperlink{tokdef_8h_structkeyword}{keyword} $\ast$ \hyperlink{tokdef_8h_a7f70e514a9b918ecea16bbbb8dc7dc5a}{ini\-\_\-\-P\-R\-O\-C\-E\-D\-U\-R\-E} ()
-\begin{DoxyCompactList}\small\item\em initialise keyword \-P\-R\-O\-C\-E\-D\-U\-R\-E \end{DoxyCompactList}\item 
-\hyperlink{tokdef_8h_structkeyword}{keyword} $\ast$ \hyperlink{tokdef_8h_a1ce32c3234be6e50832e306329658240}{ini\-\_\-\-R\-E\-A\-D} ()
-\begin{DoxyCompactList}\small\item\em initialise keyword \-R\-E\-A\-D \end{DoxyCompactList}\item 
-\hyperlink{tokdef_8h_structkeyword}{keyword} $\ast$ \hyperlink{tokdef_8h_a6c3cbb287339e979208c720ddce34aa0}{ini\-\_\-\-T\-H\-E\-N} ()
-\begin{DoxyCompactList}\small\item\em initialise keyword \-T\-H\-E\-N \end{DoxyCompactList}\item 
-\hyperlink{tokdef_8h_structkeyword}{keyword} $\ast$ \hyperlink{tokdef_8h_a31c3ddcea0020c1e08f300c48fe783d3}{ini\-\_\-\-V\-A\-R} ()
-\begin{DoxyCompactList}\small\item\em initialise keyword \-V\-A\-R \end{DoxyCompactList}\item 
-\hyperlink{tokdef_8h_structkeyword}{keyword} $\ast$ \hyperlink{tokdef_8h_a58f3a75145550870497c2517db9d100b}{ini\-\_\-\-W\-H\-I\-L\-E} ()
-\begin{DoxyCompactList}\small\item\em initialise keyword \-W\-H\-I\-L\-E \end{DoxyCompactList}\item 
-\hyperlink{tokdef_8h_structkeyword}{keyword} $\ast$ \hyperlink{tokdef_8h_afbc12afdc22344562084703f9a7ffc83}{ini\-\_\-\-P\-A\-S\-S} ()
-\begin{DoxyCompactList}\small\item\em initialise keyword \-P\-A\-S\-S \end{DoxyCompactList}\item 
-\hyperlink{tokdef_8h_structkeyword}{keyword} $\ast$ \hyperlink{tokdef_8h_aeef061af1fffa52edd7eaa510b82c16c}{ini\-\_\-\-E\-Q} ()
-\begin{DoxyCompactList}\small\item\em initialise keyword == \end{DoxyCompactList}\item 
-\hyperlink{tokdef_8h_structkeyword}{keyword} $\ast$ \hyperlink{tokdef_8h_af278058c4829574ed15f6943f39bacad}{ini\-\_\-\-G\-E} ()
-\begin{DoxyCompactList}\small\item\em initialise keyword $>$= \end{DoxyCompactList}\item 
-\hyperlink{tokdef_8h_structkeyword}{keyword} $\ast$ \hyperlink{tokdef_8h_a5255ae956b6faf8fd1e6221368ce0295}{ini\-\_\-\-L\-E} ()
-\begin{DoxyCompactList}\small\item\em initialise keyword $<$= \end{DoxyCompactList}\item 
-\hyperlink{tokdef_8h_structkeyword}{keyword} $\ast$ \hyperlink{tokdef_8h_a700de1f32ddf4df29374bb22c928801f}{ini\-\_\-\-N\-E} ()
-\begin{DoxyCompactList}\small\item\em initialise keyword != \end{DoxyCompactList}\end{DoxyCompactItemize}
+struct \hyperlink{tokdef_8h_structkey__array}{key\-\_\-array} \hyperlink{tokdef_8h_a0bae71903db8f2f5e7fd637f9e86ee69}{init\-\_\-\-Reserved\-Keys} ()
+\begin{DoxyCompactList}\small\item\em \-Creates an array with all reserved keywords and their \-I\-Ds. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{\-Variables}
 \begin{DoxyCompactItemize}
 \item 
 struct \hyperlink{tokdef_8h_struct__tag__list}{\-\_\-tag\-\_\-list} \hyperlink{tokdef_8h_a6b08a68dd0458ee419869b9852116c9f}{tag\-\_\-list}
-\begin{DoxyCompactList}\small\item\em dummy element to quit compiler \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em dummy element to quit compiler \end{DoxyCompactList}\item 
+struct \hyperlink{tokdef_8h_structkey__array}{key\-\_\-array} \hyperlink{tokdef_8h_a4ebf9dd0c63dce7afe593857c71fa3e9}{keys}
+\end{DoxyCompactItemize}
 
 
 \subsubsection{\-Detailed \-Description}
@@ -101,7 +84,7 @@ struct \hyperlink{tokdef_8h_struct__tag__list}{\-\_\-tag\-\_\-list} \hyperlink{t
 
 \-One element can only contain one token, whereas each element is connected with its last and previous neighbour. 
 
-\-Definition at line \hyperlink{tokdef_8h_source_l00015}{15} of file \hyperlink{tokdef_8h_source}{tokdef.\-h}.
+\-Definition at line \hyperlink{tokdef_8h_source_l00018}{18} of file \hyperlink{tokdef_8h_source}{tokdef.\-h}.
 
 
 
@@ -145,7 +128,7 @@ type&
 
 \-Stores string and \-I\-D of the language keywords like \-D\-O, \-W\-H\-I\-L\-E, \-I\-F, etc. 
 
-\-Definition at line \hyperlink{tokdef_8h_source_l00066}{66} of file \hyperlink{tokdef_8h_source}{tokdef.\-h}.
+\-Definition at line \hyperlink{tokdef_8h_source_l00076}{76} of file \hyperlink{tokdef_8h_source}{tokdef.\-h}.
 
 \begin{DoxyFields}{\-Data Fields}
 \hypertarget{tokdef_8h_a79da3556d7a0b19c9d1ce39e9d4a0bc7}{int}\label{tokdef_8h_a79da3556d7a0b19c9d1ce39e9d4a0bc7}
@@ -161,12 +144,38 @@ keyword \\
 \hline
 
 \end{DoxyFields}
+\index{key\-\_\-array@{key\-\_\-array}}\label{structkey__array}
+\hypertarget{tokdef_8h_structkey__array}{}
+\paragraph{struct key\-\_\-array}
+wrapper structure to get return an array of keywords 
+
+\-Array is as long as the number of keywords defined by the symbolic const set at top of the file. 
+
+\-Definition at line \hyperlink{tokdef_8h_source_l00096}{96} of file \hyperlink{tokdef_8h_source}{tokdef.\-h}.
+
+
+
+\-Collaboration diagram for key\-\_\-array\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=154pt]{structkey__array__coll__graph}
+\end{center}
+\end{figure}
+\begin{DoxyFields}{\-Data Fields}
+\hypertarget{tokdef_8h_a58da8f115ae3dc40968147fbf30201a3}{\hyperlink{tokdef_8h_structkeyword}{keyword}}\label{tokdef_8h_a58da8f115ae3dc40968147fbf30201a3}
+&
+res\-Keys&
+array of keywords \\
+\hline
+
+\end{DoxyFields}
 \index{\-\_\-tag\-\_\-list.\-\_\-\-\_\-unnamed\-\_\-\-\_\-@{\-\_\-tag\-\_\-list.\-\_\-\-\_\-unnamed\-\_\-\-\_\-}}\label{union__tag__list_8____unnamed____}
 \hypertarget{tokdef_8h_union__tag__list_8____unnamed____}{}
 \paragraph{union \-\_\-tag\-\_\-list.\-\_\-\-\_\-unnamed\-\_\-\-\_\-}
 
 
-\-Definition at line \hyperlink{tokdef_8h_source_l00024}{24} of file \hyperlink{tokdef_8h_source}{tokdef.\-h}.
+\-Definition at line \hyperlink{tokdef_8h_source_l00027}{27} of file \hyperlink{tokdef_8h_source}{tokdef.\-h}.
 
 \begin{DoxyFields}{\-Data Fields}
 \hypertarget{tokdef_8h_ab1bc248a7ff2b2e95569f56de68615df}{\-\_\-\-\_\-unnamed\-\_\-\-\_\-}\label{tokdef_8h_ab1bc248a7ff2b2e95569f56de68615df}
@@ -193,7 +202,7 @@ word&
 \paragraph{struct \-\_\-tag\-\_\-list\-:\-:\-\_\-token.\-\_\-\-\_\-unnamed\-\_\-\-\_\-.\-token}
 
 
-\-Definition at line \hyperlink{tokdef_8h_source_l00030}{30} of file \hyperlink{tokdef_8h_source}{tokdef.\-h}.
+\-Definition at line \hyperlink{tokdef_8h_source_l00033}{33} of file \hyperlink{tokdef_8h_source}{tokdef.\-h}.
 
 \begin{DoxyFields}{\-Data Fields}
 \hypertarget{tokdef_8h_ae358efa489f58062f10dd7316b65649e}{char}\label{tokdef_8h_ae358efa489f58062f10dd7316b65649e}
@@ -208,7 +217,7 @@ single character \\
 \paragraph{struct \-\_\-tag\-\_\-list\-:\-:\-\_\-number.\-\_\-\-\_\-unnamed\-\_\-\-\_\-.\-number}
 
 
-\-Definition at line \hyperlink{tokdef_8h_source_l00039}{39} of file \hyperlink{tokdef_8h_source}{tokdef.\-h}.
+\-Definition at line \hyperlink{tokdef_8h_source_l00042}{42} of file \hyperlink{tokdef_8h_source}{tokdef.\-h}.
 
 \begin{DoxyFields}{\-Data Fields}
 \hypertarget{tokdef_8h_ab718adec73e04ce3ec720dd11a06a308}{unsigned int}\label{tokdef_8h_ab718adec73e04ce3ec720dd11a06a308}
@@ -229,7 +238,7 @@ number \\
 \paragraph{struct \-\_\-tag\-\_\-list\-:\-:\-\_\-word.\-\_\-\-\_\-unnamed\-\_\-\-\_\-.\-word}
 
 
-\-Definition at line \hyperlink{tokdef_8h_source_l00049}{49} of file \hyperlink{tokdef_8h_source}{tokdef.\-h}.
+\-Definition at line \hyperlink{tokdef_8h_source_l00052}{52} of file \hyperlink{tokdef_8h_source}{tokdef.\-h}.
 
 \begin{DoxyFields}{\-Data Fields}
 \hypertarget{tokdef_8h_ab718adec73e04ce3ec720dd11a06a308}{unsigned int}\label{tokdef_8h_ab718adec73e04ce3ec720dd11a06a308}
@@ -247,781 +256,50 @@ keyword / identifer \\
 \end{DoxyFields}
 
 
+\subsubsection{\-Define \-Documentation}
+\hypertarget{tokdef_8h_a479520495408480491333d11eca16649}{\index{tokdef.\-h@{tokdef.\-h}!\-N\-U\-M\-B\-E\-R\-\_\-\-K\-E\-Y\-W\-O\-R\-D\-S@{\-N\-U\-M\-B\-E\-R\-\_\-\-K\-E\-Y\-W\-O\-R\-D\-S}}
+\index{\-N\-U\-M\-B\-E\-R\-\_\-\-K\-E\-Y\-W\-O\-R\-D\-S@{\-N\-U\-M\-B\-E\-R\-\_\-\-K\-E\-Y\-W\-O\-R\-D\-S}!tokdef.h@{tokdef.\-h}}
+\paragraph[{\-N\-U\-M\-B\-E\-R\-\_\-\-K\-E\-Y\-W\-O\-R\-D\-S}]{\setlength{\rightskip}{0pt plus 5cm}\#define {\bf \-N\-U\-M\-B\-E\-R\-\_\-\-K\-E\-Y\-W\-O\-R\-D\-S}~18}}\label{tokdef_8h_a479520495408480491333d11eca16649}
+
+
+\-Definition at line \hyperlink{tokdef_8h_source_l00008}{8} of file \hyperlink{tokdef_8h_source}{tokdef.\-h}.
+
+
+
 \subsubsection{\-Function \-Documentation}
-\hypertarget{tokdef_8h_a2e5119b19a8d11244e9af9555dba5f66}{\index{tokdef.\-h@{tokdef.\-h}!ini\-\_\-\-B\-E\-G\-I\-N@{ini\-\_\-\-B\-E\-G\-I\-N}}
-\index{ini\-\_\-\-B\-E\-G\-I\-N@{ini\-\_\-\-B\-E\-G\-I\-N}!tokdef.h@{tokdef.\-h}}
-\paragraph[{ini\-\_\-\-B\-E\-G\-I\-N}]{\setlength{\rightskip}{0pt plus 5cm}{\bf keyword}$\ast$ {\bf ini\-\_\-\-B\-E\-G\-I\-N} (
+\hypertarget{tokdef_8h_a0bae71903db8f2f5e7fd637f9e86ee69}{\index{tokdef.\-h@{tokdef.\-h}!init\-\_\-\-Reserved\-Keys@{init\-\_\-\-Reserved\-Keys}}
+\index{init\-\_\-\-Reserved\-Keys@{init\-\_\-\-Reserved\-Keys}!tokdef.h@{tokdef.\-h}}
+\paragraph[{init\-\_\-\-Reserved\-Keys}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf key\-\_\-array} {\bf init\-\_\-\-Reserved\-Keys} (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)}}\label{tokdef_8h_a2e5119b19a8d11244e9af9555dba5f66}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}read\mbox{]}}}}\label{tokdef_8h_a0bae71903db8f2f5e7fd637f9e86ee69}
 
 
-initialise keyword \-B\-E\-G\-I\-N 
+\-Creates an array with all reserved keywords and their \-I\-Ds. 
 
 \begin{DoxyReturn}{\-Returns}
-keyword$\ast$ 
+\hyperlink{tokdef_8h_structkey__array}{key\-\_\-array} array with reserved keys
 \end{DoxyReturn}
+\-The \-I\-Ds of the keywords start from 256 at keyword \-B\-E\-G\-I\-N and are incremented for every next word. \-N\-O\-T\-E\-: \-If keywords number increases 44 you have to increase the special\-\_\-\-Ids number! 
+
+\-Definition at line \hyperlink{tokdef_8c_source_l00208}{208} of file \hyperlink{tokdef_8c_source}{tokdef.\-c}.
 
 
-\-Definition at line \hyperlink{tokdef_8c_source_l00199}{199} of file \hyperlink{tokdef_8c_source}{tokdef.\-c}.
 
-
-
-\-References \hyperlink{tokdef_8c_source_l00190}{\-B\-E\-G\-I\-N}, \hyperlink{tokdef_8c_source_l00046}{\-E\-R\-R\-\_\-\-M\-E\-M\-O\-R\-Y}, \hyperlink{tokdef_8c_source_l00055}{error()}, \hyperlink{tokdef_8h_source_l00068}{keyword\-::\-I\-D}, \hyperlink{tokdef_8c_source_l00179}{keywords}, and \hyperlink{tokdef_8h_source_l00067}{keyword\-::w}.
+\-References \hyperlink{tokdef_8h_source_l00078}{keyword\-::\-I\-D}, \hyperlink{tokdef_8h_a4ebf9dd0c63dce7afe593857c71fa3e9}{keys}, \hyperlink{tokdef_8c_source_l00193}{keywords}, \hyperlink{tokdef_8h_source_l00097}{key\-\_\-array\-::res\-Keys}, and \hyperlink{tokdef_8h_source_l00077}{keyword\-::w}.
 
 
 \begin{DoxyCode}
-                     \{
-  \hyperlink{tokdef_8h_structkeyword}{keyword} *BEGIN\_PTR;
-  \textcolor{keywordflow}{if} ((BEGIN\_PTR = malloc(\textcolor{keyword}{sizeof}(\hyperlink{tokdef_8h_structkeyword}{keyword}))) == NULL) \hyperlink{tokdef_8c_a8b4b6428a8bf1450cf23b6032dec56cf}{error}(\hyperlink{tokdef_8c_ad7109e2dccd18353c3bdd5f55ad94b55afb88c5fa6e7d51074ec36bd4578e03a0}{ERR_MEMORY});
-  strcpy(BEGIN\_PTR->\hyperlink{tokdef_8h_a02d5d49fc221e244cfc4f7196c1a2251}{w}, \hyperlink{tokdef_8c_a378b0ae598a7cfd7eb28be463d4cc909}{keywords}[\hyperlink{tokdef_8c_acf2488b95c97e0378c9bf49de3b50f28a368db50032da622d4c456ef7eaf9cb67}{BEGIN} - 256]);
-  BEGIN\_PTR->\hyperlink{tokdef_8h_a79da3556d7a0b19c9d1ce39e9d4a0bc7}{ID} = \hyperlink{tokdef_8c_acf2488b95c97e0378c9bf49de3b50f28a368db50032da622d4c456ef7eaf9cb67}{BEGIN};
-  \textcolor{keywordflow}{return} BEGIN\_PTR;
+                                     \{
+  \textcolor{keywordtype}{int} i;
+  \textcolor{keywordflow}{for} (i = 0; \hyperlink{tokdef_8c_a378b0ae598a7cfd7eb28be463d4cc909}{keywords}[i] != NULL; i++) \{
+    strcpy(\hyperlink{tokdef_8h_a4ebf9dd0c63dce7afe593857c71fa3e9}{keys}.\hyperlink{tokdef_8h_a58da8f115ae3dc40968147fbf30201a3}{resKeys}[i].\hyperlink{tokdef_8h_a02d5d49fc221e244cfc4f7196c1a2251}{w},\hyperlink{tokdef_8c_a378b0ae598a7cfd7eb28be463d4cc909}{keywords}[i]);
+    \hyperlink{tokdef_8h_a4ebf9dd0c63dce7afe593857c71fa3e9}{keys}.\hyperlink{tokdef_8h_a58da8f115ae3dc40968147fbf30201a3}{resKeys}[i].\hyperlink{tokdef_8h_a79da3556d7a0b19c9d1ce39e9d4a0bc7}{ID} = 256 + i;
+  \}
+  \textcolor{keywordflow}{return} \hyperlink{tokdef_8h_a4ebf9dd0c63dce7afe593857c71fa3e9}{keys};
 \}
 \end{DoxyCode}
-
-
-\-Here is the call graph for this function\-:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=222pt]{tokdef_8h_a2e5119b19a8d11244e9af9555dba5f66_cgraph}
-\end{center}
-\end{figure}
-
-
-\hypertarget{tokdef_8h_acd9099ba07f5918fcecfb174f29b267b}{\index{tokdef.\-h@{tokdef.\-h}!ini\-\_\-\-C\-A\-L\-L@{ini\-\_\-\-C\-A\-L\-L}}
-\index{ini\-\_\-\-C\-A\-L\-L@{ini\-\_\-\-C\-A\-L\-L}!tokdef.h@{tokdef.\-h}}
-\paragraph[{ini\-\_\-\-C\-A\-L\-L}]{\setlength{\rightskip}{0pt plus 5cm}{\bf keyword}$\ast$ {\bf ini\-\_\-\-C\-A\-L\-L} (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}}\label{tokdef_8h_acd9099ba07f5918fcecfb174f29b267b}
-
-
-initialise keyword \-C\-A\-L\-L 
-
-\begin{DoxyReturn}{\-Returns}
-keyword$\ast$ 
-\end{DoxyReturn}
-
-
-\-Definition at line \hyperlink{tokdef_8c_source_l00212}{212} of file \hyperlink{tokdef_8c_source}{tokdef.\-c}.
-
-
-
-\-References \hyperlink{tokdef_8c_source_l00190}{\-C\-A\-L\-L}, \hyperlink{tokdef_8c_source_l00046}{\-E\-R\-R\-\_\-\-M\-E\-M\-O\-R\-Y}, \hyperlink{tokdef_8c_source_l00055}{error()}, \hyperlink{tokdef_8h_source_l00068}{keyword\-::\-I\-D}, \hyperlink{tokdef_8c_source_l00179}{keywords}, and \hyperlink{tokdef_8h_source_l00067}{keyword\-::w}.
-
-
-\begin{DoxyCode}
-                    \{
-  \hyperlink{tokdef_8h_structkeyword}{keyword} *CALL\_PTR;
-  \textcolor{keywordflow}{if} ((CALL\_PTR = malloc(\textcolor{keyword}{sizeof}(\hyperlink{tokdef_8h_structkeyword}{keyword}))) == NULL) \hyperlink{tokdef_8c_a8b4b6428a8bf1450cf23b6032dec56cf}{error}(\hyperlink{tokdef_8c_ad7109e2dccd18353c3bdd5f55ad94b55afb88c5fa6e7d51074ec36bd4578e03a0}{ERR_MEMORY});
-  strcpy(CALL\_PTR->\hyperlink{tokdef_8h_a02d5d49fc221e244cfc4f7196c1a2251}{w}, \hyperlink{tokdef_8c_a378b0ae598a7cfd7eb28be463d4cc909}{keywords}[\hyperlink{tokdef_8c_acf2488b95c97e0378c9bf49de3b50f28abd0ebc08c262bab82a1882256d2d66e8}{CALL} - 256]);
-  CALL\_PTR->\hyperlink{tokdef_8h_a79da3556d7a0b19c9d1ce39e9d4a0bc7}{ID} = \hyperlink{tokdef_8c_acf2488b95c97e0378c9bf49de3b50f28abd0ebc08c262bab82a1882256d2d66e8}{CALL};
-  \textcolor{keywordflow}{return} CALL\_PTR;
-\}
-\end{DoxyCode}
-
-
-\-Here is the call graph for this function\-:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=216pt]{tokdef_8h_acd9099ba07f5918fcecfb174f29b267b_cgraph}
-\end{center}
-\end{figure}
-
-
-\hypertarget{tokdef_8h_a153311284cd712008980a20135dd5fa3}{\index{tokdef.\-h@{tokdef.\-h}!ini\-\_\-\-C\-O\-N\-S\-T@{ini\-\_\-\-C\-O\-N\-S\-T}}
-\index{ini\-\_\-\-C\-O\-N\-S\-T@{ini\-\_\-\-C\-O\-N\-S\-T}!tokdef.h@{tokdef.\-h}}
-\paragraph[{ini\-\_\-\-C\-O\-N\-S\-T}]{\setlength{\rightskip}{0pt plus 5cm}{\bf keyword}$\ast$ {\bf ini\-\_\-\-C\-O\-N\-S\-T} (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}}\label{tokdef_8h_a153311284cd712008980a20135dd5fa3}
-
-
-initialise keyword \-C\-O\-N\-S\-T 
-
-\begin{DoxyReturn}{\-Returns}
-keyword$\ast$ 
-\end{DoxyReturn}
-
-
-\-Definition at line \hyperlink{tokdef_8c_source_l00225}{225} of file \hyperlink{tokdef_8c_source}{tokdef.\-c}.
-
-
-
-\-References \hyperlink{tokdef_8c_source_l00190}{\-C\-O\-N\-S\-T}, \hyperlink{tokdef_8c_source_l00046}{\-E\-R\-R\-\_\-\-M\-E\-M\-O\-R\-Y}, \hyperlink{tokdef_8c_source_l00055}{error()}, \hyperlink{tokdef_8h_source_l00068}{keyword\-::\-I\-D}, \hyperlink{tokdef_8c_source_l00179}{keywords}, and \hyperlink{tokdef_8h_source_l00067}{keyword\-::w}.
-
-
-\begin{DoxyCode}
-                     \{
-  \hyperlink{tokdef_8h_structkeyword}{keyword} *CONST\_PTR;
-  \textcolor{keywordflow}{if} ((CONST\_PTR = malloc(\textcolor{keyword}{sizeof}(\hyperlink{tokdef_8h_structkeyword}{keyword}))) == NULL) \hyperlink{tokdef_8c_a8b4b6428a8bf1450cf23b6032dec56cf}{error}(\hyperlink{tokdef_8c_ad7109e2dccd18353c3bdd5f55ad94b55afb88c5fa6e7d51074ec36bd4578e03a0}{ERR_MEMORY});
-  strcpy(CONST\_PTR->\hyperlink{tokdef_8h_a02d5d49fc221e244cfc4f7196c1a2251}{w}, \hyperlink{tokdef_8c_a378b0ae598a7cfd7eb28be463d4cc909}{keywords}[\hyperlink{tokdef_8c_acf2488b95c97e0378c9bf49de3b50f28a3d044162d972156d897cea80f216b9ca}{CONST} - 256]);
-  CONST\_PTR->\hyperlink{tokdef_8h_a79da3556d7a0b19c9d1ce39e9d4a0bc7}{ID} = \hyperlink{tokdef_8c_acf2488b95c97e0378c9bf49de3b50f28a3d044162d972156d897cea80f216b9ca}{CONST};
-  \textcolor{keywordflow}{return} CONST\_PTR;
-\}
-\end{DoxyCode}
-
-
-\-Here is the call graph for this function\-:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=226pt]{tokdef_8h_a153311284cd712008980a20135dd5fa3_cgraph}
-\end{center}
-\end{figure}
-
-
-\hypertarget{tokdef_8h_adf1f24a77a6d6f72f76e7e2dba2bc048}{\index{tokdef.\-h@{tokdef.\-h}!ini\-\_\-\-D\-O@{ini\-\_\-\-D\-O}}
-\index{ini\-\_\-\-D\-O@{ini\-\_\-\-D\-O}!tokdef.h@{tokdef.\-h}}
-\paragraph[{ini\-\_\-\-D\-O}]{\setlength{\rightskip}{0pt plus 5cm}{\bf keyword}$\ast$ {\bf ini\-\_\-\-D\-O} (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}}\label{tokdef_8h_adf1f24a77a6d6f72f76e7e2dba2bc048}
-
-
-initialise keyword \-D\-O 
-
-\begin{DoxyReturn}{\-Returns}
-keyword$\ast$ 
-\end{DoxyReturn}
-
-
-\-Definition at line \hyperlink{tokdef_8c_source_l00238}{238} of file \hyperlink{tokdef_8c_source}{tokdef.\-c}.
-
-
-
-\-References \hyperlink{tokdef_8c_source_l00190}{\-D\-O}, \hyperlink{tokdef_8c_source_l00046}{\-E\-R\-R\-\_\-\-M\-E\-M\-O\-R\-Y}, \hyperlink{tokdef_8c_source_l00055}{error()}, \hyperlink{tokdef_8h_source_l00068}{keyword\-::\-I\-D}, \hyperlink{tokdef_8c_source_l00179}{keywords}, and \hyperlink{tokdef_8h_source_l00067}{keyword\-::w}.
-
-
-\begin{DoxyCode}
-                  \{
-  \hyperlink{tokdef_8h_structkeyword}{keyword} *DO\_PTR;
-  \textcolor{keywordflow}{if} ((DO\_PTR = malloc(\textcolor{keyword}{sizeof}(\hyperlink{tokdef_8h_structkeyword}{keyword}))) == NULL) \hyperlink{tokdef_8c_a8b4b6428a8bf1450cf23b6032dec56cf}{error}(\hyperlink{tokdef_8c_ad7109e2dccd18353c3bdd5f55ad94b55afb88c5fa6e7d51074ec36bd4578e03a0}{ERR_MEMORY});
-  strcpy(DO\_PTR->\hyperlink{tokdef_8h_a02d5d49fc221e244cfc4f7196c1a2251}{w}, \hyperlink{tokdef_8c_a378b0ae598a7cfd7eb28be463d4cc909}{keywords}[\hyperlink{tokdef_8c_acf2488b95c97e0378c9bf49de3b50f28abfea6036e64d9c7c773d277a57d2f959}{DO} - 256]);
-  DO\_PTR->\hyperlink{tokdef_8h_a79da3556d7a0b19c9d1ce39e9d4a0bc7}{ID} = \hyperlink{tokdef_8c_acf2488b95c97e0378c9bf49de3b50f28abfea6036e64d9c7c773d277a57d2f959}{DO};
-  \textcolor{keywordflow}{return} DO\_PTR;
-\}
-\end{DoxyCode}
-
-
-\-Here is the call graph for this function\-:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=206pt]{tokdef_8h_adf1f24a77a6d6f72f76e7e2dba2bc048_cgraph}
-\end{center}
-\end{figure}
-
-
-\hypertarget{tokdef_8h_a41926a474714a535fe6ab94b09c1ec58}{\index{tokdef.\-h@{tokdef.\-h}!ini\-\_\-\-E\-N\-D@{ini\-\_\-\-E\-N\-D}}
-\index{ini\-\_\-\-E\-N\-D@{ini\-\_\-\-E\-N\-D}!tokdef.h@{tokdef.\-h}}
-\paragraph[{ini\-\_\-\-E\-N\-D}]{\setlength{\rightskip}{0pt plus 5cm}{\bf keyword}$\ast$ {\bf ini\-\_\-\-E\-N\-D} (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}}\label{tokdef_8h_a41926a474714a535fe6ab94b09c1ec58}
-
-
-initialise keyword \-E\-N\-D 
-
-\begin{DoxyReturn}{\-Returns}
-keyword$\ast$ 
-\end{DoxyReturn}
-
-
-\-Definition at line \hyperlink{tokdef_8c_source_l00251}{251} of file \hyperlink{tokdef_8c_source}{tokdef.\-c}.
-
-
-
-\-References \hyperlink{tokdef_8c_source_l00190}{\-E\-N\-D}, \hyperlink{tokdef_8c_source_l00046}{\-E\-R\-R\-\_\-\-M\-E\-M\-O\-R\-Y}, \hyperlink{tokdef_8c_source_l00055}{error()}, \hyperlink{tokdef_8h_source_l00068}{keyword\-::\-I\-D}, \hyperlink{tokdef_8c_source_l00179}{keywords}, and \hyperlink{tokdef_8h_source_l00067}{keyword\-::w}.
-
-
-\begin{DoxyCode}
-                   \{
-  \hyperlink{tokdef_8h_structkeyword}{keyword} *END\_PTR;
-  \textcolor{keywordflow}{if} ((END\_PTR = malloc(\textcolor{keyword}{sizeof}(\hyperlink{tokdef_8h_structkeyword}{keyword}))) == NULL) \hyperlink{tokdef_8c_a8b4b6428a8bf1450cf23b6032dec56cf}{error}(\hyperlink{tokdef_8c_ad7109e2dccd18353c3bdd5f55ad94b55afb88c5fa6e7d51074ec36bd4578e03a0}{ERR_MEMORY});
-  strcpy(END\_PTR->\hyperlink{tokdef_8h_a02d5d49fc221e244cfc4f7196c1a2251}{w}, \hyperlink{tokdef_8c_a378b0ae598a7cfd7eb28be463d4cc909}{keywords}[\hyperlink{tokdef_8c_acf2488b95c97e0378c9bf49de3b50f28adc6f24fd6915a3f2786a1b7045406924}{END} - 256]);
-  END\_PTR->\hyperlink{tokdef_8h_a79da3556d7a0b19c9d1ce39e9d4a0bc7}{ID} = \hyperlink{tokdef_8c_acf2488b95c97e0378c9bf49de3b50f28adc6f24fd6915a3f2786a1b7045406924}{END};
-  \textcolor{keywordflow}{return} END\_PTR;
-\}
-\end{DoxyCode}
-
-
-\-Here is the call graph for this function\-:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=212pt]{tokdef_8h_a41926a474714a535fe6ab94b09c1ec58_cgraph}
-\end{center}
-\end{figure}
-
-
-\hypertarget{tokdef_8h_aeef061af1fffa52edd7eaa510b82c16c}{\index{tokdef.\-h@{tokdef.\-h}!ini\-\_\-\-E\-Q@{ini\-\_\-\-E\-Q}}
-\index{ini\-\_\-\-E\-Q@{ini\-\_\-\-E\-Q}!tokdef.h@{tokdef.\-h}}
-\paragraph[{ini\-\_\-\-E\-Q}]{\setlength{\rightskip}{0pt plus 5cm}{\bf keyword}$\ast$ {\bf ini\-\_\-\-E\-Q} (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}}\label{tokdef_8h_aeef061af1fffa52edd7eaa510b82c16c}
-
-
-initialise keyword == 
-
-\begin{DoxyReturn}{\-Returns}
-keyword$\ast$ 
-\end{DoxyReturn}
-
-
-\-Definition at line \hyperlink{tokdef_8c_source_l00381}{381} of file \hyperlink{tokdef_8c_source}{tokdef.\-c}.
-
-
-
-\-References \hyperlink{tokdef_8c_source_l00191}{\-E\-Q}, \hyperlink{tokdef_8c_source_l00046}{\-E\-R\-R\-\_\-\-M\-E\-M\-O\-R\-Y}, \hyperlink{tokdef_8c_source_l00055}{error()}, \hyperlink{tokdef_8h_source_l00068}{keyword\-::\-I\-D}, \hyperlink{tokdef_8c_source_l00179}{keywords}, and \hyperlink{tokdef_8h_source_l00067}{keyword\-::w}.
-
-
-\begin{DoxyCode}
-                  \{
-  \hyperlink{tokdef_8h_structkeyword}{keyword} *EQ\_PTR;
-  \textcolor{keywordflow}{if} ((EQ\_PTR = malloc(\textcolor{keyword}{sizeof}(\hyperlink{tokdef_8h_structkeyword}{keyword}))) == NULL) \hyperlink{tokdef_8c_a8b4b6428a8bf1450cf23b6032dec56cf}{error}(\hyperlink{tokdef_8c_ad7109e2dccd18353c3bdd5f55ad94b55afb88c5fa6e7d51074ec36bd4578e03a0}{ERR_MEMORY});
-  strcpy(EQ\_PTR->\hyperlink{tokdef_8h_a02d5d49fc221e244cfc4f7196c1a2251}{w}, \hyperlink{tokdef_8c_a378b0ae598a7cfd7eb28be463d4cc909}{keywords}[\hyperlink{tokdef_8c_acf2488b95c97e0378c9bf49de3b50f28a9efdc855f3c1477957fb50affec07f8f}{EQ} - 256]);
-  EQ\_PTR->\hyperlink{tokdef_8h_a79da3556d7a0b19c9d1ce39e9d4a0bc7}{ID} = \hyperlink{tokdef_8c_acf2488b95c97e0378c9bf49de3b50f28a9efdc855f3c1477957fb50affec07f8f}{EQ};
-  \textcolor{keywordflow}{return} EQ\_PTR;
-\}
-\end{DoxyCode}
-
-
-\-Here is the call graph for this function\-:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=204pt]{tokdef_8h_aeef061af1fffa52edd7eaa510b82c16c_cgraph}
-\end{center}
-\end{figure}
-
-
-\hypertarget{tokdef_8h_af278058c4829574ed15f6943f39bacad}{\index{tokdef.\-h@{tokdef.\-h}!ini\-\_\-\-G\-E@{ini\-\_\-\-G\-E}}
-\index{ini\-\_\-\-G\-E@{ini\-\_\-\-G\-E}!tokdef.h@{tokdef.\-h}}
-\paragraph[{ini\-\_\-\-G\-E}]{\setlength{\rightskip}{0pt plus 5cm}{\bf keyword}$\ast$ {\bf ini\-\_\-\-G\-E} (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}}\label{tokdef_8h_af278058c4829574ed15f6943f39bacad}
-
-
-initialise keyword $>$= 
-
-\begin{DoxyReturn}{\-Returns}
-keyword$\ast$ 
-\end{DoxyReturn}
-
-
-\-Definition at line \hyperlink{tokdef_8c_source_l00394}{394} of file \hyperlink{tokdef_8c_source}{tokdef.\-c}.
-
-
-
-\-References \hyperlink{tokdef_8c_source_l00046}{\-E\-R\-R\-\_\-\-M\-E\-M\-O\-R\-Y}, \hyperlink{tokdef_8c_source_l00055}{error()}, \hyperlink{tokdef_8c_source_l00191}{\-G\-E}, \hyperlink{tokdef_8h_source_l00068}{keyword\-::\-I\-D}, \hyperlink{tokdef_8c_source_l00179}{keywords}, and \hyperlink{tokdef_8h_source_l00067}{keyword\-::w}.
-
-
-\begin{DoxyCode}
-                  \{
-  \hyperlink{tokdef_8h_structkeyword}{keyword} *GE\_PTR;
-  \textcolor{keywordflow}{if} ((GE\_PTR = malloc(\textcolor{keyword}{sizeof}(\hyperlink{tokdef_8h_structkeyword}{keyword}))) == NULL) \hyperlink{tokdef_8c_a8b4b6428a8bf1450cf23b6032dec56cf}{error}(\hyperlink{tokdef_8c_ad7109e2dccd18353c3bdd5f55ad94b55afb88c5fa6e7d51074ec36bd4578e03a0}{ERR_MEMORY});
-  strcpy(GE\_PTR->\hyperlink{tokdef_8h_a02d5d49fc221e244cfc4f7196c1a2251}{w}, \hyperlink{tokdef_8c_a378b0ae598a7cfd7eb28be463d4cc909}{keywords}[\hyperlink{tokdef_8c_acf2488b95c97e0378c9bf49de3b50f28a558711b4a2a25070b970d85f5926d5ce}{GE} - 256]);
-  GE\_PTR->\hyperlink{tokdef_8h_a79da3556d7a0b19c9d1ce39e9d4a0bc7}{ID} = \hyperlink{tokdef_8c_acf2488b95c97e0378c9bf49de3b50f28a558711b4a2a25070b970d85f5926d5ce}{GE};
-  \textcolor{keywordflow}{return} GE\_PTR;
-\}
-\end{DoxyCode}
-
-
-\-Here is the call graph for this function\-:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=204pt]{tokdef_8h_af278058c4829574ed15f6943f39bacad_cgraph}
-\end{center}
-\end{figure}
-
-
-\hypertarget{tokdef_8h_a59df98f4f9e2462ba38059c21729698c}{\index{tokdef.\-h@{tokdef.\-h}!ini\-\_\-\-I\-F@{ini\-\_\-\-I\-F}}
-\index{ini\-\_\-\-I\-F@{ini\-\_\-\-I\-F}!tokdef.h@{tokdef.\-h}}
-\paragraph[{ini\-\_\-\-I\-F}]{\setlength{\rightskip}{0pt plus 5cm}{\bf keyword}$\ast$ {\bf ini\-\_\-\-I\-F} (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}}\label{tokdef_8h_a59df98f4f9e2462ba38059c21729698c}
-
-
-initialise keyword \-I\-F 
-
-\begin{DoxyReturn}{\-Returns}
-keyword$\ast$ 
-\end{DoxyReturn}
-
-
-\-Definition at line \hyperlink{tokdef_8c_source_l00264}{264} of file \hyperlink{tokdef_8c_source}{tokdef.\-c}.
-
-
-
-\-References \hyperlink{tokdef_8c_source_l00046}{\-E\-R\-R\-\_\-\-M\-E\-M\-O\-R\-Y}, \hyperlink{tokdef_8c_source_l00055}{error()}, \hyperlink{tokdef_8h_source_l00068}{keyword\-::\-I\-D}, \hyperlink{tokdef_8c_source_l00190}{\-I\-F}, \hyperlink{tokdef_8c_source_l00179}{keywords}, and \hyperlink{tokdef_8h_source_l00067}{keyword\-::w}.
-
-
-\begin{DoxyCode}
-                  \{
-  \hyperlink{tokdef_8h_structkeyword}{keyword} *IF\_PTR;
-  \textcolor{keywordflow}{if} ((IF\_PTR = malloc(\textcolor{keyword}{sizeof}(\hyperlink{tokdef_8h_structkeyword}{keyword}))) == NULL) \hyperlink{tokdef_8c_a8b4b6428a8bf1450cf23b6032dec56cf}{error}(\hyperlink{tokdef_8c_ad7109e2dccd18353c3bdd5f55ad94b55afb88c5fa6e7d51074ec36bd4578e03a0}{ERR_MEMORY});
-  strcpy(IF\_PTR->\hyperlink{tokdef_8h_a02d5d49fc221e244cfc4f7196c1a2251}{w}, \hyperlink{tokdef_8c_a378b0ae598a7cfd7eb28be463d4cc909}{keywords}[\hyperlink{tokdef_8c_acf2488b95c97e0378c9bf49de3b50f28a252802eda493fb6b4a279c4452acb547}{IF} - 256]);
-  IF\_PTR->\hyperlink{tokdef_8h_a79da3556d7a0b19c9d1ce39e9d4a0bc7}{ID} = \hyperlink{tokdef_8c_acf2488b95c97e0378c9bf49de3b50f28a252802eda493fb6b4a279c4452acb547}{IF};
-  \textcolor{keywordflow}{return} IF\_PTR;
-\}
-\end{DoxyCode}
-
-
-\-Here is the call graph for this function\-:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=198pt]{tokdef_8h_a59df98f4f9e2462ba38059c21729698c_cgraph}
-\end{center}
-\end{figure}
-
-
-\hypertarget{tokdef_8h_a5255ae956b6faf8fd1e6221368ce0295}{\index{tokdef.\-h@{tokdef.\-h}!ini\-\_\-\-L\-E@{ini\-\_\-\-L\-E}}
-\index{ini\-\_\-\-L\-E@{ini\-\_\-\-L\-E}!tokdef.h@{tokdef.\-h}}
-\paragraph[{ini\-\_\-\-L\-E}]{\setlength{\rightskip}{0pt plus 5cm}{\bf keyword}$\ast$ {\bf ini\-\_\-\-L\-E} (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}}\label{tokdef_8h_a5255ae956b6faf8fd1e6221368ce0295}
-
-
-initialise keyword $<$= 
-
-\begin{DoxyReturn}{\-Returns}
-keyword$\ast$ 
-\end{DoxyReturn}
-
-
-\-Definition at line \hyperlink{tokdef_8c_source_l00407}{407} of file \hyperlink{tokdef_8c_source}{tokdef.\-c}.
-
-
-
-\-References \hyperlink{tokdef_8c_source_l00046}{\-E\-R\-R\-\_\-\-M\-E\-M\-O\-R\-Y}, \hyperlink{tokdef_8c_source_l00055}{error()}, \hyperlink{tokdef_8h_source_l00068}{keyword\-::\-I\-D}, \hyperlink{tokdef_8c_source_l00179}{keywords}, \hyperlink{tokdef_8c_source_l00191}{\-L\-E}, and \hyperlink{tokdef_8h_source_l00067}{keyword\-::w}.
-
-
-\begin{DoxyCode}
-                  \{
-  \hyperlink{tokdef_8h_structkeyword}{keyword} *LE\_PTR;
-  \textcolor{keywordflow}{if} ((LE\_PTR = malloc(\textcolor{keyword}{sizeof}(\hyperlink{tokdef_8h_structkeyword}{keyword}))) == NULL) \hyperlink{tokdef_8c_a8b4b6428a8bf1450cf23b6032dec56cf}{error}(\hyperlink{tokdef_8c_ad7109e2dccd18353c3bdd5f55ad94b55afb88c5fa6e7d51074ec36bd4578e03a0}{ERR_MEMORY});
-  strcpy(LE\_PTR->\hyperlink{tokdef_8h_a02d5d49fc221e244cfc4f7196c1a2251}{w}, \hyperlink{tokdef_8c_a378b0ae598a7cfd7eb28be463d4cc909}{keywords}[\hyperlink{tokdef_8c_acf2488b95c97e0378c9bf49de3b50f28a662ed4b51721a45f07d645d4ca099a61}{LE} - 256]);
-  LE\_PTR->\hyperlink{tokdef_8h_a79da3556d7a0b19c9d1ce39e9d4a0bc7}{ID} = \hyperlink{tokdef_8c_acf2488b95c97e0378c9bf49de3b50f28a662ed4b51721a45f07d645d4ca099a61}{LE};
-  \textcolor{keywordflow}{return} LE\_PTR;
-\}
-\end{DoxyCode}
-
-
-\-Here is the call graph for this function\-:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=202pt]{tokdef_8h_a5255ae956b6faf8fd1e6221368ce0295_cgraph}
-\end{center}
-\end{figure}
-
-
-\hypertarget{tokdef_8h_a700de1f32ddf4df29374bb22c928801f}{\index{tokdef.\-h@{tokdef.\-h}!ini\-\_\-\-N\-E@{ini\-\_\-\-N\-E}}
-\index{ini\-\_\-\-N\-E@{ini\-\_\-\-N\-E}!tokdef.h@{tokdef.\-h}}
-\paragraph[{ini\-\_\-\-N\-E}]{\setlength{\rightskip}{0pt plus 5cm}{\bf keyword}$\ast$ {\bf ini\-\_\-\-N\-E} (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}}\label{tokdef_8h_a700de1f32ddf4df29374bb22c928801f}
-
-
-initialise keyword != 
-
-\begin{DoxyReturn}{\-Returns}
-keyword$\ast$ 
-\end{DoxyReturn}
-
-
-\-Definition at line \hyperlink{tokdef_8c_source_l00420}{420} of file \hyperlink{tokdef_8c_source}{tokdef.\-c}.
-
-
-
-\-References \hyperlink{tokdef_8c_source_l00046}{\-E\-R\-R\-\_\-\-M\-E\-M\-O\-R\-Y}, \hyperlink{tokdef_8c_source_l00055}{error()}, \hyperlink{tokdef_8h_source_l00068}{keyword\-::\-I\-D}, \hyperlink{tokdef_8c_source_l00179}{keywords}, \hyperlink{tokdef_8c_source_l00191}{\-N\-E}, and \hyperlink{tokdef_8h_source_l00067}{keyword\-::w}.
-
-
-\begin{DoxyCode}
-                  \{
-  \hyperlink{tokdef_8h_structkeyword}{keyword} *NE\_PTR;
-  \textcolor{keywordflow}{if} ((NE\_PTR = malloc(\textcolor{keyword}{sizeof}(\hyperlink{tokdef_8h_structkeyword}{keyword}))) == NULL) \hyperlink{tokdef_8c_a8b4b6428a8bf1450cf23b6032dec56cf}{error}(\hyperlink{tokdef_8c_ad7109e2dccd18353c3bdd5f55ad94b55afb88c5fa6e7d51074ec36bd4578e03a0}{ERR_MEMORY});
-  strcpy(NE\_PTR->\hyperlink{tokdef_8h_a02d5d49fc221e244cfc4f7196c1a2251}{w}, \hyperlink{tokdef_8c_a378b0ae598a7cfd7eb28be463d4cc909}{keywords}[\hyperlink{tokdef_8c_acf2488b95c97e0378c9bf49de3b50f28a4d3f872f5054b256b01ee4f2c8cf51db}{NE} - 256]);
-  NE\_PTR->\hyperlink{tokdef_8h_a79da3556d7a0b19c9d1ce39e9d4a0bc7}{ID} = \hyperlink{tokdef_8c_acf2488b95c97e0378c9bf49de3b50f28a4d3f872f5054b256b01ee4f2c8cf51db}{NE};
-  \textcolor{keywordflow}{return} NE\_PTR;
-\}
-\end{DoxyCode}
-
-
-\-Here is the call graph for this function\-:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=204pt]{tokdef_8h_a700de1f32ddf4df29374bb22c928801f_cgraph}
-\end{center}
-\end{figure}
-
-
-\hypertarget{tokdef_8h_a0f9272daacf3da2d8e84b5823b198854}{\index{tokdef.\-h@{tokdef.\-h}!ini\-\_\-\-O\-D\-D@{ini\-\_\-\-O\-D\-D}}
-\index{ini\-\_\-\-O\-D\-D@{ini\-\_\-\-O\-D\-D}!tokdef.h@{tokdef.\-h}}
-\paragraph[{ini\-\_\-\-O\-D\-D}]{\setlength{\rightskip}{0pt plus 5cm}{\bf keyword}$\ast$ {\bf ini\-\_\-\-O\-D\-D} (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}}\label{tokdef_8h_a0f9272daacf3da2d8e84b5823b198854}
-
-
-initialise keyword \-O\-D\-D 
-
-\begin{DoxyReturn}{\-Returns}
-keyword$\ast$ 
-\end{DoxyReturn}
-
-
-\-Definition at line \hyperlink{tokdef_8c_source_l00277}{277} of file \hyperlink{tokdef_8c_source}{tokdef.\-c}.
-
-
-
-\-References \hyperlink{tokdef_8c_source_l00046}{\-E\-R\-R\-\_\-\-M\-E\-M\-O\-R\-Y}, \hyperlink{tokdef_8c_source_l00055}{error()}, \hyperlink{tokdef_8h_source_l00068}{keyword\-::\-I\-D}, \hyperlink{tokdef_8c_source_l00179}{keywords}, \hyperlink{tokdef_8c_source_l00190}{\-O\-D\-D}, and \hyperlink{tokdef_8h_source_l00067}{keyword\-::w}.
-
-
-\begin{DoxyCode}
-                   \{
-  \hyperlink{tokdef_8h_structkeyword}{keyword} *ODD\_PTR;
-  \textcolor{keywordflow}{if} ((ODD\_PTR = malloc(\textcolor{keyword}{sizeof}(\hyperlink{tokdef_8h_structkeyword}{keyword}))) == NULL) \hyperlink{tokdef_8c_a8b4b6428a8bf1450cf23b6032dec56cf}{error}(\hyperlink{tokdef_8c_ad7109e2dccd18353c3bdd5f55ad94b55afb88c5fa6e7d51074ec36bd4578e03a0}{ERR_MEMORY});
-  strcpy(ODD\_PTR->\hyperlink{tokdef_8h_a02d5d49fc221e244cfc4f7196c1a2251}{w}, \hyperlink{tokdef_8c_a378b0ae598a7cfd7eb28be463d4cc909}{keywords}[\hyperlink{tokdef_8c_acf2488b95c97e0378c9bf49de3b50f28aa29cedab858353a26006af9db7cd1ed8}{ODD} - 256]);
-  ODD\_PTR->\hyperlink{tokdef_8h_a79da3556d7a0b19c9d1ce39e9d4a0bc7}{ID} = \hyperlink{tokdef_8c_acf2488b95c97e0378c9bf49de3b50f28aa29cedab858353a26006af9db7cd1ed8}{ODD};
-  \textcolor{keywordflow}{return} ODD\_PTR;
-\}
-\end{DoxyCode}
-
-
-\-Here is the call graph for this function\-:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=212pt]{tokdef_8h_a0f9272daacf3da2d8e84b5823b198854_cgraph}
-\end{center}
-\end{figure}
-
-
-\hypertarget{tokdef_8h_afbc12afdc22344562084703f9a7ffc83}{\index{tokdef.\-h@{tokdef.\-h}!ini\-\_\-\-P\-A\-S\-S@{ini\-\_\-\-P\-A\-S\-S}}
-\index{ini\-\_\-\-P\-A\-S\-S@{ini\-\_\-\-P\-A\-S\-S}!tokdef.h@{tokdef.\-h}}
-\paragraph[{ini\-\_\-\-P\-A\-S\-S}]{\setlength{\rightskip}{0pt plus 5cm}{\bf keyword}$\ast$ {\bf ini\-\_\-\-P\-A\-S\-S} (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}}\label{tokdef_8h_afbc12afdc22344562084703f9a7ffc83}
-
-
-initialise keyword \-P\-A\-S\-S 
-
-\begin{DoxyReturn}{\-Returns}
-keyword$\ast$ 
-\end{DoxyReturn}
-
-
-\-Definition at line \hyperlink{tokdef_8c_source_l00368}{368} of file \hyperlink{tokdef_8c_source}{tokdef.\-c}.
-
-
-
-\-References \hyperlink{tokdef_8c_source_l00046}{\-E\-R\-R\-\_\-\-M\-E\-M\-O\-R\-Y}, \hyperlink{tokdef_8c_source_l00055}{error()}, \hyperlink{tokdef_8h_source_l00068}{keyword\-::\-I\-D}, \hyperlink{tokdef_8c_source_l00179}{keywords}, \hyperlink{tokdef_8c_source_l00191}{\-P\-A\-S\-S}, and \hyperlink{tokdef_8h_source_l00067}{keyword\-::w}.
-
-
-\begin{DoxyCode}
-                    \{
-  \hyperlink{tokdef_8h_structkeyword}{keyword} *PASS\_PTR;
-  \textcolor{keywordflow}{if} ((PASS\_PTR = malloc(\textcolor{keyword}{sizeof}(\hyperlink{tokdef_8h_structkeyword}{keyword}))) == NULL) \hyperlink{tokdef_8c_a8b4b6428a8bf1450cf23b6032dec56cf}{error}(\hyperlink{tokdef_8c_ad7109e2dccd18353c3bdd5f55ad94b55afb88c5fa6e7d51074ec36bd4578e03a0}{ERR_MEMORY});
-  strcpy(PASS\_PTR->\hyperlink{tokdef_8h_a02d5d49fc221e244cfc4f7196c1a2251}{w}, \hyperlink{tokdef_8c_a378b0ae598a7cfd7eb28be463d4cc909}{keywords}[\hyperlink{tokdef_8c_acf2488b95c97e0378c9bf49de3b50f28a0afa825567e442a46d131be6c71cb40f}{PASS} - 256]);
-  PASS\_PTR->\hyperlink{tokdef_8h_a79da3556d7a0b19c9d1ce39e9d4a0bc7}{ID} = \hyperlink{tokdef_8c_acf2488b95c97e0378c9bf49de3b50f28a0afa825567e442a46d131be6c71cb40f}{PASS};
-  \textcolor{keywordflow}{return} PASS\_PTR;
-\}
-\end{DoxyCode}
-
-
-\-Here is the call graph for this function\-:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=216pt]{tokdef_8h_afbc12afdc22344562084703f9a7ffc83_cgraph}
-\end{center}
-\end{figure}
-
-
-\hypertarget{tokdef_8h_afe2a95df81d5d0296e1a03e1d0eec690}{\index{tokdef.\-h@{tokdef.\-h}!ini\-\_\-\-P\-R\-I\-N\-T@{ini\-\_\-\-P\-R\-I\-N\-T}}
-\index{ini\-\_\-\-P\-R\-I\-N\-T@{ini\-\_\-\-P\-R\-I\-N\-T}!tokdef.h@{tokdef.\-h}}
-\paragraph[{ini\-\_\-\-P\-R\-I\-N\-T}]{\setlength{\rightskip}{0pt plus 5cm}{\bf keyword}$\ast$ {\bf ini\-\_\-\-P\-R\-I\-N\-T} (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}}\label{tokdef_8h_afe2a95df81d5d0296e1a03e1d0eec690}
-
-
-initialise keyword \-P\-R\-I\-N\-T 
-
-\begin{DoxyReturn}{\-Returns}
-keyword$\ast$ 
-\end{DoxyReturn}
-
-
-\-Definition at line \hyperlink{tokdef_8c_source_l00290}{290} of file \hyperlink{tokdef_8c_source}{tokdef.\-c}.
-
-
-
-\-References \hyperlink{tokdef_8c_source_l00046}{\-E\-R\-R\-\_\-\-M\-E\-M\-O\-R\-Y}, \hyperlink{tokdef_8c_source_l00055}{error()}, \hyperlink{tokdef_8h_source_l00068}{keyword\-::\-I\-D}, \hyperlink{tokdef_8c_source_l00179}{keywords}, \hyperlink{tokdef_8c_source_l00190}{\-P\-R\-I\-N\-T}, and \hyperlink{tokdef_8h_source_l00067}{keyword\-::w}.
-
-
-\begin{DoxyCode}
-                     \{
-  \hyperlink{tokdef_8h_structkeyword}{keyword} *PRINT\_PTR;
-  \textcolor{keywordflow}{if} ((PRINT\_PTR = malloc(\textcolor{keyword}{sizeof}(\hyperlink{tokdef_8h_structkeyword}{keyword}))) == NULL) \hyperlink{tokdef_8c_a8b4b6428a8bf1450cf23b6032dec56cf}{error}(\hyperlink{tokdef_8c_ad7109e2dccd18353c3bdd5f55ad94b55afb88c5fa6e7d51074ec36bd4578e03a0}{ERR_MEMORY});
-  strcpy(PRINT\_PTR->\hyperlink{tokdef_8h_a02d5d49fc221e244cfc4f7196c1a2251}{w}, \hyperlink{tokdef_8c_a378b0ae598a7cfd7eb28be463d4cc909}{keywords}[\hyperlink{tokdef_8c_acf2488b95c97e0378c9bf49de3b50f28ab107229d44d042caa8ab8df4c8acaa1f}{PRINT} - 256]);
-  PRINT\_PTR->\hyperlink{tokdef_8h_a79da3556d7a0b19c9d1ce39e9d4a0bc7}{ID} = \hyperlink{tokdef_8c_acf2488b95c97e0378c9bf49de3b50f28ab107229d44d042caa8ab8df4c8acaa1f}{PRINT};
-  \textcolor{keywordflow}{return} PRINT\_PTR;
-\}
-\end{DoxyCode}
-
-
-\-Here is the call graph for this function\-:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=222pt]{tokdef_8h_afe2a95df81d5d0296e1a03e1d0eec690_cgraph}
-\end{center}
-\end{figure}
-
-
-\hypertarget{tokdef_8h_a7f70e514a9b918ecea16bbbb8dc7dc5a}{\index{tokdef.\-h@{tokdef.\-h}!ini\-\_\-\-P\-R\-O\-C\-E\-D\-U\-R\-E@{ini\-\_\-\-P\-R\-O\-C\-E\-D\-U\-R\-E}}
-\index{ini\-\_\-\-P\-R\-O\-C\-E\-D\-U\-R\-E@{ini\-\_\-\-P\-R\-O\-C\-E\-D\-U\-R\-E}!tokdef.h@{tokdef.\-h}}
-\paragraph[{ini\-\_\-\-P\-R\-O\-C\-E\-D\-U\-R\-E}]{\setlength{\rightskip}{0pt plus 5cm}{\bf keyword}$\ast$ {\bf ini\-\_\-\-P\-R\-O\-C\-E\-D\-U\-R\-E} (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}}\label{tokdef_8h_a7f70e514a9b918ecea16bbbb8dc7dc5a}
-
-
-initialise keyword \-P\-R\-O\-C\-E\-D\-U\-R\-E 
-
-\begin{DoxyReturn}{\-Returns}
-keyword$\ast$ 
-\end{DoxyReturn}
-
-
-\-Definition at line \hyperlink{tokdef_8c_source_l00303}{303} of file \hyperlink{tokdef_8c_source}{tokdef.\-c}.
-
-
-
-\-References \hyperlink{tokdef_8c_source_l00046}{\-E\-R\-R\-\_\-\-M\-E\-M\-O\-R\-Y}, \hyperlink{tokdef_8c_source_l00055}{error()}, \hyperlink{tokdef_8h_source_l00068}{keyword\-::\-I\-D}, \hyperlink{tokdef_8c_source_l00179}{keywords}, \hyperlink{tokdef_8c_source_l00191}{\-P\-R\-O\-C\-E\-D\-U\-R\-E}, and \hyperlink{tokdef_8h_source_l00067}{keyword\-::w}.
-
-
-\begin{DoxyCode}
-                         \{
-  \hyperlink{tokdef_8h_structkeyword}{keyword} *PROCEDURE\_PTR;
-  \textcolor{keywordflow}{if} ((PROCEDURE\_PTR = malloc(\textcolor{keyword}{sizeof}(\hyperlink{tokdef_8h_structkeyword}{keyword}))) == NULL) \hyperlink{tokdef_8c_a8b4b6428a8bf1450cf23b6032dec56cf}{error}(\hyperlink{tokdef_8c_ad7109e2dccd18353c3bdd5f55ad94b55afb88c5fa6e7d51074ec36bd4578e03a0}{ERR_MEMORY});
-  strcpy(PROCEDURE\_PTR->\hyperlink{tokdef_8h_a02d5d49fc221e244cfc4f7196c1a2251}{w}, \hyperlink{tokdef_8c_a378b0ae598a7cfd7eb28be463d4cc909}{keywords}[\hyperlink{tokdef_8c_acf2488b95c97e0378c9bf49de3b50f28ad95bbb705a560daadfaa6c72329fbd61}{PROCEDURE} - 256]);
-  PROCEDURE\_PTR->\hyperlink{tokdef_8h_a79da3556d7a0b19c9d1ce39e9d4a0bc7}{ID} = \hyperlink{tokdef_8c_acf2488b95c97e0378c9bf49de3b50f28ad95bbb705a560daadfaa6c72329fbd61}{PROCEDURE};
-  \textcolor{keywordflow}{return} PROCEDURE\_PTR;
-\}
-\end{DoxyCode}
-
-
-\-Here is the call graph for this function\-:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=256pt]{tokdef_8h_a7f70e514a9b918ecea16bbbb8dc7dc5a_cgraph}
-\end{center}
-\end{figure}
-
-
-\hypertarget{tokdef_8h_a1ce32c3234be6e50832e306329658240}{\index{tokdef.\-h@{tokdef.\-h}!ini\-\_\-\-R\-E\-A\-D@{ini\-\_\-\-R\-E\-A\-D}}
-\index{ini\-\_\-\-R\-E\-A\-D@{ini\-\_\-\-R\-E\-A\-D}!tokdef.h@{tokdef.\-h}}
-\paragraph[{ini\-\_\-\-R\-E\-A\-D}]{\setlength{\rightskip}{0pt plus 5cm}{\bf keyword}$\ast$ {\bf ini\-\_\-\-R\-E\-A\-D} (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}}\label{tokdef_8h_a1ce32c3234be6e50832e306329658240}
-
-
-initialise keyword \-R\-E\-A\-D 
-
-\begin{DoxyReturn}{\-Returns}
-keyword$\ast$ 
-\end{DoxyReturn}
-
-
-\-Definition at line \hyperlink{tokdef_8c_source_l00316}{316} of file \hyperlink{tokdef_8c_source}{tokdef.\-c}.
-
-
-
-\-References \hyperlink{tokdef_8c_source_l00046}{\-E\-R\-R\-\_\-\-M\-E\-M\-O\-R\-Y}, \hyperlink{tokdef_8c_source_l00055}{error()}, \hyperlink{tokdef_8h_source_l00068}{keyword\-::\-I\-D}, \hyperlink{tokdef_8c_source_l00179}{keywords}, \hyperlink{tokdef_8c_source_l00191}{\-R\-E\-A\-D}, and \hyperlink{tokdef_8h_source_l00067}{keyword\-::w}.
-
-
-\begin{DoxyCode}
-                    \{
-  \hyperlink{tokdef_8h_structkeyword}{keyword} *READ\_PTR;
-  \textcolor{keywordflow}{if} ((READ\_PTR = malloc(\textcolor{keyword}{sizeof}(\hyperlink{tokdef_8h_structkeyword}{keyword}))) == NULL) \hyperlink{tokdef_8c_a8b4b6428a8bf1450cf23b6032dec56cf}{error}(\hyperlink{tokdef_8c_ad7109e2dccd18353c3bdd5f55ad94b55afb88c5fa6e7d51074ec36bd4578e03a0}{ERR_MEMORY});
-  strcpy(READ\_PTR->\hyperlink{tokdef_8h_a02d5d49fc221e244cfc4f7196c1a2251}{w}, \hyperlink{tokdef_8c_a378b0ae598a7cfd7eb28be463d4cc909}{keywords}[\hyperlink{tokdef_8c_acf2488b95c97e0378c9bf49de3b50f28acb9be765f361bb7efb9073730aac92c6}{READ} - 256]);
-  READ\_PTR->\hyperlink{tokdef_8h_a79da3556d7a0b19c9d1ce39e9d4a0bc7}{ID} = \hyperlink{tokdef_8c_acf2488b95c97e0378c9bf49de3b50f28acb9be765f361bb7efb9073730aac92c6}{READ};
-  \textcolor{keywordflow}{return} READ\_PTR;
-\}
-\end{DoxyCode}
-
-
-\-Here is the call graph for this function\-:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=218pt]{tokdef_8h_a1ce32c3234be6e50832e306329658240_cgraph}
-\end{center}
-\end{figure}
-
-
-\hypertarget{tokdef_8h_a6c3cbb287339e979208c720ddce34aa0}{\index{tokdef.\-h@{tokdef.\-h}!ini\-\_\-\-T\-H\-E\-N@{ini\-\_\-\-T\-H\-E\-N}}
-\index{ini\-\_\-\-T\-H\-E\-N@{ini\-\_\-\-T\-H\-E\-N}!tokdef.h@{tokdef.\-h}}
-\paragraph[{ini\-\_\-\-T\-H\-E\-N}]{\setlength{\rightskip}{0pt plus 5cm}{\bf keyword}$\ast$ {\bf ini\-\_\-\-T\-H\-E\-N} (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}}\label{tokdef_8h_a6c3cbb287339e979208c720ddce34aa0}
-
-
-initialise keyword \-T\-H\-E\-N 
-
-\begin{DoxyReturn}{\-Returns}
-keyword$\ast$ 
-\end{DoxyReturn}
-
-
-\-Definition at line \hyperlink{tokdef_8c_source_l00329}{329} of file \hyperlink{tokdef_8c_source}{tokdef.\-c}.
-
-
-
-\-References \hyperlink{tokdef_8c_source_l00046}{\-E\-R\-R\-\_\-\-M\-E\-M\-O\-R\-Y}, \hyperlink{tokdef_8c_source_l00055}{error()}, \hyperlink{tokdef_8h_source_l00068}{keyword\-::\-I\-D}, \hyperlink{tokdef_8c_source_l00179}{keywords}, \hyperlink{tokdef_8c_source_l00191}{\-T\-H\-E\-N}, and \hyperlink{tokdef_8h_source_l00067}{keyword\-::w}.
-
-
-\begin{DoxyCode}
-                    \{
-  \hyperlink{tokdef_8h_structkeyword}{keyword} *THEN\_PTR;
-  \textcolor{keywordflow}{if} ((THEN\_PTR = malloc(\textcolor{keyword}{sizeof}(\hyperlink{tokdef_8h_structkeyword}{keyword}))) == NULL) \hyperlink{tokdef_8c_a8b4b6428a8bf1450cf23b6032dec56cf}{error}(\hyperlink{tokdef_8c_ad7109e2dccd18353c3bdd5f55ad94b55afb88c5fa6e7d51074ec36bd4578e03a0}{ERR_MEMORY});
-  strcpy(THEN\_PTR->\hyperlink{tokdef_8h_a02d5d49fc221e244cfc4f7196c1a2251}{w}, \hyperlink{tokdef_8c_a378b0ae598a7cfd7eb28be463d4cc909}{keywords}[\hyperlink{tokdef_8c_acf2488b95c97e0378c9bf49de3b50f28abb40477a291c07277e13d096645f4305}{THEN} - 256]);
-  THEN\_PTR->\hyperlink{tokdef_8h_a79da3556d7a0b19c9d1ce39e9d4a0bc7}{ID} = \hyperlink{tokdef_8c_acf2488b95c97e0378c9bf49de3b50f28abb40477a291c07277e13d096645f4305}{THEN};
-  \textcolor{keywordflow}{return} THEN\_PTR;
-\}
-\end{DoxyCode}
-
-
-\-Here is the call graph for this function\-:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=218pt]{tokdef_8h_a6c3cbb287339e979208c720ddce34aa0_cgraph}
-\end{center}
-\end{figure}
-
-
-\hypertarget{tokdef_8h_a31c3ddcea0020c1e08f300c48fe783d3}{\index{tokdef.\-h@{tokdef.\-h}!ini\-\_\-\-V\-A\-R@{ini\-\_\-\-V\-A\-R}}
-\index{ini\-\_\-\-V\-A\-R@{ini\-\_\-\-V\-A\-R}!tokdef.h@{tokdef.\-h}}
-\paragraph[{ini\-\_\-\-V\-A\-R}]{\setlength{\rightskip}{0pt plus 5cm}{\bf keyword}$\ast$ {\bf ini\-\_\-\-V\-A\-R} (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}}\label{tokdef_8h_a31c3ddcea0020c1e08f300c48fe783d3}
-
-
-initialise keyword \-V\-A\-R 
-
-\begin{DoxyReturn}{\-Returns}
-keyword$\ast$ 
-\end{DoxyReturn}
-
-
-\-Definition at line \hyperlink{tokdef_8c_source_l00342}{342} of file \hyperlink{tokdef_8c_source}{tokdef.\-c}.
-
-
-
-\-References \hyperlink{tokdef_8c_source_l00046}{\-E\-R\-R\-\_\-\-M\-E\-M\-O\-R\-Y}, \hyperlink{tokdef_8c_source_l00055}{error()}, \hyperlink{tokdef_8h_source_l00068}{keyword\-::\-I\-D}, \hyperlink{tokdef_8c_source_l00179}{keywords}, \hyperlink{tokdef_8c_source_l00191}{\-V\-A\-R}, and \hyperlink{tokdef_8h_source_l00067}{keyword\-::w}.
-
-
-\begin{DoxyCode}
-                   \{
-  \hyperlink{tokdef_8h_structkeyword}{keyword} *VAR\_PTR;
-  \textcolor{keywordflow}{if} ((VAR\_PTR = malloc(\textcolor{keyword}{sizeof}(\hyperlink{tokdef_8h_structkeyword}{keyword}))) == NULL) \hyperlink{tokdef_8c_a8b4b6428a8bf1450cf23b6032dec56cf}{error}(\hyperlink{tokdef_8c_ad7109e2dccd18353c3bdd5f55ad94b55afb88c5fa6e7d51074ec36bd4578e03a0}{ERR_MEMORY});
-  strcpy(VAR\_PTR->\hyperlink{tokdef_8h_a02d5d49fc221e244cfc4f7196c1a2251}{w}, \hyperlink{tokdef_8c_a378b0ae598a7cfd7eb28be463d4cc909}{keywords}[\hyperlink{tokdef_8c_acf2488b95c97e0378c9bf49de3b50f28af68346ce0bfce7ab2ca0a240f5132863}{VAR} - 256]);
-  VAR\_PTR->\hyperlink{tokdef_8h_a79da3556d7a0b19c9d1ce39e9d4a0bc7}{ID} = \hyperlink{tokdef_8c_acf2488b95c97e0378c9bf49de3b50f28af68346ce0bfce7ab2ca0a240f5132863}{VAR};
-  \textcolor{keywordflow}{return} VAR\_PTR;
-\}
-\end{DoxyCode}
-
-
-\-Here is the call graph for this function\-:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=210pt]{tokdef_8h_a31c3ddcea0020c1e08f300c48fe783d3_cgraph}
-\end{center}
-\end{figure}
-
-
-\hypertarget{tokdef_8h_a58f3a75145550870497c2517db9d100b}{\index{tokdef.\-h@{tokdef.\-h}!ini\-\_\-\-W\-H\-I\-L\-E@{ini\-\_\-\-W\-H\-I\-L\-E}}
-\index{ini\-\_\-\-W\-H\-I\-L\-E@{ini\-\_\-\-W\-H\-I\-L\-E}!tokdef.h@{tokdef.\-h}}
-\paragraph[{ini\-\_\-\-W\-H\-I\-L\-E}]{\setlength{\rightskip}{0pt plus 5cm}{\bf keyword}$\ast$ {\bf ini\-\_\-\-W\-H\-I\-L\-E} (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}}\label{tokdef_8h_a58f3a75145550870497c2517db9d100b}
-
-
-initialise keyword \-W\-H\-I\-L\-E 
-
-\begin{DoxyReturn}{\-Returns}
-keyword$\ast$ 
-\end{DoxyReturn}
-
-
-\-Definition at line \hyperlink{tokdef_8c_source_l00355}{355} of file \hyperlink{tokdef_8c_source}{tokdef.\-c}.
-
-
-
-\-References \hyperlink{tokdef_8c_source_l00046}{\-E\-R\-R\-\_\-\-M\-E\-M\-O\-R\-Y}, \hyperlink{tokdef_8c_source_l00055}{error()}, \hyperlink{tokdef_8h_source_l00068}{keyword\-::\-I\-D}, \hyperlink{tokdef_8c_source_l00179}{keywords}, \hyperlink{tokdef_8h_source_l00067}{keyword\-::w}, and \hyperlink{tokdef_8c_source_l00191}{\-W\-H\-I\-L\-E}.
-
-
-\begin{DoxyCode}
-                     \{
-  \hyperlink{tokdef_8h_structkeyword}{keyword} *WHILE\_PTR;
-  \textcolor{keywordflow}{if} ((WHILE\_PTR = malloc(\textcolor{keyword}{sizeof}(\hyperlink{tokdef_8h_structkeyword}{keyword}))) == NULL) \hyperlink{tokdef_8c_a8b4b6428a8bf1450cf23b6032dec56cf}{error}(\hyperlink{tokdef_8c_ad7109e2dccd18353c3bdd5f55ad94b55afb88c5fa6e7d51074ec36bd4578e03a0}{ERR_MEMORY});
-  strcpy(WHILE\_PTR->\hyperlink{tokdef_8h_a02d5d49fc221e244cfc4f7196c1a2251}{w}, \hyperlink{tokdef_8c_a378b0ae598a7cfd7eb28be463d4cc909}{keywords}[\hyperlink{tokdef_8c_acf2488b95c97e0378c9bf49de3b50f28a3278fd035226215822c903790a1eee73}{WHILE} - 256]);
-  WHILE\_PTR->\hyperlink{tokdef_8h_a79da3556d7a0b19c9d1ce39e9d4a0bc7}{ID} = \hyperlink{tokdef_8c_acf2488b95c97e0378c9bf49de3b50f28a3278fd035226215822c903790a1eee73}{WHILE};
-  \textcolor{keywordflow}{return} WHILE\_PTR;
-\}
-\end{DoxyCode}
-
-
-\-Here is the call graph for this function\-:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=222pt]{tokdef_8h_a58f3a75145550870497c2517db9d100b_cgraph}
-\end{center}
-\end{figure}
-
-
 \hypertarget{tokdef_8h_a81ffeff3bff153b2a5e8576bad3c1145}{\index{tokdef.\-h@{tokdef.\-h}!l\-\_\-append@{l\-\_\-append}}
 \index{l\-\_\-append@{l\-\_\-append}!tokdef.h@{tokdef.\-h}}
 \paragraph[{l\-\_\-append}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf l\-\_\-append} (
@@ -1053,7 +331,7 @@ void
 
 
 
-\-References \hyperlink{tokdef_8c_source_l00046}{\-E\-R\-R\-\_\-\-M\-E\-M\-O\-R\-Y}, \hyperlink{tokdef_8c_source_l00055}{error()}, \hyperlink{tokdef_8c_source_l00090}{l\-\_\-\-Is\-Empty()}, \hyperlink{tokdef_8h_source_l00056}{list\-::next}, \hyperlink{tokdef_8c_source_l00046}{\-N\-U\-L\-L\-\_\-\-P\-O\-I\-N\-T\-E\-R}, \hyperlink{tokdef_8h_source_l00057}{list\-::previous}, and \hyperlink{tokdef_8h_source_l00055}{list\-::type}.
+\-References \hyperlink{tokdef_8c_source_l00046}{\-E\-R\-R\-\_\-\-M\-E\-M\-O\-R\-Y}, \hyperlink{tokdef_8c_source_l00055}{error()}, \hyperlink{tokdef_8c_source_l00090}{l\-\_\-\-Is\-Empty()}, \hyperlink{tokdef_8h_source_l00059}{list\-::next}, \hyperlink{tokdef_8c_source_l00046}{\-N\-U\-L\-L\-\_\-\-P\-O\-I\-N\-T\-E\-R}, \hyperlink{tokdef_8h_source_l00060}{list\-::previous}, and \hyperlink{tokdef_8h_source_l00058}{list\-::type}.
 
 
 \begin{DoxyCode}
@@ -1250,7 +528,7 @@ void
 
 
 
-\-References \hyperlink{tokdef_8c_source_l00046}{\-E\-M\-P\-T\-Y\-\_\-\-L\-I\-S\-T}, \hyperlink{tokdef_8c_source_l00055}{error()}, \hyperlink{tokdef_8c_source_l00090}{l\-\_\-\-Is\-Empty()}, \hyperlink{tokdef_8h_source_l00056}{list\-::next}, \hyperlink{tokdef_8c_source_l00046}{\-N\-U\-L\-L\-\_\-\-P\-O\-I\-N\-T\-E\-R}, and \hyperlink{tokdef_8h_source_l00057}{list\-::previous}.
+\-References \hyperlink{tokdef_8c_source_l00046}{\-E\-M\-P\-T\-Y\-\_\-\-L\-I\-S\-T}, \hyperlink{tokdef_8c_source_l00055}{error()}, \hyperlink{tokdef_8c_source_l00090}{l\-\_\-\-Is\-Empty()}, \hyperlink{tokdef_8h_source_l00059}{list\-::next}, \hyperlink{tokdef_8c_source_l00046}{\-N\-U\-L\-L\-\_\-\-P\-O\-I\-N\-T\-E\-R}, and \hyperlink{tokdef_8h_source_l00060}{list\-::previous}.
 
 
 \begin{DoxyCode}
@@ -1329,6 +607,13 @@ list pointer to oldest element
 
 
 \subsubsection{\-Variable \-Documentation}
+\hypertarget{tokdef_8h_a4ebf9dd0c63dce7afe593857c71fa3e9}{\index{tokdef.\-h@{tokdef.\-h}!keys@{keys}}
+\index{keys@{keys}!tokdef.h@{tokdef.\-h}}
+\paragraph[{keys}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf key\-\_\-array} {\bf keys}}}\label{tokdef_8h_a4ebf9dd0c63dce7afe593857c71fa3e9}
+
+
+\-Referenced by \hyperlink{tokdef_8c_source_l00208}{init\-\_\-\-Reserved\-Keys()}.
+
 \hypertarget{tokdef_8h_a6b08a68dd0458ee419869b9852116c9f}{\index{tokdef.\-h@{tokdef.\-h}!tag\-\_\-list@{tag\-\_\-list}}
 \index{tag\-\_\-list@{tag\-\_\-list}!tokdef.h@{tokdef.\-h}}
 \paragraph[{tag\-\_\-list}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf \-\_\-tag\-\_\-list} {\bf tag\-\_\-list}}}\label{tokdef_8h_a6b08a68dd0458ee419869b9852116c9f}

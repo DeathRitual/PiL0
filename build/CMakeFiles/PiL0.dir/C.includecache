@@ -1,0 +1,26 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/nirvash/Projects/PiL0/tokdef.c
+tokdef.h
+/home/nirvash/Projects/PiL0/tokdef.h
+stddef.h
+-
+stdio.h
+-
+stdlib.h
+-
+string.h
+-
+ctype.h
+-
+
+/home/nirvash/Projects/PiL0/tokdef.h
+stddef.h
+-
+

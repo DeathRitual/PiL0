@@ -4,6 +4,9 @@
  * Forwards the functions of the Token-Stream library to another file which includes this header file.
  */
 
+#include<stddef.h>
+#define NUMBER_KEYWORDS 18
+
 /**
  * @struct _tag_list  
  * 
@@ -63,6 +66,13 @@ extern struct _tag_list{
  */
 typedef struct _tag_list *list;
 
+extern void l_init(list *);
+extern int l_IsEmpty(list);
+extern void l_append(list *, char*, int *);
+extern void l_remove(list *);
+extern list l_top(list);
+extern list l_last(list);
+
 typedef struct{
   char w[10]; /**< keyword */
   int ID; /**< keyword identifier */
@@ -75,28 +85,17 @@ typedef struct{
   **/
 } keyword;
 
-extern void l_init(list *);
-extern int l_IsEmpty(list);
-extern void l_append(list *, char*, int *);
-extern void l_remove(list *);
-extern list l_top(list);
-extern list l_last(list);
+/**
+ * @struct key_array
+ * 
+ * @brief wrapper structure to get return an array of keywords
+ * 
+ * Array is as long as the number of keywords defined by the symbolic const
+ * set at top of the file.
+ **/
+struct key_array {
+  keyword resKeys[NUMBER_KEYWORDS]; /**< array of keywords */
+}keys;
 
-extern keyword* ini_BEGIN();
-extern keyword* ini_CALL();
-extern keyword* ini_CONST();
-extern keyword* ini_DO();
-extern keyword* ini_END();
-extern keyword* ini_IF();
-extern keyword* ini_ODD();
-extern keyword* ini_PRINT();
-extern keyword* ini_PROCEDURE();
-extern keyword* ini_READ();
-extern keyword* ini_THEN();
-extern keyword* ini_VAR();
-extern keyword* ini_WHILE();
-extern keyword* ini_PASS();
-extern keyword* ini_EQ();
-extern keyword* ini_GE();
-extern keyword* ini_LE();
-extern keyword* ini_NE();  
+extern struct key_array init_ReservedKeys();
+

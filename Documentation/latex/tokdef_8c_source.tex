@@ -105,160 +105,28 @@
 00172 \textcolor{comment}{ * }
 00173 \textcolor{comment}{ */}
 00174 
-\hypertarget{tokdef_8c_source_l00179}{}\hyperlink{tokdef_8c_a378b0ae598a7cfd7eb28be463d4cc909}{00179} \textcolor{keywordtype}{char} *\hyperlink{tokdef_8c_a378b0ae598a7cfd7eb28be463d4cc909}{keywords}[] = \{
-00180   \textcolor{stringliteral}{"BEGIN"}, \textcolor{stringliteral}{"CALL"}, \textcolor{stringliteral}{"CONST"}, \textcolor{stringliteral}{"DO"}, \textcolor{stringliteral}{"END"}, \textcolor{stringliteral}{"IF"}, \textcolor{stringliteral}{"ODD"}, \textcolor{stringliteral}{"PRINT"}, \textcolor{stringliteral}{"PROCEDURE"},
-00181   \textcolor{stringliteral}{"READ"}, \textcolor{stringliteral}{"THEN"}, \textcolor{stringliteral}{"VAR"}, \textcolor{stringliteral}{"WHILE"}, \textcolor{stringliteral}{"PASS"}, \textcolor{stringliteral}{"=="}, \textcolor{stringliteral}{">="}, \textcolor{stringliteral}{"<="}, \textcolor{stringliteral}{"!="}
-00182 \};
-00183 
-\hypertarget{tokdef_8c_source_l00189}{}\hyperlink{tokdef_8c_acf2488b95c97e0378c9bf49de3b50f28}{00189} \textcolor{keyword}{enum} \textcolor{keywordtype}{id} \{
-\hypertarget{tokdef_8c_source_l00190}{}\hyperlink{tokdef_8c_acf2488b95c97e0378c9bf49de3b50f28ab107229d44d042caa8ab8df4c8acaa1f}{00190}   \hyperlink{tokdef_8c_acf2488b95c97e0378c9bf49de3b50f28a368db50032da622d4c456ef7eaf9cb67}{BEGIN} = 256, \hyperlink{tokdef_8c_acf2488b95c97e0378c9bf49de3b50f28abd0ebc08c262bab82a1882256d2d66e8}{CALL}, \hyperlink{tokdef_8c_acf2488b95c97e0378c9bf49de3b50f28a3d044162d972156d897cea80f216b9ca}{CONST}, \hyperlink{tokdef_8c_acf2488b95c97e0378c9bf49de3b50f28abfea6036e64d9c7c773d277a57d2f959}{DO}, \hyperlink{tokdef_8c_acf2488b95c97e0378c9bf49de3b50f28adc6f24fd6915a3f2786a1b7045406924}{END}, \hyperlink{tokdef_8c_acf2488b95c97e0378c9bf49de3b50f28a252802eda493fb6b4a279c4452acb547}{IF}, \hyperlink{tokdef_8c_acf2488b95c97e0378c9bf49de3b50f28aa29cedab858353a26006af9db7cd1ed8}{ODD}, \hyperlink{tokdef_8c_acf2488b95c97e0378c9bf49de3b50f28ab107229d44d042caa8ab8df4c8acaa1f}{PRINT},
-\hypertarget{tokdef_8c_source_l00191}{}\hyperlink{tokdef_8c_acf2488b95c97e0378c9bf49de3b50f28a3278fd035226215822c903790a1eee73}{00191}   \hyperlink{tokdef_8c_acf2488b95c97e0378c9bf49de3b50f28ad95bbb705a560daadfaa6c72329fbd61}{PROCEDURE}, \hyperlink{tokdef_8c_acf2488b95c97e0378c9bf49de3b50f28acb9be765f361bb7efb9073730aac92c6}{READ}, \hyperlink{tokdef_8c_acf2488b95c97e0378c9bf49de3b50f28abb40477a291c07277e13d096645f4305}{THEN}, \hyperlink{tokdef_8c_acf2488b95c97e0378c9bf49de3b50f28af68346ce0bfce7ab2ca0a240f5132863}{VAR}, \hyperlink{tokdef_8c_acf2488b95c97e0378c9bf49de3b50f28a3278fd035226215822c903790a1eee73}{WHILE}, \hyperlink{tokdef_8c_acf2488b95c97e0378c9bf49de3b50f28a0afa825567e442a46d131be6c71cb40f}{PASS}, \hyperlink{tokdef_8c_acf2488b95c97e0378c9bf49de3b50f28a9efdc855f3c1477957fb50affec07f8f}{EQ}, \hyperlink{tokdef_8c_acf2488b95c97e0378c9bf49de3b50f28a558711b4a2a25070b970d85f5926d5ce}{GE}, \hyperlink{tokdef_8c_acf2488b95c97e0378c9bf49de3b50f28a662ed4b51721a45f07d645d4ca099a61}{LE}, \hyperlink{tokdef_8c_acf2488b95c97e0378c9bf49de3b50f28a4d3f872f5054b256b01ee4f2c8cf51db}{NE}, \hyperlink{tokdef_8c_acf2488b95c97e0378c9bf49de3b50f28a84f8ae2490f9e4bd2321fd21f4b0e807}{IDENTIFIER}, \hyperlink{tokdef_8c_acf2488b95c97e0378c9bf49de3b50f28a17897512ed7598aeb5912e3d45bf000d}{NUM}
-00192 \};
-00193 
-\hypertarget{tokdef_8c_source_l00199}{}\hyperlink{tokdef_8c_a2e5119b19a8d11244e9af9555dba5f66}{00199} \hyperlink{tokdef_8h_structkeyword}{keyword}* \hyperlink{tokdef_8h_a2e5119b19a8d11244e9af9555dba5f66}{ini_BEGIN}() \{
-00200   \hyperlink{tokdef_8h_structkeyword}{keyword} *BEGIN\_PTR;
-00201   \textcolor{keywordflow}{if} ((BEGIN\_PTR = malloc(\textcolor{keyword}{sizeof}(\hyperlink{tokdef_8h_structkeyword}{keyword}))) == NULL) \hyperlink{tokdef_8c_a8b4b6428a8bf1450cf23b6032dec56cf}{error}(\hyperlink{tokdef_8c_ad7109e2dccd18353c3bdd5f55ad94b55afb88c5fa6e7d51074ec36bd4578e03a0}{ERR_MEMORY});
-00202   strcpy(BEGIN\_PTR->\hyperlink{tokdef_8h_a02d5d49fc221e244cfc4f7196c1a2251}{w}, \hyperlink{tokdef_8c_a378b0ae598a7cfd7eb28be463d4cc909}{keywords}[\hyperlink{tokdef_8c_acf2488b95c97e0378c9bf49de3b50f28a368db50032da622d4c456ef7eaf9cb67}{BEGIN} - 256]);
-00203   BEGIN\_PTR->\hyperlink{tokdef_8h_a79da3556d7a0b19c9d1ce39e9d4a0bc7}{ID} = \hyperlink{tokdef_8c_acf2488b95c97e0378c9bf49de3b50f28a368db50032da622d4c456ef7eaf9cb67}{BEGIN};
-00204   \textcolor{keywordflow}{return} BEGIN\_PTR;
-00205 \}
-00206 
-\hypertarget{tokdef_8c_source_l00212}{}\hyperlink{tokdef_8c_acd9099ba07f5918fcecfb174f29b267b}{00212} \hyperlink{tokdef_8h_structkeyword}{keyword}* \hyperlink{tokdef_8h_acd9099ba07f5918fcecfb174f29b267b}{ini_CALL}() \{
-00213   \hyperlink{tokdef_8h_structkeyword}{keyword} *CALL\_PTR;
-00214   \textcolor{keywordflow}{if} ((CALL\_PTR = malloc(\textcolor{keyword}{sizeof}(\hyperlink{tokdef_8h_structkeyword}{keyword}))) == NULL) \hyperlink{tokdef_8c_a8b4b6428a8bf1450cf23b6032dec56cf}{error}(\hyperlink{tokdef_8c_ad7109e2dccd18353c3bdd5f55ad94b55afb88c5fa6e7d51074ec36bd4578e03a0}{ERR_MEMORY});
-00215   strcpy(CALL\_PTR->\hyperlink{tokdef_8h_a02d5d49fc221e244cfc4f7196c1a2251}{w}, \hyperlink{tokdef_8c_a378b0ae598a7cfd7eb28be463d4cc909}{keywords}[\hyperlink{tokdef_8c_acf2488b95c97e0378c9bf49de3b50f28abd0ebc08c262bab82a1882256d2d66e8}{CALL} - 256]);
-00216   CALL\_PTR->\hyperlink{tokdef_8h_a79da3556d7a0b19c9d1ce39e9d4a0bc7}{ID} = \hyperlink{tokdef_8c_acf2488b95c97e0378c9bf49de3b50f28abd0ebc08c262bab82a1882256d2d66e8}{CALL};
-00217   \textcolor{keywordflow}{return} CALL\_PTR;
-00218 \}
-00219 
-\hypertarget{tokdef_8c_source_l00225}{}\hyperlink{tokdef_8c_a153311284cd712008980a20135dd5fa3}{00225} \hyperlink{tokdef_8h_structkeyword}{keyword}* \hyperlink{tokdef_8h_a153311284cd712008980a20135dd5fa3}{ini_CONST}() \{
-00226   \hyperlink{tokdef_8h_structkeyword}{keyword} *CONST\_PTR;
-00227   \textcolor{keywordflow}{if} ((CONST\_PTR = malloc(\textcolor{keyword}{sizeof}(\hyperlink{tokdef_8h_structkeyword}{keyword}))) == NULL) \hyperlink{tokdef_8c_a8b4b6428a8bf1450cf23b6032dec56cf}{error}(\hyperlink{tokdef_8c_ad7109e2dccd18353c3bdd5f55ad94b55afb88c5fa6e7d51074ec36bd4578e03a0}{ERR_MEMORY});
-00228   strcpy(CONST\_PTR->\hyperlink{tokdef_8h_a02d5d49fc221e244cfc4f7196c1a2251}{w}, \hyperlink{tokdef_8c_a378b0ae598a7cfd7eb28be463d4cc909}{keywords}[\hyperlink{tokdef_8c_acf2488b95c97e0378c9bf49de3b50f28a3d044162d972156d897cea80f216b9ca}{CONST} - 256]);
-00229   CONST\_PTR->\hyperlink{tokdef_8h_a79da3556d7a0b19c9d1ce39e9d4a0bc7}{ID} = \hyperlink{tokdef_8c_acf2488b95c97e0378c9bf49de3b50f28a3d044162d972156d897cea80f216b9ca}{CONST};
-00230   \textcolor{keywordflow}{return} CONST\_PTR;
-00231 \}
-00232 
-\hypertarget{tokdef_8c_source_l00238}{}\hyperlink{tokdef_8c_adf1f24a77a6d6f72f76e7e2dba2bc048}{00238} \hyperlink{tokdef_8h_structkeyword}{keyword}* \hyperlink{tokdef_8h_adf1f24a77a6d6f72f76e7e2dba2bc048}{ini_DO}() \{
-00239   \hyperlink{tokdef_8h_structkeyword}{keyword} *DO\_PTR;
-00240   \textcolor{keywordflow}{if} ((DO\_PTR = malloc(\textcolor{keyword}{sizeof}(\hyperlink{tokdef_8h_structkeyword}{keyword}))) == NULL) \hyperlink{tokdef_8c_a8b4b6428a8bf1450cf23b6032dec56cf}{error}(\hyperlink{tokdef_8c_ad7109e2dccd18353c3bdd5f55ad94b55afb88c5fa6e7d51074ec36bd4578e03a0}{ERR_MEMORY});
-00241   strcpy(DO\_PTR->\hyperlink{tokdef_8h_a02d5d49fc221e244cfc4f7196c1a2251}{w}, \hyperlink{tokdef_8c_a378b0ae598a7cfd7eb28be463d4cc909}{keywords}[\hyperlink{tokdef_8c_acf2488b95c97e0378c9bf49de3b50f28abfea6036e64d9c7c773d277a57d2f959}{DO} - 256]);
-00242   DO\_PTR->\hyperlink{tokdef_8h_a79da3556d7a0b19c9d1ce39e9d4a0bc7}{ID} = \hyperlink{tokdef_8c_acf2488b95c97e0378c9bf49de3b50f28abfea6036e64d9c7c773d277a57d2f959}{DO};
-00243   \textcolor{keywordflow}{return} DO\_PTR;
-00244 \}
-00245 
-\hypertarget{tokdef_8c_source_l00251}{}\hyperlink{tokdef_8c_a41926a474714a535fe6ab94b09c1ec58}{00251} \hyperlink{tokdef_8h_structkeyword}{keyword}* \hyperlink{tokdef_8h_a41926a474714a535fe6ab94b09c1ec58}{ini_END}() \{
-00252   \hyperlink{tokdef_8h_structkeyword}{keyword} *END\_PTR;
-00253   \textcolor{keywordflow}{if} ((END\_PTR = malloc(\textcolor{keyword}{sizeof}(\hyperlink{tokdef_8h_structkeyword}{keyword}))) == NULL) \hyperlink{tokdef_8c_a8b4b6428a8bf1450cf23b6032dec56cf}{error}(\hyperlink{tokdef_8c_ad7109e2dccd18353c3bdd5f55ad94b55afb88c5fa6e7d51074ec36bd4578e03a0}{ERR_MEMORY});
-00254   strcpy(END\_PTR->\hyperlink{tokdef_8h_a02d5d49fc221e244cfc4f7196c1a2251}{w}, \hyperlink{tokdef_8c_a378b0ae598a7cfd7eb28be463d4cc909}{keywords}[\hyperlink{tokdef_8c_acf2488b95c97e0378c9bf49de3b50f28adc6f24fd6915a3f2786a1b7045406924}{END} - 256]);
-00255   END\_PTR->\hyperlink{tokdef_8h_a79da3556d7a0b19c9d1ce39e9d4a0bc7}{ID} = \hyperlink{tokdef_8c_acf2488b95c97e0378c9bf49de3b50f28adc6f24fd6915a3f2786a1b7045406924}{END};
-00256   \textcolor{keywordflow}{return} END\_PTR;
-00257 \}
-00258 
-\hypertarget{tokdef_8c_source_l00264}{}\hyperlink{tokdef_8c_a59df98f4f9e2462ba38059c21729698c}{00264} \hyperlink{tokdef_8h_structkeyword}{keyword}* \hyperlink{tokdef_8h_a59df98f4f9e2462ba38059c21729698c}{ini_IF}() \{
-00265   \hyperlink{tokdef_8h_structkeyword}{keyword} *IF\_PTR;
-00266   \textcolor{keywordflow}{if} ((IF\_PTR = malloc(\textcolor{keyword}{sizeof}(\hyperlink{tokdef_8h_structkeyword}{keyword}))) == NULL) \hyperlink{tokdef_8c_a8b4b6428a8bf1450cf23b6032dec56cf}{error}(\hyperlink{tokdef_8c_ad7109e2dccd18353c3bdd5f55ad94b55afb88c5fa6e7d51074ec36bd4578e03a0}{ERR_MEMORY});
-00267   strcpy(IF\_PTR->\hyperlink{tokdef_8h_a02d5d49fc221e244cfc4f7196c1a2251}{w}, \hyperlink{tokdef_8c_a378b0ae598a7cfd7eb28be463d4cc909}{keywords}[\hyperlink{tokdef_8c_acf2488b95c97e0378c9bf49de3b50f28a252802eda493fb6b4a279c4452acb547}{IF} - 256]);
-00268   IF\_PTR->\hyperlink{tokdef_8h_a79da3556d7a0b19c9d1ce39e9d4a0bc7}{ID} = \hyperlink{tokdef_8c_acf2488b95c97e0378c9bf49de3b50f28a252802eda493fb6b4a279c4452acb547}{IF};
-00269   \textcolor{keywordflow}{return} IF\_PTR;
-00270 \}
-00271 
-\hypertarget{tokdef_8c_source_l00277}{}\hyperlink{tokdef_8c_a0f9272daacf3da2d8e84b5823b198854}{00277} \hyperlink{tokdef_8h_structkeyword}{keyword}* \hyperlink{tokdef_8h_a0f9272daacf3da2d8e84b5823b198854}{ini_ODD}() \{
-00278   \hyperlink{tokdef_8h_structkeyword}{keyword} *ODD\_PTR;
-00279   \textcolor{keywordflow}{if} ((ODD\_PTR = malloc(\textcolor{keyword}{sizeof}(\hyperlink{tokdef_8h_structkeyword}{keyword}))) == NULL) \hyperlink{tokdef_8c_a8b4b6428a8bf1450cf23b6032dec56cf}{error}(\hyperlink{tokdef_8c_ad7109e2dccd18353c3bdd5f55ad94b55afb88c5fa6e7d51074ec36bd4578e03a0}{ERR_MEMORY});
-00280   strcpy(ODD\_PTR->\hyperlink{tokdef_8h_a02d5d49fc221e244cfc4f7196c1a2251}{w}, \hyperlink{tokdef_8c_a378b0ae598a7cfd7eb28be463d4cc909}{keywords}[\hyperlink{tokdef_8c_acf2488b95c97e0378c9bf49de3b50f28aa29cedab858353a26006af9db7cd1ed8}{ODD} - 256]);
-00281   ODD\_PTR->\hyperlink{tokdef_8h_a79da3556d7a0b19c9d1ce39e9d4a0bc7}{ID} = \hyperlink{tokdef_8c_acf2488b95c97e0378c9bf49de3b50f28aa29cedab858353a26006af9db7cd1ed8}{ODD};
-00282   \textcolor{keywordflow}{return} ODD\_PTR;
-00283 \}
-00284 
-\hypertarget{tokdef_8c_source_l00290}{}\hyperlink{tokdef_8c_afe2a95df81d5d0296e1a03e1d0eec690}{00290} \hyperlink{tokdef_8h_structkeyword}{keyword}* \hyperlink{tokdef_8h_afe2a95df81d5d0296e1a03e1d0eec690}{ini_PRINT}() \{
-00291   \hyperlink{tokdef_8h_structkeyword}{keyword} *PRINT\_PTR;
-00292   \textcolor{keywordflow}{if} ((PRINT\_PTR = malloc(\textcolor{keyword}{sizeof}(\hyperlink{tokdef_8h_structkeyword}{keyword}))) == NULL) \hyperlink{tokdef_8c_a8b4b6428a8bf1450cf23b6032dec56cf}{error}(\hyperlink{tokdef_8c_ad7109e2dccd18353c3bdd5f55ad94b55afb88c5fa6e7d51074ec36bd4578e03a0}{ERR_MEMORY});
-00293   strcpy(PRINT\_PTR->\hyperlink{tokdef_8h_a02d5d49fc221e244cfc4f7196c1a2251}{w}, \hyperlink{tokdef_8c_a378b0ae598a7cfd7eb28be463d4cc909}{keywords}[\hyperlink{tokdef_8c_acf2488b95c97e0378c9bf49de3b50f28ab107229d44d042caa8ab8df4c8acaa1f}{PRINT} - 256]);
-00294   PRINT\_PTR->\hyperlink{tokdef_8h_a79da3556d7a0b19c9d1ce39e9d4a0bc7}{ID} = \hyperlink{tokdef_8c_acf2488b95c97e0378c9bf49de3b50f28ab107229d44d042caa8ab8df4c8acaa1f}{PRINT};
-00295   \textcolor{keywordflow}{return} PRINT\_PTR;
-00296 \}
-00297 
-\hypertarget{tokdef_8c_source_l00303}{}\hyperlink{tokdef_8c_a7f70e514a9b918ecea16bbbb8dc7dc5a}{00303} \hyperlink{tokdef_8h_structkeyword}{keyword}* \hyperlink{tokdef_8h_a7f70e514a9b918ecea16bbbb8dc7dc5a}{ini_PROCEDURE}() \{
-00304   \hyperlink{tokdef_8h_structkeyword}{keyword} *PROCEDURE\_PTR;
-00305   \textcolor{keywordflow}{if} ((PROCEDURE\_PTR = malloc(\textcolor{keyword}{sizeof}(\hyperlink{tokdef_8h_structkeyword}{keyword}))) == NULL) \hyperlink{tokdef_8c_a8b4b6428a8bf1450cf23b6032dec56cf}{error}(\hyperlink{tokdef_8c_ad7109e2dccd18353c3bdd5f55ad94b55afb88c5fa6e7d51074ec36bd4578e03a0}{ERR_MEMORY});
-00306   strcpy(PROCEDURE\_PTR->\hyperlink{tokdef_8h_a02d5d49fc221e244cfc4f7196c1a2251}{w}, \hyperlink{tokdef_8c_a378b0ae598a7cfd7eb28be463d4cc909}{keywords}[\hyperlink{tokdef_8c_acf2488b95c97e0378c9bf49de3b50f28ad95bbb705a560daadfaa6c72329fbd61}{PROCEDURE} - 256]);
-00307   PROCEDURE\_PTR->\hyperlink{tokdef_8h_a79da3556d7a0b19c9d1ce39e9d4a0bc7}{ID} = \hyperlink{tokdef_8c_acf2488b95c97e0378c9bf49de3b50f28ad95bbb705a560daadfaa6c72329fbd61}{PROCEDURE};
-00308   \textcolor{keywordflow}{return} PROCEDURE\_PTR;
-00309 \}
-00310 
-\hypertarget{tokdef_8c_source_l00316}{}\hyperlink{tokdef_8c_a1ce32c3234be6e50832e306329658240}{00316} \hyperlink{tokdef_8h_structkeyword}{keyword}* \hyperlink{tokdef_8h_a1ce32c3234be6e50832e306329658240}{ini_READ}() \{
-00317   \hyperlink{tokdef_8h_structkeyword}{keyword} *READ\_PTR;
-00318   \textcolor{keywordflow}{if} ((READ\_PTR = malloc(\textcolor{keyword}{sizeof}(\hyperlink{tokdef_8h_structkeyword}{keyword}))) == NULL) \hyperlink{tokdef_8c_a8b4b6428a8bf1450cf23b6032dec56cf}{error}(\hyperlink{tokdef_8c_ad7109e2dccd18353c3bdd5f55ad94b55afb88c5fa6e7d51074ec36bd4578e03a0}{ERR_MEMORY});
-00319   strcpy(READ\_PTR->\hyperlink{tokdef_8h_a02d5d49fc221e244cfc4f7196c1a2251}{w}, \hyperlink{tokdef_8c_a378b0ae598a7cfd7eb28be463d4cc909}{keywords}[\hyperlink{tokdef_8c_acf2488b95c97e0378c9bf49de3b50f28acb9be765f361bb7efb9073730aac92c6}{READ} - 256]);
-00320   READ\_PTR->\hyperlink{tokdef_8h_a79da3556d7a0b19c9d1ce39e9d4a0bc7}{ID} = \hyperlink{tokdef_8c_acf2488b95c97e0378c9bf49de3b50f28acb9be765f361bb7efb9073730aac92c6}{READ};
-00321   \textcolor{keywordflow}{return} READ\_PTR;
-00322 \}
-00323 
-\hypertarget{tokdef_8c_source_l00329}{}\hyperlink{tokdef_8c_a6c3cbb287339e979208c720ddce34aa0}{00329} \hyperlink{tokdef_8h_structkeyword}{keyword}* \hyperlink{tokdef_8h_a6c3cbb287339e979208c720ddce34aa0}{ini_THEN}() \{
-00330   \hyperlink{tokdef_8h_structkeyword}{keyword} *THEN\_PTR;
-00331   \textcolor{keywordflow}{if} ((THEN\_PTR = malloc(\textcolor{keyword}{sizeof}(\hyperlink{tokdef_8h_structkeyword}{keyword}))) == NULL) \hyperlink{tokdef_8c_a8b4b6428a8bf1450cf23b6032dec56cf}{error}(\hyperlink{tokdef_8c_ad7109e2dccd18353c3bdd5f55ad94b55afb88c5fa6e7d51074ec36bd4578e03a0}{ERR_MEMORY});
-00332   strcpy(THEN\_PTR->\hyperlink{tokdef_8h_a02d5d49fc221e244cfc4f7196c1a2251}{w}, \hyperlink{tokdef_8c_a378b0ae598a7cfd7eb28be463d4cc909}{keywords}[\hyperlink{tokdef_8c_acf2488b95c97e0378c9bf49de3b50f28abb40477a291c07277e13d096645f4305}{THEN} - 256]);
-00333   THEN\_PTR->\hyperlink{tokdef_8h_a79da3556d7a0b19c9d1ce39e9d4a0bc7}{ID} = \hyperlink{tokdef_8c_acf2488b95c97e0378c9bf49de3b50f28abb40477a291c07277e13d096645f4305}{THEN};
-00334   \textcolor{keywordflow}{return} THEN\_PTR;
-00335 \}
-00336 
-\hypertarget{tokdef_8c_source_l00342}{}\hyperlink{tokdef_8c_a31c3ddcea0020c1e08f300c48fe783d3}{00342} \hyperlink{tokdef_8h_structkeyword}{keyword}* \hyperlink{tokdef_8h_a31c3ddcea0020c1e08f300c48fe783d3}{ini_VAR}() \{
-00343   \hyperlink{tokdef_8h_structkeyword}{keyword} *VAR\_PTR;
-00344   \textcolor{keywordflow}{if} ((VAR\_PTR = malloc(\textcolor{keyword}{sizeof}(\hyperlink{tokdef_8h_structkeyword}{keyword}))) == NULL) \hyperlink{tokdef_8c_a8b4b6428a8bf1450cf23b6032dec56cf}{error}(\hyperlink{tokdef_8c_ad7109e2dccd18353c3bdd5f55ad94b55afb88c5fa6e7d51074ec36bd4578e03a0}{ERR_MEMORY});
-00345   strcpy(VAR\_PTR->\hyperlink{tokdef_8h_a02d5d49fc221e244cfc4f7196c1a2251}{w}, \hyperlink{tokdef_8c_a378b0ae598a7cfd7eb28be463d4cc909}{keywords}[\hyperlink{tokdef_8c_acf2488b95c97e0378c9bf49de3b50f28af68346ce0bfce7ab2ca0a240f5132863}{VAR} - 256]);
-00346   VAR\_PTR->\hyperlink{tokdef_8h_a79da3556d7a0b19c9d1ce39e9d4a0bc7}{ID} = \hyperlink{tokdef_8c_acf2488b95c97e0378c9bf49de3b50f28af68346ce0bfce7ab2ca0a240f5132863}{VAR};
-00347   \textcolor{keywordflow}{return} VAR\_PTR;
-00348 \}
-00349 
-\hypertarget{tokdef_8c_source_l00355}{}\hyperlink{tokdef_8c_a58f3a75145550870497c2517db9d100b}{00355} \hyperlink{tokdef_8h_structkeyword}{keyword}* \hyperlink{tokdef_8h_a58f3a75145550870497c2517db9d100b}{ini_WHILE}() \{
-00356   \hyperlink{tokdef_8h_structkeyword}{keyword} *WHILE\_PTR;
-00357   \textcolor{keywordflow}{if} ((WHILE\_PTR = malloc(\textcolor{keyword}{sizeof}(\hyperlink{tokdef_8h_structkeyword}{keyword}))) == NULL) \hyperlink{tokdef_8c_a8b4b6428a8bf1450cf23b6032dec56cf}{error}(\hyperlink{tokdef_8c_ad7109e2dccd18353c3bdd5f55ad94b55afb88c5fa6e7d51074ec36bd4578e03a0}{ERR_MEMORY});
-00358   strcpy(WHILE\_PTR->\hyperlink{tokdef_8h_a02d5d49fc221e244cfc4f7196c1a2251}{w}, \hyperlink{tokdef_8c_a378b0ae598a7cfd7eb28be463d4cc909}{keywords}[\hyperlink{tokdef_8c_acf2488b95c97e0378c9bf49de3b50f28a3278fd035226215822c903790a1eee73}{WHILE} - 256]);
-00359   WHILE\_PTR->\hyperlink{tokdef_8h_a79da3556d7a0b19c9d1ce39e9d4a0bc7}{ID} = \hyperlink{tokdef_8c_acf2488b95c97e0378c9bf49de3b50f28a3278fd035226215822c903790a1eee73}{WHILE};
-00360   \textcolor{keywordflow}{return} WHILE\_PTR;
-00361 \}
-00362 
-\hypertarget{tokdef_8c_source_l00368}{}\hyperlink{tokdef_8c_afbc12afdc22344562084703f9a7ffc83}{00368} \hyperlink{tokdef_8h_structkeyword}{keyword}* \hyperlink{tokdef_8h_afbc12afdc22344562084703f9a7ffc83}{ini_PASS}() \{
-00369   \hyperlink{tokdef_8h_structkeyword}{keyword} *PASS\_PTR;
-00370   \textcolor{keywordflow}{if} ((PASS\_PTR = malloc(\textcolor{keyword}{sizeof}(\hyperlink{tokdef_8h_structkeyword}{keyword}))) == NULL) \hyperlink{tokdef_8c_a8b4b6428a8bf1450cf23b6032dec56cf}{error}(\hyperlink{tokdef_8c_ad7109e2dccd18353c3bdd5f55ad94b55afb88c5fa6e7d51074ec36bd4578e03a0}{ERR_MEMORY});
-00371   strcpy(PASS\_PTR->\hyperlink{tokdef_8h_a02d5d49fc221e244cfc4f7196c1a2251}{w}, \hyperlink{tokdef_8c_a378b0ae598a7cfd7eb28be463d4cc909}{keywords}[\hyperlink{tokdef_8c_acf2488b95c97e0378c9bf49de3b50f28a0afa825567e442a46d131be6c71cb40f}{PASS} - 256]);
-00372   PASS\_PTR->\hyperlink{tokdef_8h_a79da3556d7a0b19c9d1ce39e9d4a0bc7}{ID} = \hyperlink{tokdef_8c_acf2488b95c97e0378c9bf49de3b50f28a0afa825567e442a46d131be6c71cb40f}{PASS};
-00373   \textcolor{keywordflow}{return} PASS\_PTR;
-00374 \}
-00375 
-\hypertarget{tokdef_8c_source_l00381}{}\hyperlink{tokdef_8c_aeef061af1fffa52edd7eaa510b82c16c}{00381} \hyperlink{tokdef_8h_structkeyword}{keyword}* \hyperlink{tokdef_8h_aeef061af1fffa52edd7eaa510b82c16c}{ini_EQ}() \{
-00382   \hyperlink{tokdef_8h_structkeyword}{keyword} *EQ\_PTR;
-00383   \textcolor{keywordflow}{if} ((EQ\_PTR = malloc(\textcolor{keyword}{sizeof}(\hyperlink{tokdef_8h_structkeyword}{keyword}))) == NULL) \hyperlink{tokdef_8c_a8b4b6428a8bf1450cf23b6032dec56cf}{error}(\hyperlink{tokdef_8c_ad7109e2dccd18353c3bdd5f55ad94b55afb88c5fa6e7d51074ec36bd4578e03a0}{ERR_MEMORY});
-00384   strcpy(EQ\_PTR->\hyperlink{tokdef_8h_a02d5d49fc221e244cfc4f7196c1a2251}{w}, \hyperlink{tokdef_8c_a378b0ae598a7cfd7eb28be463d4cc909}{keywords}[\hyperlink{tokdef_8c_acf2488b95c97e0378c9bf49de3b50f28a9efdc855f3c1477957fb50affec07f8f}{EQ} - 256]);
-00385   EQ\_PTR->\hyperlink{tokdef_8h_a79da3556d7a0b19c9d1ce39e9d4a0bc7}{ID} = \hyperlink{tokdef_8c_acf2488b95c97e0378c9bf49de3b50f28a9efdc855f3c1477957fb50affec07f8f}{EQ};
-00386   \textcolor{keywordflow}{return} EQ\_PTR;
-00387 \}
-00388 
-\hypertarget{tokdef_8c_source_l00394}{}\hyperlink{tokdef_8c_af278058c4829574ed15f6943f39bacad}{00394} \hyperlink{tokdef_8h_structkeyword}{keyword}* \hyperlink{tokdef_8h_af278058c4829574ed15f6943f39bacad}{ini_GE}() \{
-00395   \hyperlink{tokdef_8h_structkeyword}{keyword} *GE\_PTR;
-00396   \textcolor{keywordflow}{if} ((GE\_PTR = malloc(\textcolor{keyword}{sizeof}(\hyperlink{tokdef_8h_structkeyword}{keyword}))) == NULL) \hyperlink{tokdef_8c_a8b4b6428a8bf1450cf23b6032dec56cf}{error}(\hyperlink{tokdef_8c_ad7109e2dccd18353c3bdd5f55ad94b55afb88c5fa6e7d51074ec36bd4578e03a0}{ERR_MEMORY});
-00397   strcpy(GE\_PTR->\hyperlink{tokdef_8h_a02d5d49fc221e244cfc4f7196c1a2251}{w}, \hyperlink{tokdef_8c_a378b0ae598a7cfd7eb28be463d4cc909}{keywords}[\hyperlink{tokdef_8c_acf2488b95c97e0378c9bf49de3b50f28a558711b4a2a25070b970d85f5926d5ce}{GE} - 256]);
-00398   GE\_PTR->\hyperlink{tokdef_8h_a79da3556d7a0b19c9d1ce39e9d4a0bc7}{ID} = \hyperlink{tokdef_8c_acf2488b95c97e0378c9bf49de3b50f28a558711b4a2a25070b970d85f5926d5ce}{GE};
-00399   \textcolor{keywordflow}{return} GE\_PTR;
-00400 \}
-00401 
-\hypertarget{tokdef_8c_source_l00407}{}\hyperlink{tokdef_8c_a5255ae956b6faf8fd1e6221368ce0295}{00407} \hyperlink{tokdef_8h_structkeyword}{keyword}* \hyperlink{tokdef_8h_a5255ae956b6faf8fd1e6221368ce0295}{ini_LE}() \{
-00408   \hyperlink{tokdef_8h_structkeyword}{keyword} *LE\_PTR;
-00409   \textcolor{keywordflow}{if} ((LE\_PTR = malloc(\textcolor{keyword}{sizeof}(\hyperlink{tokdef_8h_structkeyword}{keyword}))) == NULL) \hyperlink{tokdef_8c_a8b4b6428a8bf1450cf23b6032dec56cf}{error}(\hyperlink{tokdef_8c_ad7109e2dccd18353c3bdd5f55ad94b55afb88c5fa6e7d51074ec36bd4578e03a0}{ERR_MEMORY});
-00410   strcpy(LE\_PTR->\hyperlink{tokdef_8h_a02d5d49fc221e244cfc4f7196c1a2251}{w}, \hyperlink{tokdef_8c_a378b0ae598a7cfd7eb28be463d4cc909}{keywords}[\hyperlink{tokdef_8c_acf2488b95c97e0378c9bf49de3b50f28a662ed4b51721a45f07d645d4ca099a61}{LE} - 256]);
-00411   LE\_PTR->\hyperlink{tokdef_8h_a79da3556d7a0b19c9d1ce39e9d4a0bc7}{ID} = \hyperlink{tokdef_8c_acf2488b95c97e0378c9bf49de3b50f28a662ed4b51721a45f07d645d4ca099a61}{LE};
-00412   \textcolor{keywordflow}{return} LE\_PTR;
-00413 \}
-00414 
-\hypertarget{tokdef_8c_source_l00420}{}\hyperlink{tokdef_8c_a700de1f32ddf4df29374bb22c928801f}{00420} \hyperlink{tokdef_8h_structkeyword}{keyword}* \hyperlink{tokdef_8h_a700de1f32ddf4df29374bb22c928801f}{ini_NE}() \{
-00421   \hyperlink{tokdef_8h_structkeyword}{keyword} *NE\_PTR;
-00422   \textcolor{keywordflow}{if} ((NE\_PTR = malloc(\textcolor{keyword}{sizeof}(\hyperlink{tokdef_8h_structkeyword}{keyword}))) == NULL) \hyperlink{tokdef_8c_a8b4b6428a8bf1450cf23b6032dec56cf}{error}(\hyperlink{tokdef_8c_ad7109e2dccd18353c3bdd5f55ad94b55afb88c5fa6e7d51074ec36bd4578e03a0}{ERR_MEMORY});
-00423   strcpy(NE\_PTR->\hyperlink{tokdef_8h_a02d5d49fc221e244cfc4f7196c1a2251}{w}, \hyperlink{tokdef_8c_a378b0ae598a7cfd7eb28be463d4cc909}{keywords}[\hyperlink{tokdef_8c_acf2488b95c97e0378c9bf49de3b50f28a4d3f872f5054b256b01ee4f2c8cf51db}{NE} - 256]);
-00424   NE\_PTR->\hyperlink{tokdef_8h_a79da3556d7a0b19c9d1ce39e9d4a0bc7}{ID} = \hyperlink{tokdef_8c_acf2488b95c97e0378c9bf49de3b50f28a4d3f872f5054b256b01ee4f2c8cf51db}{NE};
-00425   \textcolor{keywordflow}{return} NE\_PTR;
-00426 \}
-00427 
-00428 
-00429 \textcolor{preprocessor}{#endif}
+00175 
+00176 
+\hypertarget{tokdef_8c_source_l00183}{}\hyperlink{tokdef_8c_a3033e03f16b6d2620a2e39b45718f5b4}{00183} \textcolor{keyword}{enum} \hyperlink{tokdef_8c_a3033e03f16b6d2620a2e39b45718f5b4}{special_IDs} \{
+\hypertarget{tokdef_8c_source_l00184}{}\hyperlink{tokdef_8c_a3033e03f16b6d2620a2e39b45718f5b4a17897512ed7598aeb5912e3d45bf000d}{00184}   \hyperlink{tokdef_8c_a3033e03f16b6d2620a2e39b45718f5b4a84f8ae2490f9e4bd2321fd21f4b0e807}{IDENTIFIER} = 300, \hyperlink{tokdef_8c_a3033e03f16b6d2620a2e39b45718f5b4a17897512ed7598aeb5912e3d45bf000d}{NUM}
+00185 \};
+00186 
+00187 
+\hypertarget{tokdef_8c_source_l00193}{}\hyperlink{tokdef_8c_a378b0ae598a7cfd7eb28be463d4cc909}{00193} \textcolor{keyword}{static} \textcolor{keywordtype}{char} *\hyperlink{tokdef_8c_a378b0ae598a7cfd7eb28be463d4cc909}{keywords}[] = \{
+00194   \textcolor{stringliteral}{"BEGIN"}, \textcolor{stringliteral}{"CALL"}, \textcolor{stringliteral}{"CONST"}, \textcolor{stringliteral}{"DO"}, \textcolor{stringliteral}{"END"}, \textcolor{stringliteral}{"IF"}, \textcolor{stringliteral}{"ODD"}, \textcolor{stringliteral}{"PRINT"}, \textcolor{stringliteral}{"PROCEDURE"},
+00195   \textcolor{stringliteral}{"READ"}, \textcolor{stringliteral}{"THEN"}, \textcolor{stringliteral}{"VAR"}, \textcolor{stringliteral}{"WHILE"}, \textcolor{stringliteral}{"PASS"}, \textcolor{stringliteral}{"=="}, \textcolor{stringliteral}{">="}, \textcolor{stringliteral}{"<="}, \textcolor{stringliteral}{"!="}, NULL
+00196 \};
+00197 
+00198 
+\hypertarget{tokdef_8c_source_l00208}{}\hyperlink{tokdef_8c_a0bae71903db8f2f5e7fd637f9e86ee69}{00208} \textcolor{keyword}{struct }\hyperlink{tokdef_8h_structkey__array}{key_array} \hyperlink{tokdef_8h_a0bae71903db8f2f5e7fd637f9e86ee69}{init_ReservedKeys}() \{
+00209   \textcolor{keywordtype}{int} i;
+00210   \textcolor{keywordflow}{for} (i = 0; \hyperlink{tokdef_8c_a378b0ae598a7cfd7eb28be463d4cc909}{keywords}[i] != NULL; i++) \{
+00211     strcpy(\hyperlink{tokdef_8h_a4ebf9dd0c63dce7afe593857c71fa3e9}{keys}.\hyperlink{tokdef_8h_a58da8f115ae3dc40968147fbf30201a3}{resKeys}[i].\hyperlink{tokdef_8h_a02d5d49fc221e244cfc4f7196c1a2251}{w},\hyperlink{tokdef_8c_a378b0ae598a7cfd7eb28be463d4cc909}{keywords}[i]);
+00212     \hyperlink{tokdef_8h_a4ebf9dd0c63dce7afe593857c71fa3e9}{keys}.\hyperlink{tokdef_8h_a58da8f115ae3dc40968147fbf30201a3}{resKeys}[i].\hyperlink{tokdef_8h_a79da3556d7a0b19c9d1ce39e9d4a0bc7}{ID} = 256 + i;
+00213   \}
+00214   \textcolor{keywordflow}{return} \hyperlink{tokdef_8h_a4ebf9dd0c63dce7afe593857c71fa3e9}{keys};
+00215 \}
+00216 
+00217 
+00218 \textcolor{preprocessor}{#endif}
 \end{DoxyCode}

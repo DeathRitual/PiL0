@@ -1,0 +1,1 @@
+/usr/bin/gcc  -g    CMakeFiles/PiL0.dir/tokdef.o CMakeFiles/PiL0.dir/lexer.o  -o PiL0 -rdynamic 
