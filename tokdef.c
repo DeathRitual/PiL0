@@ -173,18 +173,6 @@ list l_last(list l) {
  */
 
 
-
-/**
- * @enum special_IDs identifier number for variables and numbers
- * 
- * identifying numbers start at 300. 
- * NOTE: If keywords exceds more than 44 words, than you have to increase this number 
- **/
-enum special_IDs {
-  IDENTIFIER = 300, NUM
-};
-
-
 /**
  * @var char *keywords[]
  * @brief Stringtable of all keywords longer than 1 character
@@ -196,22 +184,40 @@ static char *keywords[] = {
 };
 
 
+unsigned static int get_keyCount() {
+    int i = 1;
+	while (keywords[i] != 0)
+		i++;
+	return i;
+}
+
 /**
  * @brief Creates an array with all reserved keywords and their IDs
  *
  * @return key_array array with reserved keys
- * 
+ *
  * The IDs of the keywords start from 256 at keyword BEGIN and are incremented for every next
- * word. 
+ * word.
  * NOTE: If keywords number increases 44 you have to increase the special_Ids number!
  **/
-struct key_array init_ReservedKeys() {
+keyword *init_ReservedKeys() {
+  keyword *resKeys = malloc(sizeof *resKeys * get_keyCount());
   int i;
   for (i = 0; keywords[i] != NULL; i++) {
-    strcpy(keys.resKeys[i].w,keywords[i]);
-    keys.resKeys[i].ID = 256 + i;
+    strcpy(resKeys[i].w,keywords[i]);
+    resKeys[i].ID = 256 + i;
   }
-  return keys;
+  return resKeys;
+}
+
+
+int get_keyNUM(keyword *k, char *s) {
+	int i = 0;
+	for (i = 0; keywords[i] != NULL; i++) {
+		if (strcmp(k[i].w, s) == 0)
+			return i;
+	}
+	return -1;
 }
 
 
