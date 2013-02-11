@@ -1,6 +1,6 @@
 FILE(REMOVE_RECURSE
-  "CMakeFiles/PiL0.dir/tokdef.o"
   "CMakeFiles/PiL0.dir/lexer.o"
+  "CMakeFiles/PiL0.dir/pl.o"
   "PiL0.pdb"
   "PiL0"
 )

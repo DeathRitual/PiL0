@@ -12,7 +12,8 @@
 {\ttfamily \#include $<$stdlib.\-h$>$}\*
 {\ttfamily \#include $<$string.\-h$>$}\*
 {\ttfamily \#include $<$ctype.\-h$>$}\*
-\-Include dependency graph for tokdef.\-c\-:\nopagebreak
+\-Include dependency graph for tokdef.\-c\-:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -48,8 +49,12 @@ list \hyperlink{tokdef_8c_a662de1b392ef548996d646fdac76fdf4}{l\-\_\-top} (list l
 \begin{DoxyCompactList}\small\item\em get the oldest element of stream \end{DoxyCompactList}\item 
 list \hyperlink{tokdef_8c_a3e647acbc5d046872adef10908ea44b4}{l\-\_\-last} (list l)
 \begin{DoxyCompactList}\small\item\em get the newest element of stream \end{DoxyCompactList}\item 
-struct \hyperlink{tokdef_8h_structkey__array}{key\-\_\-array} \hyperlink{tokdef_8c_a0bae71903db8f2f5e7fd637f9e86ee69}{init\-\_\-\-Reserved\-Keys} ()
-\begin{DoxyCompactList}\small\item\em \-Creates an array with all reserved keywords and their \-I\-Ds. \end{DoxyCompactList}\end{DoxyCompactItemize}
+int \hyperlink{tokdef_8c_a9670ac79a4525a9152a28835404e2470}{get\-\_\-key\-N\-U\-M} (\hyperlink{tokdef_8h_structkeyword}{keyword} $\ast$k, char $\ast$s)
+\begin{DoxyCompactList}\small\item\em \-Returns the number of keyword. \end{DoxyCompactList}\item 
+static unsigned int \hyperlink{tokdef_8c_a6b0f05b95e21ab606b1aa2b573d0ed31}{get\-\_\-key\-Size} ()
+\begin{DoxyCompactList}\small\item\em counts of keywords \end{DoxyCompactList}\item 
+\hyperlink{tokdef_8h_structkeyword}{keyword} $\ast$ \hyperlink{tokdef_8c_a7f47851ed6277df979bcf14757dac244}{init\-\_\-\-Reserved\-Keys} ()
+\begin{DoxyCompactList}\small\item\em creates an array of all keywords \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{\-Variables}
 \begin{DoxyCompactItemize}
 \item 
@@ -183,39 +188,138 @@ void
 \end{figure}
 
 
-\hypertarget{tokdef_8c_a0bae71903db8f2f5e7fd637f9e86ee69}{\index{tokdef.\-c@{tokdef.\-c}!init\-\_\-\-Reserved\-Keys@{init\-\_\-\-Reserved\-Keys}}
-\index{init\-\_\-\-Reserved\-Keys@{init\-\_\-\-Reserved\-Keys}!tokdef.c@{tokdef.\-c}}
-\paragraph[{init\-\_\-\-Reserved\-Keys}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf key\-\_\-array} {\bf init\-\_\-\-Reserved\-Keys} (
+\hypertarget{tokdef_8c_a9670ac79a4525a9152a28835404e2470}{\index{tokdef.\-c@{tokdef.\-c}!get\-\_\-key\-N\-U\-M@{get\-\_\-key\-N\-U\-M}}
+\index{get\-\_\-key\-N\-U\-M@{get\-\_\-key\-N\-U\-M}!tokdef.c@{tokdef.\-c}}
+\paragraph[{get\-\_\-key\-N\-U\-M}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf get\-\_\-key\-N\-U\-M} (
 \begin{DoxyParamCaption}
-{}
+\item[{{\bf keyword} $\ast$}]{k, }
+\item[{char $\ast$}]{s}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily  \mbox{[}read\mbox{]}}}}\label{tokdef_8c_a0bae71903db8f2f5e7fd637f9e86ee69}
+)}}\label{tokdef_8c_a9670ac79a4525a9152a28835404e2470}
 
 
-\-Creates an array with all reserved keywords and their \-I\-Ds. 
+\-Returns the number of keyword. 
 
+\-Checks if the given word is a keyword and returns its position number from the key\-\_\-array
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em k} & array of keywords... \\
+\hline
+{\em s} & string to be checked... \\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{\-Returns}
-\hyperlink{tokdef_8h_structkey__array}{key\-\_\-array} array with reserved keys
+int either position number of keyword or -\/1 if word is not stored in keyword array 
 \end{DoxyReturn}
-\-The \-I\-Ds of the keywords start from 256 at keyword \-B\-E\-G\-I\-N and are incremented for every next word. \-N\-O\-T\-E\-: \-If keywords number increases 44 you have to increase the special\-\_\-\-Ids number! 
+
 
 \-Definition at line \hyperlink{tokdef_8c_source_l00208}{208} of file \hyperlink{tokdef_8c_source}{tokdef.\-c}.
 
 
 
-\-References \hyperlink{tokdef_8h_source_l00078}{keyword\-::\-I\-D}, \hyperlink{tokdef_8h_a4ebf9dd0c63dce7afe593857c71fa3e9}{keys}, \hyperlink{tokdef_8c_source_l00193}{keywords}, \hyperlink{tokdef_8h_source_l00097}{key\-\_\-array\-::res\-Keys}, and \hyperlink{tokdef_8h_source_l00077}{keyword\-::w}.
+\-References \hyperlink{tokdef_8c_source_l00193}{keywords}.
 
 
 \begin{DoxyCode}
-                                     \{
-  \textcolor{keywordtype}{int} i;
-  \textcolor{keywordflow}{for} (i = 0; \hyperlink{tokdef_8c_a378b0ae598a7cfd7eb28be463d4cc909}{keywords}[i] != NULL; i++) \{
-    strcpy(\hyperlink{tokdef_8h_a4ebf9dd0c63dce7afe593857c71fa3e9}{keys}.\hyperlink{tokdef_8h_a58da8f115ae3dc40968147fbf30201a3}{resKeys}[i].\hyperlink{tokdef_8h_a02d5d49fc221e244cfc4f7196c1a2251}{w},\hyperlink{tokdef_8c_a378b0ae598a7cfd7eb28be463d4cc909}{keywords}[i]);
-    \hyperlink{tokdef_8h_a4ebf9dd0c63dce7afe593857c71fa3e9}{keys}.\hyperlink{tokdef_8h_a58da8f115ae3dc40968147fbf30201a3}{resKeys}[i].\hyperlink{tokdef_8h_a79da3556d7a0b19c9d1ce39e9d4a0bc7}{ID} = 256 + i;
-  \}
-  \textcolor{keywordflow}{return} \hyperlink{tokdef_8h_a4ebf9dd0c63dce7afe593857c71fa3e9}{keys};
+                                    \{
+  \textcolor{keywordtype}{int} i = 0;
+  \textcolor{keywordflow}{for} (i = 0; \hyperlink{tokdef_8c_a378b0ae598a7cfd7eb28be463d4cc909}{keywords}[i] != NULL; i++) 
+    \textcolor{keywordflow}{if} (strcmp(k[i].w, s) == 0) \textcolor{keywordflow}{return} i;
+  \textcolor{keywordflow}{return} -1;
 \}
 \end{DoxyCode}
+\hypertarget{tokdef_8c_a6b0f05b95e21ab606b1aa2b573d0ed31}{\index{tokdef.\-c@{tokdef.\-c}!get\-\_\-key\-Size@{get\-\_\-key\-Size}}
+\index{get\-\_\-key\-Size@{get\-\_\-key\-Size}!tokdef.c@{tokdef.\-c}}
+\paragraph[{get\-\_\-key\-Size}]{\setlength{\rightskip}{0pt plus 5cm}static unsigned int {\bf get\-\_\-key\-Size} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}}\label{tokdef_8c_a6b0f05b95e21ab606b1aa2b573d0ed31}
+
+
+counts of keywords 
+
+\begin{DoxyReturn}{\-Returns}
+unsigned int number of keywords 
+\end{DoxyReturn}
+
+
+\-Definition at line \hyperlink{tokdef_8c_source_l00220}{220} of file \hyperlink{tokdef_8c_source}{tokdef.\-c}.
+
+
+
+\-References \hyperlink{tokdef_8c_source_l00193}{keywords}.
+
+
+
+\-Referenced by \hyperlink{tokdef_8c_source_l00232}{init\-\_\-\-Reserved\-Keys()}.
+
+
+\begin{DoxyCode}
+                                  \{
+  \textcolor{keywordtype}{int} i = 1;
+  \textcolor{keywordflow}{while} (\hyperlink{tokdef_8c_a378b0ae598a7cfd7eb28be463d4cc909}{keywords}[i] != NULL)
+    i++;
+  \textcolor{keywordflow}{return} i;
+\}
+\end{DoxyCode}
+
+
+\-Here is the caller graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=296pt]{tokdef_8c_a6b0f05b95e21ab606b1aa2b573d0ed31_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{tokdef_8c_a7f47851ed6277df979bcf14757dac244}{\index{tokdef.\-c@{tokdef.\-c}!init\-\_\-\-Reserved\-Keys@{init\-\_\-\-Reserved\-Keys}}
+\index{init\-\_\-\-Reserved\-Keys@{init\-\_\-\-Reserved\-Keys}!tokdef.c@{tokdef.\-c}}
+\paragraph[{init\-\_\-\-Reserved\-Keys}]{\setlength{\rightskip}{0pt plus 5cm}{\bf keyword}$\ast$ {\bf init\-\_\-\-Reserved\-Keys} (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{tokdef_8c_a7f47851ed6277df979bcf14757dac244}
+
+
+creates an array of all keywords 
+
+\begin{DoxyReturn}{\-Returns}
+keyword$\ast$ pointer to keyword array 
+\end{DoxyReturn}
+
+
+\-Definition at line \hyperlink{tokdef_8c_source_l00232}{232} of file \hyperlink{tokdef_8c_source}{tokdef.\-c}.
+
+
+
+\-References \hyperlink{tokdef_8c_source_l00220}{get\-\_\-key\-Size()}, \hyperlink{tokdef_8h_source_l00075}{keyword\-::\-I\-D}, and \hyperlink{tokdef_8c_source_l00193}{keywords}.
+
+
+\begin{DoxyCode}
+                             \{
+  \hyperlink{tokdef_8h_structkeyword}{keyword} *resKeys = malloc(\textcolor{keyword}{sizeof} *resKeys * \hyperlink{tokdef_8c_a6b0f05b95e21ab606b1aa2b573d0ed31}{get_keySize}());
+  \textcolor{keywordtype}{int} i;
+  \textcolor{keywordflow}{for} (i = 0; \hyperlink{tokdef_8c_a378b0ae598a7cfd7eb28be463d4cc909}{keywords}[i] != NULL; i++) \{
+    strcpy(resKeys[i].w,\hyperlink{tokdef_8c_a378b0ae598a7cfd7eb28be463d4cc909}{keywords}[i]);
+    resKeys[i].\hyperlink{tokdef_8h_a79da3556d7a0b19c9d1ce39e9d4a0bc7}{ID} = 256 + i;
+  \}
+  \textcolor{keywordflow}{return} resKeys;
+\}
+\end{DoxyCode}
+
+
+\-Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=296pt]{tokdef_8c_a7f47851ed6277df979bcf14757dac244_cgraph}
+\end{center}
+\end{figure}
+
+
 \hypertarget{tokdef_8c_a46cdfdb54ba6b79debb3745f650bcdbe}{\index{tokdef.\-c@{tokdef.\-c}!l\-\_\-append@{l\-\_\-append}}
 \index{l\-\_\-append@{l\-\_\-append}!tokdef.c@{tokdef.\-c}}
 \paragraph[{l\-\_\-append}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf l\-\_\-append} (
@@ -247,7 +351,7 @@ void
 
 
 
-\-References \hyperlink{tokdef_8c_source_l00046}{\-E\-R\-R\-\_\-\-M\-E\-M\-O\-R\-Y}, \hyperlink{tokdef_8c_source_l00055}{error()}, \hyperlink{tokdef_8c_source_l00090}{l\-\_\-\-Is\-Empty()}, \hyperlink{tokdef_8h_source_l00059}{list\-::next}, \hyperlink{tokdef_8c_source_l00046}{\-N\-U\-L\-L\-\_\-\-P\-O\-I\-N\-T\-E\-R}, \hyperlink{tokdef_8h_source_l00060}{list\-::previous}, and \hyperlink{tokdef_8h_source_l00058}{list\-::type}.
+\-References \hyperlink{tokdef_8c_source_l00046}{\-E\-R\-R\-\_\-\-M\-E\-M\-O\-R\-Y}, \hyperlink{tokdef_8c_source_l00055}{error()}, \hyperlink{tokdef_8c_source_l00090}{l\-\_\-\-Is\-Empty()}, \hyperlink{tokdef_8h_source_l00056}{list\-::next}, \hyperlink{tokdef_8c_source_l00046}{\-N\-U\-L\-L\-\_\-\-P\-O\-I\-N\-T\-E\-R}, \hyperlink{tokdef_8h_source_l00057}{list\-::previous}, and \hyperlink{tokdef_8h_source_l00055}{list\-::type}.
 
 
 \begin{DoxyCode}
@@ -444,7 +548,7 @@ void
 
 
 
-\-References \hyperlink{tokdef_8c_source_l00046}{\-E\-M\-P\-T\-Y\-\_\-\-L\-I\-S\-T}, \hyperlink{tokdef_8c_source_l00055}{error()}, \hyperlink{tokdef_8c_source_l00090}{l\-\_\-\-Is\-Empty()}, \hyperlink{tokdef_8h_source_l00059}{list\-::next}, \hyperlink{tokdef_8c_source_l00046}{\-N\-U\-L\-L\-\_\-\-P\-O\-I\-N\-T\-E\-R}, and \hyperlink{tokdef_8h_source_l00060}{list\-::previous}.
+\-References \hyperlink{tokdef_8c_source_l00046}{\-E\-M\-P\-T\-Y\-\_\-\-L\-I\-S\-T}, \hyperlink{tokdef_8c_source_l00055}{error()}, \hyperlink{tokdef_8c_source_l00090}{l\-\_\-\-Is\-Empty()}, \hyperlink{tokdef_8h_source_l00056}{list\-::next}, \hyperlink{tokdef_8c_source_l00046}{\-N\-U\-L\-L\-\_\-\-P\-O\-I\-N\-T\-E\-R}, and \hyperlink{tokdef_8h_source_l00057}{list\-::previous}.
 
 
 \begin{DoxyCode}
@@ -580,5 +684,5 @@ pointer to oldest element in stream
 
 
 
-\-Referenced by \hyperlink{tokdef_8c_source_l00208}{init\-\_\-\-Reserved\-Keys()}.
+\-Referenced by \hyperlink{tokdef_8c_source_l00208}{get\-\_\-key\-N\-U\-M()}, \hyperlink{tokdef_8c_source_l00220}{get\-\_\-key\-Size()}, and \hyperlink{tokdef_8c_source_l00232}{init\-\_\-\-Reserved\-Keys()}.
 

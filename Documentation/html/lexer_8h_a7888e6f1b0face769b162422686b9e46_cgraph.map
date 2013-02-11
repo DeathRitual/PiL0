@@ -1,0 +1,10 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$lexer_8c.html#a9670ac79a4525a9152a28835404e2470" title="Returns the number of keyword." alt="" coords="125,5,229,35"/>
+<area shape="rect" id="node5" href="$lexer_8c.html#a7f47851ed6277df979bcf14757dac244" title="creates an array of all keywords" alt="" coords="108,59,247,88"/>
+<area shape="rect" id="node9" href="$lexer_8c.html#a46cdfdb54ba6b79debb3745f650bcdbe" title="add new element to token stream" alt="" coords="137,219,217,248"/>
+<area shape="rect" id="node15" href="$lexer_8c.html#aeaf25962d905093a69389e62796e237b" title="Initialize new token stream with NULL&#45;Pointer." alt="" coords="152,112,203,141"/>
+<area shape="rect" id="node18" href="$lexer_8c.html#a3e647acbc5d046872adef10908ea44b4" title="get the newest element of stream" alt="" coords="151,165,204,195"/>
+<area shape="rect" id="node7" href="$lexer_8c.html#a6b0f05b95e21ab606b1aa2b573d0ed31" title="counts of keywords" alt="" coords="296,59,395,88"/>
+<area shape="rect" id="node11" href="$lexer_8c.html#a8b4b6428a8bf1450cf23b6032dec56cf" title="Print error message." alt="" coords="319,165,372,195"/>
+<area shape="rect" id="node13" href="$lexer_8c.html#a6b9833eb6c0963b6d2e4b76d7e460caa" title="check if token stream is empty or not" alt="" coords="304,219,387,248"/>
+</map>

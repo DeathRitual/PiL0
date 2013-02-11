@@ -1,0 +1,60 @@
+\hypertarget{language_8h}{\subsection{/home/nirvash/\-Projects/\-Pi\-L0/language.h \-File \-Reference}
+\label{language_8h}\index{/home/nirvash/\-Projects/\-Pi\-L0/language.\-h@{/home/nirvash/\-Projects/\-Pi\-L0/language.\-h}}
+}
+
+
+\-Header-\/\-File for language definition.  
+
+
+{\ttfamily \#include $<$stddef.\-h$>$}\*
+\-Include dependency graph for language.\-h\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=282pt]{language_8h__incl}
+\end{center}
+\end{figure}
+\-This graph shows which files directly or indirectly include this file\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=282pt]{language_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsubsection*{\-Variables}
+\begin{DoxyCompactItemize}
+\item 
+char $\ast$ \hyperlink{language_8h_a378b0ae598a7cfd7eb28be463d4cc909}{keywords} \mbox{[}$\,$\mbox{]}
+\begin{DoxyCompactList}\small\item\em \-Stringtable of all keywords longer than 1 character. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{\-Detailed \-Description}
+\-Header-\/\-File for language definition. \-All entries in this file defines the language. \-The stringtable keyworss will define all keywords. \-Later there will be added structs which represents syntax daigrams of the language. 
+
+\-Definition in file \hyperlink{language_8h_source}{language.\-h}.
+
+
+
+\subsubsection{\-Variable \-Documentation}
+\hypertarget{language_8h_a378b0ae598a7cfd7eb28be463d4cc909}{\index{language.\-h@{language.\-h}!keywords@{keywords}}
+\index{keywords@{keywords}!language.h@{language.\-h}}
+\paragraph[{keywords}]{\setlength{\rightskip}{0pt plus 5cm}char $\ast$ {\bf keywords}\mbox{[}$\,$\mbox{]}}}\label{language_8h_a378b0ae598a7cfd7eb28be463d4cc909}
+{\bfseries \-Initial value\-:}
+\begin{DoxyCode}
+ \{
+  \textcolor{stringliteral}{"BEGIN"}, \textcolor{stringliteral}{"CALL"}, \textcolor{stringliteral}{"CONST"}, \textcolor{stringliteral}{"DO"}, \textcolor{stringliteral}{"END"}, \textcolor{stringliteral}{"IF"}, \textcolor{stringliteral}{"ODD"}, \textcolor{stringliteral}{"PRINT"}, \textcolor{stringliteral}{"PROCEDURE"},
+  \textcolor{stringliteral}{"READ"}, \textcolor{stringliteral}{"THEN"}, \textcolor{stringliteral}{"VAR"}, \textcolor{stringliteral}{"WHILE"}, \textcolor{stringliteral}{"PASS"}, \textcolor{stringliteral}{"=="}, \textcolor{stringliteral}{">="}, \textcolor{stringliteral}{"<="}, \textcolor{stringliteral}{"!="}, NULL
+\}
+\end{DoxyCode}
+
+
+\-Stringtable of all keywords longer than 1 character. 
+
+
+
+\-Definition at line \hyperlink{language_8h_source_l00016}{16} of file \hyperlink{language_8h_source}{language.\-h}.
+
+
+
+\-Referenced by \hyperlink{lexer_8c_source_l00186}{get\-\_\-key\-N\-U\-M()}, \hyperlink{lexer_8c_source_l00198}{get\-\_\-key\-Size()}, and \hyperlink{lexer_8c_source_l00210}{init\-\_\-\-Reserved\-Keys()}.
+

@@ -118,15 +118,30 @@
 00196 \};
 00197 
 00198 
-\hypertarget{tokdef_8c_source_l00208}{}\hyperlink{tokdef_8c_a0bae71903db8f2f5e7fd637f9e86ee69}{00208} \textcolor{keyword}{struct }\hyperlink{tokdef_8h_structkey__array}{key_array} \hyperlink{tokdef_8h_a0bae71903db8f2f5e7fd637f9e86ee69}{init_ReservedKeys}() \{
-00209   \textcolor{keywordtype}{int} i;
-00210   \textcolor{keywordflow}{for} (i = 0; \hyperlink{tokdef_8c_a378b0ae598a7cfd7eb28be463d4cc909}{keywords}[i] != NULL; i++) \{
-00211     strcpy(\hyperlink{tokdef_8h_a4ebf9dd0c63dce7afe593857c71fa3e9}{keys}.\hyperlink{tokdef_8h_a58da8f115ae3dc40968147fbf30201a3}{resKeys}[i].\hyperlink{tokdef_8h_a02d5d49fc221e244cfc4f7196c1a2251}{w},\hyperlink{tokdef_8c_a378b0ae598a7cfd7eb28be463d4cc909}{keywords}[i]);
-00212     \hyperlink{tokdef_8h_a4ebf9dd0c63dce7afe593857c71fa3e9}{keys}.\hyperlink{tokdef_8h_a58da8f115ae3dc40968147fbf30201a3}{resKeys}[i].\hyperlink{tokdef_8h_a79da3556d7a0b19c9d1ce39e9d4a0bc7}{ID} = 256 + i;
-00213   \}
-00214   \textcolor{keywordflow}{return} \hyperlink{tokdef_8h_a4ebf9dd0c63dce7afe593857c71fa3e9}{keys};
-00215 \}
-00216 
-00217 
-00218 \textcolor{preprocessor}{#endif}
+\hypertarget{tokdef_8c_source_l00208}{}\hyperlink{tokdef_8c_a9670ac79a4525a9152a28835404e2470}{00208} \textcolor{keywordtype}{int} \hyperlink{tokdef_8h_a3c9e5c09d162b2bfeaddb5e9390ce41b}{get_keyNUM}(\hyperlink{tokdef_8h_structkeyword}{keyword} *k, \textcolor{keywordtype}{char} *s) \{
+00209   \textcolor{keywordtype}{int} i = 0;
+00210   \textcolor{keywordflow}{for} (i = 0; \hyperlink{tokdef_8c_a378b0ae598a7cfd7eb28be463d4cc909}{keywords}[i] != NULL; i++) 
+00211     \textcolor{keywordflow}{if} (strcmp(k[i].w, s) == 0) \textcolor{keywordflow}{return} i;
+00212   \textcolor{keywordflow}{return} -1;
+00213 \}
+00214 
+\hypertarget{tokdef_8c_source_l00220}{}\hyperlink{tokdef_8c_a6b0f05b95e21ab606b1aa2b573d0ed31}{00220} \textcolor{keyword}{static} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \hyperlink{tokdef_8c_a6b0f05b95e21ab606b1aa2b573d0ed31}{get_keySize}() \{
+00221   \textcolor{keywordtype}{int} i = 1;
+00222   \textcolor{keywordflow}{while} (\hyperlink{tokdef_8c_a378b0ae598a7cfd7eb28be463d4cc909}{keywords}[i] != NULL)
+00223     i++;
+00224   \textcolor{keywordflow}{return} i;
+00225 \}
+00226 
+\hypertarget{tokdef_8c_source_l00232}{}\hyperlink{tokdef_8c_a7f47851ed6277df979bcf14757dac244}{00232} \hyperlink{tokdef_8h_structkeyword}{keyword} *\hyperlink{tokdef_8h_a2dad3191a25934603cb3427980b3505b}{init_ReservedKeys}() \{
+00233   \hyperlink{tokdef_8h_structkeyword}{keyword} *resKeys = malloc(\textcolor{keyword}{sizeof} *resKeys * \hyperlink{tokdef_8c_a6b0f05b95e21ab606b1aa2b573d0ed31}{get_keySize}());
+00234   \textcolor{keywordtype}{int} i;
+00235   \textcolor{keywordflow}{for} (i = 0; \hyperlink{tokdef_8c_a378b0ae598a7cfd7eb28be463d4cc909}{keywords}[i] != NULL; i++) \{
+00236     strcpy(resKeys[i].w,\hyperlink{tokdef_8c_a378b0ae598a7cfd7eb28be463d4cc909}{keywords}[i]);
+00237     resKeys[i].\hyperlink{tokdef_8h_a79da3556d7a0b19c9d1ce39e9d4a0bc7}{ID} = 256 + i;
+00238   \}
+00239   \textcolor{keywordflow}{return} resKeys;
+00240 \}
+00241 
+00242 
+00243 \textcolor{preprocessor}{#endif}
 \end{DoxyCode}

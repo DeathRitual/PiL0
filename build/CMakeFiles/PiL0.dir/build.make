@@ -52,32 +52,9 @@ include CMakeFiles/PiL0.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/PiL0.dir/flags.make
 
-CMakeFiles/PiL0.dir/tokdef.o: CMakeFiles/PiL0.dir/flags.make
-CMakeFiles/PiL0.dir/tokdef.o: ../tokdef.c
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/nirvash/Projects/PiL0/build/CMakeFiles $(CMAKE_PROGRESS_1)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building C object CMakeFiles/PiL0.dir/tokdef.o"
-	/usr/bin/gcc  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/PiL0.dir/tokdef.o   -c /home/nirvash/Projects/PiL0/tokdef.c
-
-CMakeFiles/PiL0.dir/tokdef.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/PiL0.dir/tokdef.i"
-	/usr/bin/gcc  $(C_DEFINES) $(C_FLAGS) -E /home/nirvash/Projects/PiL0/tokdef.c > CMakeFiles/PiL0.dir/tokdef.i
-
-CMakeFiles/PiL0.dir/tokdef.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/PiL0.dir/tokdef.s"
-	/usr/bin/gcc  $(C_DEFINES) $(C_FLAGS) -S /home/nirvash/Projects/PiL0/tokdef.c -o CMakeFiles/PiL0.dir/tokdef.s
-
-CMakeFiles/PiL0.dir/tokdef.o.requires:
-.PHONY : CMakeFiles/PiL0.dir/tokdef.o.requires
-
-CMakeFiles/PiL0.dir/tokdef.o.provides: CMakeFiles/PiL0.dir/tokdef.o.requires
-	$(MAKE) -f CMakeFiles/PiL0.dir/build.make CMakeFiles/PiL0.dir/tokdef.o.provides.build
-.PHONY : CMakeFiles/PiL0.dir/tokdef.o.provides
-
-CMakeFiles/PiL0.dir/tokdef.o.provides.build: CMakeFiles/PiL0.dir/tokdef.o
-
 CMakeFiles/PiL0.dir/lexer.o: CMakeFiles/PiL0.dir/flags.make
 CMakeFiles/PiL0.dir/lexer.o: ../lexer.c
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/nirvash/Projects/PiL0/build/CMakeFiles $(CMAKE_PROGRESS_2)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/nirvash/Projects/PiL0/build/CMakeFiles $(CMAKE_PROGRESS_1)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building C object CMakeFiles/PiL0.dir/lexer.o"
 	/usr/bin/gcc  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/PiL0.dir/lexer.o   -c /home/nirvash/Projects/PiL0/lexer.c
 
@@ -98,16 +75,39 @@ CMakeFiles/PiL0.dir/lexer.o.provides: CMakeFiles/PiL0.dir/lexer.o.requires
 
 CMakeFiles/PiL0.dir/lexer.o.provides.build: CMakeFiles/PiL0.dir/lexer.o
 
+CMakeFiles/PiL0.dir/pl.o: CMakeFiles/PiL0.dir/flags.make
+CMakeFiles/PiL0.dir/pl.o: ../pl.c
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/nirvash/Projects/PiL0/build/CMakeFiles $(CMAKE_PROGRESS_2)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building C object CMakeFiles/PiL0.dir/pl.o"
+	/usr/bin/gcc  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/PiL0.dir/pl.o   -c /home/nirvash/Projects/PiL0/pl.c
+
+CMakeFiles/PiL0.dir/pl.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/PiL0.dir/pl.i"
+	/usr/bin/gcc  $(C_DEFINES) $(C_FLAGS) -E /home/nirvash/Projects/PiL0/pl.c > CMakeFiles/PiL0.dir/pl.i
+
+CMakeFiles/PiL0.dir/pl.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/PiL0.dir/pl.s"
+	/usr/bin/gcc  $(C_DEFINES) $(C_FLAGS) -S /home/nirvash/Projects/PiL0/pl.c -o CMakeFiles/PiL0.dir/pl.s
+
+CMakeFiles/PiL0.dir/pl.o.requires:
+.PHONY : CMakeFiles/PiL0.dir/pl.o.requires
+
+CMakeFiles/PiL0.dir/pl.o.provides: CMakeFiles/PiL0.dir/pl.o.requires
+	$(MAKE) -f CMakeFiles/PiL0.dir/build.make CMakeFiles/PiL0.dir/pl.o.provides.build
+.PHONY : CMakeFiles/PiL0.dir/pl.o.provides
+
+CMakeFiles/PiL0.dir/pl.o.provides.build: CMakeFiles/PiL0.dir/pl.o
+
 # Object files for target PiL0
 PiL0_OBJECTS = \
-"CMakeFiles/PiL0.dir/tokdef.o" \
-"CMakeFiles/PiL0.dir/lexer.o"
+"CMakeFiles/PiL0.dir/lexer.o" \
+"CMakeFiles/PiL0.dir/pl.o"
 
 # External object files for target PiL0
 PiL0_EXTERNAL_OBJECTS =
 
-PiL0: CMakeFiles/PiL0.dir/tokdef.o
 PiL0: CMakeFiles/PiL0.dir/lexer.o
+PiL0: CMakeFiles/PiL0.dir/pl.o
 PiL0: CMakeFiles/PiL0.dir/build.make
 PiL0: CMakeFiles/PiL0.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --red --bold "Linking C executable PiL0"
@@ -117,8 +117,8 @@ PiL0: CMakeFiles/PiL0.dir/link.txt
 CMakeFiles/PiL0.dir/build: PiL0
 .PHONY : CMakeFiles/PiL0.dir/build
 
-CMakeFiles/PiL0.dir/requires: CMakeFiles/PiL0.dir/tokdef.o.requires
 CMakeFiles/PiL0.dir/requires: CMakeFiles/PiL0.dir/lexer.o.requires
+CMakeFiles/PiL0.dir/requires: CMakeFiles/PiL0.dir/pl.o.requires
 .PHONY : CMakeFiles/PiL0.dir/requires
 
 CMakeFiles/PiL0.dir/clean:

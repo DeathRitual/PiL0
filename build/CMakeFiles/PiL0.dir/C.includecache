@@ -6,9 +6,15 @@
 
 #IncludeRegexTransform: 
 
-/home/nirvash/Projects/PiL0/tokdef.c
-tokdef.h
-/home/nirvash/Projects/PiL0/tokdef.h
+/home/nirvash/Projects/PiL0/language.h
+stddef.h
+-
+
+/home/nirvash/Projects/PiL0/lexer.c
+lexer.h
+/home/nirvash/Projects/PiL0/lexer.h
+language.h
+/home/nirvash/Projects/PiL0/language.h
 stddef.h
 -
 stdio.h
@@ -20,7 +26,9 @@ string.h
 ctype.h
 -
 
-/home/nirvash/Projects/PiL0/tokdef.h
-stddef.h
--
+/home/nirvash/Projects/PiL0/lexer.h
+
+/home/nirvash/Projects/PiL0/pl.c
+lexer.h
+/home/nirvash/Projects/PiL0/lexer.h
 

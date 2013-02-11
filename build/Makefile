@@ -171,19 +171,19 @@ lexer.s:
 .PHONY : lexer.s
 
 # target to build an object file
-tokdef.o:
-	$(MAKE) -f CMakeFiles/PiL0.dir/build.make CMakeFiles/PiL0.dir/tokdef.o
-.PHONY : tokdef.o
+pl.o:
+	$(MAKE) -f CMakeFiles/PiL0.dir/build.make CMakeFiles/PiL0.dir/pl.o
+.PHONY : pl.o
 
 # target to preprocess a source file
-tokdef.i:
-	$(MAKE) -f CMakeFiles/PiL0.dir/build.make CMakeFiles/PiL0.dir/tokdef.i
-.PHONY : tokdef.i
+pl.i:
+	$(MAKE) -f CMakeFiles/PiL0.dir/build.make CMakeFiles/PiL0.dir/pl.i
+.PHONY : pl.i
 
 # target to generate assembly for a file
-tokdef.s:
-	$(MAKE) -f CMakeFiles/PiL0.dir/build.make CMakeFiles/PiL0.dir/tokdef.s
-.PHONY : tokdef.s
+pl.s:
+	$(MAKE) -f CMakeFiles/PiL0.dir/build.make CMakeFiles/PiL0.dir/pl.s
+.PHONY : pl.s
 
 # Help Target
 help:
@@ -201,9 +201,9 @@ help:
 	@echo "... lexer.o"
 	@echo "... lexer.i"
 	@echo "... lexer.s"
-	@echo "... tokdef.o"
-	@echo "... tokdef.i"
-	@echo "... tokdef.s"
+	@echo "... pl.o"
+	@echo "... pl.i"
+	@echo "... pl.s"
 .PHONY : help
 
 
