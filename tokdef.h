@@ -73,29 +73,29 @@ extern void l_remove(list *);
 extern list l_top(list);
 extern list l_last(list);
 
+/**
+ * @enum special_IDs identifier number for variables and numbers
+ *
+ * identifying numbers start at 300.
+ * NOTE: If keywords exceds more than 44 words, than you have to increase this number
+ **/
+enum special_IDs {
+  IDENTIFIER = 300, NUM
+};
+
 typedef struct{
   char w[10]; /**< keyword */
   int ID; /**< keyword identifier */
   /**
-  * @struct keyword  
-  * 
+  * @struct keyword
+  *
   * @brief Keyword structure for storing initial keywords
-  * 
+  *
   * Stores string and ID of the language keywords like DO, WHILE, IF, etc.
   **/
 } keyword;
 
-/**
- * @struct key_array
- * 
- * @brief wrapper structure to get return an array of keywords
- * 
- * Array is as long as the number of keywords defined by the symbolic const
- * set at top of the file.
- **/
-struct key_array {
-  keyword resKeys[NUMBER_KEYWORDS]; /**< array of keywords */
-}keys;
 
-extern struct key_array init_ReservedKeys();
+extern keyword *init_ReservedKeys();
+extern int get_keyNUM(keyword *, char *);
 
