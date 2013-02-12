@@ -52,28 +52,28 @@ include CMakeFiles/PiL0.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/PiL0.dir/flags.make
 
-CMakeFiles/PiL0.dir/lexer.o: CMakeFiles/PiL0.dir/flags.make
-CMakeFiles/PiL0.dir/lexer.o: ../lexer.c
+CMakeFiles/PiL0.dir/header/libraries/lexer.o: CMakeFiles/PiL0.dir/flags.make
+CMakeFiles/PiL0.dir/header/libraries/lexer.o: ../header/libraries/lexer.c
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/nirvash/Projects/PiL0/build/CMakeFiles $(CMAKE_PROGRESS_1)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building C object CMakeFiles/PiL0.dir/lexer.o"
-	/usr/bin/gcc  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/PiL0.dir/lexer.o   -c /home/nirvash/Projects/PiL0/lexer.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building C object CMakeFiles/PiL0.dir/header/libraries/lexer.o"
+	/usr/bin/gcc  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/PiL0.dir/header/libraries/lexer.o   -c /home/nirvash/Projects/PiL0/header/libraries/lexer.c
 
-CMakeFiles/PiL0.dir/lexer.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/PiL0.dir/lexer.i"
-	/usr/bin/gcc  $(C_DEFINES) $(C_FLAGS) -E /home/nirvash/Projects/PiL0/lexer.c > CMakeFiles/PiL0.dir/lexer.i
+CMakeFiles/PiL0.dir/header/libraries/lexer.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/PiL0.dir/header/libraries/lexer.i"
+	/usr/bin/gcc  $(C_DEFINES) $(C_FLAGS) -E /home/nirvash/Projects/PiL0/header/libraries/lexer.c > CMakeFiles/PiL0.dir/header/libraries/lexer.i
 
-CMakeFiles/PiL0.dir/lexer.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/PiL0.dir/lexer.s"
-	/usr/bin/gcc  $(C_DEFINES) $(C_FLAGS) -S /home/nirvash/Projects/PiL0/lexer.c -o CMakeFiles/PiL0.dir/lexer.s
+CMakeFiles/PiL0.dir/header/libraries/lexer.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/PiL0.dir/header/libraries/lexer.s"
+	/usr/bin/gcc  $(C_DEFINES) $(C_FLAGS) -S /home/nirvash/Projects/PiL0/header/libraries/lexer.c -o CMakeFiles/PiL0.dir/header/libraries/lexer.s
 
-CMakeFiles/PiL0.dir/lexer.o.requires:
-.PHONY : CMakeFiles/PiL0.dir/lexer.o.requires
+CMakeFiles/PiL0.dir/header/libraries/lexer.o.requires:
+.PHONY : CMakeFiles/PiL0.dir/header/libraries/lexer.o.requires
 
-CMakeFiles/PiL0.dir/lexer.o.provides: CMakeFiles/PiL0.dir/lexer.o.requires
-	$(MAKE) -f CMakeFiles/PiL0.dir/build.make CMakeFiles/PiL0.dir/lexer.o.provides.build
-.PHONY : CMakeFiles/PiL0.dir/lexer.o.provides
+CMakeFiles/PiL0.dir/header/libraries/lexer.o.provides: CMakeFiles/PiL0.dir/header/libraries/lexer.o.requires
+	$(MAKE) -f CMakeFiles/PiL0.dir/build.make CMakeFiles/PiL0.dir/header/libraries/lexer.o.provides.build
+.PHONY : CMakeFiles/PiL0.dir/header/libraries/lexer.o.provides
 
-CMakeFiles/PiL0.dir/lexer.o.provides.build: CMakeFiles/PiL0.dir/lexer.o
+CMakeFiles/PiL0.dir/header/libraries/lexer.o.provides.build: CMakeFiles/PiL0.dir/header/libraries/lexer.o
 
 CMakeFiles/PiL0.dir/pl.o: CMakeFiles/PiL0.dir/flags.make
 CMakeFiles/PiL0.dir/pl.o: ../pl.c
@@ -100,13 +100,13 @@ CMakeFiles/PiL0.dir/pl.o.provides.build: CMakeFiles/PiL0.dir/pl.o
 
 # Object files for target PiL0
 PiL0_OBJECTS = \
-"CMakeFiles/PiL0.dir/lexer.o" \
+"CMakeFiles/PiL0.dir/header/libraries/lexer.o" \
 "CMakeFiles/PiL0.dir/pl.o"
 
 # External object files for target PiL0
 PiL0_EXTERNAL_OBJECTS =
 
-PiL0: CMakeFiles/PiL0.dir/lexer.o
+PiL0: CMakeFiles/PiL0.dir/header/libraries/lexer.o
 PiL0: CMakeFiles/PiL0.dir/pl.o
 PiL0: CMakeFiles/PiL0.dir/build.make
 PiL0: CMakeFiles/PiL0.dir/link.txt
@@ -117,7 +117,7 @@ PiL0: CMakeFiles/PiL0.dir/link.txt
 CMakeFiles/PiL0.dir/build: PiL0
 .PHONY : CMakeFiles/PiL0.dir/build
 
-CMakeFiles/PiL0.dir/requires: CMakeFiles/PiL0.dir/lexer.o.requires
+CMakeFiles/PiL0.dir/requires: CMakeFiles/PiL0.dir/header/libraries/lexer.o.requires
 CMakeFiles/PiL0.dir/requires: CMakeFiles/PiL0.dir/pl.o.requires
 .PHONY : CMakeFiles/PiL0.dir/requires
 

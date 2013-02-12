@@ -6,15 +6,19 @@
 
 #IncludeRegexTransform: 
 
-/home/nirvash/Projects/PiL0/language.h
+/home/nirvash/Projects/PiL0/header/lexer.h
+
+/home/nirvash/Projects/PiL0/header/libraries/../language.h
 stddef.h
 -
 
-/home/nirvash/Projects/PiL0/lexer.c
-lexer.h
-/home/nirvash/Projects/PiL0/lexer.h
-language.h
-/home/nirvash/Projects/PiL0/language.h
+/home/nirvash/Projects/PiL0/header/libraries/../lexer.h
+
+/home/nirvash/Projects/PiL0/header/libraries/lexer.c
+../lexer.h
+/home/nirvash/Projects/PiL0/header/libraries/../lexer.h
+../language.h
+/home/nirvash/Projects/PiL0/header/libraries/../language.h
 stddef.h
 -
 stdio.h
@@ -26,9 +30,11 @@ string.h
 ctype.h
 -
 
-/home/nirvash/Projects/PiL0/lexer.h
-
 /home/nirvash/Projects/PiL0/pl.c
-lexer.h
-/home/nirvash/Projects/PiL0/lexer.h
+header/lexer.h
+/home/nirvash/Projects/PiL0/header/lexer.h
+stdio.h
+-
+stdlib.h
+-
 

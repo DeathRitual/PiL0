@@ -47,7 +47,7 @@ extern struct _tag_list{
      * Stores keywords and identifier.
      **/
     struct _word {
-      char w[20]; /**< keyword / identifer */
+      char w[30]; /**< keyword / identifer */
       unsigned int ID; /**< keyword / identifier identifier */
     }word;
   };
@@ -83,7 +83,7 @@ enum special_IDs {
 };
 
 typedef struct{
-  char w[10]; /**< keyword */
+  char w[30]; /**< keyword */
   int ID; /**< keyword identifier */
   /**
   * @struct keyword  

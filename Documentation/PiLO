@@ -657,8 +657,14 @@ WARN_LOGFILE           =
 # directories like "/usr/src/myproject". Separate the files or directories 
 # with spaces.
 
-INPUT                  = /home/nirvash/Projects/PiL0/tokdef.h \
-                         /home/nirvash/Projects/PiL0/tokdef.c
+INPUT                  = /home/nirvash/Projects/PiL0/pl.c \
+                         /home/nirvash/Projects/PiL0/pl.c \
+                         /home/nirvash/Projects/PiL0/language.h \
+                         /home/nirvash/Projects/PiL0/pl.c \
+                         /home/nirvash/Projects/PiL0/lexer.c \
+                         /home/nirvash/Projects/PiL0/pl.c \
+                         /home/nirvash/Projects/PiL0/lexer.h \
+                         /home/nirvash/Projects/PiL0/pl.c
 
 # This tag can be used to specify the character encoding of the source files 
 # that doxygen parses. Internally doxygen uses the UTF-8 encoding, which is 

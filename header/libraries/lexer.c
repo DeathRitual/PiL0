@@ -16,8 +16,8 @@
  * alphanumerical), a number or an identifier.
  */
 
-#include "lexer.h"
-#include "language.h"
+#include "../lexer.h"
+#include "../language.h"
 #include<stddef.h>
 #include<stdio.h>
 #include<stdlib.h>
@@ -228,13 +228,13 @@ keyword *init_ReservedKeys() {
  **/
 list lexer(char *raw_code) {
   keyword *reserved = init_ReservedKeys();
+  int i;
   list token_stream, tok;
   l_init(&token_stream);
+  
 
-  printf("\n%s\n\n", raw_code);
-  int i;
   for (i = 0; i < strlen(raw_code); i++) {
-    char w[20] = "";
+    char w[30] = "";
     int j = 0, key_NUM, ident = IDENTIFIER;
     
     while (raw_code[i] < 33)

@@ -156,19 +156,19 @@ PiL0/fast:
 .PHONY : PiL0/fast
 
 # target to build an object file
-lexer.o:
-	$(MAKE) -f CMakeFiles/PiL0.dir/build.make CMakeFiles/PiL0.dir/lexer.o
-.PHONY : lexer.o
+header/libraries/lexer.o:
+	$(MAKE) -f CMakeFiles/PiL0.dir/build.make CMakeFiles/PiL0.dir/header/libraries/lexer.o
+.PHONY : header/libraries/lexer.o
 
 # target to preprocess a source file
-lexer.i:
-	$(MAKE) -f CMakeFiles/PiL0.dir/build.make CMakeFiles/PiL0.dir/lexer.i
-.PHONY : lexer.i
+header/libraries/lexer.i:
+	$(MAKE) -f CMakeFiles/PiL0.dir/build.make CMakeFiles/PiL0.dir/header/libraries/lexer.i
+.PHONY : header/libraries/lexer.i
 
 # target to generate assembly for a file
-lexer.s:
-	$(MAKE) -f CMakeFiles/PiL0.dir/build.make CMakeFiles/PiL0.dir/lexer.s
-.PHONY : lexer.s
+header/libraries/lexer.s:
+	$(MAKE) -f CMakeFiles/PiL0.dir/build.make CMakeFiles/PiL0.dir/header/libraries/lexer.s
+.PHONY : header/libraries/lexer.s
 
 # target to build an object file
 pl.o:
@@ -198,9 +198,9 @@ help:
 	@echo "... install/strip"
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
-	@echo "... lexer.o"
-	@echo "... lexer.i"
-	@echo "... lexer.s"
+	@echo "... header/libraries/lexer.o"
+	@echo "... header/libraries/lexer.i"
+	@echo "... header/libraries/lexer.s"
 	@echo "... pl.o"
 	@echo "... pl.i"
 	@echo "... pl.s"

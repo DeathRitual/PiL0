@@ -91,6 +91,36 @@ clean: CMakeFiles/PiL0.dir/clean
 .PHONY : clean
 
 #=============================================================================
+# Directory level rules for directory header
+
+# Convenience name for "all" pass in the directory.
+header/all: header/libraries/all
+.PHONY : header/all
+
+# Convenience name for "clean" pass in the directory.
+header/clean: header/libraries/clean
+.PHONY : header/clean
+
+# Convenience name for "preinstall" pass in the directory.
+header/preinstall: header/libraries/preinstall
+.PHONY : header/preinstall
+
+#=============================================================================
+# Directory level rules for directory header/libraries
+
+# Convenience name for "all" pass in the directory.
+header/libraries/all:
+.PHONY : header/libraries/all
+
+# Convenience name for "clean" pass in the directory.
+header/libraries/clean:
+.PHONY : header/libraries/clean
+
+# Convenience name for "preinstall" pass in the directory.
+header/libraries/preinstall:
+.PHONY : header/libraries/preinstall
+
+#=============================================================================
 # Special targets to cleanup operation of make.
 
 # Special rule to run CMake to check the build system integrity.
