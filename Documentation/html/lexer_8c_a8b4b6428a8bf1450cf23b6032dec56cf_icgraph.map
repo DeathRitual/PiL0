@@ -1,9 +1,0 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$lexer_8h.html#a81ffeff3bff153b2a5e8576bad3c1145" title="add new element to token stream" alt="" coords="108,5,188,35"/>
-<area shape="rect" id="node9" href="$lexer_8h.html#ac9f8b5800165d01c9c53895ab3027f5d" title="Initialize new token stream with NULL&#45;Pointer." alt="" coords="123,59,173,88"/>
-<area shape="rect" id="node12" href="$lexer_8h.html#a5a84ca70ef422afe2fbb8d4472f55e15" title="get the newest element of stream" alt="" coords="121,112,175,141"/>
-<area shape="rect" id="node15" href="$lexer_8h.html#a9a72d95129580ef11dc9778edb80004f" title="remove oldest element in stream" alt="" coords="108,165,188,195"/>
-<area shape="rect" id="node17" href="$lexer_8h.html#aa04f7ac992f12dbdcc80fdf4c624f7e9" title="get the oldest element of stream" alt="" coords="121,219,175,248"/>
-<area shape="rect" id="node5" href="$lexer_8h.html#a7888e6f1b0face769b162422686b9e46" title="Function for lexical scanning..." alt="" coords="237,59,291,88"/>
-<area shape="rect" id="node7" href="$pl_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="main" alt="" coords="340,59,391,88"/>
-</map>
