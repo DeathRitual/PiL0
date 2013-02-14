@@ -3,6 +3,10 @@
  * 
  * Forwards the functions of the Token-Stream library to another file which includes this header file.
  */
+ 
+#include<stdio.h>
+#ifndef __LEXER_H
+  #define __LEXER_H
 
 /**
  * @struct _tag_list  
@@ -13,6 +17,7 @@
  * and previous neighbour.
  **/
 extern struct _tag_list{
+    
   /**
    * @union Token  
    * 
@@ -21,7 +26,8 @@ extern struct _tag_list{
    * Except for Token: token all token have an ID which helps identifying
    * the type of the keyword, identifer or number.
    **/
-  union {
+  struct _element{
+    int type; /**< Token-Type */
     /**
      * @struct token
      * 
@@ -47,12 +53,12 @@ extern struct _tag_list{
      * Stores keywords and identifier.
      **/
     struct _word {
-      char w[30]; /**< keyword / identifer */
       unsigned int ID; /**< keyword / identifier identifier */
+      char w[30]; /**< keyword / identifer */
     }word;
-  };
+  }element;
 
-  char type; /**< Token-Type */
+
   struct _tag_list *next; /**< pointer to next element */
   struct _tag_list *previous; /**< pointer to previous element */
 }tag_list; /**< dummy element to quit compiler */
@@ -65,12 +71,12 @@ typedef struct _tag_list *list;
 
 extern void l_init(list *);
 extern int l_IsEmpty(list);
-extern void l_append(list *, char*, int *);
+extern void l_append(list *, char *, int *);
 extern void l_remove(list *);
 extern list l_top(list);
 extern list l_last(list);
+extern list lexer(list, FILE *);
 
-extern list lexer(char *);
 
 /**
  * @enum special_IDs identifier number for variables and numbers
@@ -98,3 +104,4 @@ typedef struct{
 extern int get_keyNUM(keyword *, char *);
 extern keyword *init_ReservedKeys(void);
 
+#endif

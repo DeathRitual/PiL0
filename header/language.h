@@ -7,6 +7,7 @@
  */
 
 #include<stddef.h>
+#ifndef __LANGUAGE_H
 
 /**
  * @var char *keywords[]
@@ -15,5 +16,7 @@
  **/
 char *keywords[] = {
   "BEGIN", "CALL", "CONST", "DO", "END", "IF", "ODD", "PRINT", "PROCEDURE",
-  "READ", "THEN", "VAR", "WHILE", "PASS", "==", ">=", "<=", "!=", NULL
+  "READ", "THEN", "VAR", "WHILE", "PASS", "EQ", "GE", "LE", "NE", NULL
 };
+
+#endif

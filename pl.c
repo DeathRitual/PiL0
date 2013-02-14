@@ -5,27 +5,51 @@
  */
 
 #include"header/lexer.h"
-#include<stdio.h>
 #include<stdlib.h>
-
+#define DEBUG	printf("test");
+#ifdef __MSDOS__
 int main(int argc, char *argv[]) {
-  int c, i = 0;
-  char code[1000];
+  printf("PiL0 not tested on MSDOS!\n");
+  return EXIT_SUCCESS;
+}
+
+#elif __WIN32__ || _MSC_VER
+int main(int argc, char *argv[]) {
+  printf("PiL0 will not run correctly on Win32!\n");
+  return EXIT_SUCCESS;
+}
+
+#elif __unix__ || __linux__
+int main(int argc, char *argv[]) {
+  int i = 10;
+  list token_stream, tok;
+
   FILE *raw_code;
   
   raw_code = fopen(argv[1], "r");
   
   if(raw_code != NULL) {
-    while ((c = fgetc(raw_code)) != EOF) {
-      code[i] = c;
-      i++;
-    }
+    token_stream = lexer(token_stream, raw_code);
   } else {
-      printf("Konnte Datei nicht finden bzw. öffnen!\n");
-      return EXIT_FAILURE;
-   }
+    printf("Couldn't open Source Code!\n");
+    return EXIT_FAILURE;
+  }
   
-  lexer(code);
+  
+  while (token_stream != NULL) { 
+      tok = l_top(token_stream);
+      switch(tok->element.type) {
+	case 't': printf("Token: %c\n", tok->element.token.t);
+		  break;
+	case 'w': printf("Word: %s, %d\n", tok->element.word.w, tok->element.word.ID);
+		  break;
+	case 'n': printf("Number: %d, %d\n", tok->element.number.n, tok->element.number.ID);
+		  break;
+      }
+      
+      l_remove(&token_stream);
+  }
   
   return EXIT_SUCCESS;
 }
+#endif
