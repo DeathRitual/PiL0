@@ -5,21 +5,12 @@
  */
 
 #include"header/lexer.h"
+#include"header/parser.h"
 #include<stdlib.h>
+#include <string.h>
 #define DEBUG	printf("test");
-#ifdef __MSDOS__
-int main(int argc, char *argv[]) {
-  printf("PiL0 not tested on MSDOS!\n");
-  return EXIT_SUCCESS;
-}
 
-#elif __WIN32__ || _MSC_VER
-int main(int argc, char *argv[]) {
-  printf("PiL0 will not run correctly on Win32!\n");
-  return EXIT_SUCCESS;
-}
 
-#elif __unix__ || __linux__
 int main(int argc, char *argv[]) {
   int i = 10;
   list token_stream, tok;
@@ -29,7 +20,7 @@ int main(int argc, char *argv[]) {
   raw_code = fopen(argv[1], "r");
   
   if(raw_code != NULL) {
-    token_stream = lexer(token_stream, raw_code);
+    token_stream = lexer(token_stream, raw_code); 
   } else {
     printf("Couldn't open Source Code!\n");
     return EXIT_FAILURE;
@@ -50,6 +41,33 @@ int main(int argc, char *argv[]) {
       l_remove(&token_stream);
   }
   
+  /* Testoutput for symbol-table */
+  printf("\n");
+  env_ptr st;
+  st_init(&st);
+  st_append(&st);
+  char a[10] = "Hallo";
+  int j = 3;
+  table_append(&st->st, a, &j);
+  printf("%s, %d\n", st->st->word, st->st->type_ID);
+  strcpy(a, "Haffo");
+  j = 6;
+  table_append(&st->st, a, &j);
+  printf("%s, %d\n", st->st->word, st->st->type_ID);
+  st_append(&st);
+  strcpy(a, "Laffo");
+  j = 6;
+  table_append(&st->st, a, &j);
+  printf("%s, %d\n", st->st->word, st->st->type_ID);
+
   return EXIT_SUCCESS;
 }
-#endif
+
+
+
+
+
+
+
+
+

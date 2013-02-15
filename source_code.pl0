@@ -1,9 +1,11 @@
 VAR n,f;
 
 PROCEDURE fact;
+  VAR a;
 BEGIN
-  IF n -1== 1 THEN
+  IF n = 1 THEN
   BEGIN
+    a = 5;
     f = n * f;
     n = n - 1;
     CALL fact

@@ -9,17 +9,30 @@
   #define __LEXER_H
 
 /**
- * @struct _tag_list  
+ * @var typedef struct _token_stream token_stream
+ * @brief shortend struct _token_stream to token_stream
+ * 
+ */ 
+typedef struct _token_stream token_stream;  
+/**
+ * @var typedef _token_stream *list
+ * @brief short form to create pointer on Token-Stream
+ * 
+ */
+typedef token_stream *list;
+
+/**
+ * @struct _token_stream  
  * 
  * @brief Element-Structure which builds Token-Stream.
  * 
  * One element can only contain one token, whereas each element is connected with its last
  * and previous neighbour.
  **/
-extern struct _tag_list{
+struct _token_stream{
     
   /**
-   * @union Token  
+   * @struct _element 
    * 
    * @brief Different Token for storing symbols.
    * 
@@ -35,7 +48,7 @@ extern struct _tag_list{
      **/
     struct _token {
       char t; /**< single character */
-    }token;
+    }token; /**< Can store single characters */
     
     /**
      * @struct number
@@ -45,7 +58,7 @@ extern struct _tag_list{
     struct _number {
       int n; /**< number */ 
       unsigned int ID; /**< number identifier */
-    }number;
+    }number; /**< Can store numbers and the NUM-ID */
     
     /**
      * @struct word
@@ -55,19 +68,12 @@ extern struct _tag_list{
     struct _word {
       unsigned int ID; /**< keyword / identifier identifier */
       char w[30]; /**< keyword / identifer */
-    }word;
-  }element;
+    }word; /**< Can store words and either the Keyword-ID or IDENTIFIER-ID */
+  }element; /**< Structure to store different types of lexical tokens */
 
-
-  struct _tag_list *next; /**< pointer to next element */
-  struct _tag_list *previous; /**< pointer to previous element */
-}tag_list; /**< dummy element to quit compiler */
-
-/**
- * @var typedef struct _tag_list *list
- * @brief short form to create pointer on Tolen-Stream
- */
-typedef struct _tag_list *list;
+  token_stream *next; /**< pointer to next element */
+  token_stream *previous; /**< pointer to previous element */
+};
 
 extern void l_init(list *);
 extern int l_IsEmpty(list);
@@ -98,7 +104,7 @@ typedef struct{
   * 
   * Stores string and ID of the language keywords like DO, WHILE, IF, etc.
   **/
-} keyword;
+}keyword;
 
 
 extern int get_keyNUM(keyword *, char *);

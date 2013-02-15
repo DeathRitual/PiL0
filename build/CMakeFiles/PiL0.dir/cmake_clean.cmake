@@ -1,4 +1,6 @@
 FILE(REMOVE_RECURSE
+  "CMakeFiles/PiL0.dir/header/libraries/parser.o"
+  "CMakeFiles/PiL0.dir/header/libraries/err_handling.o"
   "CMakeFiles/PiL0.dir/header/libraries/lexer.o"
   "CMakeFiles/PiL0.dir/pl.o"
   "PiL0.pdb"

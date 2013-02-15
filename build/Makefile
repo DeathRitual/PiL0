@@ -156,6 +156,21 @@ PiL0/fast:
 .PHONY : PiL0/fast
 
 # target to build an object file
+header/libraries/err_handling.o:
+	$(MAKE) -f CMakeFiles/PiL0.dir/build.make CMakeFiles/PiL0.dir/header/libraries/err_handling.o
+.PHONY : header/libraries/err_handling.o
+
+# target to preprocess a source file
+header/libraries/err_handling.i:
+	$(MAKE) -f CMakeFiles/PiL0.dir/build.make CMakeFiles/PiL0.dir/header/libraries/err_handling.i
+.PHONY : header/libraries/err_handling.i
+
+# target to generate assembly for a file
+header/libraries/err_handling.s:
+	$(MAKE) -f CMakeFiles/PiL0.dir/build.make CMakeFiles/PiL0.dir/header/libraries/err_handling.s
+.PHONY : header/libraries/err_handling.s
+
+# target to build an object file
 header/libraries/lexer.o:
 	$(MAKE) -f CMakeFiles/PiL0.dir/build.make CMakeFiles/PiL0.dir/header/libraries/lexer.o
 .PHONY : header/libraries/lexer.o
@@ -169,6 +184,21 @@ header/libraries/lexer.i:
 header/libraries/lexer.s:
 	$(MAKE) -f CMakeFiles/PiL0.dir/build.make CMakeFiles/PiL0.dir/header/libraries/lexer.s
 .PHONY : header/libraries/lexer.s
+
+# target to build an object file
+header/libraries/parser.o:
+	$(MAKE) -f CMakeFiles/PiL0.dir/build.make CMakeFiles/PiL0.dir/header/libraries/parser.o
+.PHONY : header/libraries/parser.o
+
+# target to preprocess a source file
+header/libraries/parser.i:
+	$(MAKE) -f CMakeFiles/PiL0.dir/build.make CMakeFiles/PiL0.dir/header/libraries/parser.i
+.PHONY : header/libraries/parser.i
+
+# target to generate assembly for a file
+header/libraries/parser.s:
+	$(MAKE) -f CMakeFiles/PiL0.dir/build.make CMakeFiles/PiL0.dir/header/libraries/parser.s
+.PHONY : header/libraries/parser.s
 
 # target to build an object file
 pl.o:
@@ -198,9 +228,15 @@ help:
 	@echo "... install/strip"
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
+	@echo "... header/libraries/err_handling.o"
+	@echo "... header/libraries/err_handling.i"
+	@echo "... header/libraries/err_handling.s"
 	@echo "... header/libraries/lexer.o"
 	@echo "... header/libraries/lexer.i"
 	@echo "... header/libraries/lexer.s"
+	@echo "... header/libraries/parser.o"
+	@echo "... header/libraries/parser.i"
+	@echo "... header/libraries/parser.s"
 	@echo "... pl.o"
 	@echo "... pl.i"
 	@echo "... pl.s"

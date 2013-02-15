@@ -18,57 +18,18 @@
 
 #include "../lexer.h"
 #include "../language.h"
-#include<stdlib.h>
+#include "../err_handling.h"
 #include<string.h>
 #include<ctype.h>
+#include<stdlib.h>
 
 #define DEBUG	printf("test");
 
-/*
- * 
- * Error Handling
- * 
-*/
-
 /**
- * @var char *err_msg[]
- * @brief Stringtable which stores all error messages
- **/
-static char *err_msg[] = {
-    "Null-Pointer", "Kein Speicher frei",
-    "Liste ist leer"
-  }; 
-  
-/**
- * @enum err_codes short strings used as variables for error messages
- */
-enum err_codes {
-    NULL_POINTER, ERR_MEMORY, EMPTY_LIST
-  };
-  
-
-/**
-  * @brief Print error message.
-  * @param msg_nr short string of the error message to print
-  * @return void
-  **/
-static void error(enum err_codes msg_nr) {
-  fprintf(stderr, "FEHLER(intlist): %s!\n", err_msg[msg_nr]);
-  exit(10);
-}
-
-
-/*
- * 
- * FIFO Implementation
- * 
- */
-
-/**
- * @var struct _tag_list *head;
+ * @var token_stream *head;
  * @brief pointer to oldest element in stream
  */
-struct _tag_list *head;
+token_stream *head;
 
 /**
   * @brief Initialize new token stream with NULL-Pointer
@@ -102,25 +63,25 @@ int l_IsEmpty(list l) {
  **/
 void l_append(list *l, char *t, int *n) {
   if (l == NULL) error(NULL_POINTER);
-  struct _tag_list *ele; 
-  if ((ele = malloc(sizeof(struct _tag_list))) == NULL) error(ERR_MEMORY);
+  token_stream *el; 
+  if ((el = malloc(sizeof(token_stream))) == NULL) error(ERR_MEMORY);
   if (isdigit(*t) > 0) {
-    ele->element.type = 'n';
-    ele->element.number.n = atoi(t);
-    ele->element.number.ID = *n;
+    el->element.type = 'n';
+    el->element.number.n = atoi(t);
+    el->element.number.ID = *n;
   } else if (isalpha(*t) > 0) {    
-    ele->element.type = 'w';
-    strcpy(ele->element.word.w, t);   
-    ele->element.word.ID = *n;
+    el->element.type = 'w';
+    strcpy(el->element.word.w, t);   
+    el->element.word.ID = *n;
   } else {
-    ele->element.type = 't';
-    ele->element.token.t = *t;
+    el->element.type = 't';
+    el->element.token.t = *t;
   }
-  ele->next = *l;
-  ele->previous = NULL;
-  if (!l_IsEmpty(*l)) (*l)->previous = ele;
-  if (l_IsEmpty(*l)) head = ele;
-  *l = ele;
+  el->next = *l;
+  el->previous = NULL;
+  if (!l_IsEmpty(*l)) (*l)->previous = el;
+  else head = el;
+  *l = el;
 }
 
 
@@ -137,7 +98,7 @@ void l_remove(list *l) {
     free(head);
     *l = NULL;
   } else {
-  struct _tag_list *ptr; 
+  token_stream *ptr; 
   ptr = head->previous;
   ptr->next = NULL;
   head->previous = NULL;
@@ -165,12 +126,6 @@ list l_top(list l) {
 list l_last(list l) {
   return l;
 }
-
-/*
- * 
- * keyword definition
- * 
- */
 
 
 /**
@@ -223,6 +178,7 @@ keyword *init_ReservedKeys() {
  * Reads input code and convert each element to one token / word / number and add it to the token stream
  * 
  * @param raw_code input source code...
+ * @param token_stream pointer to list for ading tokens
  * @return list token-stream
  **/
 list lexer(list token_stream, FILE *raw_code) {
