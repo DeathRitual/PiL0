@@ -56,7 +56,7 @@ void st_append(env_ptr *e) {
  * @param i ID of the symbol
  * @return void
  **/
-void table_append(table_ptr *t, char *w, int *i) {
+void put(table_ptr *t, char *w, int *i) {
   table *el;
   el = malloc(sizeof(table));
   strcpy(el->word, w);
@@ -66,7 +66,26 @@ void table_append(table_ptr *t, char *w, int *i) {
   *t = el;
 }
 
-/*
- * TODO:	Add function which searches if a symbol exists in current or any symbol table before.
- * 		If the symbol exists then its ID should be returned otherwise NULL should be returned.
- */ 
+/**
+ * @brief Look if symbol was already added to the symbol table
+ *
+ * @param e Pointer to table enviornment
+ * @param s Symbol looking for
+ * @return table_ptr If symbol is found pointer to this symbol, otherwise NULL
+ **/
+table_ptr get(env_ptr *e, char *s) {
+  table_ptr found = (*e)->st;
+  while (strcmp(found->word, s) != 0) {
+    if (found->previous != NULL) found = found->previous;
+    else if ((*e)->previous != NULL) {
+      *e = (*e)->previous;
+      found = (*e)->st;
+    } else {
+      found = NULL;
+      break;
+    }
+  }
+  return found;  
+}
+
+ 

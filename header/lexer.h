@@ -2,6 +2,7 @@
  * @file lexer.h Header-File for Token-Stream library
  * 
  * Forwards the functions of the Token-Stream library to another file which includes this header file.
+ * 
  */
  
 #include<stdio.h>
@@ -9,13 +10,13 @@
   #define __LEXER_H
 
 /**
- * @var typedef struct _token_stream token_stream
+ * @typedef struct _token_stream token_stream
  * @brief shortend struct _token_stream to token_stream
  * 
  */ 
 typedef struct _token_stream token_stream;  
 /**
- * @var typedef _token_stream *list
+ * @typedef _token_stream *list
  * @brief short form to create pointer on Token-Stream
  * 
  */
@@ -40,7 +41,7 @@ struct _token_stream{
    * the type of the keyword, identifer or number.
    **/
   struct _element{
-    int type; /**< Token-Type */
+    char type; /**< Token-Type */
     /**
      * @struct token
      * 
@@ -88,8 +89,10 @@ extern list lexer(list, FILE *);
  * @enum special_IDs identifier number for variables and numbers
  * 
  * identifying numbers start at 300. 
- * NOTE: If keywords exceds more than 44 words, than you have to increase this number 
- **/
+ *
+ * @note 
+ * If keywords exceds more than 44 words, than you have to increase the special_IDs initial number
+ */
 enum special_IDs {
   IDENTIFIER = 300, NUM
 };

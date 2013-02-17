@@ -8,24 +8,24 @@
   #define _PARSER_H
 
 /**
- * @var typedef struct _table table
+ * @typedef struct _table table
  * @brief shortens struct _table to table
  * 
  */   
 typedef struct _table table;
 /**
- * @var typedef table *table_ptr
+ * @typedef table *table_ptr
  * @brief short form to create pointer on table
  */ 
 typedef table *table_ptr;  
 /**
- * @var typedef struct _env env
+ * @typedef struct _env env
  * @brief shortens struct _env to env
  * 
  */ 
 typedef struct _env env;
 /**
- * @var typedef env *env_ptr
+ * @typedef env *env_ptr
  * @brief short form to create pointer on env
  * 
  */ 
@@ -57,6 +57,7 @@ struct _env {
 extern void st_init(env_ptr *);
 extern void table_init(table_ptr *);
 extern void st_append(env_ptr *);
-extern void table_append(table_ptr *, char *, int *);
+extern void put(table_ptr *, char *, int *);
+extern table_ptr get(env_ptr *, char *);
 
 #endif

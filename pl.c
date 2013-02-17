@@ -43,23 +43,27 @@ int main(int argc, char *argv[]) {
   
   /* Testoutput for symbol-table */
   printf("\n");
-  env_ptr st;
-  st_init(&st);
-  st_append(&st);
-  char a[10] = "Hallo";
+  env_ptr env;
+  table_ptr var;
+  st_init(&env);
+  st_append(&env);
+  char b[10] = "Hallo";
+  char a[10] = "";
   int j = 3;
-  table_append(&st->st, a, &j);
-  printf("%s, %d\n", st->st->word, st->st->type_ID);
+  put(&env->st, b, &j);
+  printf("%s, %d\n", env->st->word, env->st->type_ID);
   strcpy(a, "Haffo");
   j = 6;
-  table_append(&st->st, a, &j);
-  printf("%s, %d\n", st->st->word, st->st->type_ID);
-  st_append(&st);
+  put(&env->st, a, &j);
+  printf("%s, %d\n", env->st->word, env->st->type_ID);
+  st_append(&env);
   strcpy(a, "Laffo");
   j = 6;
-  table_append(&st->st, a, &j);
-  printf("%s, %d\n", st->st->word, st->st->type_ID);
-
+  put(&env->st, a, &j);
+  printf("%s, %d\n", env->st->word, env->st->type_ID);
+  var = get(&env, "Haffo"); 
+  if (var != NULL) printf("%s", var->word);
+  else printf("Not found");
   return EXIT_SUCCESS;
 }
 
