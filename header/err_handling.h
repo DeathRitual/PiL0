@@ -11,7 +11,7 @@
  * @enum err_codes short strings used as variables for error messages
  */
 enum err_codes {
-    NULL_POINTER, ERR_MEMORY, EMPTY_LIST
+    NULL_POINTER, ERR_MEMORY, EMPTY_LIST, NO_TABLE
   };  
 
 enum parse_err_codes {

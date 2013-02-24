@@ -1,18 +1,11 @@
-VAR n, f;
+VAR n, a;
+CONST c = 5;
 
 PROCEDURE fact;
   BEGIN
-    IF n THEN
-    BEGIN 
-      n = 1;
-      f = 3
-    END
+    a = b;
+    b = 5
   END;
- 
 
 BEGIN
-    READ    n;
-    f = 1;
-    CALL fact;
-    PRINT f
 END .

@@ -16,7 +16,7 @@
  **/
 static char *err_msg[] = {
     "Null-Pointer", "No memory left",
-    "Empty list"
+    "Empty list", "No table initialised"
   }; 
   
 static char *parse_err_msg[] = {
@@ -36,7 +36,7 @@ static char *parse_err_msg[] = {
     "Type-Error: Identifier not initialized",
     "Type-Error: No identifier given",
     "Type-Error: Can only call a procedure",
-    "Type-Error: Operation only for Integer type"
+    "Type-Error: Operation only for Integer type",
     "Type-Error: Double declaration of identifier"
   };
   

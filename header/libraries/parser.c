@@ -46,6 +46,7 @@ env_ptr environment;
  **/
 void st_init(env_ptr *e) {
   if (e == NULL) error(NULL_POINTER);
+  
   *e = NULL;
 }
 
@@ -57,6 +58,7 @@ void st_init(env_ptr *e) {
  **/
 void table_init(table_ptr *st){
   if (st == NULL) error(NULL_POINTER);
+  
   *st = NULL;
 }
 
@@ -72,6 +74,7 @@ void table_init(table_ptr *st){
  **/
 void st_append(env_ptr *e) {
   if (e == NULL) error(NULL_POINTER);
+  
   env_ptr el;
   if ((el = malloc(sizeof(env))) == NULL) error(ERR_MEMORY);
   table_init(&el->st);
@@ -90,6 +93,7 @@ void st_append(env_ptr *e) {
  **/
 void put(table_ptr *t, char *w, int i) {
   if (t == NULL) error(NULL_POINTER);
+  
   table_ptr el;
   if ((el = malloc(sizeof(table))) == NULL) error(ERR_MEMORY);
   strcpy(el->word, w);
@@ -101,27 +105,28 @@ void put(table_ptr *t, char *w, int i) {
 
 /**
  * @brief Look if symbol was already added to the symbol table
- *
- * @todo add outer loop for empty environments
  * 
  * @param e Pointer to table environment
  * @param s Symbol looking for
  * @return table_ptr If symbol is found pointer to this symbol, otherwise NULL
  **/
 table_ptr get(env_ptr *e, char *s) {  
-  if (e == NULL) error(NULL_POINTER);  
-  table_ptr found = (*e)->st;  
-  if (found == NULL) return found;
-  while (strcmp(found->word, s) != 0) {
-    if (found->previous != NULL) found = found->previous;
-    else if ((*e)->previous != NULL) {
-      *e = (*e)->previous;
-      found = (*e)->st;
-    } else {
-      found = NULL;
+  if (e == NULL) error(NULL_POINTER); 
+  if (*e == NULL) error(NO_TABLE);
+  
+  env_ptr ptr = *e;
+  table_ptr found = ptr->st;
+  
+  
+  while (ptr != NULL) {
+    while (found != NULL) {
+      if (strcmp(found->word, s) == 0) return found;
+      found = found->previous;
     }
+    ptr = ptr->previous;
   }
-  return found;  
+
+  return NULL;
 }
 
 /**
@@ -216,17 +221,11 @@ void block(list l) {
 	else parseError(CODE, TYP_DOUB_DEC);
       MOVE
     } else parseError(CODE, TYP_NO_ID);
-    if (TOKEN == ';') MOVE
+    if (TOKEN == ';') { MOVE } else parseError(CODE, SYN_MISS_COM);
     env_tmp = environment;
     block(l);
     environment = env_tmp;
-    if (TOKEN == ';') {
-	MOVE
-	continue;
-    } else {
-      MOVE
-      break;
-    }
+    if (TOKEN == ';') { MOVE } else parseError(CODE, SYN_MISS_COM);
   }
   stmt(l);  
   st_clean(&environment);
@@ -272,10 +271,11 @@ void stmt(list l) {
     case (PASS):	MOVE
 			break;
   }
-  if (TOKEN == ';') { 
+ /* if (TOKEN == ';') { 
     MOVE
     stmt(l);
-  }
+  }*/
+
 }
 
 void expression(list l) {
