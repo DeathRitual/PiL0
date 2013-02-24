@@ -8,7 +8,13 @@
 
 /home/nirvash/Projects/PiL0/header/libraries/../err_handling.h
 
+/home/nirvash/Projects/PiL0/header/libraries/../lexer.h
+stdio.h
+-
+
 /home/nirvash/Projects/PiL0/header/libraries/../parser.h
+lexer.h
+/home/nirvash/Projects/PiL0/header/libraries/../lexer.h
 
 /home/nirvash/Projects/PiL0/header/libraries/parser.c
 ../err_handling.h

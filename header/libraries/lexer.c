@@ -23,19 +23,19 @@
 #include<ctype.h>
 #include<stdlib.h>
 
-#define DEBUG	printf("test");
 
 /**
  * @var token_stream *head;
  * @brief pointer to oldest element in stream
  */
-token_stream *head;
+list head;
+
 
 /**
   * @brief Initialize new token stream with NULL-Pointer
   *
   * @param l pointer on beginning of new token stream
-  * @return void
+  * @return void 
   **/
 void l_init(list *l) {
   if (l == NULL) error(NULL_POINTER);
@@ -59,17 +59,18 @@ int l_IsEmpty(list l) {
  * @param l pointer on last element of token stream
  * @param t symbol, keyword, identifier or number to generate new token of
  * @param n identifier number of keyword, identifier or number
+ * @param ln number of program code line
  * @return void
  **/
-void l_append(list *l, char *t, int *n) {
+void l_append(list *l, char *t, int *n, int *ln) {
   if (l == NULL) error(NULL_POINTER);
-  token_stream *el; 
+  list el; 
   if ((el = malloc(sizeof(token_stream))) == NULL) error(ERR_MEMORY);
   if (isdigit(*t) > 0) {
     el->element.type = 'n';
     el->element.number.n = atoi(t);
     el->element.number.ID = *n;
-  } else if (isalpha(*t) > 0) {    
+  } else if (isalpha(*t) > 0) {  
     el->element.type = 'w';
     strcpy(el->element.word.w, t);   
     el->element.word.ID = *n;
@@ -77,6 +78,7 @@ void l_append(list *l, char *t, int *n) {
     el->element.type = 't';
     el->element.token.t = *t;
   }
+  el->element.line = *ln;
   el->next = *l;
   el->previous = NULL;
   if (!l_IsEmpty(*l)) (*l)->previous = el;
@@ -85,25 +87,28 @@ void l_append(list *l, char *t, int *n) {
 }
 
 
+
+
 /**
  * @brief remove oldest element in stream
  *
  * @param l pointer on last element of token stream
- * @return void
+ * @return list pointer to element before the removed element
  **/
-void l_remove(list *l) {
+list l_remove(list *l) {
   if (l == NULL) error(NULL_POINTER);
-  if (l_IsEmpty(*l)) error(EMPTY_LIST);
+  if (l_IsEmpty(*l)) return NULL;
   if (head == *l) {
     free(head);
     *l = NULL;
   } else {
-  token_stream *ptr; 
+  list ptr;
   ptr = head->previous;
   ptr->next = NULL;
   head->previous = NULL;
   free(head);
   head = ptr;
+  return head;
   }
 }
 
@@ -114,6 +119,8 @@ void l_remove(list *l) {
  * @return list pointer to oldest element
  **/
 list l_top(list l) {
+  if (l == NULL) error(NULL_POINTER);
+  if (l_IsEmpty(l)) error(EMPTY_LIST);
   return head;
 }
 
@@ -124,6 +131,8 @@ list l_top(list l) {
  * @return list point to newest element
  **/
 list l_last(list l) {
+  if (l == NULL) error(NULL_POINTER);
+  if (l_IsEmpty(l)) error(EMPTY_LIST);
   return l;
 }
 
@@ -182,63 +191,68 @@ keyword *init_ReservedKeys() {
  * @return list token-stream
  **/
 list lexer(list token_stream, FILE *raw_code) {
+  int c, lineNumber = 1;
   keyword *reserved = init_ReservedKeys();
-  int c;
   l_init(&token_stream);
-  list tok;
+  
   while((c = fgetc(raw_code)) != EOF) {
-    char w[30] = "";
-    int i = 0, key_NUM, ident = IDENTIFIER;
-    
-    /* eat control characters */
-    while (c < 33) c = fgetc(raw_code);
-    
-    /* read compare operators */
-    if (c == '=' || c == '>' || c == '<' || c == '!') {
-      w[i] = c;
-      if ((c = fgetc(raw_code)) == '=') {
-	w[i + 1] = c;
-	if (strcmp(w, "==") == 0) key_NUM = get_keyNUM(reserved, "EQ");
-	if (strcmp(w, ">=") == 0) key_NUM = get_keyNUM(reserved, "GE");
-	if (strcmp(w, "<=") == 0) key_NUM = get_keyNUM(reserved, "LE");
-	if (strcmp(w, "!=") == 0) key_NUM = get_keyNUM(reserved, "NE");
-	l_append(&token_stream, reserved[key_NUM].w, &reserved[key_NUM].ID);
-      } else l_append(&token_stream, w, &ident);
-    }
-    
-    /* read words or identifier */
-    if (isalpha(c)) {
-      w[i] = c;
-      c = fgetc(raw_code);
-      while (isalnum(c)) {
-	w[++i] = c;
+    if (c == 10 || c == 13) lineNumber++;
+    if (!((iscntrl(c) || isspace(c)))) {
+      char w[30] = "";
+      int i = 0, key_NUM, ident = IDENTIFIER;
+      
+      /* eat control characters */
+      /*while (c < 33) {
+	if (c == 10 || c == 13) lineNumber++;
 	c = fgetc(raw_code);
+      }*/
+      
+      /* read compare operators */
+      if (c == '=' || c == '>' || c == '<' || c == '!') {
+	w[i] = c;
+	if ((c = fgetc(raw_code)) == '=') {
+	  w[i + 1] = c;
+	  if (strcmp(w, "==") == 0) key_NUM = get_keyNUM(reserved, "EQ");
+	  if (strcmp(w, ">=") == 0) key_NUM = get_keyNUM(reserved, "GE");
+	  if (strcmp(w, "<=") == 0) key_NUM = get_keyNUM(reserved, "LE");
+	  if (strcmp(w, "!=") == 0) key_NUM = get_keyNUM(reserved, "NE");
+	  l_append(&token_stream, reserved[key_NUM].w, &reserved[key_NUM].ID, &lineNumber);
+	} else l_append(&token_stream, w, &ident, &lineNumber);
       }
-      key_NUM = get_keyNUM(reserved, w);
-      if (key_NUM >= 0) l_append(&token_stream, reserved[key_NUM].w, &reserved[key_NUM].ID);
-      else l_append(&token_stream, w, &ident);
-      c = ungetc(c, raw_code);
-    }
-   
-    /*read numbers */
-    if (isdigit(c)) {
-      ident = NUM;
-      w[i] = c;
-      c = fgetc(raw_code);
-      while (isdigit(c)) {
-	w[++i] = c;
+      
+      /* read words or identifier */
+     if (isalpha(c)) {
+	w[i] = c;
 	c = fgetc(raw_code);
-      }	
-      l_append(&token_stream, w, &ident);
-      c = ungetc(c, raw_code);
-    }
-    
-    /* read tokens */
-    if (strlen(w) == 0) {
-      w[i] = c;
-      l_append(&token_stream, w, &ident);
+	while (isalnum(c)) {
+	  w[++i] = c;
+	  c = fgetc(raw_code);
+	}
+	key_NUM = get_keyNUM(reserved, w);
+	if (key_NUM >= 0) l_append(&token_stream, reserved[key_NUM].w, &reserved[key_NUM].ID, &lineNumber);
+	else l_append(&token_stream, w, &ident, &lineNumber);
+	c = ungetc(c, raw_code);
+      }
+
+      /*read numbers */
+      if (isdigit(c)) {
+	ident = NUM;
+	w[i] = c;
+	c = fgetc(raw_code);
+	while (isdigit(c)) {
+	  w[++i] = c;
+	  c = fgetc(raw_code);
+	}	
+	l_append(&token_stream, w, &ident, &lineNumber);
+	c = ungetc(c, raw_code);
+      }
+      
+      /* read tokens */
+      if (strlen(w) == 0) {
+	w[i] = c;
+	l_append(&token_stream, w, &ident, &lineNumber);
+      }
     }
   }
-  
   return token_stream;
 } 

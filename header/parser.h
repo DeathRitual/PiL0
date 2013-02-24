@@ -4,6 +4,7 @@
  * Forwards the functions of the parser library to another file which includes this header file.
  */
 
+#include"lexer.h"
 #ifndef _PARSER_H
   #define _PARSER_H
 
@@ -54,10 +55,17 @@ struct _env {
   env *previous; /**< points to previous element */
 };
 
+
+
 extern void st_init(env_ptr *);
 extern void table_init(table_ptr *);
 extern void st_append(env_ptr *);
-extern void put(table_ptr *, char *, int *);
+extern void put(table_ptr *, char *, int);
 extern table_ptr get(env_ptr *, char *);
+extern int parse(list);
+void block(list);
+void stmt(list);
+void expression(list);
+void condition(list);
 
 #endif

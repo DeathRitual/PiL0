@@ -10,6 +10,7 @@ CMakeFiles/PiL0.dir/header/libraries/lexer.o: ../header/libraries/../lexer.h
 CMakeFiles/PiL0.dir/header/libraries/lexer.o: ../header/libraries/lexer.c
 
 CMakeFiles/PiL0.dir/header/libraries/parser.o: ../header/libraries/../err_handling.h
+CMakeFiles/PiL0.dir/header/libraries/parser.o: ../header/libraries/../lexer.h
 CMakeFiles/PiL0.dir/header/libraries/parser.o: ../header/libraries/../parser.h
 CMakeFiles/PiL0.dir/header/libraries/parser.o: ../header/libraries/parser.c
 

@@ -1,0 +1,40 @@
+<program>       ::= <block> .
+<block>         ::= CONST <consts> ;		 
+                    | VAR <var_stmt> ; 
+                    | <proc> 
+                    | <stmt>
+<consts>        ::= <consts> , <const_stmt> 
+                    | <const_stmt>
+<const_stmt>    ::= <ident> = <number>
+<var_stmt>      ::= <var_stmt> , <ident> 
+                    | <ident>
+<proc>          ::= <proc> <proc_stmt> 
+                    | <proc_stmt>
+<proc_stmt>     ::= PROCEDURE <ident> ; <block> ;
+<stmt>          ::= <ident> = <expression> 
+                    | CALL <ident>
+                    | READ <ident>
+                    | PRINT <expression>
+                    | BEGIN <stmts> END
+                    | IF <condition> THEN <stmt>
+                    | WHILE <condition> DO <statement>
+                    | PASS
+<stmts>         ::= <stmts> ; <stmt>
+                    | <stmt>
+<condition>     ::= ODD <expression>
+                    | <expression> == <expression>                  
+                    | <expression> != <expression>                  
+                    | <expression> < <expression>                  
+                    | <expression> > <expression>                  
+                    | <expression> <= <expression>                  
+                    | <expression> >= <expression> 
+<expression>    ::= <expression> + <term>
+                    | <expression> - <term>
+                    | - <term>
+                    | <term>
+<term>          ::= <term> * <factor>
+                    | <term> / <factor>
+                    | <factor>
+<factor>        ::= <ident>
+                    | <number>
+                    | ( <expression> )

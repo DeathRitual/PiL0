@@ -25,6 +25,8 @@ typedef token_stream *list;
 /**
  * @struct _token_stream  
  * 
+ * @todo export struct element to own struct and add pointer in _token_stream
+ * 
  * @brief Element-Structure which builds Token-Stream.
  * 
  * One element can only contain one token, whereas each element is connected with its last
@@ -42,6 +44,8 @@ struct _token_stream{
    **/
   struct _element{
     char type; /**< Token-Type */
+    unsigned int line; /**< code line number */
+    
     /**
      * @struct token
      * 
@@ -70,16 +74,17 @@ struct _token_stream{
       unsigned int ID; /**< keyword / identifier identifier */
       char w[30]; /**< keyword / identifer */
     }word; /**< Can store words and either the Keyword-ID or IDENTIFIER-ID */
+    
   }element; /**< Structure to store different types of lexical tokens */
-
+  
   token_stream *next; /**< pointer to next element */
   token_stream *previous; /**< pointer to previous element */
 };
 
 extern void l_init(list *);
 extern int l_IsEmpty(list);
-extern void l_append(list *, char *, int *);
-extern void l_remove(list *);
+extern void l_append(list *, char *, int *, int *);
+extern list l_remove(list *);
 extern list l_top(list);
 extern list l_last(list);
 extern list lexer(list, FILE *);
@@ -94,7 +99,8 @@ extern list lexer(list, FILE *);
  * If keywords exceds more than 44 words, than you have to increase the special_IDs initial number
  */
 enum special_IDs {
-  IDENTIFIER = 300, NUM
+  BEGIN = 256, CALL, CONST, DO, END, IF, ODD, PRINT, PROCEDURE, READ, THEN, VAR, WHILE, PASS, 
+  EQ, GE, LE, NE, IDENTIFIER, NUM
 };
 
 typedef struct{
