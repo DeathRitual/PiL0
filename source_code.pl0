@@ -1,4 +1,17 @@
 VAR n, a;
 CONST c = 5;
 
-b = 6.
+PROCEDURE fact;
+BEGIN
+  IF n THEN
+    BEGIN
+      c = 5;
+      PRINT n;
+      CALL fact
+    END
+END;
+
+BEGIN
+  n = 1;
+  READ b
+END.

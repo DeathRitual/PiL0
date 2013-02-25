@@ -57,6 +57,12 @@ list tok;
 env_ptr environment;
 
 /**
+ * @var table* var
+ * @brief compare pointer for identifier in symbol table
+ **/
+table_ptr var;
+
+/**
  * @brief Initialize symbol-table environment with NULL-Pointer
  *
  * @param e pointer to symbol-table environment
@@ -131,19 +137,15 @@ void put(table_ptr *t, char *w, int i) {
 table_ptr get(env_ptr *e, char *s) {  
   if (e == NULL) error(NULL_POINTER); 
   if (*e == NULL) error(NO_TABLE);
-  
-  env_ptr ptr = *e;
-  table_ptr found = ptr->st;
-  
-  
+  env_ptr ptr = *e;   
   while (ptr != NULL) {
+    table_ptr found = ptr->st; 
     while (found != NULL) {
       if (strcmp(found->word, s) == 0) return found;
       found = found->previous;
     }
     ptr = ptr->previous;
   }
-
   return NULL;
 }
 
@@ -167,7 +169,6 @@ void st_clean(env_ptr *e) {
     free((*e)->st);
     free(*e);
   }
-  
 }
 
 
@@ -197,9 +198,9 @@ int parse(list l) {
  **/
 void block(list l) {
   env_ptr env_tmp;
-  table_ptr var;
   st_append(&environment);
-  /* VAR definitons */
+  /* block    -> VAR var_stmt 
+   * var_stmt -> var_stmt, identifier | identifier */
   if (WORDID == VAR) {
     MOVE
     do {     
@@ -214,7 +215,8 @@ void block(list l) {
     MOVE
   }
   
-  /* CONST declaration */
+  /* block      -> CONST const_stmt 
+   * const_stmt -> const_stmt, identifier = number | identifier = number */
   if (WORDID == CONST) {
     MOVE
     do {
@@ -231,7 +233,9 @@ void block(list l) {
     MOVE
   }
   
-  /* Procedure definition */
+  /* block     -> proc  
+   * proc      -> proc proc_stmt | proc_stmt
+   * proc_stmt -> PROCEDURE identifier ; block ; */
   while (WORDID == PROCEDURE) {
     MOVE
     if (WORDID == IDENTIFIER) {
@@ -259,37 +263,52 @@ void block(list l) {
  **/
 void stmt(list l) {
   switch(WORDID) {
-    case (IDENTIFIER): 	MOVE
-			if (TOKEN == '=') MOVE
+    /* stmt -> identifier = expression */
+    case (IDENTIFIER): 	if ((var = get(&environment, WORD)) == NULL) parseError(CODE, TYP_ID_NO_IN);
+			MOVE
+			if (TOKEN == '=') { MOVE } else parseError(CODE, SYN_MISS_ASS);
 			expression(l);
 			break;
+    /* stmt -> CALL identifier (only procedure)*/
     case (CALL):	MOVE
-			if (WORDID == IDENTIFIER) MOVE
+			var = get(&environment, WORD);
+			if (var == NULL) parseError(CODE, TYP_ID_NO_IN);
+			else if (var->type_ID != PROCEDURE) parseError(CODE, TYP_ONLY_PROC);
+			MOVE
 			break;
+    /* stmt -> READ identifier (only procedure)*/
     case (READ):	MOVE
-			if (WORDID == IDENTIFIER) MOVE
+			var = get(&environment, WORD);
+			if (var == NULL) parseError(CODE, TYP_ID_NO_IN);
+			if (WORDID == IDENTIFIER && var->type_ID != PROCEDURE) { MOVE } else parseError(CODE, TYP_ONLY_INT);			
 			break;
+    /* stmt -> PRINT expression */
     case (PRINT):	MOVE
 			expression(l);
 			break;
+    /* stmt  -> BEGIN stmts END 
+     * stmts -> stmts ; stmt | stmt */
     case (BEGIN):	MOVE
 			stmt(l);
 			while (TOKEN == ';') {
 			  MOVE
 			  stmt(l);
 			}
-			if (WORDID == END) MOVE
+			if (WORDID == END) { MOVE } else parseError(CODE, SYN_MISS_END);
 			break;
+    /* stmt -> IF condition THEN stmt */
     case (IF):		MOVE
 			condition(l);
-			if (WORDID == THEN) MOVE
+			if (WORDID == THEN) { MOVE } else parseError(CODE, SYN_IF);
 			stmt(l);
 			break;
+    /* stmt -> WHILE condition DO stmt */
     case (WHILE):	MOVE
 			condition(l);
-			if (WORDID == DO) MOVE
+			if (WORDID == DO) { MOVE } else parseError(CODE, SYN_WHILE);
 			stmt(l);
 			break;
+    /* stmt -> PASS */
     case (PASS):	MOVE
 			break;
   }
