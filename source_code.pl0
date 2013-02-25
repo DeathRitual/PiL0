@@ -1,11 +1,4 @@
 VAR n, a;
 CONST c = 5;
 
-PROCEDURE fact;
-  BEGIN
-    a = b;
-    b = 5
-  END;
-
-BEGIN
-END .
+b = 6.

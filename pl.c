@@ -1,3 +1,21 @@
+/*     
+ * PiL0 - PL0 Compiler for Raspberry PI
+ * Copyright (C) 2013  Philipp Wiesner
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *  
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *  
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 /**
  * @file pl.c Main source file for PiL0-Compiler
  * 
@@ -27,29 +45,7 @@ int main(int argc, char *argv[]) {
   if (parse(token_stream)) printf("Korrekt");
   else printf("Falsch");
   
-  /* Testoutput for symbol-table 
-  printf("\n");
-  env_ptr env;
-  table_ptr var;
-  st_init(&env);
-  st_append(&env);
-  char b[10] = "Hallo";
-  char a[10] = "";
-  int j = 3;
-  put(&env->st, b, &j);
-  printf("%s, %d\n", env->st->word, env->st->type_ID);
-  strcpy(a, "Haffo");
-  j = 6;
-  put(&env->st, a, &j);
-  printf("%s, %d\n", env->st->word, env->st->type_ID);
-  st_append(&env);
-  strcpy(a, "Laffo");
-  j = 6;
-  put(&env->st, a, &j);
-  printf("%s, %d\n", env->st->word, env->st->type_ID);
-  var = get(&env, "Haffo"); 
-  if (var != NULL) printf("%s", var->word);
-  else printf("Not found");*/
+ 
   return EXIT_SUCCESS;
 }
 

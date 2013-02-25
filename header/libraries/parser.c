@@ -1,3 +1,21 @@
+/*     
+ * PiL0 - PL0 Compiler for Raspberry PI
+ * Copyright (C) 2013  Philipp Wiesner
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *  
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *  
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 /**
  * @file parser.c Library which inherits all necessary functions for parsing
  * 
@@ -256,6 +274,10 @@ void stmt(list l) {
 			break;
     case (BEGIN):	MOVE
 			stmt(l);
+			while (TOKEN == ';') {
+			  MOVE
+			  stmt(l);
+			}
 			if (WORDID == END) MOVE
 			break;
     case (IF):		MOVE
@@ -271,11 +293,6 @@ void stmt(list l) {
     case (PASS):	MOVE
 			break;
   }
- /* if (TOKEN == ';') { 
-    MOVE
-    stmt(l);
-  }*/
-
 }
 
 void expression(list l) {
