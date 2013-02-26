@@ -1,17 +1,76 @@
-VAR n, a;
-CONST c = 5;
+VAR x,y,z,q,r,n,fa;
+
+PROCEDURE multiply;
+	VAR a,b;
+BEGIN 
+	a = x; 
+	b = y; 
+	z = 0;
+	WHILE b > 0 DO
+	BEGIN 
+		IF ODD z THEN z = z + a;
+		a = 2*a; 
+		b = b/2
+	END
+END ;
+
+PROCEDURE divide;
+	VAR w;
+BEGIN 
+	r = x; 
+	q = 0; 
+	w = y;
+	WHILE w <= r DO w = 2*w;
+	WHILE w > y DO
+	BEGIN 
+		q = 2*q; 
+		w = w/2;
+		IF w <= r THEN
+		BEGIN 
+			r = r - w; 
+			q = q + 1
+		END
+	END
+END ;
+
+PROCEDURE gcd;
+	VAR f,g;
+BEGIN 
+	f = x; g = y;
+	WHILE f != g DO
+	BEGIN 
+			IF f < g THEN g = g - f;
+			IF g < f THEN f = f - g
+	END ; 
+	z = f
+END ;
 
 PROCEDURE fact;
 BEGIN
-  IF n < 6 THEN
-    BEGIN
-      c = 5;
-      PRINT n;
-      CALL fact
-    END
-END;
+	IF n > 1 THEN
+		BEGIN 
+			fa = n * fa; 
+			n = n - 1; 
+			CALL fact
+		END
+END ;
 
 BEGIN
-  n = 1;
-  READ n
-END.
+	READ x;
+	READ y;
+	CALL multiply;
+	PRINT z;
+	READ x;
+	READ y;
+	CALL divide;
+	PRINT q;
+	PRINT r;
+	READ x;
+	READ y;
+	CALL gcd;
+	PRINT z;
+	READ n;
+	fa = 1;
+	CALL fact;
+	PRINT fa
+END .

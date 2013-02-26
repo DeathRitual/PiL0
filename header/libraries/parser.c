@@ -19,7 +19,7 @@
 /**
  * @file parser.c Library which inherits all necessary functions for parsing
  * 
- * Further instructions
+ * @todo add further instructions, abstract syntax tree and output of three adress code
  */
 
 #include"../err_handling.h"
@@ -315,16 +315,6 @@ void stmt(list l) {
 }
 
 /**
- * @brief check expression syntax
- *
- * @param l token stream
- * @return void
- **/
-void expression(list l) {
-  MOVE
-}
-
-/**
  * @brief check condition syntax
  *
  * @param l token stream
@@ -338,7 +328,7 @@ void condition(list l) {
   } 
   else {
     /* condition -> expression > expression | expression < expression */
-    expression(l);    
+    expression(l);   
     if (TOKEN == '>' || TOKEN == '<') {      
       MOVE
       expression(l);
@@ -364,5 +354,64 @@ void condition(list l) {
       }
     }
   }
+}
+
+/**
+ * @brief check expression syntax
+ *
+ * @param l token stream
+ * @return void
+ **/
+void expression(list l) {
+  /* expression -> - term */
+  if (TOKEN == '-') { 
+    MOVE
+    term(l);
+  /* expression -> term */
+  } else {
+    term(l);
+  }
+  /* expression -> expression + term | expression - term */
+  while (TOKEN == '+' || TOKEN == '-') {
+    MOVE
+    term(l);
+  }
+}
+
+/**
+ * @brief check term syntax
+ *
+ * @param l token stream
+ * @return void
+ **/
+void term(list l) {
+  /* term -> factor */
+  factor(l);
+  /* term -> term * factor | term / factor */
+  while (TOKEN == '*' || TOKEN == '/') {
+    MOVE
+    term(l);
+  }
+}
+
+/**
+ * @brief check factor syntax
+ *
+ * @param l token stream
+ * @return void
+ **/
+void factor(list l) {
+  /* factor -> identifier */
+  if (WORDID == IDENTIFIER) {
+    if ((var = get(&environment, WORD)) == NULL) parseError(CODE, TYP_ID_NO_IN);
+    MOVE
+  /* factor -> number */
+  } else if (NUMBERID == NUM) { MOVE }
+  /* factor -> ( expression ) */
+  else if (TOKEN == '(') {
+    MOVE
+    expression(l);
+    if (TOKEN == ')') { MOVE } else parseError(CODE, SYN_MISS_CB);
+  } else parseError(CODE, SYN_MISS_OB);
 }
  

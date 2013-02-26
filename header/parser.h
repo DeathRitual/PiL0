@@ -85,5 +85,7 @@ void block(list);
 void stmt(list);
 void expression(list);
 void condition(list);
+void term(list);
+void factor(list);
 
 #endif
