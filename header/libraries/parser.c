@@ -112,7 +112,7 @@ void st_append(env_ptr *e) {
  *
  * @param t Identifies the current symbol table.
  * @param w Symbol which should be stored
- * @param i ID of the symbol
+ * @param i varaible-type ID
  * @return void
  **/
 void put(table_ptr *t, char *w, int i) {
@@ -314,11 +314,55 @@ void stmt(list l) {
   }
 }
 
+/**
+ * @brief check expression syntax
+ *
+ * @param l token stream
+ * @return void
+ **/
 void expression(list l) {
   MOVE
 }
 
+/**
+ * @brief check condition syntax
+ *
+ * @param l token stream
+ * @return void
+ **/
 void condition(list l) {
-  MOVE
+  /* condition -> ODD expression */
+  if (WORDID == ODD) { 
+    MOVE 
+    expression(l);
+  } 
+  else {
+    /* condition -> expression > expression | expression < expression */
+    expression(l);    
+    if (TOKEN == '>' || TOKEN == '<') {      
+      MOVE
+      expression(l);
+    } else {
+      switch(WORDID) {
+	/* condition -> expression == expression */
+	case(EQ): MOVE
+		  expression(l);
+		  break;
+	/* condition -> expression != expression */
+	case(NE): MOVE
+		  expression(l);
+		  break;
+	/* condition -> expression <= expression */
+	case(LE): MOVE
+		  expression(l);
+		  break;
+	/* condition -> expression >= expression */
+	case(GE): MOVE
+		  expression(l);
+		  break;
+	default: parseError(CODE, SYN_NO_COMP);
+      }
+    }
+  }
 }
  

@@ -3,7 +3,7 @@ CONST c = 5;
 
 PROCEDURE fact;
 BEGIN
-  IF n THEN
+  IF n < 6 THEN
     BEGIN
       c = 5;
       PRINT n;
@@ -13,5 +13,5 @@ END;
 
 BEGIN
   n = 1;
-  READ b
+  READ n
 END.
