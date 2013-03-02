@@ -26,7 +26,7 @@
 #include"../parser.h" 
 #include<stdlib.h>
 #include<string.h>
-#define DEBUG switch(tok->element.type) { \
+#define DEBUG switch(tok->type) { \
 		  case('t'): printf("Token: %c\n", tok->element.token.t); \
 			     break; \
 		  case('w'): printf("Word: %s, ID: %d\n", tok->element.word.w, tok->element.word.ID); \
@@ -43,7 +43,7 @@
 #define TOKEN tok->element.token.t
 #define NUMBER tok->element.number.n 
 #define NUMBERID tok->element.number.ID
-#define CODE tok->element.line
+#define CODE tok->line
 
 /**
  * @var token_stream *tok
@@ -414,4 +414,3 @@ void factor(list l) {
     if (TOKEN == ')') { MOVE } else parseError(CODE, SYN_MISS_CB);
   } else parseError(CODE, SYN_MISS_OB);
 }
- 

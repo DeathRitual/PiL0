@@ -57,7 +57,7 @@ typedef env *env_ptr;
  * 
  **/
 struct _table {
-  char word[30]; /**< symbol name */
+  char word[MAX_LENGTH]; /**< symbol name */
   unsigned int type_ID; /**< symbol ID */
   table *previous; /**< points to previous entry */
 };

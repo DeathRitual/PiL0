@@ -48,7 +48,6 @@
  */
 list head;
 
-
 /**
   * @brief Initialize new token stream with NULL-Pointer
   *
@@ -86,26 +85,27 @@ void l_append(list *l, char *t, int *n, int *ln) {
 
   list el;
 
-  if ((el = malloc(sizeof(token_stream))) == NULL) error(ERR_MEMORY);
-
+  if ((el = malloc(sizeof(token_stream))) == NULL) error(ERR_MEMORY);  
+  
   if (isdigit(*t) > 0) {
-      el->element.type = 'n';
+      el->type = 'n';  
       el->element.number.n = atoi(t);
-      el->element.number.ID = *n;
+      el->element.number.ID = *n;      
     }
 
   else if (isalpha(*t) > 0) {
-      el->element.type = 'w';
+      el->type = 'w';     
       strcpy(el->element.word.w, t);
       el->element.word.ID = *n;
     }
 
   else {
-      el->element.type = 't';
+      el->type = 't';      
       el->element.token.t = *t;
     }
-
-  el->element.line = *ln;
+    
+  
+  el->line = *ln;
   el->next = *l;
   el->previous = NULL;
 
@@ -247,12 +247,6 @@ list lexer(list token_stream, FILE *raw_code) {
           char w[30] = "";
           int i = 0, key_NUM, ident = IDENTIFIER;
 
-          /* eat control characters */
-          /*while (c < 33) {
-          if (c == 10 || c == 13) lineNumber++;
-          c = fgetc(raw_code);
-               }*/
-
           /* read compare operators */
           if (c == '=' || c == '>' || c == '<' || c == '!') {
               w[i] = c;
@@ -316,6 +310,5 @@ list lexer(list token_stream, FILE *raw_code) {
             }
         }
     }
-
   return token_stream;
 }

@@ -26,6 +26,7 @@
 #include<stdio.h>
 #ifndef __LEXER_H
   #define __LEXER_H
+#define MAX_LENGTH 30
 
 /**
  * @typedef struct _token_stream token_stream
@@ -51,19 +52,18 @@ typedef token_stream *list;
  * and previous neighbour.
  **/
 struct _token_stream{
-    
-  /**
-   * @struct _element 
+  char type; /**< Token-Type */
+  unsigned int line; /**< code line number */
+  
+   /**
+   * @union _element 
    * 
    * @brief Different Token for storing symbols.
    * 
    * Except for Token: token all token have an ID which helps identifying
    * the type of the keyword, identifer or number.
    **/
-  struct _element{
-    char type; /**< Token-Type */
-    unsigned int line; /**< code line number */
-    
+  union _element{    
     /**
      * @struct token
      * 
@@ -90,7 +90,7 @@ struct _token_stream{
      **/
     struct _word {
       unsigned int ID; /**< keyword / identifier identifier */
-      char w[30]; /**< keyword / identifer */
+      char w[MAX_LENGTH]; /**< keyword / identifer */
     }word; /**< Can store words and either the Keyword-ID or IDENTIFIER-ID */
     
   }element; /**< Structure to store different types of lexical tokens */
@@ -122,7 +122,7 @@ enum special_IDs {
 };
 
 typedef struct{
-  char w[30]; /**< keyword */
+  char w[MAX_LENGTH]; /**< keyword */
   int ID; /**< keyword identifier */
   /**
   * @struct keyword  
