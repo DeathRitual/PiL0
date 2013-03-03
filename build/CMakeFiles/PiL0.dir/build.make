@@ -52,113 +52,39 @@ include CMakeFiles/PiL0.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/PiL0.dir/flags.make
 
-CMakeFiles/PiL0.dir/header/libraries/parser.o: CMakeFiles/PiL0.dir/flags.make
-CMakeFiles/PiL0.dir/header/libraries/parser.o: ../header/libraries/parser.c
+CMakeFiles/PiL0.dir/pl.c.o: CMakeFiles/PiL0.dir/flags.make
+CMakeFiles/PiL0.dir/pl.c.o: ../pl.c
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/nirvash/Projects/PiL0/build/CMakeFiles $(CMAKE_PROGRESS_1)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building C object CMakeFiles/PiL0.dir/header/libraries/parser.o"
-	/usr/bin/gcc  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/PiL0.dir/header/libraries/parser.o   -c /home/nirvash/Projects/PiL0/header/libraries/parser.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building C object CMakeFiles/PiL0.dir/pl.c.o"
+	/usr/bin/gcc  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/PiL0.dir/pl.c.o   -c /home/nirvash/Projects/PiL0/pl.c
 
-CMakeFiles/PiL0.dir/header/libraries/parser.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/PiL0.dir/header/libraries/parser.i"
-	/usr/bin/gcc  $(C_DEFINES) $(C_FLAGS) -E /home/nirvash/Projects/PiL0/header/libraries/parser.c > CMakeFiles/PiL0.dir/header/libraries/parser.i
+CMakeFiles/PiL0.dir/pl.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/PiL0.dir/pl.c.i"
+	/usr/bin/gcc  $(C_DEFINES) $(C_FLAGS) -E /home/nirvash/Projects/PiL0/pl.c > CMakeFiles/PiL0.dir/pl.c.i
 
-CMakeFiles/PiL0.dir/header/libraries/parser.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/PiL0.dir/header/libraries/parser.s"
-	/usr/bin/gcc  $(C_DEFINES) $(C_FLAGS) -S /home/nirvash/Projects/PiL0/header/libraries/parser.c -o CMakeFiles/PiL0.dir/header/libraries/parser.s
+CMakeFiles/PiL0.dir/pl.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/PiL0.dir/pl.c.s"
+	/usr/bin/gcc  $(C_DEFINES) $(C_FLAGS) -S /home/nirvash/Projects/PiL0/pl.c -o CMakeFiles/PiL0.dir/pl.c.s
 
-CMakeFiles/PiL0.dir/header/libraries/parser.o.requires:
-.PHONY : CMakeFiles/PiL0.dir/header/libraries/parser.o.requires
+CMakeFiles/PiL0.dir/pl.c.o.requires:
+.PHONY : CMakeFiles/PiL0.dir/pl.c.o.requires
 
-CMakeFiles/PiL0.dir/header/libraries/parser.o.provides: CMakeFiles/PiL0.dir/header/libraries/parser.o.requires
-	$(MAKE) -f CMakeFiles/PiL0.dir/build.make CMakeFiles/PiL0.dir/header/libraries/parser.o.provides.build
-.PHONY : CMakeFiles/PiL0.dir/header/libraries/parser.o.provides
+CMakeFiles/PiL0.dir/pl.c.o.provides: CMakeFiles/PiL0.dir/pl.c.o.requires
+	$(MAKE) -f CMakeFiles/PiL0.dir/build.make CMakeFiles/PiL0.dir/pl.c.o.provides.build
+.PHONY : CMakeFiles/PiL0.dir/pl.c.o.provides
 
-CMakeFiles/PiL0.dir/header/libraries/parser.o.provides.build: CMakeFiles/PiL0.dir/header/libraries/parser.o
-
-CMakeFiles/PiL0.dir/header/libraries/err_handling.o: CMakeFiles/PiL0.dir/flags.make
-CMakeFiles/PiL0.dir/header/libraries/err_handling.o: ../header/libraries/err_handling.c
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/nirvash/Projects/PiL0/build/CMakeFiles $(CMAKE_PROGRESS_2)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building C object CMakeFiles/PiL0.dir/header/libraries/err_handling.o"
-	/usr/bin/gcc  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/PiL0.dir/header/libraries/err_handling.o   -c /home/nirvash/Projects/PiL0/header/libraries/err_handling.c
-
-CMakeFiles/PiL0.dir/header/libraries/err_handling.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/PiL0.dir/header/libraries/err_handling.i"
-	/usr/bin/gcc  $(C_DEFINES) $(C_FLAGS) -E /home/nirvash/Projects/PiL0/header/libraries/err_handling.c > CMakeFiles/PiL0.dir/header/libraries/err_handling.i
-
-CMakeFiles/PiL0.dir/header/libraries/err_handling.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/PiL0.dir/header/libraries/err_handling.s"
-	/usr/bin/gcc  $(C_DEFINES) $(C_FLAGS) -S /home/nirvash/Projects/PiL0/header/libraries/err_handling.c -o CMakeFiles/PiL0.dir/header/libraries/err_handling.s
-
-CMakeFiles/PiL0.dir/header/libraries/err_handling.o.requires:
-.PHONY : CMakeFiles/PiL0.dir/header/libraries/err_handling.o.requires
-
-CMakeFiles/PiL0.dir/header/libraries/err_handling.o.provides: CMakeFiles/PiL0.dir/header/libraries/err_handling.o.requires
-	$(MAKE) -f CMakeFiles/PiL0.dir/build.make CMakeFiles/PiL0.dir/header/libraries/err_handling.o.provides.build
-.PHONY : CMakeFiles/PiL0.dir/header/libraries/err_handling.o.provides
-
-CMakeFiles/PiL0.dir/header/libraries/err_handling.o.provides.build: CMakeFiles/PiL0.dir/header/libraries/err_handling.o
-
-CMakeFiles/PiL0.dir/header/libraries/lexer.o: CMakeFiles/PiL0.dir/flags.make
-CMakeFiles/PiL0.dir/header/libraries/lexer.o: ../header/libraries/lexer.c
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/nirvash/Projects/PiL0/build/CMakeFiles $(CMAKE_PROGRESS_3)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building C object CMakeFiles/PiL0.dir/header/libraries/lexer.o"
-	/usr/bin/gcc  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/PiL0.dir/header/libraries/lexer.o   -c /home/nirvash/Projects/PiL0/header/libraries/lexer.c
-
-CMakeFiles/PiL0.dir/header/libraries/lexer.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/PiL0.dir/header/libraries/lexer.i"
-	/usr/bin/gcc  $(C_DEFINES) $(C_FLAGS) -E /home/nirvash/Projects/PiL0/header/libraries/lexer.c > CMakeFiles/PiL0.dir/header/libraries/lexer.i
-
-CMakeFiles/PiL0.dir/header/libraries/lexer.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/PiL0.dir/header/libraries/lexer.s"
-	/usr/bin/gcc  $(C_DEFINES) $(C_FLAGS) -S /home/nirvash/Projects/PiL0/header/libraries/lexer.c -o CMakeFiles/PiL0.dir/header/libraries/lexer.s
-
-CMakeFiles/PiL0.dir/header/libraries/lexer.o.requires:
-.PHONY : CMakeFiles/PiL0.dir/header/libraries/lexer.o.requires
-
-CMakeFiles/PiL0.dir/header/libraries/lexer.o.provides: CMakeFiles/PiL0.dir/header/libraries/lexer.o.requires
-	$(MAKE) -f CMakeFiles/PiL0.dir/build.make CMakeFiles/PiL0.dir/header/libraries/lexer.o.provides.build
-.PHONY : CMakeFiles/PiL0.dir/header/libraries/lexer.o.provides
-
-CMakeFiles/PiL0.dir/header/libraries/lexer.o.provides.build: CMakeFiles/PiL0.dir/header/libraries/lexer.o
-
-CMakeFiles/PiL0.dir/pl.o: CMakeFiles/PiL0.dir/flags.make
-CMakeFiles/PiL0.dir/pl.o: ../pl.c
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/nirvash/Projects/PiL0/build/CMakeFiles $(CMAKE_PROGRESS_4)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building C object CMakeFiles/PiL0.dir/pl.o"
-	/usr/bin/gcc  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/PiL0.dir/pl.o   -c /home/nirvash/Projects/PiL0/pl.c
-
-CMakeFiles/PiL0.dir/pl.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/PiL0.dir/pl.i"
-	/usr/bin/gcc  $(C_DEFINES) $(C_FLAGS) -E /home/nirvash/Projects/PiL0/pl.c > CMakeFiles/PiL0.dir/pl.i
-
-CMakeFiles/PiL0.dir/pl.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/PiL0.dir/pl.s"
-	/usr/bin/gcc  $(C_DEFINES) $(C_FLAGS) -S /home/nirvash/Projects/PiL0/pl.c -o CMakeFiles/PiL0.dir/pl.s
-
-CMakeFiles/PiL0.dir/pl.o.requires:
-.PHONY : CMakeFiles/PiL0.dir/pl.o.requires
-
-CMakeFiles/PiL0.dir/pl.o.provides: CMakeFiles/PiL0.dir/pl.o.requires
-	$(MAKE) -f CMakeFiles/PiL0.dir/build.make CMakeFiles/PiL0.dir/pl.o.provides.build
-.PHONY : CMakeFiles/PiL0.dir/pl.o.provides
-
-CMakeFiles/PiL0.dir/pl.o.provides.build: CMakeFiles/PiL0.dir/pl.o
+CMakeFiles/PiL0.dir/pl.c.o.provides.build: CMakeFiles/PiL0.dir/pl.c.o
 
 # Object files for target PiL0
 PiL0_OBJECTS = \
-"CMakeFiles/PiL0.dir/header/libraries/parser.o" \
-"CMakeFiles/PiL0.dir/header/libraries/err_handling.o" \
-"CMakeFiles/PiL0.dir/header/libraries/lexer.o" \
-"CMakeFiles/PiL0.dir/pl.o"
+"CMakeFiles/PiL0.dir/pl.c.o"
 
 # External object files for target PiL0
 PiL0_EXTERNAL_OBJECTS =
 
-PiL0: CMakeFiles/PiL0.dir/header/libraries/parser.o
-PiL0: CMakeFiles/PiL0.dir/header/libraries/err_handling.o
-PiL0: CMakeFiles/PiL0.dir/header/libraries/lexer.o
-PiL0: CMakeFiles/PiL0.dir/pl.o
+PiL0: CMakeFiles/PiL0.dir/pl.c.o
 PiL0: CMakeFiles/PiL0.dir/build.make
+PiL0: header/libheader.a
 PiL0: CMakeFiles/PiL0.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --red --bold "Linking C executable PiL0"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/PiL0.dir/link.txt --verbose=$(VERBOSE)
@@ -167,10 +93,7 @@ PiL0: CMakeFiles/PiL0.dir/link.txt
 CMakeFiles/PiL0.dir/build: PiL0
 .PHONY : CMakeFiles/PiL0.dir/build
 
-CMakeFiles/PiL0.dir/requires: CMakeFiles/PiL0.dir/header/libraries/parser.o.requires
-CMakeFiles/PiL0.dir/requires: CMakeFiles/PiL0.dir/header/libraries/err_handling.o.requires
-CMakeFiles/PiL0.dir/requires: CMakeFiles/PiL0.dir/header/libraries/lexer.o.requires
-CMakeFiles/PiL0.dir/requires: CMakeFiles/PiL0.dir/pl.o.requires
+CMakeFiles/PiL0.dir/requires: CMakeFiles/PiL0.dir/pl.c.o.requires
 .PHONY : CMakeFiles/PiL0.dir/requires
 
 CMakeFiles/PiL0.dir/clean:

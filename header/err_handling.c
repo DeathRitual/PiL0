@@ -23,7 +23,7 @@
  * 
  */
 
-#include "../err_handling.h"
+#include "err_handling.h"
 #include<stdio.h>
 #include<stdlib.h>
 

@@ -22,12 +22,12 @@
  * 
  */
 
-#include"header/lexer.h"
-#include"header/parser.h"
+#include"parser.h"
 #include<stdlib.h>
 #include<string.h>
 
 int main(int argc, char *argv[]) {
+  
   int i = 10, c;
   list token_stream;
 

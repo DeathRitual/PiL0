@@ -59,10 +59,10 @@ CMAKE_BINARY_DIR = /home/nirvash/Projects/PiL0/build
 # Target rules for target CMakeFiles/PiL0.dir
 
 # All Build rule for target.
-CMakeFiles/PiL0.dir/all:
+CMakeFiles/PiL0.dir/all: header/CMakeFiles/header.dir/all
 	$(MAKE) -f CMakeFiles/PiL0.dir/build.make CMakeFiles/PiL0.dir/depend
 	$(MAKE) -f CMakeFiles/PiL0.dir/build.make CMakeFiles/PiL0.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/nirvash/Projects/PiL0/build/CMakeFiles  1 2 3 4
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/nirvash/Projects/PiL0/build/CMakeFiles  1
 	@echo "Built target PiL0"
 .PHONY : CMakeFiles/PiL0.dir/all
 
@@ -94,31 +94,51 @@ clean: CMakeFiles/PiL0.dir/clean
 # Directory level rules for directory header
 
 # Convenience name for "all" pass in the directory.
-header/all: header/libraries/all
+header/all: header/CMakeFiles/header.dir/all
 .PHONY : header/all
 
 # Convenience name for "clean" pass in the directory.
-header/clean: header/libraries/clean
+header/clean: header/CMakeFiles/header.dir/clean
 .PHONY : header/clean
 
 # Convenience name for "preinstall" pass in the directory.
-header/preinstall: header/libraries/preinstall
+header/preinstall:
 .PHONY : header/preinstall
 
 #=============================================================================
-# Directory level rules for directory header/libraries
+# Target rules for target header/CMakeFiles/header.dir
 
-# Convenience name for "all" pass in the directory.
-header/libraries/all:
-.PHONY : header/libraries/all
+# All Build rule for target.
+header/CMakeFiles/header.dir/all:
+	$(MAKE) -f header/CMakeFiles/header.dir/build.make header/CMakeFiles/header.dir/depend
+	$(MAKE) -f header/CMakeFiles/header.dir/build.make header/CMakeFiles/header.dir/build
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/nirvash/Projects/PiL0/build/CMakeFiles  2 3 4
+	@echo "Built target header"
+.PHONY : header/CMakeFiles/header.dir/all
 
-# Convenience name for "clean" pass in the directory.
-header/libraries/clean:
-.PHONY : header/libraries/clean
+# Include target in all.
+all: header/CMakeFiles/header.dir/all
+.PHONY : all
 
-# Convenience name for "preinstall" pass in the directory.
-header/libraries/preinstall:
-.PHONY : header/libraries/preinstall
+# Build rule for subdir invocation for target.
+header/CMakeFiles/header.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/nirvash/Projects/PiL0/build/CMakeFiles 3
+	$(MAKE) -f CMakeFiles/Makefile2 header/CMakeFiles/header.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/nirvash/Projects/PiL0/build/CMakeFiles 0
+.PHONY : header/CMakeFiles/header.dir/rule
+
+# Convenience name for target.
+header: header/CMakeFiles/header.dir/rule
+.PHONY : header
+
+# clean rule for target.
+header/CMakeFiles/header.dir/clean:
+	$(MAKE) -f header/CMakeFiles/header.dir/build.make header/CMakeFiles/header.dir/clean
+.PHONY : header/CMakeFiles/header.dir/clean
+
+# clean rule for target.
+clean: header/CMakeFiles/header.dir/clean
+.PHONY : clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

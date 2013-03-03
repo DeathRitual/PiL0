@@ -142,6 +142,92 @@ depend:
 	cd /home/nirvash/Projects/PiL0/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
+# Convenience name for target.
+header/CMakeFiles/header.dir/rule:
+	cd /home/nirvash/Projects/PiL0/build && $(MAKE) -f CMakeFiles/Makefile2 header/CMakeFiles/header.dir/rule
+.PHONY : header/CMakeFiles/header.dir/rule
+
+# Convenience name for target.
+header: header/CMakeFiles/header.dir/rule
+.PHONY : header
+
+# fast build rule for target.
+header/fast:
+	cd /home/nirvash/Projects/PiL0/build && $(MAKE) -f header/CMakeFiles/header.dir/build.make header/CMakeFiles/header.dir/build
+.PHONY : header/fast
+
+err_handling.o: err_handling.c.o
+.PHONY : err_handling.o
+
+# target to build an object file
+err_handling.c.o:
+	cd /home/nirvash/Projects/PiL0/build && $(MAKE) -f header/CMakeFiles/header.dir/build.make header/CMakeFiles/header.dir/err_handling.c.o
+.PHONY : err_handling.c.o
+
+err_handling.i: err_handling.c.i
+.PHONY : err_handling.i
+
+# target to preprocess a source file
+err_handling.c.i:
+	cd /home/nirvash/Projects/PiL0/build && $(MAKE) -f header/CMakeFiles/header.dir/build.make header/CMakeFiles/header.dir/err_handling.c.i
+.PHONY : err_handling.c.i
+
+err_handling.s: err_handling.c.s
+.PHONY : err_handling.s
+
+# target to generate assembly for a file
+err_handling.c.s:
+	cd /home/nirvash/Projects/PiL0/build && $(MAKE) -f header/CMakeFiles/header.dir/build.make header/CMakeFiles/header.dir/err_handling.c.s
+.PHONY : err_handling.c.s
+
+lexer.o: lexer.c.o
+.PHONY : lexer.o
+
+# target to build an object file
+lexer.c.o:
+	cd /home/nirvash/Projects/PiL0/build && $(MAKE) -f header/CMakeFiles/header.dir/build.make header/CMakeFiles/header.dir/lexer.c.o
+.PHONY : lexer.c.o
+
+lexer.i: lexer.c.i
+.PHONY : lexer.i
+
+# target to preprocess a source file
+lexer.c.i:
+	cd /home/nirvash/Projects/PiL0/build && $(MAKE) -f header/CMakeFiles/header.dir/build.make header/CMakeFiles/header.dir/lexer.c.i
+.PHONY : lexer.c.i
+
+lexer.s: lexer.c.s
+.PHONY : lexer.s
+
+# target to generate assembly for a file
+lexer.c.s:
+	cd /home/nirvash/Projects/PiL0/build && $(MAKE) -f header/CMakeFiles/header.dir/build.make header/CMakeFiles/header.dir/lexer.c.s
+.PHONY : lexer.c.s
+
+parser.o: parser.c.o
+.PHONY : parser.o
+
+# target to build an object file
+parser.c.o:
+	cd /home/nirvash/Projects/PiL0/build && $(MAKE) -f header/CMakeFiles/header.dir/build.make header/CMakeFiles/header.dir/parser.c.o
+.PHONY : parser.c.o
+
+parser.i: parser.c.i
+.PHONY : parser.i
+
+# target to preprocess a source file
+parser.c.i:
+	cd /home/nirvash/Projects/PiL0/build && $(MAKE) -f header/CMakeFiles/header.dir/build.make header/CMakeFiles/header.dir/parser.c.i
+.PHONY : parser.c.i
+
+parser.s: parser.c.s
+.PHONY : parser.s
+
+# target to generate assembly for a file
+parser.c.s:
+	cd /home/nirvash/Projects/PiL0/build && $(MAKE) -f header/CMakeFiles/header.dir/build.make header/CMakeFiles/header.dir/parser.c.s
+.PHONY : parser.c.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -149,11 +235,21 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... edit_cache"
+	@echo "... header"
 	@echo "... install"
 	@echo "... install/local"
 	@echo "... install/strip"
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
+	@echo "... err_handling.o"
+	@echo "... err_handling.i"
+	@echo "... err_handling.s"
+	@echo "... lexer.o"
+	@echo "... lexer.i"
+	@echo "... lexer.s"
+	@echo "... parser.o"
+	@echo "... parser.i"
+	@echo "... parser.s"
 .PHONY : help
 
 

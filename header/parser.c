@@ -22,8 +22,8 @@
  * @todo add further instructions, abstract syntax tree and output of three adress code
  */
 
-#include"../err_handling.h"
-#include"../parser.h" 
+#include"err_handling.h"
+#include"parser.h" 
 #include<stdlib.h>
 #include<string.h>
 #define DEBUG switch(tok->type) { \
@@ -190,8 +190,6 @@ int parse(list l) {
  
 /**
  * @brief check block grammar
- * 
- * @todo add syntax diagram, document steps more properly
  *
  * @param l pointer to token stream
  * @return void
@@ -255,8 +253,6 @@ void block(list l) {
 
 /**
  * @brief check statement syntax
- * 
- * @todo add functions
  *
  * @param l pointer to token stream
  * @return void

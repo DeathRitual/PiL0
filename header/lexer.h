@@ -44,8 +44,6 @@ typedef token_stream *list;
 /**
  * @struct _token_stream  
  * 
- * @todo export struct element to own struct and add pointer in _token_stream
- * 
  * @brief Element-Structure which builds Token-Stream.
  * 
  * One element can only contain one token, whereas each element is connected with its last

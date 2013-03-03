@@ -34,9 +34,9 @@
  * alphanumerical), a number or an identifier.
  */
 
-#include "../lexer.h"
-#include "../language.h"
-#include "../err_handling.h"
+#include"lexer.h"
+#include"language.h"
+#include"err_handling.h"
 #include<string.h>
 #include<ctype.h>
 #include<stdlib.h>

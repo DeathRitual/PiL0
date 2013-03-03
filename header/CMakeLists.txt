@@ -1,3 +1,1 @@
-
-
-add_subdirectory(libraries)
+add_library(header lexer.c parser.c err_handling.c)
