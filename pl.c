@@ -22,9 +22,8 @@
  * 
  */
 
-#include"parser.h"
-#include<stdlib.h>
-#include<string.h>
+#include"frontend.h"
+
 
 int main(int argc, char *argv[]) {
   

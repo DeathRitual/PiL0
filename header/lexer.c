@@ -34,12 +34,10 @@
  * alphanumerical), a number or an identifier.
  */
 
-#include"lexer.h"
+#include"frontend.h"
 #include"language.h"
 #include"err_handling.h"
-#include<string.h>
 #include<ctype.h>
-#include<stdlib.h>
 
 
 /**
@@ -54,7 +52,7 @@ list head;
   * @param l pointer on beginning of new token stream
   * @return void
   **/
-void l_init(list *l) {
+static void l_init(list *l) {
   if (l == NULL) error(NULL_POINTER);
 
   *l = NULL;
@@ -66,7 +64,7 @@ void l_init(list *l) {
  * @param l pointer on token stream
  * @return int value 1 or 0
  **/
-int l_IsEmpty(list l) {
+static int l_IsEmpty(list l) {
   return l == NULL;
 }
 
@@ -80,7 +78,7 @@ int l_IsEmpty(list l) {
  * @param ln number of program code line
  * @return void
  **/
-void l_append(list *l, char *t, int *n, int *ln) {
+static void l_append(list *l, const char *t, const int *n, const int *ln) {
   if (l == NULL) error(NULL_POINTER);
 
   list el;
@@ -177,6 +175,19 @@ list l_last(list l) {
 }
 
 
+typedef struct{
+  char w[MAX_LENGTH]; /**< keyword */
+  int ID; /**< keyword identifier */
+  /**
+  * @struct keyword  
+  * 
+  * @brief Keyword structure for storing initial keywords
+  * 
+  * Stores string and ID of the language keywords like DO, WHILE, IF, etc.
+  **/
+}keyword;
+
+
 /**
  * @brief Returns the number of keyword
  *
@@ -186,7 +197,7 @@ list l_last(list l) {
  * @param s string to be checked...
  * @return int either position number of keyword or -1 if word is not stored in keyword array
  **/
-int get_keyNUM(keyword *k, char *s) {
+static int get_keyNUM(const keyword *k, const char *s) {
   int i = 0;
 
   for (i = 0; keywords[i] != NULL; i++)
@@ -213,7 +224,7 @@ static unsigned int get_keySize() {
  *
  * @return keyword* pointer to keyword array
  **/
-keyword *init_ReservedKeys() {
+static keyword *init_ReservedKeys() {
   keyword *resKeys = malloc(sizeof * resKeys * get_keySize());
   int i;
 

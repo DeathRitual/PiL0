@@ -6,19 +6,15 @@
 
 #IncludeRegexTransform: 
 
-../header/lexer.h
+../header/frontend.h
 stdio.h
 -
-
-../header/parser.h
-lexer.h
-../header/lexer.h
-
-/home/nirvash/Projects/PiL0/pl.c
-parser.h
-/home/nirvash/Projects/PiL0/parser.h
 stdlib.h
 -
 string.h
 -
+
+/home/nirvash/Projects/PiL0/pl.c
+frontend.h
+/home/nirvash/Projects/PiL0/frontend.h
 

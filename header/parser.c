@@ -23,9 +23,7 @@
  */
 
 #include"err_handling.h"
-#include"parser.h" 
-#include<stdlib.h>
-#include<string.h>
+#include"frontend.h" 
 #define DEBUG switch(tok->type) { \
 		  case('t'): printf("Token: %c\n", tok->element.token.t); \
 			     break; \
@@ -44,6 +42,53 @@
 #define NUMBER tok->element.number.n 
 #define NUMBERID tok->element.number.ID
 #define CODE tok->line
+
+/**
+ * @typedef struct _table table
+ * @brief shortens struct _table to table
+ * 
+ */   
+typedef struct _table table;
+/**
+ * @typedef table *table_ptr
+ * @brief short form to create pointer on table
+ */ 
+typedef table *table_ptr;  
+/**
+ * @typedef struct _env env
+ * @brief shortens struct _env to env
+ * 
+ */ 
+typedef struct _env env;
+/**
+ * @typedef env *env_ptr
+ * @brief short form to create pointer on env
+ * 
+ */ 
+typedef env *env_ptr;
+
+/**
+ * @struct _table
+ * 
+ * @brief Linked list which stores symbols
+ * 
+ **/
+struct _table {
+  char word[MAX_LENGTH]; /**< symbol name */
+  unsigned int type_ID; /**< symbol ID */
+  table *previous; /**< points to previous entry */
+};
+ 
+/**
+ * @struct _env
+ * 
+ * @brief Linked list which stores one symbol-table in each element
+ * 
+ **/
+struct _env {
+  table_ptr st; /**< points to symbol-table */ 
+  env *previous; /**< points to previous element */
+};
 
 /**
  * @var token_stream *tok
@@ -68,7 +113,7 @@ table_ptr var;
  * @param e pointer to symbol-table environment
  * @return void
  **/
-void st_init(env_ptr *e) {
+static void st_init(env_ptr *e) {
   if (e == NULL) error(NULL_POINTER);
   
   *e = NULL;
@@ -80,7 +125,7 @@ void st_init(env_ptr *e) {
  * @param st Pointer to symbol-table
  * @return void
  **/
-void table_init(table_ptr *st){
+static void table_init(table_ptr *st){
   if (st == NULL) error(NULL_POINTER);
   
   *st = NULL;
@@ -96,7 +141,7 @@ void table_init(table_ptr *st){
  * Otherwise the new element will point to the current one.
  * When adding a new enviornment a new symbol table with table_init(&el->st) will be initialized.
  **/
-void st_append(env_ptr *e) {
+static void st_append(env_ptr *e) {
   if (e == NULL) error(NULL_POINTER);
   
   env_ptr el;
@@ -115,7 +160,7 @@ void st_append(env_ptr *e) {
  * @param i varaible-type ID
  * @return void
  **/
-void put(table_ptr *t, char *w, int i) {
+static void put(table_ptr *t, const char *w, const int i) {
   if (t == NULL) error(NULL_POINTER);
   
   table_ptr el;
@@ -134,7 +179,7 @@ void put(table_ptr *t, char *w, int i) {
  * @param s Symbol looking for
  * @return table_ptr If symbol is found pointer to this symbol, otherwise NULL
  **/
-table_ptr get(env_ptr *e, char *s) {  
+static table_ptr get(const env_ptr *e, const char *s) {  
   if (e == NULL) error(NULL_POINTER); 
   if (*e == NULL) error(NO_TABLE);
   env_ptr ptr = *e;   
@@ -155,7 +200,7 @@ table_ptr get(env_ptr *e, char *s) {
  * @param e pointer to symbol table
  * @return void
  **/
-void st_clean(env_ptr *e) {
+static void st_clean(env_ptr *e) {
   if (e == NULL) error(NULL_POINTER);
   table_ptr t_ptr;
   if ((*e)->st == NULL) free(*e);
@@ -171,22 +216,173 @@ void st_clean(env_ptr *e) {
   }
 }
 
+/* dummy for factor */
+void expression(list);
 
 /**
- * @brief start with parsing process
- * 
- * @param l pointer to token stream
- * @return int TRUE:1 for correct parsing and FALSE:0 for wrong parsing
+ * @brief check factor syntax
+ *
+ * @param l token stream
+ * @return void
  **/
-int parse(list l) {
-  if (l == NULL) error(NULL_POINTER);
-  tok = l_top(l);
-  DEBUG
-  st_init(&environment);  
-  block(l); 
-  if(TOKEN == '.') return TRUE;
-  else return FALSE;
+void factor(list l) {
+  /* factor -> identifier */
+  if (WORDID == IDENTIFIER) {
+    if ((var = get(&environment, WORD)) == NULL) parseError(CODE, TYP_ID_NO_IN);
+    MOVE
+  /* factor -> number */
+  } else if (NUMBERID == NUM) { MOVE }
+  /* factor -> ( expression ) */
+  else if (TOKEN == '(') {
+    MOVE
+    expression(l);
+    if (TOKEN == ')') { MOVE } else parseError(CODE, SYN_MISS_CB);
+  } else parseError(CODE, SYN_MISS_OB);
 }
+
+
+/** 
+ * @brief check term syntax
+ *
+ * @param l token stream
+ * @return void
+ **/
+void term(list l) {
+  /* term -> factor */
+  factor(l);
+  /* term -> term * factor | term / factor */
+  while (TOKEN == '*' || TOKEN == '/') {
+    MOVE
+    term(l);
+  }
+}
+
+
+/**
+ * @brief check expression syntax
+ *
+ * @param l token stream
+ * @return void
+ **/
+void expression(list l) {
+  /* expression -> - term */
+  if (TOKEN == '-') { 
+    MOVE
+    term(l);
+  /* expression -> term */
+  } else {
+    term(l);
+  }
+  /* expression -> expression + term | expression - term */
+  while (TOKEN == '+' || TOKEN == '-') {
+    MOVE
+    term(l);
+  }
+}
+
+
+/**
+ * @brief check condition syntax
+ *
+ * @param l token stream
+ * @return void
+ **/
+void condition(list l) {
+  /* condition -> ODD expression */
+  if (WORDID == ODD) { 
+    MOVE 
+    expression(l);
+  } 
+  else {
+    /* condition -> expression > expression | expression < expression */
+    expression(l);   
+    if (TOKEN == '>' || TOKEN == '<') {      
+      MOVE
+      expression(l);
+    } else {
+      switch(WORDID) {
+	/* condition -> expression == expression */
+	case(EQ): MOVE
+		  expression(l);
+		  break;
+	/* condition -> expression != expression */
+	case(NE): MOVE
+		  expression(l);
+		  break;
+	/* condition -> expression <= expression */
+	case(LE): MOVE
+		  expression(l);
+		  break;
+	/* condition -> expression >= expression */
+	case(GE): MOVE
+		  expression(l);
+		  break;
+	default: parseError(CODE, SYN_NO_COMP);
+      }
+    }
+  }
+}
+
+ 
+/**
+ * @brief check statement syntax
+ *
+ * @param l pointer to token stream
+ * @return void
+ **/
+void stmt(list l) {
+  switch(WORDID) {
+    /* stmt -> identifier = expression */
+    case (IDENTIFIER): 	if ((var = get(&environment, WORD)) == NULL) parseError(CODE, TYP_ID_NO_IN);
+			MOVE
+			if (TOKEN == '=') { MOVE } else parseError(CODE, SYN_MISS_ASS);
+			expression(l);
+			break;
+    /* stmt -> CALL identifier (only procedure)*/
+    case (CALL):	MOVE
+			var = get(&environment, WORD);
+			if (var == NULL) parseError(CODE, TYP_ID_NO_IN);
+			else if (var->type_ID != PROCEDURE) parseError(CODE, TYP_ONLY_PROC);
+			MOVE
+			break;
+    /* stmt -> READ identifier (only procedure)*/
+    case (READ):	MOVE
+			var = get(&environment, WORD);
+			if (var == NULL) parseError(CODE, TYP_ID_NO_IN);
+			if (WORDID == IDENTIFIER && var->type_ID != PROCEDURE) { MOVE } else parseError(CODE, TYP_ONLY_INT);			
+			break;
+    /* stmt -> PRINT expression */
+    case (PRINT):	MOVE
+			expression(l);
+			break;
+    /* stmt  -> BEGIN stmts END 
+     * stmts -> stmts ; stmt | stmt */
+    case (BEGIN):	MOVE
+			stmt(l);
+			while (TOKEN == ';') {
+			  MOVE
+			  stmt(l);
+			}
+			if (WORDID == END) { MOVE } else parseError(CODE, SYN_MISS_END);
+			break;
+    /* stmt -> IF condition THEN stmt */
+    case (IF):		MOVE
+			condition(l);
+			if (WORDID == THEN) { MOVE } else parseError(CODE, SYN_IF);
+			stmt(l);
+			break;
+    /* stmt -> WHILE condition DO stmt */
+    case (WHILE):	MOVE
+			condition(l);
+			if (WORDID == DO) { MOVE } else parseError(CODE, SYN_WHILE);
+			stmt(l);
+			break;
+    /* stmt -> PASS */
+    case (PASS):	MOVE
+			break;
+  }
+}
+
  
 /**
  * @brief check block grammar
@@ -251,162 +447,19 @@ void block(list l) {
   st_clean(&environment);
 }
 
+
 /**
- * @brief check statement syntax
- *
+ * @brief start with parsing process
+ * 
  * @param l pointer to token stream
- * @return void
+ * @return int TRUE:1 for correct parsing and FALSE:0 for wrong parsing
  **/
-void stmt(list l) {
-  switch(WORDID) {
-    /* stmt -> identifier = expression */
-    case (IDENTIFIER): 	if ((var = get(&environment, WORD)) == NULL) parseError(CODE, TYP_ID_NO_IN);
-			MOVE
-			if (TOKEN == '=') { MOVE } else parseError(CODE, SYN_MISS_ASS);
-			expression(l);
-			break;
-    /* stmt -> CALL identifier (only procedure)*/
-    case (CALL):	MOVE
-			var = get(&environment, WORD);
-			if (var == NULL) parseError(CODE, TYP_ID_NO_IN);
-			else if (var->type_ID != PROCEDURE) parseError(CODE, TYP_ONLY_PROC);
-			MOVE
-			break;
-    /* stmt -> READ identifier (only procedure)*/
-    case (READ):	MOVE
-			var = get(&environment, WORD);
-			if (var == NULL) parseError(CODE, TYP_ID_NO_IN);
-			if (WORDID == IDENTIFIER && var->type_ID != PROCEDURE) { MOVE } else parseError(CODE, TYP_ONLY_INT);			
-			break;
-    /* stmt -> PRINT expression */
-    case (PRINT):	MOVE
-			expression(l);
-			break;
-    /* stmt  -> BEGIN stmts END 
-     * stmts -> stmts ; stmt | stmt */
-    case (BEGIN):	MOVE
-			stmt(l);
-			while (TOKEN == ';') {
-			  MOVE
-			  stmt(l);
-			}
-			if (WORDID == END) { MOVE } else parseError(CODE, SYN_MISS_END);
-			break;
-    /* stmt -> IF condition THEN stmt */
-    case (IF):		MOVE
-			condition(l);
-			if (WORDID == THEN) { MOVE } else parseError(CODE, SYN_IF);
-			stmt(l);
-			break;
-    /* stmt -> WHILE condition DO stmt */
-    case (WHILE):	MOVE
-			condition(l);
-			if (WORDID == DO) { MOVE } else parseError(CODE, SYN_WHILE);
-			stmt(l);
-			break;
-    /* stmt -> PASS */
-    case (PASS):	MOVE
-			break;
-  }
-}
-
-/**
- * @brief check condition syntax
- *
- * @param l token stream
- * @return void
- **/
-void condition(list l) {
-  /* condition -> ODD expression */
-  if (WORDID == ODD) { 
-    MOVE 
-    expression(l);
-  } 
-  else {
-    /* condition -> expression > expression | expression < expression */
-    expression(l);   
-    if (TOKEN == '>' || TOKEN == '<') {      
-      MOVE
-      expression(l);
-    } else {
-      switch(WORDID) {
-	/* condition -> expression == expression */
-	case(EQ): MOVE
-		  expression(l);
-		  break;
-	/* condition -> expression != expression */
-	case(NE): MOVE
-		  expression(l);
-		  break;
-	/* condition -> expression <= expression */
-	case(LE): MOVE
-		  expression(l);
-		  break;
-	/* condition -> expression >= expression */
-	case(GE): MOVE
-		  expression(l);
-		  break;
-	default: parseError(CODE, SYN_NO_COMP);
-      }
-    }
-  }
-}
-
-/**
- * @brief check expression syntax
- *
- * @param l token stream
- * @return void
- **/
-void expression(list l) {
-  /* expression -> - term */
-  if (TOKEN == '-') { 
-    MOVE
-    term(l);
-  /* expression -> term */
-  } else {
-    term(l);
-  }
-  /* expression -> expression + term | expression - term */
-  while (TOKEN == '+' || TOKEN == '-') {
-    MOVE
-    term(l);
-  }
-}
-
-/**
- * @brief check term syntax
- *
- * @param l token stream
- * @return void
- **/
-void term(list l) {
-  /* term -> factor */
-  factor(l);
-  /* term -> term * factor | term / factor */
-  while (TOKEN == '*' || TOKEN == '/') {
-    MOVE
-    term(l);
-  }
-}
-
-/**
- * @brief check factor syntax
- *
- * @param l token stream
- * @return void
- **/
-void factor(list l) {
-  /* factor -> identifier */
-  if (WORDID == IDENTIFIER) {
-    if ((var = get(&environment, WORD)) == NULL) parseError(CODE, TYP_ID_NO_IN);
-    MOVE
-  /* factor -> number */
-  } else if (NUMBERID == NUM) { MOVE }
-  /* factor -> ( expression ) */
-  else if (TOKEN == '(') {
-    MOVE
-    expression(l);
-    if (TOKEN == ')') { MOVE } else parseError(CODE, SYN_MISS_CB);
-  } else parseError(CODE, SYN_MISS_OB);
+int parse(list l) {
+  if (l == NULL) error(NULL_POINTER);
+  tok = l_top(l);
+  DEBUG
+  st_init(&environment);  
+  block(l); 
+  if(TOKEN == '.') return TRUE;
+  else return FALSE;
 }

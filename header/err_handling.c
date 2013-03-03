@@ -32,12 +32,12 @@
  * @var char *err_msg[]
  * @brief Stringtable which stores all error messages
  **/
-static char *err_msg[] = {
+static const char *err_msg[] = {
     "Null-Pointer", "No memory left",
     "Empty list", "No table initialised"
   }; 
   
-static char *parse_err_msg[] = {
+static const char *parse_err_msg[] = {
     "Syntax-Error: Program must end with '.'",
     "Syntax-Error: Missing assign operator '='",
     "Syntax-Error: Missing identifier after CONST, VAR or PROCEDURE declaration",
