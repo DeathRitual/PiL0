@@ -29,7 +29,7 @@
  * @enum err_codes short strings used as variables for error messages
  */
 enum err_codes {
-    NULL_POINTER, ERR_MEMORY, EMPTY_LIST, NO_TABLE
+    NULL_POINTER, ERR_MEMORY, EMPTY_LIST, NO_TABLE, WRONG_ID
   };  
 
 enum parse_err_codes {

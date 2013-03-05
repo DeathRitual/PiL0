@@ -2,6 +2,12 @@ VAR x,y,z,q,r,n,fa;
 
 PROCEDURE multiply;
 	VAR a,b;
+	
+	PROCEDURE test;
+	BEGIN
+	  PASS
+	END;
+	
 BEGIN 
 	a = x; 
 	b = y; 

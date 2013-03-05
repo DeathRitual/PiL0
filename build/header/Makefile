@@ -156,6 +156,30 @@ header/fast:
 	cd /home/nirvash/Projects/PiL0/build && $(MAKE) -f header/CMakeFiles/header.dir/build.make header/CMakeFiles/header.dir/build
 .PHONY : header/fast
 
+ast.o: ast.c.o
+.PHONY : ast.o
+
+# target to build an object file
+ast.c.o:
+	cd /home/nirvash/Projects/PiL0/build && $(MAKE) -f header/CMakeFiles/header.dir/build.make header/CMakeFiles/header.dir/ast.c.o
+.PHONY : ast.c.o
+
+ast.i: ast.c.i
+.PHONY : ast.i
+
+# target to preprocess a source file
+ast.c.i:
+	cd /home/nirvash/Projects/PiL0/build && $(MAKE) -f header/CMakeFiles/header.dir/build.make header/CMakeFiles/header.dir/ast.c.i
+.PHONY : ast.c.i
+
+ast.s: ast.c.s
+.PHONY : ast.s
+
+# target to generate assembly for a file
+ast.c.s:
+	cd /home/nirvash/Projects/PiL0/build && $(MAKE) -f header/CMakeFiles/header.dir/build.make header/CMakeFiles/header.dir/ast.c.s
+.PHONY : ast.c.s
+
 err_handling.o: err_handling.c.o
 .PHONY : err_handling.o
 
@@ -241,6 +265,9 @@ help:
 	@echo "... install/strip"
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
+	@echo "... ast.o"
+	@echo "... ast.i"
+	@echo "... ast.s"
 	@echo "... err_handling.o"
 	@echo "... err_handling.i"
 	@echo "... err_handling.s"

@@ -17,7 +17,7 @@
                     | PRINT <expression>
                     | BEGIN <stmts> END
                     | IF <condition> THEN <stmt>
-                    | WHILE <condition> DO <statement>
+                    | WHILE <condition> DO <stmt>
                     | PASS
 <stmts>         ::= <stmts> ; <stmt>
                     | <stmt>

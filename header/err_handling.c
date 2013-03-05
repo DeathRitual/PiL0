@@ -34,7 +34,7 @@
  **/
 static const char *err_msg[] = {
     "Null-Pointer", "No memory left",
-    "Empty list", "No table initialised"
+    "Empty list", "No table initialised", "Wrong ID"
   }; 
   
 static const char *parse_err_msg[] = {

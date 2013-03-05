@@ -17,9 +17,9 @@
  */
 
 /**
- * @file frontend.h Header-File for Token-Stream library
+ * @file frontend.h Header-File for lexer and parser library
  * 
- * Forwards the functions of the Token-Stream library to another file which includes this header file.
+ * Forwards the functions of the lexer and parser library to another file which includes this header file.
  * 
  */
  
