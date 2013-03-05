@@ -1,0 +1,24 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/nirvash/Projects/PiL0/header/ast.c
+err_handling.h
+/home/nirvash/Projects/PiL0/header/err_handling.h
+ast.h
+/home/nirvash/Projects/PiL0/header/ast.h
+stdio.h
+-
+stdlib.h
+-
+string.h
+-
+
+/home/nirvash/Projects/PiL0/header/ast.h
+
+/home/nirvash/Projects/PiL0/header/err_handling.h
+
