@@ -226,8 +226,9 @@ void expression(list);
 void term(list);
 void factor(list);
 
-rootBlock bl_ptr = NULL;
+rootBlock block_ptr = NULL;
 rootStmt stmt_ptr = NULL;
+rootExpr expr_ptr = NULL;
 
 /**
  * @brief start with parsing process
@@ -239,7 +240,7 @@ int parse(list l) {
   if (l == NULL) error(NULL_POINTER);
   tok = l_top(l);
   //DEBUG
-  bl_ptr = initNewBlock();
+  block_ptr = initNewBlock();
   st_init(&environment); 
   block(l); 
   if(TOKEN == '.') return TRUE;
@@ -254,8 +255,8 @@ char t[10] = "--", x[2] = "-";
  * @return void
  **/
 void block(list l) {
-  env_ptr env_tmp;
-  rootBlock block_tmp;
+  env_ptr env_tmp = NULL;
+  rootBlock block_tmp = NULL;
   char g[10];
   st_append(&environment);
   /* block    -> VAR var_stmt 
@@ -301,24 +302,24 @@ void block(list l) {
     if (WORDID == IDENTIFIER) {
       if ((var = get(&environment, WORD)) == NULL) put(&environment->st, WORD, PROCEDURE);
 	else parseError(CODE, TYP_DOUB_DEC);
-      printf("%s", t);
-      bl_ptr = newProc(&bl_ptr, WORD, _PROC_);
+      //printf("%s", t);
+      block_ptr = newBlock(&block_ptr, WORD, _PROC_);
       MOVE
     } else parseError(CODE, TYP_NO_ID);
     if (TOKEN == ';') { MOVE } else parseError(CODE, SYN_MISS_COM);
     env_tmp = environment;				/* save environment for current iteration */
-    block_tmp = bl_ptr->block.proc.external_block;		/* save external branch for current iteration */
-    bl_ptr = bl_ptr->block.proc.internal_block;			/* create subtree of function below internal branch */
-    //printf("tm %p\n", block_tmp);
+    block_tmp = block_ptr->block.proc.external_block;	/* save external branch for current iteration */
+    block_ptr = block_ptr->block.proc.internal_block;	/* create subtree of function below internal branch */
     strcpy(g, t);
     strcat(t, x); 
     block(l);
     strcpy(t, g);
-    bl_ptr = block_tmp;					/* use external branch */
+    block_ptr = block_tmp;					/* use external branch */
     environment = env_tmp;				/* set environment to the last one */
     if (TOKEN == ';') { MOVE } else parseError(CODE, SYN_MISS_COM);
   }
-  stmt_ptr = newStmt(&bl_ptr, _STMT_);
+  block_ptr = newBlock(&block_ptr, NULL, _STMT_);
+  stmt_ptr = block_ptr->block.stmt;
   stmt(l);  
   st_clean(&environment);
 }
@@ -330,55 +331,92 @@ void block(list l) {
  * @return void
  **/
 void stmt(list l) {
+  rootStmt stmt_tmp = NULL;
   switch(WORDID) {
     /* stmt -> identifier = expression */
-    case (IDENTIFIER): 	if ((var = get(&environment, WORD)) == NULL) parseError(CODE, TYP_ID_NO_IN);
-			MOVE
-			if (TOKEN == '=') { MOVE } else parseError(CODE, SYN_MISS_ASS);
-			expression(l);
-			break;
+    case (IDENTIFIER): 
+      
+      if ((var = get(&environment, WORD)) == NULL) parseError(CODE, TYP_ID_NO_IN);
+      stmt_ptr = newStmt(&stmt_ptr, WORD, _ASSIGN_);
+      expr_ptr = stmt_ptr->stmt.expr;
+      MOVE
+      if (TOKEN == '=') { MOVE } else parseError(CODE, SYN_MISS_ASS);
+      expression(l);
+      break;
     /* stmt -> CALL identifier (only procedure)*/
-    case (CALL):	MOVE
-			var = get(&environment, WORD);
-			if (var == NULL) parseError(CODE, TYP_ID_NO_IN);
-			else if (var->type_ID != PROCEDURE) parseError(CODE, TYP_ONLY_PROC);
-			MOVE
-			break;
+    case (CALL):
+      
+      MOVE
+      var = get(&environment, WORD);
+      if (var == NULL) parseError(CODE, TYP_ID_NO_IN);
+      else if (var->type_ID != PROCEDURE) parseError(CODE, TYP_ONLY_PROC);
+      stmt_ptr = newStmt(&stmt_ptr, WORD, _CALL_);
+      MOVE
+      break;
     /* stmt -> READ identifier (only procedure)*/
-    case (READ):	MOVE
-			var = get(&environment, WORD);
-			if (var == NULL) parseError(CODE, TYP_ID_NO_IN);
-			if (WORDID == IDENTIFIER && var->type_ID != PROCEDURE) { MOVE } else parseError(CODE, TYP_ONLY_INT);			
-			break;
+    case (READ):	
+      
+      MOVE
+      var = get(&environment, WORD);
+      if (var == NULL) parseError(CODE, TYP_ID_NO_IN);
+      if (WORDID == IDENTIFIER && var->type_ID != PROCEDURE) { MOVE } else parseError(CODE, TYP_ONLY_INT);
+      stmt_ptr = newStmt(&stmt_ptr, WORD, _READ_);
+      break;
     /* stmt -> PRINT expression */
-    case (PRINT):	MOVE
-			expression(l);
-			break;
+    case (PRINT):	
+      
+      stmt_ptr = newStmt(&stmt_ptr, NULL, _PRINT_);
+      expr_ptr = stmt_ptr->stmt.expr;
+      MOVE
+      expression(l);
+      break;
     /* stmt  -> BEGIN stmts END 
      * stmts -> stmts ; stmt | stmt */
-    case (BEGIN):	MOVE
-			stmt(l);
-			while (TOKEN == ';') {
-			  MOVE
-			  stmt(l);
-			}
-			if (WORDID == END) { MOVE } else parseError(CODE, SYN_MISS_END);
-			break;
+    case (BEGIN):	
+      
+      MOVE
+      stmt_ptr = newStmt(&stmt_ptr, NULL, _SEQ_);
+      stmt_tmp = stmt_ptr->stmt.seq.stmtLeft;
+      stmt_ptr = stmt_ptr->stmt.seq.stmtRight;
+      stmt(l);
+      stmt_ptr = stmt_tmp;
+      while (TOKEN == ';') {
+	MOVE
+	stmt_ptr = newStmt(&stmt_ptr, NULL, _SEQ_);
+	stmt_tmp = stmt_ptr->stmt.seq.stmtLeft;
+	stmt_ptr = stmt_ptr->stmt.seq.stmtRight;
+	stmt(l);
+	stmt_ptr = stmt_tmp;
+      }
+      if (WORDID == END) { MOVE } else parseError(CODE, SYN_MISS_END);
+      break;
     /* stmt -> IF condition THEN stmt */
-    case (IF):		MOVE
-			condition(l);
-			if (WORDID == THEN) { MOVE } else parseError(CODE, SYN_IF);
-			stmt(l);
-			break;
+    case (IF):		
+      
+      MOVE
+      stmt_ptr = newStmt(&stmt_ptr, NULL, _IF_);
+      expr_ptr = stmt_ptr->stmt._if.condition;
+      condition(l);
+      if (WORDID == THEN) { MOVE } else parseError(CODE, SYN_IF);
+      stmt_ptr = stmt_ptr->stmt._if.stmt;
+      stmt(l);
+      break;
     /* stmt -> WHILE condition DO stmt */
-    case (WHILE):	MOVE
-			condition(l);
-			if (WORDID == DO) { MOVE } else parseError(CODE, SYN_WHILE);
-			stmt(l);
-			break;
+    case (WHILE):	
+      
+      MOVE
+      stmt_ptr = newStmt(&stmt_ptr, NULL, _WHILE_);
+      expr_ptr = stmt_ptr->stmt._if.condition;
+      condition(l);
+      if (WORDID == DO) { MOVE } else parseError(CODE, SYN_WHILE);
+      stmt_ptr = stmt_ptr->stmt._if.stmt;
+      stmt(l);
+      break;
     /* stmt -> PASS */
-    case (PASS):	MOVE
-			break;
+    case (PASS):	
+      
+      MOVE
+      break;
   }
 }
 
@@ -403,21 +441,29 @@ void condition(list l) {
     } else {
       switch(WORDID) {
 	/* condition -> expression == expression */
-	case(EQ): MOVE
-		  expression(l);
-		  break;
+	case(EQ): 
+	  
+	  MOVE
+	  expression(l);
+	  break;
 	/* condition -> expression != expression */
-	case(NE): MOVE
-		  expression(l);
-		  break;
+	case(NE): 
+	  
+	  MOVE
+	  expression(l);
+	  break;
 	/* condition -> expression <= expression */
-	case(LE): MOVE
-		  expression(l);
-		  break;
+	case(LE): 
+	  
+	  MOVE
+	  expression(l);
+	  break;
 	/* condition -> expression >= expression */
-	case(GE): MOVE
-		  expression(l);
-		  break;
+	case(GE): 
+	  
+	  MOVE
+	  expression(l);
+	  break;
 	default: parseError(CODE, SYN_NO_COMP);
       }
     }

@@ -66,8 +66,8 @@ struct _stmt {
       struct _expr *expr;
     } assign;
     struct {
-      struct _stmt *stmtLeft;
       struct _stmt *stmtRight;
+      struct _stmt *stmtLeft;
     } seq;
   } stmt;
 };
@@ -83,13 +83,13 @@ struct _expr {
     char word[MAX_LENGTH];		/* identifier */
     struct {
       char op;				/* +, -, *, / */
-      struct _expr *exprLeft;		/* expression */
       struct _expr *exprRight;		/* expression */
+      struct _expr *exprLeft;		/* expression */
     } arith; 
     struct {
       char op[2];			/* <, >, !, ==, !=, <=, >= */
-      struct _expr *exprLeft;		/* expression */
       struct _expr *exprRight;		/* expression */
+      struct _expr *exprLeft;		/* expression */
     } rel;
     struct {
       char op;				/* - */
@@ -100,9 +100,9 @@ struct _expr {
 
 extern rootBlock initNewBlock();
 extern rootStmt initNewStmt();
-extern rootBlock newProc(rootBlock *, char *, enum block_id);
-extern rootStmt newStmt(rootBlock *, enum block_id);
-
+extern rootExpr initNewExpr();
+extern rootBlock newBlock(rootBlock *, char *, enum block_id);
+extern rootStmt newStmt(rootStmt *, char *, enum stmt_id);
 
 
 

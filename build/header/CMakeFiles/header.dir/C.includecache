@@ -6,11 +6,11 @@
 
 #IncludeRegexTransform: 
 
-/home/nirvash/Projects/PiL0/header/ast.c
-err_handling.h
-/home/nirvash/Projects/PiL0/header/err_handling.h
-ast.h
 /home/nirvash/Projects/PiL0/header/ast.h
+
+/home/nirvash/Projects/PiL0/header/err_handling.h
+
+/home/nirvash/Projects/PiL0/header/frontend.h
 stdio.h
 -
 stdlib.h
@@ -18,7 +18,11 @@ stdlib.h
 string.h
 -
 
-/home/nirvash/Projects/PiL0/header/ast.h
-
+/home/nirvash/Projects/PiL0/header/parser.c
+err_handling.h
 /home/nirvash/Projects/PiL0/header/err_handling.h
+frontend.h
+/home/nirvash/Projects/PiL0/header/frontend.h
+ast.h
+/home/nirvash/Projects/PiL0/header/ast.h
 
