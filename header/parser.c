@@ -247,7 +247,7 @@ int parse(list l) {
   else return FALSE;
 }
 
-char t[10] = "--", x[2] = "-";
+
 /**
  * @brief check block grammar
  *
@@ -310,11 +310,8 @@ void block(list l) {
     env_tmp = environment;				/* save environment for current iteration */
     block_tmp = block_ptr->block.proc.external_block;	/* save external branch for current iteration */
     block_ptr = block_ptr->block.proc.internal_block;	/* create subtree of function below internal branch */
-    strcpy(g, t);
-    strcat(t, x); 
     block(l);
-    strcpy(t, g);
-    block_ptr = block_tmp;					/* use external branch */
+    block_ptr = block_tmp;				/* use external branch */
     environment = env_tmp;				/* set environment to the last one */
     if (TOKEN == ';') { MOVE } else parseError(CODE, SYN_MISS_COM);
   }
@@ -338,14 +335,14 @@ void stmt(list l) {
       
       if ((var = get(&environment, WORD)) == NULL) parseError(CODE, TYP_ID_NO_IN);
       stmt_ptr = newStmt(&stmt_ptr, WORD, _ASSIGN_);
-      expr_ptr = stmt_ptr->stmt.expr;
+      expr_ptr = stmt_ptr->stmt.assign.expr;
       MOVE
       if (TOKEN == '=') { MOVE } else parseError(CODE, SYN_MISS_ASS);
       expression(l);
       break;
     /* stmt -> CALL identifier (only procedure)*/
     case (CALL):
-      
+       
       MOVE
       var = get(&environment, WORD);
       if (var == NULL) parseError(CODE, TYP_ID_NO_IN);
@@ -376,17 +373,17 @@ void stmt(list l) {
       
       MOVE
       stmt_ptr = newStmt(&stmt_ptr, NULL, _SEQ_);
-      stmt_tmp = stmt_ptr->stmt.seq.stmtLeft;
-      stmt_ptr = stmt_ptr->stmt.seq.stmtRight;
+      stmt_tmp = stmt_ptr->stmt.seq.stmtLeft;		/* save left branch for current iteration */
+      stmt_ptr = stmt_ptr->stmt.seq.stmtRight;		/* use right branch */
       stmt(l);
-      stmt_ptr = stmt_tmp;
+      stmt_ptr = stmt_tmp;				/* use left branch */
       while (TOKEN == ';') {
 	MOVE
 	stmt_ptr = newStmt(&stmt_ptr, NULL, _SEQ_);
-	stmt_tmp = stmt_ptr->stmt.seq.stmtLeft;
-	stmt_ptr = stmt_ptr->stmt.seq.stmtRight;
+	stmt_tmp = stmt_ptr->stmt.seq.stmtLeft;		/* save left branch for current iteration */
+	stmt_ptr = stmt_ptr->stmt.seq.stmtRight;	/* use right branch */
 	stmt(l);
-	stmt_ptr = stmt_tmp;
+	stmt_ptr = stmt_tmp;				/* use left branch */
       }
       if (WORDID == END) { MOVE } else parseError(CODE, SYN_MISS_END);
       break;
@@ -427,15 +424,24 @@ void stmt(list l) {
  * @return void
  **/
 void condition(list l) {
+  rootExpr expr_tmp1 = NULL, expr_tmp2 = NULL;
   /* condition -> ODD expression */
-  if (WORDID == ODD) { 
+  if (WORDID == ODD) {  
     MOVE 
+    expr_ptr = newExpr(&expr_ptr, NULL, NULL, _ODD_);
+    expr_ptr = expr_ptr->expr.odd.expr;
     expression(l);
   } 
   else {
     /* condition -> expression > expression | expression < expression */
-    expression(l);   
-    if (TOKEN == '>' || TOKEN == '<') {      
+    expr_ptr = newExpr(&expr_ptr, "", NULL, _REL_);
+    expr_tmp2 = expr_ptr;				/* save current knot for later operation inserting */
+    expr_tmp1 = expr_ptr->expr.rel.exprLeft;		/* save left branch for current iteration */
+    expr_ptr = expr_ptr->expr.rel.exprRight;		/* use right branch */
+    expression(l); 
+    expr_ptr = expr_tmp1;				/* use left branch */
+    if (TOKEN == '>' || TOKEN == '<') {
+      expr_tmp2->expr.rel.op[0] = TOKEN;
       MOVE
       expression(l);
     } else {
@@ -443,24 +449,28 @@ void condition(list l) {
 	/* condition -> expression == expression */
 	case(EQ): 
 	  
+	  strcpy(expr_tmp2->expr.rel.op, WORD);
 	  MOVE
 	  expression(l);
 	  break;
 	/* condition -> expression != expression */
 	case(NE): 
 	  
+	  strcpy(expr_tmp2->expr.rel.op, WORD);
 	  MOVE
 	  expression(l);
 	  break;
 	/* condition -> expression <= expression */
 	case(LE): 
 	  
+	  strcpy(expr_tmp2->expr.rel.op, WORD);
 	  MOVE
 	  expression(l);
 	  break;
 	/* condition -> expression >= expression */
 	case(GE): 
 	  
+	  strcpy(expr_tmp2->expr.rel.op, WORD);
 	  MOVE
 	  expression(l);
 	  break;
@@ -478,16 +488,29 @@ void condition(list l) {
  * @return void
  **/
 void expression(list l) {
+  rootExpr expr_tmp1 = NULL, expr_tmp2 = NULL;
   /* expression -> - term */
   if (TOKEN == '-') { 
+    expr_ptr = newExpr(&expr_ptr, &TOKEN, NULL, _UNARY_);
+    expr_ptr = expr_ptr->expr.unary.expr;
+    expr_ptr = newExpr(&expr_ptr, "", NULL, _ARITH_);
+    expr_tmp2 = expr_ptr;				/* save current knot for later operation inserting */
+    expr_tmp1 = expr_ptr->expr.arith.exprLeft;		/* save left branch for current iteration */
+    expr_ptr = expr_ptr->expr.arith.exprRight;		/* use right branch */
     MOVE
     term(l);
   /* expression -> term */
   } else {
+    expr_ptr = newExpr(&expr_ptr, "", NULL, _ARITH_);
+    expr_tmp2 = expr_ptr;				/* save current knot for later operation inserting */
+    expr_tmp1 = expr_ptr->expr.arith.exprLeft;		/* save left branch for current iteration */
+    expr_ptr = expr_ptr->expr.arith.exprRight;		/* use right branch */
     term(l);
   }
+  expr_ptr = expr_tmp1;					/* use left branch */
   /* expression -> expression + term | expression - term */
   while (TOKEN == '+' || TOKEN == '-') {
+    expr_tmp2->expr.arith.op = TOKEN;
     MOVE
     term(l);
   }
@@ -500,10 +523,17 @@ void expression(list l) {
  * @return void
  **/
 void term(list l) {
+  rootExpr expr_tmp1 = NULL, expr_tmp2 = NULL;
   /* term -> factor */
+  expr_ptr = newExpr(&expr_ptr, "", NULL, _ARITH_);
+  expr_tmp2 = expr_ptr;				/* save current knot for later operation inserting */
+  expr_tmp1 = expr_ptr->expr.arith.exprLeft;		/* save left branch for current iteration */
+  expr_ptr = expr_ptr->expr.arith.exprRight;		/* use right branch */
   factor(l);
+  expr_ptr = expr_tmp1;					/* use left branch */
   /* term -> term * factor | term / factor */
   while (TOKEN == '*' || TOKEN == '/') {
+    expr_tmp2->expr.arith.op = TOKEN;
     MOVE
     term(l);
   }
@@ -520,11 +550,14 @@ void factor(list l) {
   /* factor -> identifier */
   if (WORDID == IDENTIFIER) {
     if ((var = get(&environment, WORD)) == NULL) parseError(CODE, TYP_ID_NO_IN);
+    expr_ptr = newExpr(&expr_ptr, WORD, NULL, _IDENTIFIER_);
     MOVE
   /* factor -> number */
-  } else if (NUMBERID == NUM) { MOVE }
+  } else if (NUMBERID == NUM) { 
+    expr_ptr = newExpr(&expr_ptr, "", &NUMBER, _NUMBER_);
+    MOVE 
   /* factor -> ( expression ) */
-  else if (TOKEN == '(') {
+  } else if (TOKEN == '(') {
     MOVE
     expression(l);
     if (TOKEN == ')') { MOVE } else parseError(CODE, SYN_MISS_CB);

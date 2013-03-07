@@ -73,7 +73,7 @@ struct _stmt {
 };
 
 enum expr_id { 
-    _NUMBER_, _IDENTIFIER_, _ARITH_, _UNARY_, _REL_  
+    _NUMBER_, _IDENTIFIER_, _ARITH_, _UNARY_, _REL_, _ODD_  
   };
 
 struct _expr {
@@ -87,7 +87,7 @@ struct _expr {
       struct _expr *exprLeft;		/* expression */
     } arith; 
     struct {
-      char op[2];			/* <, >, !, ==, !=, <=, >= */
+      char op[3];			/* <, >, !, ==, !=, <=, >= */
       struct _expr *exprRight;		/* expression */
       struct _expr *exprLeft;		/* expression */
     } rel;
@@ -95,6 +95,9 @@ struct _expr {
       char op;				/* - */
       struct _expr *expr;		/* expression */
     } unary;
+    struct {
+      struct _expr *expr;
+    } odd;
   } expr;
 };
 
@@ -103,6 +106,7 @@ extern rootStmt initNewStmt();
 extern rootExpr initNewExpr();
 extern rootBlock newBlock(rootBlock *, char *, enum block_id);
 extern rootStmt newStmt(rootStmt *, char *, enum stmt_id);
+extern rootExpr newExpr(rootExpr *, char *, int *, enum expr_id);
 
 
 
