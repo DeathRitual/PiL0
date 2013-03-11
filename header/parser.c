@@ -20,6 +20,9 @@
  * @file parser.c Library which inherits all necessary functions for parsing
  * 
  * @todo add further instructions, abstract syntax tree and output of three adress code
+ * 
+ * @defgroup parser Parser module
+ * @ingroup frontend
  */
 
 #include"err_handling.h"
@@ -303,7 +306,7 @@ void block(list l) {
       if ((var = get(&environment, WORD)) == NULL) put(&environment->st, WORD, PROCEDURE);
 	else parseError(CODE, TYP_DOUB_DEC);
       //printf("%s", t);
-      block_ptr = newBlock(&block_ptr, WORD, _PROC_);
+      block_ptr = newBlock(&block_ptr, environment->st->word, _PROC_);
       MOVE
     } else parseError(CODE, TYP_NO_ID);
     if (TOKEN == ';') { MOVE } else parseError(CODE, SYN_MISS_COM);
@@ -334,7 +337,7 @@ void stmt(list l) {
     case (IDENTIFIER): 
       
       if ((var = get(&environment, WORD)) == NULL) parseError(CODE, TYP_ID_NO_IN);
-      stmt_ptr = newStmt(&stmt_ptr, WORD, _ASSIGN_);
+      stmt_ptr = newStmt(&stmt_ptr, var->word, _ASSIGN_);
       expr_ptr = stmt_ptr->stmt.assign.expr;
       MOVE
       if (TOKEN == '=') { MOVE } else parseError(CODE, SYN_MISS_ASS);
@@ -347,7 +350,7 @@ void stmt(list l) {
       var = get(&environment, WORD);
       if (var == NULL) parseError(CODE, TYP_ID_NO_IN);
       else if (var->type_ID != PROCEDURE) parseError(CODE, TYP_ONLY_PROC);
-      stmt_ptr = newStmt(&stmt_ptr, WORD, _CALL_);
+      stmt_ptr = newStmt(&stmt_ptr, var->word, _CALL_);
       MOVE
       break;
     /* stmt -> READ identifier (only procedure)*/
@@ -357,7 +360,7 @@ void stmt(list l) {
       var = get(&environment, WORD);
       if (var == NULL) parseError(CODE, TYP_ID_NO_IN);
       if (WORDID == IDENTIFIER && var->type_ID != PROCEDURE) { MOVE } else parseError(CODE, TYP_ONLY_INT);
-      stmt_ptr = newStmt(&stmt_ptr, WORD, _READ_);
+      stmt_ptr = newStmt(&stmt_ptr, var->word, _READ_);
       break;
     /* stmt -> PRINT expression */
     case (PRINT):	
@@ -550,7 +553,7 @@ void factor(list l) {
   /* factor -> identifier */
   if (WORDID == IDENTIFIER) {
     if ((var = get(&environment, WORD)) == NULL) parseError(CODE, TYP_ID_NO_IN);
-    expr_ptr = newExpr(&expr_ptr, WORD, NULL, _IDENTIFIER_);
+    expr_ptr = newExpr(&expr_ptr, var->word, NULL, _IDENTIFIER_);
     MOVE
   /* factor -> number */
   } else if (NUMBERID == NUM) { 

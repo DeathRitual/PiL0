@@ -21,8 +21,14 @@
  * 
  * Forwards the functions of the lexer and parser library to another file which includes this header file.
  * 
+ * @defgroup frontend Frontend
+ * @ingroup main
+ * @{
+ * 
  */
  
+#include"err_handling.h"
+#include"meta_list.h"
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
@@ -30,80 +36,11 @@
   #define __LEXER_H
 #define MAX_LENGTH 30
 
-/**
- * @typedef struct _token_stream token_stream
- * @brief shortend struct _token_stream to token_stream
- * 
- */ 
-typedef struct _token_stream token_stream;  
-/**
- * @typedef _token_stream *list
- * @brief short form to create pointer on Token-Stream
- * 
- */
-typedef token_stream *list;
 
-/**
- * @struct _token_stream  
- * 
- * @brief Element-Structure which builds Token-Stream.
- * 
- * One element can only contain one token, whereas each element is connected with its last
- * and previous neighbour.
- **/
-struct _token_stream{
-  char type; /**< Token-Type */
-  unsigned int line; /**< code line number */
-  
-   /**
-   * @union _element 
-   * 
-   * @brief Different Token for storing symbols.
-   * 
-   * Except for Token: token all token have an ID which helps identifying
-   * the type of the keyword, identifer or number.
-   **/
-  union _element{    
-    /**
-     * @struct token
-     * 
-     * Stores single character symbols like: +, -, >, <, etc.
-     **/
-    struct _token {
-      char t; /**< single character */
-    }token; /**< Can store single characters */
-    
-    /**
-     * @struct number
-     * 
-     * Stores numbers.
-     **/
-    struct _number {
-      int n; /**< number */ 
-      unsigned int ID; /**< number identifier */
-    }number; /**< Can store numbers and the NUM-ID */
-    
-    /**
-     * @struct word
-     * 
-     * Stores keywords and identifier.
-     **/
-    struct _word {
-      unsigned int ID; /**< keyword / identifier identifier */
-      char w[MAX_LENGTH]; /**< keyword / identifer */
-    }word; /**< Can store words and either the Keyword-ID or IDENTIFIER-ID */
-    
-  }element; /**< Structure to store different types of lexical tokens */
-  
-  token_stream *next; /**< pointer to next element */
-  token_stream *previous; /**< pointer to previous element */
-};
 
-extern list l_remove(list *);
-extern list l_top(list);
-extern list l_last(list);
-extern list lexer(list, FILE *);
-extern int parse(list);
+
+extern ml_ptr lexer(ml_ptr, FILE *);
+//extern int parse(ml_ptr);
 
 
 /**
@@ -119,6 +56,6 @@ enum special_IDs {
   EQ, GE, LE, NE, IDENTIFIER, NUM
 };
 
-
+/** @} */
 
 #endif

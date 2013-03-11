@@ -1,8 +1,7 @@
 FILE(REMOVE_RECURSE
   "CMakeFiles/header.dir/lexer.c.o"
-  "CMakeFiles/header.dir/parser.c.o"
   "CMakeFiles/header.dir/err_handling.c.o"
-  "CMakeFiles/header.dir/ast.c.o"
+  "CMakeFiles/header.dir/meta_list.c.o"
   "libheader.pdb"
   "libheader.a"
 )

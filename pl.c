@@ -19,7 +19,7 @@
 /**
  * @file pl.c Main source file for PiL0-Compiler
  * 
- * 
+ * @defgroup main Main program
  */
 
 #include"frontend.h"
@@ -28,7 +28,7 @@
 int main(int argc, char *argv[]) {
   
   int i = 10, c;
-  list token_stream;
+  ml_ptr token_stream;
 
   FILE *raw_code;
   
@@ -39,10 +39,10 @@ int main(int argc, char *argv[]) {
   } else {
     printf("Couldn't open Source Code!\n");
     return EXIT_FAILURE;
-  }  
-  
-  if (parse(token_stream)) printf("Korrekt");
-  else printf("Falsch");
+  }
+
+//  if (parse(token_stream)) printf("Korrekt");
+//  else printf("Falsch");
  
   return EXIT_SUCCESS;
 }

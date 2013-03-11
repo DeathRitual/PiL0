@@ -1,2 +1,2 @@
-/usr/bin/ar cr libheader.a  CMakeFiles/header.dir/lexer.c.o CMakeFiles/header.dir/parser.c.o CMakeFiles/header.dir/err_handling.c.o CMakeFiles/header.dir/ast.c.o
+/usr/bin/ar cr libheader.a  CMakeFiles/header.dir/lexer.c.o CMakeFiles/header.dir/err_handling.c.o CMakeFiles/header.dir/meta_list.c.o
 /usr/bin/ranlib libheader.a

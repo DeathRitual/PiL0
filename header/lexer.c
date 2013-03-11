@@ -32,6 +32,11 @@
  * The lexer scans the input file and creates a new token with the data he gets from the
  * fitting keyword. if no keyword matches the input string must either be a token (non
  * alphanumerical), a number or an identifier.
+ * 
+ * @defgroup lexer Lexical Scanner
+ * @ingroup frontend
+ * 
+ * @{
  */
 
 #include"frontend.h"
@@ -39,139 +44,97 @@
 #include"err_handling.h"
 #include<ctype.h>
 
-
 /**
- * @var token_stream *head;
- * @brief pointer to oldest element in stream
+ * @typedef struct _token_element token_element
+ * @brief shortend struct _token_element to token_element
+ * 
+ */ 
+typedef struct _token_element token_element; 
+/**
+ * @typedef token_element *te_ptr
+ * @brief short form to create pointer to one token element
+ * 
  */
-list head;
+typedef token_element *te_ptr;
 
 /**
-  * @brief Initialize new token stream with NULL-Pointer
-  *
-  * @param l pointer on beginning of new token stream
-  * @return void
-  **/
-static void l_init(list *l) {
-  if (l == NULL) error(NULL_POINTER);
-
-  *l = NULL;
-}
-
-/**
- * @brief check if token stream is empty or not
- *
- * @param l pointer on token stream
- * @return int value 1 or 0
+ * @struct _token_element
+ * 
+ * @brief stores one token, token type and line number
+ * 
  **/
-static int l_IsEmpty(list l) {
-  return l == NULL;
-}
+struct _token_element{
+  char type; /**< Token-Type */
+  unsigned int line; /**< code line number */
 
-
-/**
- * @brief add new element to token stream
- *
- * @param l pointer on last element of token stream
- * @param t symbol, keyword, identifier or number to generate new token of
- * @param n identifier number of keyword, identifier or number
- * @param ln number of program code line
- * @return void
- **/
-static void l_append(list *l, const char *t, const int *n, const int *ln) {
-  if (l == NULL) error(NULL_POINTER);
-
-  list el;
-
-  if ((el = malloc(sizeof(token_stream))) == NULL) error(ERR_MEMORY);  
-  
-  if (isdigit(*t) > 0) {
-      el->type = 'n';  
-      el->element.number.n = atoi(t);
-      el->element.number.ID = *n;      
-    }
-
-  else if (isalpha(*t) > 0) {
-      el->type = 'w';     
-      strcpy(el->element.word.w, t);
-      el->element.word.ID = *n;
-    }
-
-  else {
-      el->type = 't';      
-      el->element.token.t = *t;
-    }
+    /**
+    * @union _element 
+    * 
+    * @brief Different Token for storing symbols.
+    * 
+    * Except for Token: token all token have an ID which helps identifying
+    * the type of the keyword, identifer or number.
+    **/
+  union _element{    
+    /**
+      * @struct token
+      * 
+      * Stores single character symbols like: +, -, >, <, etc.
+      **/
+    struct _token {
+      char t; /**< single character */
+    }token; /**< Can store single characters */
     
-  
-  el->line = *ln;
-  el->next = *l;
-  el->previous = NULL;
-
-  if (!l_IsEmpty(*l)) (*l)->previous = el;
-
-  else head = el;
-
-  *l = el;
-}
-
-
-
+    /**
+      * @struct number
+      * 
+      * Stores numbers.
+      **/
+    struct _number {
+      int n; /**< number */ 
+      unsigned int ID; /**< number identifier */
+    }number; /**< Can store numbers and the NUM-ID */
+    
+    /**
+      * @struct word
+      * 
+      * Stores keywords and identifier.
+      **/
+    struct _word {
+      unsigned int ID; /**< keyword / identifier identifier */
+      char w[MAX_LENGTH]; /**< keyword / identifer */
+    }word; /**< Can store words and either the Keyword-ID or IDENTIFIER-ID */
+    
+  }element; /**< Structure to store different types of lexical tokens */
+};
 
 /**
- * @brief remove oldest element in stream
+ * @brief create new token
  *
- * @param l pointer on last element of token stream
- * @return list pointer to element before the removed element
+ * @param *t symbol, keyword, identifier or number to generate new token of
+ * @param *n identifier number of keyword, identifier or number
+ * @param *ln number of program code line
+ * @retval *el pointer to token
  **/
-list l_remove(list *l) {
-
-  if (l == NULL) error(NULL_POINTER);
-
-  if (l_IsEmpty(*l)) return NULL;
-
-  if (head == *l) {
-      free(head);
-      *l = NULL;
-    }
-
+static te_ptr token_add(const char *t, const int *n, const int *ln) {  
+  te_ptr el;
+  if ((el = malloc(sizeof(token_element))) == NULL) error(ERR_MEMORY);
+  if (isdigit(*t) > 0) {
+    el->type = 'n';  
+    el->element.number.n = atoi(t);
+    el->element.number.ID = *n;      
+  }
+  else if (isalpha(*t) > 0) {
+    el->type = 'w';     
+    strcpy(el->element.word.w, t);
+    el->element.word.ID = *n;
+  }
   else {
-      list ptr;
-      ptr = head->previous;
-      ptr->next = NULL;
-      head->previous = NULL;
-      free(head);
-      head = ptr;
-      return head;
-    }
-
-}
-
-/**
- * @brief get the oldest element of stream
- *
- * @param l pointer on last element of token stream
- * @return list pointer to oldest element
- **/
-list l_top(list l) {
-  if (l == NULL) error(NULL_POINTER);
-
-  if (l_IsEmpty(l)) error(EMPTY_LIST);
-
-  return head;
-}
-
-/**
- * @brief get the newest element of stream
- *
- * @param l pointer on last element of token stream
- * @return list point to newest element
- **/
-list l_last(list l) {
-  if (l == NULL) error(NULL_POINTER);
-
-  if (l_IsEmpty(l)) error(EMPTY_LIST);
-
-  return l;
+    el->type = 't';      
+    el->element.token.t = *t;
+  }  
+  el->line = *ln;  
+  return el;
 }
 
 
@@ -195,61 +158,55 @@ typedef struct{
  *
  * @param k array of keywords...
  * @param s string to be checked...
- * @return int either position number of keyword or -1 if word is not stored in keyword array
+ * @retval i either position number of keyword or -1 if word is not stored in keyword array
  **/
 static int get_keyNUM(const keyword *k, const char *s) {
   int i = 0;
-
   for (i = 0; keywords[i] != NULL; i++)
     if (strcmp(k[i].w, s) == 0) return i;
-
   return -1;
 }
 
 /**
  * @brief counts of keywords
  *
- * @return unsigned int number of keywords
+ * @retval i number of keywords
  **/
 static unsigned int get_keySize() {
   int i = 1;
-
   while (keywords[i] != NULL) i++;
-
   return i;
 }
 
 /**
  * @brief creates an array of all keywords
  *
- * @return keyword* pointer to keyword array
+ * @retval reskeys pointer to keyword array
  **/
 static keyword *init_ReservedKeys() {
   keyword *resKeys = malloc(sizeof * resKeys * get_keySize());
   int i;
-
   for (i = 0; keywords[i] != NULL; i++) {
       strcpy(resKeys[i].w, keywords[i]);
       resKeys[i].ID = 256 + i;
     }
-
   return resKeys;
 }
 
 
 /**
- * @brief Function for lexical scanning...
+ * @brief Function for lexical scanning
  *
  * Reads input code and convert each element to one token / word / number and add it to the token stream
  *
- * @param raw_code input source code...
- * @param token_stream pointer to list for ading tokens
- * @return list token-stream
+ * @param raw_code input source code
+ * @param token_stream pointer to meta list
+ * @retval *token-stream
  **/
-list lexer(list token_stream, FILE *raw_code) {
+ml_ptr lexer(ml_ptr token_stream, FILE *raw_code) {
   int c, lineNumber = 1;
   keyword *reserved = init_ReservedKeys();
-  l_init(&token_stream);
+  meta_list_init(&token_stream);
 
   while ((c = fgetc(raw_code)) != EOF) {
       if (c == 10 || c == 13) lineNumber++;
@@ -273,10 +230,10 @@ list lexer(list token_stream, FILE *raw_code) {
 
                   if (strcmp(w, "!=") == 0) key_NUM = get_keyNUM(reserved, "NE");
 
-                  l_append(&token_stream, reserved[key_NUM].w, &reserved[key_NUM].ID, &lineNumber);
+                  meta_list_append(&token_stream, (te_ptr) token_add(reserved[key_NUM].w, &reserved[key_NUM].ID, &lineNumber));
                 }
 
-              else l_append(&token_stream, w, &ident, &lineNumber);
+              else meta_list_append(&token_stream, (te_ptr) token_add(w, &ident, &lineNumber));
 
             }
 
@@ -292,9 +249,9 @@ list lexer(list token_stream, FILE *raw_code) {
 
               key_NUM = get_keyNUM(reserved, w);
 
-              if (key_NUM >= 0) l_append(&token_stream, reserved[key_NUM].w, &reserved[key_NUM].ID, &lineNumber);
+              if (key_NUM >= 0) meta_list_append(&token_stream, (te_ptr) token_add(reserved[key_NUM].w, &reserved[key_NUM].ID, &lineNumber));
 
-              else l_append(&token_stream, w, &ident, &lineNumber);
+              else meta_list_append(&token_stream, (te_ptr) token_add(w, &ident, &lineNumber));
 
               c = ungetc(c, raw_code);
             }
@@ -310,16 +267,18 @@ list lexer(list token_stream, FILE *raw_code) {
                   c = fgetc(raw_code);
                 }
 
-              l_append(&token_stream, w, &ident, &lineNumber);
+              meta_list_append(&token_stream, (te_ptr) token_add(w, &ident, &lineNumber));
               c = ungetc(c, raw_code);
             }
 
           /* read tokens */
           if (strlen(w) == 0) {
               w[i] = c;
-              l_append(&token_stream, w, &ident, &lineNumber);
+              meta_list_append(&token_stream, (te_ptr) token_add(w, &ident, &lineNumber));
             }
-        }
+      }
     }
   return token_stream;
 }
+
+/** @} */

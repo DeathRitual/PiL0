@@ -6,13 +6,21 @@
 
 #IncludeRegexTransform: 
 
+../header/err_handling.h
+
 ../header/frontend.h
+err_handling.h
+../header/err_handling.h
+meta_list.h
+../header/meta_list.h
 stdio.h
 -
 stdlib.h
 -
 string.h
 -
+
+../header/meta_list.h
 
 /home/nirvash/Projects/PiL0/pl.c
 frontend.h

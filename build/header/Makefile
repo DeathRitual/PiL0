@@ -156,30 +156,6 @@ header/fast:
 	cd /home/nirvash/Projects/PiL0/build && $(MAKE) -f header/CMakeFiles/header.dir/build.make header/CMakeFiles/header.dir/build
 .PHONY : header/fast
 
-ast.o: ast.c.o
-.PHONY : ast.o
-
-# target to build an object file
-ast.c.o:
-	cd /home/nirvash/Projects/PiL0/build && $(MAKE) -f header/CMakeFiles/header.dir/build.make header/CMakeFiles/header.dir/ast.c.o
-.PHONY : ast.c.o
-
-ast.i: ast.c.i
-.PHONY : ast.i
-
-# target to preprocess a source file
-ast.c.i:
-	cd /home/nirvash/Projects/PiL0/build && $(MAKE) -f header/CMakeFiles/header.dir/build.make header/CMakeFiles/header.dir/ast.c.i
-.PHONY : ast.c.i
-
-ast.s: ast.c.s
-.PHONY : ast.s
-
-# target to generate assembly for a file
-ast.c.s:
-	cd /home/nirvash/Projects/PiL0/build && $(MAKE) -f header/CMakeFiles/header.dir/build.make header/CMakeFiles/header.dir/ast.c.s
-.PHONY : ast.c.s
-
 err_handling.o: err_handling.c.o
 .PHONY : err_handling.o
 
@@ -228,29 +204,29 @@ lexer.c.s:
 	cd /home/nirvash/Projects/PiL0/build && $(MAKE) -f header/CMakeFiles/header.dir/build.make header/CMakeFiles/header.dir/lexer.c.s
 .PHONY : lexer.c.s
 
-parser.o: parser.c.o
-.PHONY : parser.o
+meta_list.o: meta_list.c.o
+.PHONY : meta_list.o
 
 # target to build an object file
-parser.c.o:
-	cd /home/nirvash/Projects/PiL0/build && $(MAKE) -f header/CMakeFiles/header.dir/build.make header/CMakeFiles/header.dir/parser.c.o
-.PHONY : parser.c.o
+meta_list.c.o:
+	cd /home/nirvash/Projects/PiL0/build && $(MAKE) -f header/CMakeFiles/header.dir/build.make header/CMakeFiles/header.dir/meta_list.c.o
+.PHONY : meta_list.c.o
 
-parser.i: parser.c.i
-.PHONY : parser.i
+meta_list.i: meta_list.c.i
+.PHONY : meta_list.i
 
 # target to preprocess a source file
-parser.c.i:
-	cd /home/nirvash/Projects/PiL0/build && $(MAKE) -f header/CMakeFiles/header.dir/build.make header/CMakeFiles/header.dir/parser.c.i
-.PHONY : parser.c.i
+meta_list.c.i:
+	cd /home/nirvash/Projects/PiL0/build && $(MAKE) -f header/CMakeFiles/header.dir/build.make header/CMakeFiles/header.dir/meta_list.c.i
+.PHONY : meta_list.c.i
 
-parser.s: parser.c.s
-.PHONY : parser.s
+meta_list.s: meta_list.c.s
+.PHONY : meta_list.s
 
 # target to generate assembly for a file
-parser.c.s:
-	cd /home/nirvash/Projects/PiL0/build && $(MAKE) -f header/CMakeFiles/header.dir/build.make header/CMakeFiles/header.dir/parser.c.s
-.PHONY : parser.c.s
+meta_list.c.s:
+	cd /home/nirvash/Projects/PiL0/build && $(MAKE) -f header/CMakeFiles/header.dir/build.make header/CMakeFiles/header.dir/meta_list.c.s
+.PHONY : meta_list.c.s
 
 # Help Target
 help:
@@ -265,18 +241,15 @@ help:
 	@echo "... install/strip"
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
-	@echo "... ast.o"
-	@echo "... ast.i"
-	@echo "... ast.s"
 	@echo "... err_handling.o"
 	@echo "... err_handling.i"
 	@echo "... err_handling.s"
 	@echo "... lexer.o"
 	@echo "... lexer.i"
 	@echo "... lexer.s"
-	@echo "... parser.o"
-	@echo "... parser.i"
-	@echo "... parser.s"
+	@echo "... meta_list.o"
+	@echo "... meta_list.i"
+	@echo "... meta_list.s"
 .PHONY : help
 
 
