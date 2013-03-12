@@ -39,6 +39,7 @@
  * @{
  */
 
+
 #include"frontend.h"
 #include"language.h"
 #include"err_handling.h"
@@ -229,8 +230,9 @@ ml_ptr lexer(ml_ptr token_stream, FILE *raw_code) {
                   if (strcmp(w, "<=") == 0) key_NUM = get_keyNUM(reserved, "LE");
 
                   if (strcmp(w, "!=") == 0) key_NUM = get_keyNUM(reserved, "NE");
-
-                  meta_list_append(&token_stream, (te_ptr) token_add(reserved[key_NUM].w, &reserved[key_NUM].ID, &lineNumber));
+		  
+		  meta_list_append(&token_stream, (te_ptr) token_add(reserved[key_NUM].w, &reserved[key_NUM].ID, &lineNumber));
+                  //meta_list_append(&token_stream, (te_ptr) token_add(reserved[key_NUM].w, &reserved[key_NUM].ID, &lineNumber));
                 }
 
               else meta_list_append(&token_stream, (te_ptr) token_add(w, &ident, &lineNumber));
@@ -276,9 +278,21 @@ ml_ptr lexer(ml_ptr token_stream, FILE *raw_code) {
               w[i] = c;
               meta_list_append(&token_stream, (te_ptr) token_add(w, &ident, &lineNumber));
             }
+             
+          te_ptr var = (te_ptr) token_stream->content;
+	  switch(var->type) { 
+		  case('t'): printf("Token: %c\n", var->element.token.t); 
+			     break; 
+		  case('w'): printf("Word: %s, ID: %d\n", var->element.word.w, var->element.word.ID); 
+			     break; 
+		  case('n'): printf("Nummer: %d, ID: %d\n", var->element.number.n, var->element.number.ID); 
+			     break; 
+		  }
       }
     }
   return token_stream;
 }
 
+
 /** @} */
+

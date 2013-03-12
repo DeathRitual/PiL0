@@ -26,21 +26,21 @@
  * @{
  * 
  */
- 
+
+#ifndef __FRONTEND_H
+  #define __FRONTEND_H
 #include"err_handling.h"
 #include"meta_list.h"
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
-#ifndef __LEXER_H
-  #define __LEXER_H
 #define MAX_LENGTH 30
 
 
 
 
-extern ml_ptr lexer(ml_ptr, FILE *);
-//extern int parse(ml_ptr);
+ml_ptr lexer(ml_ptr, FILE *);
+int parse(ml_ptr);
 
 
 /**

@@ -38,7 +38,8 @@
 		  } 
 #define TRUE	1
 #define FALSE 	0
-#define MOVE tok = l_remove(&l);
+#define MOVE 	tok = meta_list_top(ml);\
+		meta_list_remove(&ml);
 //	     DEBUG
 #define WORD tok->element.word.w
 #define WORDID tok->element.word.ID
@@ -57,20 +58,7 @@ typedef struct _table table;
  * @typedef table *table_ptr
  * @brief short form to create pointer on table
  */ 
-typedef table *table_ptr;  
-/**
- * @typedef struct _env env
- * @brief shortens struct _env to env
- * 
- */ 
-typedef struct _env env;
-/**
- * @typedef env *env_ptr
- * @brief short form to create pointer on env
- * 
- */ 
-typedef env *env_ptr;
-
+typedef table *table_ptr; 
 /**
  * @struct _table
  * 
@@ -82,28 +70,12 @@ struct _table {
   unsigned int type_ID; /**< symbol ID */
   table *previous; /**< points to previous entry */
 };
- 
-/**
- * @struct _env
- * 
- * @brief Linked list which stores one symbol-table in each element
- * 
- **/
-struct _env {
-  table_ptr st; /**< points to symbol-table */ 
-  env *previous; /**< points to previous element */
-};
 
 /**
  * @var token_stream *tok
  * @brief element to store current symbol returned by token stream
  **/
-list tok;
-/**
- * @var env* environment
- * @brief start pointer for symbol table
- **/
-env_ptr environment;
+ml_ptr tok;
 
 /**
  * @var table* var
@@ -111,17 +83,7 @@ env_ptr environment;
  **/
 table_ptr var;
 
-/**
- * @brief Initialize symbol-table environment with NULL-Pointer
- *
- * @param e pointer to symbol-table environment
- * @return void
- **/
-static void st_init(env_ptr *e) {
-  if (e == NULL) error(NULL_POINTER);
-  
-  *e = NULL;
-}
+
 
 /**
  * @brief Initialize symbol-table with NULL-Pointer
@@ -129,32 +91,14 @@ static void st_init(env_ptr *e) {
  * @param st Pointer to symbol-table
  * @return void
  **/
-static void table_init(table_ptr *st){
-  if (st == NULL) error(NULL_POINTER);
+static void table_init(ml_ptr *el){
+  if (el == NULL) error(NULL_POINTER);
   
-  *st = NULL;
+  (table_ptr) (*el)->content;
+  (*el)->content = NULL;
 }
 
-/**
- * @brief Add new symbol-table environment
- *
- * @param e Pointer to current symbol-table environment
- * @return void
- * 
- * If no symbol-table environment is initialized then the previous pointer will point to NULL. 
- * Otherwise the new element will point to the current one.
- * When adding a new enviornment a new symbol table with table_init(&el->st) will be initialized.
- **/
-static void st_append(env_ptr *e) {
-  if (e == NULL) error(NULL_POINTER);
-  
-  env_ptr el;
-  if ((el = malloc(sizeof(env))) == NULL) error(ERR_MEMORY);
-  table_init(&el->st);
-  if (*e == NULL) el->previous = NULL;
-  else el->previous = *e;
-  *e = el;
-}
+
 
 /**
  * @brief Add a new entry to the symbol table
@@ -183,12 +127,12 @@ static void put(table_ptr *t, const char *w, const int i) {
  * @param s Symbol looking for
  * @return table_ptr If symbol is found pointer to this symbol, otherwise NULL
  **/
-static table_ptr get(const env_ptr *e, const char *s) {  
+static table_ptr get(const ml_ptr *e, const char *s) {  
   if (e == NULL) error(NULL_POINTER); 
   if (*e == NULL) error(NO_TABLE);
-  env_ptr ptr = *e;   
+  ml_ptr ptr = *e;   
   while (ptr != NULL) {
-    table_ptr found = ptr->st; 
+    table_ptr found = ptr->content; 
     while (found != NULL) {
       if (strcmp(found->word, s) == 0) return found;
       found = found->previous;
@@ -221,17 +165,19 @@ static void st_clean(env_ptr *e) {
 }
 
 /* dummies */
-int parse(list);
-void block(list);
-void stmt(list);
-void condition(list);
-void expression(list);
-void term(list);
-void factor(list);
+int parse(ml_ptr);
+void block(ml_ptr);
+void stmt(ml_ptr);
+void condition(ml_ptr);
+void expression(ml_ptr);
+void term(ml_ptr);
+void factor(ml_ptr);
 
 rootBlock block_ptr = NULL;
 rootStmt stmt_ptr = NULL;
 rootExpr expr_ptr = NULL;
+
+ml_ptr environment;
 
 /**
  * @brief start with parsing process
@@ -239,13 +185,13 @@ rootExpr expr_ptr = NULL;
  * @param l pointer to token stream
  * @return int TRUE:1 for correct parsing and FALSE:0 for wrong parsing
  **/
-int parse(list l) {
-  if (l == NULL) error(NULL_POINTER);
-  tok = l_top(l);
+int parse(ml_ptr ml) {
+  if (ml == NULL) error(NULL_POINTER);
+  MOVE
   //DEBUG
   block_ptr = initNewBlock();
-  st_init(&environment); 
-  block(l); 
+  meta_list_init(&environment); 
+  block(ml); 
   if(TOKEN == '.') return TRUE;
   else return FALSE;
 }
@@ -257,18 +203,18 @@ int parse(list l) {
  * @param l pointer to token stream
  * @return void
  **/
-void block(list l) {
-  env_ptr env_tmp = NULL;
+void block(ml_ptr ml) {
+  ml_ptr env_tmp = NULL;
   rootBlock block_tmp = NULL;
-  char g[10];
-  st_append(&environment);
+  meta_list_append(&environment, NULL);
+  table_init(&environment);
   /* block    -> VAR var_stmt 
    * var_stmt -> var_stmt, identifier | identifier */
   if (WORDID == VAR) {
     MOVE
     do {     
       if (WORDID == IDENTIFIER) {
-	if ((var = get(&environment, WORD)) == NULL) put(&environment->st, WORD, VAR);
+	if ((var = get(&environment, WORD)) == NULL) put(&environment->content, WORD, VAR);
 	else parseError(CODE, TYP_DOUB_DEC);
 	MOVE
       } else parseError(CODE, TYP_NO_ID);
@@ -284,7 +230,7 @@ void block(list l) {
     MOVE
     do {
       if (WORDID == IDENTIFIER) {
-	if ((var = get(&environment, WORD)) == NULL) put(&environment->st, WORD, CONST);
+	if ((var = get(&environment, WORD)) == NULL) put(&environment->content, WORD, CONST);
 	else parseError(CODE, TYP_DOUB_DEC);
 	MOVE
       } else parseError(CODE, TYP_NO_ID);
@@ -303,25 +249,24 @@ void block(list l) {
   while (WORDID == PROCEDURE) {   
     MOVE
     if (WORDID == IDENTIFIER) {
-      if ((var = get(&environment, WORD)) == NULL) put(&environment->st, WORD, PROCEDURE);
+      if ((var = get(&environment, WORD)) == NULL) put(&environment->content, WORD, PROCEDURE);
 	else parseError(CODE, TYP_DOUB_DEC);
-      //printf("%s", t);
       block_ptr = newBlock(&block_ptr, environment->st->word, _PROC_);
       MOVE
     } else parseError(CODE, TYP_NO_ID);
-    if (TOKEN == ';') { MOVE } else parseError(CODE, SYN_MISS_COM);
-    env_tmp = environment;				/* save environment for current iteration */
+    if (TOKEN == ';') { MOVE } else parseError(CODE, SYN_MISS_COM);				/* save environment for current iteration */
     block_tmp = block_ptr->block.proc.external_block;	/* save external branch for current iteration */
     block_ptr = block_ptr->block.proc.internal_block;	/* create subtree of function below internal branch */
-    block(l);
-    block_ptr = block_tmp;				/* use external branch */
-    environment = env_tmp;				/* set environment to the last one */
+    env_tmp = environment;
+    block(ml);
+    environment = env_tmp;
+    block_ptr = block_tmp;				/* use external branch */				/* set environment to the last one */
     if (TOKEN == ';') { MOVE } else parseError(CODE, SYN_MISS_COM);
   }
   block_ptr = newBlock(&block_ptr, NULL, _STMT_);
   stmt_ptr = block_ptr->block.stmt;
-  stmt(l);  
-  st_clean(&environment);
+  stmt(ml);  
+  meta_list_remove(&environment);
 }
 
 /**
@@ -330,7 +275,7 @@ void block(list l) {
  * @param l pointer to token stream
  * @return void
  **/
-void stmt(list l) {
+void stmt(ml_ptr ml) {
   rootStmt stmt_tmp = NULL;
   switch(WORDID) {
     /* stmt -> identifier = expression */
@@ -341,7 +286,7 @@ void stmt(list l) {
       expr_ptr = stmt_ptr->stmt.assign.expr;
       MOVE
       if (TOKEN == '=') { MOVE } else parseError(CODE, SYN_MISS_ASS);
-      expression(l);
+      expression(ml);
       break;
     /* stmt -> CALL identifier (only procedure)*/
     case (CALL):
@@ -368,7 +313,7 @@ void stmt(list l) {
       stmt_ptr = newStmt(&stmt_ptr, NULL, _PRINT_);
       expr_ptr = stmt_ptr->stmt.expr;
       MOVE
-      expression(l);
+      expression(ml);
       break;
     /* stmt  -> BEGIN stmts END 
      * stmts -> stmts ; stmt | stmt */
@@ -378,14 +323,14 @@ void stmt(list l) {
       stmt_ptr = newStmt(&stmt_ptr, NULL, _SEQ_);
       stmt_tmp = stmt_ptr->stmt.seq.stmtLeft;		/* save left branch for current iteration */
       stmt_ptr = stmt_ptr->stmt.seq.stmtRight;		/* use right branch */
-      stmt(l);
+      stmt(ml);
       stmt_ptr = stmt_tmp;				/* use left branch */
       while (TOKEN == ';') {
 	MOVE
 	stmt_ptr = newStmt(&stmt_ptr, NULL, _SEQ_);
 	stmt_tmp = stmt_ptr->stmt.seq.stmtLeft;		/* save left branch for current iteration */
 	stmt_ptr = stmt_ptr->stmt.seq.stmtRight;	/* use right branch */
-	stmt(l);
+	stmt(ml);
 	stmt_ptr = stmt_tmp;				/* use left branch */
       }
       if (WORDID == END) { MOVE } else parseError(CODE, SYN_MISS_END);
@@ -396,10 +341,10 @@ void stmt(list l) {
       MOVE
       stmt_ptr = newStmt(&stmt_ptr, NULL, _IF_);
       expr_ptr = stmt_ptr->stmt._if.condition;
-      condition(l);
+      condition(ml);
       if (WORDID == THEN) { MOVE } else parseError(CODE, SYN_IF);
       stmt_ptr = stmt_ptr->stmt._if.stmt;
-      stmt(l);
+      stmt(ml);
       break;
     /* stmt -> WHILE condition DO stmt */
     case (WHILE):	
@@ -407,10 +352,10 @@ void stmt(list l) {
       MOVE
       stmt_ptr = newStmt(&stmt_ptr, NULL, _WHILE_);
       expr_ptr = stmt_ptr->stmt._if.condition;
-      condition(l);
+      condition(ml);
       if (WORDID == DO) { MOVE } else parseError(CODE, SYN_WHILE);
       stmt_ptr = stmt_ptr->stmt._if.stmt;
-      stmt(l);
+      stmt(ml);
       break;
     /* stmt -> PASS */
     case (PASS):	
@@ -426,14 +371,14 @@ void stmt(list l) {
  * @param l token stream
  * @return void
  **/
-void condition(list l) {
+void condition(ml_ptr ml) {
   rootExpr expr_tmp1 = NULL, expr_tmp2 = NULL;
   /* condition -> ODD expression */
   if (WORDID == ODD) {  
-    MOVE 
+    MOVE
     expr_ptr = newExpr(&expr_ptr, NULL, NULL, _ODD_);
     expr_ptr = expr_ptr->expr.odd.expr;
-    expression(l);
+    expression(ml);
   } 
   else {
     /* condition -> expression > expression | expression < expression */
@@ -441,12 +386,12 @@ void condition(list l) {
     expr_tmp2 = expr_ptr;				/* save current knot for later operation inserting */
     expr_tmp1 = expr_ptr->expr.rel.exprLeft;		/* save left branch for current iteration */
     expr_ptr = expr_ptr->expr.rel.exprRight;		/* use right branch */
-    expression(l); 
+    expression(ml); 
     expr_ptr = expr_tmp1;				/* use left branch */
     if (TOKEN == '>' || TOKEN == '<') {
       expr_tmp2->expr.rel.op[0] = TOKEN;
       MOVE
-      expression(l);
+      expression(ml);
     } else {
       switch(WORDID) {
 	/* condition -> expression == expression */
@@ -454,28 +399,28 @@ void condition(list l) {
 	  
 	  strcpy(expr_tmp2->expr.rel.op, WORD);
 	  MOVE
-	  expression(l);
+	  expression(ml);
 	  break;
 	/* condition -> expression != expression */
 	case(NE): 
 	  
 	  strcpy(expr_tmp2->expr.rel.op, WORD);
 	  MOVE
-	  expression(l);
+	  expression(ml);
 	  break;
 	/* condition -> expression <= expression */
 	case(LE): 
 	  
 	  strcpy(expr_tmp2->expr.rel.op, WORD);
 	  MOVE
-	  expression(l);
+	  expression(ml);
 	  break;
 	/* condition -> expression >= expression */
 	case(GE): 
 	  
 	  strcpy(expr_tmp2->expr.rel.op, WORD);
 	  MOVE
-	  expression(l);
+	  expression(ml);
 	  break;
 	default: parseError(CODE, SYN_NO_COMP);
       }
@@ -490,7 +435,7 @@ void condition(list l) {
  * @param l token stream
  * @return void
  **/
-void expression(list l) {
+void expression(ml_ptr ml) {
   rootExpr expr_tmp1 = NULL, expr_tmp2 = NULL;
   /* expression -> - term */
   if (TOKEN == '-') { 
@@ -501,21 +446,21 @@ void expression(list l) {
     expr_tmp1 = expr_ptr->expr.arith.exprLeft;		/* save left branch for current iteration */
     expr_ptr = expr_ptr->expr.arith.exprRight;		/* use right branch */
     MOVE
-    term(l);
+    term(ml);
   /* expression -> term */
   } else {
     expr_ptr = newExpr(&expr_ptr, "", NULL, _ARITH_);
     expr_tmp2 = expr_ptr;				/* save current knot for later operation inserting */
     expr_tmp1 = expr_ptr->expr.arith.exprLeft;		/* save left branch for current iteration */
     expr_ptr = expr_ptr->expr.arith.exprRight;		/* use right branch */
-    term(l);
+    term(ml);
   }
   expr_ptr = expr_tmp1;					/* use left branch */
   /* expression -> expression + term | expression - term */
   while (TOKEN == '+' || TOKEN == '-') {
     expr_tmp2->expr.arith.op = TOKEN;
     MOVE
-    term(l);
+    term(ml);
   }
 }
 
@@ -525,20 +470,20 @@ void expression(list l) {
  * @param l token stream
  * @return void
  **/
-void term(list l) {
+void term(ml_ptr ml) {
   rootExpr expr_tmp1 = NULL, expr_tmp2 = NULL;
   /* term -> factor */
   expr_ptr = newExpr(&expr_ptr, "", NULL, _ARITH_);
   expr_tmp2 = expr_ptr;				/* save current knot for later operation inserting */
   expr_tmp1 = expr_ptr->expr.arith.exprLeft;		/* save left branch for current iteration */
   expr_ptr = expr_ptr->expr.arith.exprRight;		/* use right branch */
-  factor(l);
+  factor(ml);
   expr_ptr = expr_tmp1;					/* use left branch */
   /* term -> term * factor | term / factor */
   while (TOKEN == '*' || TOKEN == '/') {
     expr_tmp2->expr.arith.op = TOKEN;
     MOVE
-    term(l);
+    term(ml);
   }
 }
 
@@ -549,7 +494,7 @@ void term(list l) {
  * @param l token stream
  * @return void
  **/
-void factor(list l) {
+void factor(ml_ptr ml) {
   /* factor -> identifier */
   if (WORDID == IDENTIFIER) {
     if ((var = get(&environment, WORD)) == NULL) parseError(CODE, TYP_ID_NO_IN);
@@ -562,7 +507,7 @@ void factor(list l) {
   /* factor -> ( expression ) */
   } else if (TOKEN == '(') {
     MOVE
-    expression(l);
+    expression(ml);
     if (TOKEN == ')') { MOVE } else parseError(CODE, SYN_MISS_CB);
   } else parseError(CODE, SYN_MISS_OB);
 }

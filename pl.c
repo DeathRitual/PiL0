@@ -41,6 +41,7 @@ int main(int argc, char *argv[]) {
     return EXIT_FAILURE;
   }
 
+
 //  if (parse(token_stream)) printf("Korrekt");
 //  else printf("Falsch");
  

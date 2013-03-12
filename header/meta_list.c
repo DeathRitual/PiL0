@@ -23,10 +23,10 @@
  */
 
 
+
 #include"err_handling.h"
 #include"meta_list.h"
 #include<stdlib.h>
-
 
 /**
  * @var meta_list *head;
@@ -37,22 +37,22 @@ ml_ptr head;
 /**
   * @brief Initialize new meta list with NULL-Pointer
   *
-  * @param **l pointer to the beginning of new meta list
+  * @param **ml pointer to the beginning of new meta list
   * @retval void
   **/
-void meta_list_init(ml_ptr *l) {
-  if (l == NULL) error(NULL_POINTER);
-  *l = NULL;
+void meta_list_init(ml_ptr *ml) {
+  if (ml == NULL) error(NULL_POINTER);
+  *ml = NULL;
 }
 
 /**
  * @brief check if pointed element is empty or not
  *
- * @param *l pointer to meta list element
+ * @param *ml pointer to meta list element
  * @retval int 1 or 0
  **/
-static int meta_list_IsEmpty(const ml_ptr l) {
-  return l == NULL;
+static int meta_list_IsEmpty(const ml_ptr ml) {
+  return ml == NULL;
 }
 
 /**
@@ -80,9 +80,9 @@ void meta_list_append(ml_ptr *ml, void *content) {
  * @param **ml pointer on newst element in the meta list
  * @retval *head meta list pointer to new head element @see head
  **/
-extern ml_ptr meta_list_remove(ml_ptr *ml) {
+void meta_list_remove(ml_ptr *ml) {
   if (ml == NULL) error(NULL_POINTER);
-  if (meta_list_IsEmpty(*ml)) return NULL;
+  if (meta_list_IsEmpty(*ml)) error(EMPTY_LIST);
   if (head == *ml) {
     free(head->content);
     free(head);
@@ -96,7 +96,6 @@ extern ml_ptr meta_list_remove(ml_ptr *ml) {
     free(head->content);
     free(head);
     head = ptr;
-    return head;
   }
 }
 
@@ -123,3 +122,4 @@ ml_ptr meta_list_last(ml_ptr ml) {
   if (meta_list_IsEmpty(ml)) error(EMPTY_LIST);
   return ml;
 }
+

@@ -22,6 +22,9 @@
  * Forwards the functions of the ast library to another file which includes this header file.
  * 
  */
+
+#ifndef __AST_H
+  #define __AST_H
 #define MAX_LENGTH 30
 
 typedef struct _block *rootBlock;
@@ -108,5 +111,4 @@ extern rootBlock newBlock(rootBlock *, char *, enum block_id);
 extern rootStmt newStmt(rootStmt *, char *, enum stmt_id);
 extern rootExpr newExpr(rootExpr *, char *, int *, enum expr_id);
 
-
-
+#endif

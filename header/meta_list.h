@@ -51,8 +51,13 @@ struct struct_meta_list{
   meta_list *previous; /**< pointer to previous element */
 };
 
-extern ml_ptr meta_list_top(ml_ptr);
-extern ml_ptr meta_list_last(ml_ptr);
-extern ml_ptr meta_list_remove(ml_ptr *);
-extern void meta_list_init(ml_ptr *);
-extern void meta_list_append(ml_ptr *, void *);
+
+
+ml_ptr meta_list_top(ml_ptr);
+ml_ptr meta_list_last(ml_ptr);
+void meta_list_remove(ml_ptr *);
+void meta_list_remove_n(ml_ptr *);
+void meta_list_init(ml_ptr *);
+void meta_list_append(ml_ptr *, void *);
+
+
