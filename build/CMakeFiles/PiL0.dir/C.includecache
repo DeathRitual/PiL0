@@ -19,8 +19,16 @@ stdlib.h
 -
 string.h
 -
+ctype.h
+-
 
 ../header/meta_list.h
+err_handling.h
+../header/err_handling.h
+stdlib.h
+-
+stdio.h
+-
 
 /home/nirvash/Projects/PiL0/pl.c
 frontend.h

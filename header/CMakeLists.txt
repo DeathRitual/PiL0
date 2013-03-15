@@ -1,1 +1,1 @@
-add_library(header lexer.c err_handling.c meta_list.c)
+add_library(header parser.c lexer.c ast.c err_handling.c meta_list.c)

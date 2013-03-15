@@ -1,51 +1,18 @@
 VAR x,y,z,q,r,n,f;
 
-PROCEDURE multiply;
-	VAR a,b;
-BEGIN 
-	a = x; 
-	b = y; 
-	z = 0;
-	WHILE b > 0 DO
+PROCEDURE fact;
+PROCEDURE fact1;
+VAR sdf;
+BEGIN
+	IF fact > 1 THEN
 	BEGIN 
-		IF ODD z THEN z = z + a;
-		a = 2*a; 
-		b = b/2
+		f = n * f; 
+		n = n - 1; 
+		CALL fact
 	END
 END ;
-
-PROCEDURE divide;
-      VAR w;
 BEGIN
-      WHILE w > y DO
-      BEGIN 
-	      q = 2*q; 
-	      w = w/2;
-	      IF w <= r THEN
-	      BEGIN 
-		      r = r - w; 
-		      q = q + 1
-	      END
-      END
-END ;
-
-
-PROCEDURE gcd;
-VAR fa,g;
-
-BEGIN 
-	fa = x; g = y;
-	WHILE fa != g DO
-	BEGIN 
-			IF fa < g THEN g = g - fa;
-			IF g < fa THEN fa = fa - g + 7
-	END ; 
-	z = fa
-END ;
-
-PROCEDURE fact;
-BEGIN
-	IF n > 1 THEN
+	IF fact > 1 THEN
 	BEGIN 
 		f = n * f; 
 		n = n - 1; 
@@ -54,19 +21,6 @@ BEGIN
 END ;
 
 BEGIN
-	READ x;
-	READ y;
-	CALL multiply;
-	PRINT z;
-	READ x;
-	READ y;
-	CALL divide;
-	PRINT q;
-	PRINT r;
-	READ x;
-	READ y;
-	CALL gcd;
-	PRINT z;
 	READ n;
 	f = 1;
 	CALL fact;

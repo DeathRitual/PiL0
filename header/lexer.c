@@ -42,72 +42,9 @@
 
 #include"frontend.h"
 #include"language.h"
-#include"err_handling.h"
-#include<ctype.h>
 
-/**
- * @typedef struct _token_element token_element
- * @brief shortend struct _token_element to token_element
- * 
- */ 
-typedef struct _token_element token_element; 
-/**
- * @typedef token_element *te_ptr
- * @brief short form to create pointer to one token element
- * 
- */
-typedef token_element *te_ptr;
 
-/**
- * @struct _token_element
- * 
- * @brief stores one token, token type and line number
- * 
- **/
-struct _token_element{
-  char type; /**< Token-Type */
-  unsigned int line; /**< code line number */
 
-    /**
-    * @union _element 
-    * 
-    * @brief Different Token for storing symbols.
-    * 
-    * Except for Token: token all token have an ID which helps identifying
-    * the type of the keyword, identifer or number.
-    **/
-  union _element{    
-    /**
-      * @struct token
-      * 
-      * Stores single character symbols like: +, -, >, <, etc.
-      **/
-    struct _token {
-      char t; /**< single character */
-    }token; /**< Can store single characters */
-    
-    /**
-      * @struct number
-      * 
-      * Stores numbers.
-      **/
-    struct _number {
-      int n; /**< number */ 
-      unsigned int ID; /**< number identifier */
-    }number; /**< Can store numbers and the NUM-ID */
-    
-    /**
-      * @struct word
-      * 
-      * Stores keywords and identifier.
-      **/
-    struct _word {
-      unsigned int ID; /**< keyword / identifier identifier */
-      char w[MAX_LENGTH]; /**< keyword / identifer */
-    }word; /**< Can store words and either the Keyword-ID or IDENTIFIER-ID */
-    
-  }element; /**< Structure to store different types of lexical tokens */
-};
 
 /**
  * @brief create new token
@@ -118,8 +55,8 @@ struct _token_element{
  * @retval *el pointer to token
  **/
 static te_ptr token_add(const char *t, const int *n, const int *ln) {  
-  te_ptr el;
-  if ((el = malloc(sizeof(token_element))) == NULL) error(ERR_MEMORY);
+  te_ptr el = NULL;
+  if ((el = malloc(sizeof(*el))) == NULL) error(ERR_MEMORY);
   if (isdigit(*t) > 0) {
     el->type = 'n';  
     el->element.number.n = atoi(t);
@@ -201,20 +138,19 @@ static keyword *init_ReservedKeys() {
  * Reads input code and convert each element to one token / word / number and add it to the token stream
  *
  * @param raw_code input source code
- * @param token_stream pointer to meta list
- * @retval *token-stream
+ * @param *token_stream pointer to meta list
+ * @retval *token_stream
  **/
 ml_ptr lexer(ml_ptr token_stream, FILE *raw_code) {
   int c, lineNumber = 1;
   keyword *reserved = init_ReservedKeys();
-  meta_list_init(&token_stream);
-
+  
   while ((c = fgetc(raw_code)) != EOF) {
       if (c == 10 || c == 13) lineNumber++;
-
+    
       if (!((iscntrl(c) || isspace(c)))) {
           char w[30] = "";
-          int i = 0, key_NUM, ident = IDENTIFIER;
+          int i = 0, key_NUM = 0, ident = IDENTIFIER;
 
           /* read compare operators */
           if (c == '=' || c == '>' || c == '<' || c == '!') {
@@ -222,21 +158,13 @@ ml_ptr lexer(ml_ptr token_stream, FILE *raw_code) {
 
               if ((c = fgetc(raw_code)) == '=') {
                   w[i + 1] = c;
-
                   if (strcmp(w, "==") == 0) key_NUM = get_keyNUM(reserved, "EQ");
-
                   if (strcmp(w, ">=") == 0) key_NUM = get_keyNUM(reserved, "GE");
-
                   if (strcmp(w, "<=") == 0) key_NUM = get_keyNUM(reserved, "LE");
-
-                  if (strcmp(w, "!=") == 0) key_NUM = get_keyNUM(reserved, "NE");
-		  
+                  if (strcmp(w, "!=") == 0) key_NUM = get_keyNUM(reserved, "NE");		  
 		  meta_list_append(&token_stream, (te_ptr) token_add(reserved[key_NUM].w, &reserved[key_NUM].ID, &lineNumber));
-                  //meta_list_append(&token_stream, (te_ptr) token_add(reserved[key_NUM].w, &reserved[key_NUM].ID, &lineNumber));
                 }
-
               else meta_list_append(&token_stream, (te_ptr) token_add(w, &ident, &lineNumber));
-
             }
 
           /* read words or identifier */
@@ -250,9 +178,7 @@ ml_ptr lexer(ml_ptr token_stream, FILE *raw_code) {
                 }
 
               key_NUM = get_keyNUM(reserved, w);
-
               if (key_NUM >= 0) meta_list_append(&token_stream, (te_ptr) token_add(reserved[key_NUM].w, &reserved[key_NUM].ID, &lineNumber));
-
               else meta_list_append(&token_stream, (te_ptr) token_add(w, &ident, &lineNumber));
 
               c = ungetc(c, raw_code);
@@ -278,8 +204,8 @@ ml_ptr lexer(ml_ptr token_stream, FILE *raw_code) {
               w[i] = c;
               meta_list_append(&token_stream, (te_ptr) token_add(w, &ident, &lineNumber));
             }
-             
-          te_ptr var = (te_ptr) token_stream->content;
+	  
+ /*         te_ptr var = (te_ptr) token_stream->list->content;
 	  switch(var->type) { 
 		  case('t'): printf("Token: %c\n", var->element.token.t); 
 			     break; 
@@ -287,9 +213,10 @@ ml_ptr lexer(ml_ptr token_stream, FILE *raw_code) {
 			     break; 
 		  case('n'): printf("Nummer: %d, ID: %d\n", var->element.number.n, var->element.number.ID); 
 			     break; 
-		  }
+		  }*/
       }
     }
+  
   return token_stream;
 }
 

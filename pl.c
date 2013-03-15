@@ -28,8 +28,8 @@
 int main(int argc, char *argv[]) {
   
   int i = 10, c;
-  ml_ptr token_stream;
-
+  ml_ptr token_stream = meta_list_init();
+  
   FILE *raw_code;
   
   raw_code = fopen(argv[1], "r");
@@ -42,8 +42,8 @@ int main(int argc, char *argv[]) {
   }
 
 
-//  if (parse(token_stream)) printf("Korrekt");
-//  else printf("Falsch");
+  if (parse(token_stream)) printf("Korrekt");
+  else printf("Falsch");
  
   return EXIT_SUCCESS;
 }

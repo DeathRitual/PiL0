@@ -21,29 +21,43 @@
  * 
  * Forwards the functions of the ast library to another file which includes this header file.
  * 
+ * @defgroup ast Abstract Syntax Tree
+ * @ingroup parser
+ * 
+ * @{
  */
 
 #ifndef __AST_H
   #define __AST_H
+#include"err_handling.h"
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
 #define MAX_LENGTH 30
 
 typedef struct _block *rootBlock;
 typedef struct _stmt *rootStmt;
 typedef struct _expr *rootExpr;
 
+
 enum block_id {
     _PROC_, _STMT_
   };
 
+/**
+  * @struct _block
+  * 
+  * @brief block root
+  **/
 struct _block {
-  enum block_id tag;
+  enum block_id tag; 		/**< union identifier */
   union {
     struct {
       char word[MAX_LENGTH]; 		/* identifier */
       struct _block *external_block;
       struct _block *internal_block;
-    } proc;
-    struct _stmt *stmt;
+    } proc;  			/**< block */
+    struct _stmt *stmt; 	/**< statement */
   } block;
 };
 
@@ -51,27 +65,32 @@ enum stmt_id {
     _IF_, _WHILE_, _ASSIGN_, _SEQ_, _CALL_, _READ_, _PRINT_
   };
 
+/**
+  * @struct _stmt
+  * 
+  * @brief statement root
+  **/
 struct _stmt {
-  enum stmt_id tag;
+  enum stmt_id tag; 		/**< union identifier */
   union {
-    char word[MAX_LENGTH];		/* CALL, READ */
-    struct _expr *expr;			/* PRINT */
+    char word[MAX_LENGTH]; 	/**< identifier for CALL / READ */		
+    struct _expr *expr;		/**< PRINT expression */
     struct {
       struct _expr *condition;
       struct _stmt *stmt;
-    } _while;
+    } _while;			/**< while loop */
     struct {
       struct _expr *condition;
       struct _stmt *stmt;
-    } _if;
+    } _if;			/**< if condition */
     struct {
       char word[MAX_LENGTH];
       struct _expr *expr;
-    } assign;
+    } assign;			/**< assignment */
     struct {
       struct _stmt *stmtRight;
       struct _stmt *stmtLeft;
-    } seq;
+    } seq;			/**< sequence of statements */
   } stmt;
 };
 
@@ -80,27 +99,27 @@ enum expr_id {
   };
 
 struct _expr {
-  enum expr_id tag;
+  enum expr_id tag; 		/**< union identifier */
   union {
-    int number;				/* number */
-    char word[MAX_LENGTH];		/* identifier */
+    int number;			/**< number */
+    char word[MAX_LENGTH];	/**< identifier */
     struct {
       char op;				/* +, -, *, / */
       struct _expr *exprRight;		/* expression */
       struct _expr *exprLeft;		/* expression */
-    } arith; 
+    } arith; 			/**< arithmetic expression */
     struct {
       char op[3];			/* <, >, !, ==, !=, <=, >= */
       struct _expr *exprRight;		/* expression */
       struct _expr *exprLeft;		/* expression */
-    } rel;
+    } rel;			/**< relational expression */
     struct {
       char op;				/* - */
       struct _expr *expr;		/* expression */
-    } unary;
+    } unary;			/**< unary expression */
     struct {
       struct _expr *expr;
-    } odd;
+    } odd;			/**< odd expression */
   } expr;
 };
 
@@ -112,3 +131,5 @@ extern rootStmt newStmt(rootStmt *, char *, enum stmt_id);
 extern rootExpr newExpr(rootExpr *, char *, int *, enum expr_id);
 
 #endif
+
+/** @} */

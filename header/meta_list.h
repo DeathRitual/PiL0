@@ -19,45 +19,50 @@
 /**
  * @file meta_list.h
  * 
- * @defgroup meta_list
+ * @defgroup meta_list Meta List
  * @ingroup lexer parser main frontend
  */
 
+#include"err_handling.h"
+#include<stdlib.h>
+#include<stdio.h>
+
+typedef struct struct_meta_list_element meta_list_element;
+typedef meta_list_element *mle_ptr;
+
 /**
- * @typedef struct_meta_list meta_list
+ * @struct struct_meta_list_element
  * 
- * @brief shortend struct _meta_list to meta_list
- * 
- */ 
+ * @brief meta_list element
+ **/
+struct struct_meta_list_element {
+    void **content; 	/**< pointer to any element */
+    
+    mle_ptr next; 	/**< pointer to next element */
+    mle_ptr previous; 	/**< pointer to previous element */
+};
+
+
 typedef struct struct_meta_list meta_list;  
-/**
- * @typedef _meta_list *ml_ptr
- * @brief short form to create pointer to one element of the meta list
- * 
- */
 typedef meta_list *ml_ptr;
 
 /**
- * @struct _meta_list
+ * @struct struct_meta_list
  * 
- * @brief element structure to for creating a double linked list
+ * @brief wrapper struct for double linked list
  * 
  **/
 struct struct_meta_list{
-
-  void **content; /**< pointer to any element */
-  
-  meta_list *next; /**< pointer to next element */
-  meta_list *previous; /**< pointer to previous element */
+  mle_ptr first;	/** < first element in list */
+  mle_ptr list;  	/** < current and last element in list */
 };
 
 
 
-ml_ptr meta_list_top(ml_ptr);
-ml_ptr meta_list_last(ml_ptr);
-void meta_list_remove(ml_ptr *);
-void meta_list_remove_n(ml_ptr *);
-void meta_list_init(ml_ptr *);
-void meta_list_append(ml_ptr *, void *);
+extern mle_ptr meta_list_top(ml_ptr);
+extern void meta_list_remove_fifo(ml_ptr *);
+extern void meta_list_remove_lifo(ml_ptr *);
+extern ml_ptr meta_list_init();
+extern void meta_list_append(ml_ptr *, void *);
 
 

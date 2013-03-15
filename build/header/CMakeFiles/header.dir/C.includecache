@@ -6,6 +6,20 @@
 
 #IncludeRegexTransform: 
 
+/home/nirvash/Projects/PiL0/header/ast.c
+ast.h
+/home/nirvash/Projects/PiL0/header/ast.h
+
+/home/nirvash/Projects/PiL0/header/ast.h
+err_handling.h
+/home/nirvash/Projects/PiL0/header/err_handling.h
+stdio.h
+-
+stdlib.h
+-
+string.h
+-
+
 /home/nirvash/Projects/PiL0/header/err_handling.h
 
 /home/nirvash/Projects/PiL0/header/frontend.h
@@ -19,6 +33,8 @@ stdlib.h
 -
 string.h
 -
+ctype.h
+-
 
 /home/nirvash/Projects/PiL0/header/language.h
 stddef.h
@@ -29,18 +45,22 @@ frontend.h
 /home/nirvash/Projects/PiL0/header/frontend.h
 language.h
 /home/nirvash/Projects/PiL0/header/language.h
-err_handling.h
-/home/nirvash/Projects/PiL0/header/err_handling.h
-ctype.h
--
 
 /home/nirvash/Projects/PiL0/header/meta_list.c
-err_handling.h
-/home/nirvash/Projects/PiL0/header/err_handling.h
 meta_list.h
 /home/nirvash/Projects/PiL0/header/meta_list.h
-stdlib.h
--
 
 /home/nirvash/Projects/PiL0/header/meta_list.h
+err_handling.h
+/home/nirvash/Projects/PiL0/header/err_handling.h
+stdlib.h
+-
+stdio.h
+-
+
+/home/nirvash/Projects/PiL0/header/parser.c
+frontend.h
+/home/nirvash/Projects/PiL0/header/frontend.h
+ast.h
+/home/nirvash/Projects/PiL0/header/ast.h
 

@@ -18,32 +18,56 @@
 
 /**
  * @file ast.c Library which inherits all necessary functions for creating an abstract syntax tree
+ * 
+ * @ingroup parser
+ * 
+ * @{
  */
 
-#include"err_handling.h"
 #include"ast.h"
-#include<stdio.h>
-#include<stdlib.h>
-#include<string.h>
 
+
+/**
+ * @brief constructor for block root
+ * 
+ * @retval rootBlock* 
+ **/
 rootBlock initNewBlock() { 
   rootBlock knot_block;
   if ((knot_block = malloc(sizeof(struct _block))) == NULL) error(ERR_MEMORY);
   return knot_block;
 }
 
+/**
+ * @brief constructor for statement root
+ *
+ * @retval rootStmt* 
+ **/
 rootStmt initNewStmt() {
   rootStmt knot_stmt;
   if ((knot_stmt = malloc(sizeof(struct _stmt))) == NULL) error(ERR_MEMORY);
   return knot_stmt;
 }
 
+/**
+ * @brief constructor for expression root
+ *
+ * @retval rootExpr* 
+ **/
 rootExpr initNewExpr() {
   rootExpr knot_expr;
   if ((knot_expr = malloc(sizeof(struct _expr))) == NULL) error(ERR_MEMORY);
   return knot_expr;
 }
 
+/**
+ * @brief creates block knots
+ *
+ * @param **block_ptr pointer to root
+ * @param *s procedure identifier 
+ * @param id union id
+ * @retval rootBlock**
+ **/
 rootBlock newBlock(rootBlock *block_ptr, char *s, enum block_id id) {
 //  printf("ro %p\n", *block_ptr);
   if (id == _PROC_) {
@@ -65,7 +89,15 @@ rootBlock newBlock(rootBlock *block_ptr, char *s, enum block_id id) {
   return *block_ptr;
 } 
  
-rootStmt newStmt(rootStmt *stmt_ptr, char *s, enum stmt_id id) {
+ /**
+  * @brief creates statement knots
+  *
+  * @param **stmt_ptr pointer to root
+  * @param *s identifier
+  * @param id union id
+  * @retval rootStmt**
+  **/
+ rootStmt newStmt(rootStmt *stmt_ptr, char *s, enum stmt_id id) {
 //  printf("ro %p\n", *stmt_ptr);
   switch (id) {
     case _IF_: 
@@ -133,6 +165,15 @@ rootStmt newStmt(rootStmt *stmt_ptr, char *s, enum stmt_id id) {
   return *stmt_ptr;
 }
 
+/**
+ * @brief creates expression knots
+ *
+ * @param **expr_ptr pointer to root
+ * @param *s identifier
+ * @param *n number
+ * @param *id union id
+ * @retval rootExpr**
+ **/
 rootExpr newExpr(rootExpr *expr_ptr, char *s, int *n, enum expr_id id) {
   //printf("ro %p\n", *expr_ptr);
   switch (id) {
@@ -196,3 +237,5 @@ rootExpr newExpr(rootExpr *expr_ptr, char *s, int *n, enum expr_id id) {
   }
   return *expr_ptr;
 }
+
+/** @} */

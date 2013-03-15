@@ -34,13 +34,67 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
+#include<ctype.h>
 #define MAX_LENGTH 30
 
 
 
+typedef struct _token_element token_element; 
+typedef token_element *te_ptr;
 
-ml_ptr lexer(ml_ptr, FILE *);
-int parse(ml_ptr);
+/**
+ * @struct _token_element
+ * 
+ * @brief stores one token, token type and line number
+ * 
+ **/
+struct _token_element{
+  char type; /**< Token-Type */
+  unsigned int line; /**< code line number */
+
+    /**
+    * @union _element 
+    * 
+    * @brief Different Token for storing symbols.
+    * 
+    * Except for Token: token all token have an ID which helps identifying
+    * the type of the keyword, identifer or number.
+    **/
+  union _element{    
+    /**
+      * @struct token
+      * 
+      * Stores single character symbols like: +, -, >, <, etc.
+      **/
+    struct _token {
+      char t; /**< single character */
+    }token; /**< Can store single characters */
+    
+    /**
+      * @struct number
+      * 
+      * Stores numbers.
+      **/
+    struct _number {
+      int n; /**< number */ 
+      unsigned int ID; /**< number identifier */
+    }number; /**< Can store numbers and the NUM-ID */
+    
+    /**
+      * @struct word
+      * 
+      * Stores keywords and identifier.
+      **/
+    struct _word {
+      unsigned int ID; /**< keyword / identifier identifier */
+      char w[MAX_LENGTH]; /**< keyword / identifer */
+    }word; /**< Can store words and either the Keyword-ID or IDENTIFIER-ID */
+    
+  }element; /**< Structure to store different types of lexical tokens */
+};
+
+extern ml_ptr lexer(ml_ptr, FILE *);
+extern int parse(ml_ptr);
 
 
 /**
