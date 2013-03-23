@@ -204,16 +204,6 @@ ml_ptr lexer(ml_ptr token_stream, FILE *raw_code) {
               w[i] = c;
               meta_list_append(&token_stream, (te_ptr) token_add(w, &ident, &lineNumber));
             }
-	  
- /*         te_ptr var = (te_ptr) token_stream->list->content;
-	  switch(var->type) { 
-		  case('t'): printf("Token: %c\n", var->element.token.t); 
-			     break; 
-		  case('w'): printf("Word: %s, ID: %d\n", var->element.word.w, var->element.word.ID); 
-			     break; 
-		  case('n'): printf("Nummer: %d, ID: %d\n", var->element.number.n, var->element.number.ID); 
-			     break; 
-		  }*/
       }
     }
   

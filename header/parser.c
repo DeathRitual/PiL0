@@ -39,7 +39,6 @@
 #define FALSE 	0
 #define MOVE 	mlToTok = meta_list_top(ml);\
 		tok = (te_ptr) mlToTok->content;\
-		DEBUG\
 		meta_list_remove_fifo(&ml);
 #define WORD tok->element.word.w
 #define WORDID tok->element.word.ID
@@ -159,6 +158,7 @@ te_ptr tok = NULL;
 mle_ptr mlToTok = NULL;
 table_ptr var = NULL;
 ml_ptr symbol_table = NULL;
+ml_ptr three_adress_code = NULL;
 
 /**
  * @brief start with parsing process
@@ -171,7 +171,14 @@ int parse(ml_ptr ml) {
   MOVE
   block_ptr = initNewBlock();
   symbol_table = meta_list_init();
+  three_adress_code = meta_list_init();
   block(ml); 
+  while (three_adress_code != NULL) {
+    mle_ptr tmp = meta_list_top(three_adress_code);
+    quadruple_ptr tac = (quadruple_ptr) tmp->content;
+    printf("OP: %s | ARG1: %s | ARG2: %s | RES: %s\n", tac->op, tac->arg1, tac->arg2, tac->result);
+    meta_list_remove_fifo(&three_adress_code);
+  }
   if(TOKEN == '.') return TRUE;
   else return FALSE;
 }
@@ -210,15 +217,24 @@ void block(ml_ptr ml) {
   if (WORDID == CONST) {
     MOVE
     do {
+      quadruple_ptr quad_tmp = NULL;
       if (WORDID == IDENTIFIER) {
 	if ((var = get(&symbol_table->list, WORD)) == NULL) put((table_ptr *) &symbol_table->list->content, WORD, CONST);
 	else parseError(CODE, TYP_DOUB_DEC);
+	quad_tmp = initNewQuadruple("", "", "", WORD);
 	MOVE
       } else parseError(CODE, TYP_NO_ID);
-      if (TOKEN == '=') { MOVE } else parseError(CODE, SYN_MISS_ASS);
-      if (NUMBERID == NUM) { MOVE } else parseError(CODE, TYP_CONST_NUM);
+      if (TOKEN == '=') {
+	sprintf(quad_tmp->op, "%c", TOKEN);
+	MOVE 
+      } else parseError(CODE, SYN_MISS_ASS);
+      if (NUMBERID == NUM) {
+	sprintf(quad_tmp->arg1, "%d", NUMBER);
+	MOVE 	
+      } else parseError(CODE, TYP_CONST_NUM);
       if (TOKEN == ',') { MOVE }
       else if (TOKEN != ';') parseError(CODE, SYN_MISS_COM);
+      meta_list_append(&three_adress_code, (quadruple_ptr) quad_tmp);
     } while (TOKEN != ';'); 
     MOVE
   }

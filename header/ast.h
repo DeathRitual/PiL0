@@ -98,6 +98,11 @@ enum expr_id {
     _NUMBER_, _IDENTIFIER_, _ARITH_, _UNARY_, _REL_, _ODD_  
   };
 
+/**
+  * @struct _expr
+  * 
+  * @brief expression root
+  **/
 struct _expr {
   enum expr_id tag; 		/**< union identifier */
   union {
@@ -123,6 +128,18 @@ struct _expr {
   } expr;
 };
 
+
+typedef struct _tac_quadruple quadruple;
+typedef quadruple *quadruple_ptr;
+
+struct _tac_quadruple {
+  char op[MAX_LENGTH];
+  char arg1[MAX_LENGTH];
+  char arg2[MAX_LENGTH];
+  char result[MAX_LENGTH];
+};
+
+extern quadruple_ptr initNewQuadruple(char *, char *, char *, char *);
 extern rootBlock initNewBlock();
 extern rootStmt initNewStmt();
 extern rootExpr initNewExpr();

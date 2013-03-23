@@ -1,4 +1,5 @@
 VAR x,y,z,q,r,n,f;
+CONST a = 5, b = 6;
 
 PROCEDURE fact;
 PROCEDURE fact1;

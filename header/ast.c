@@ -26,6 +26,17 @@
 
 #include"ast.h"
 
+quadruple_ptr initNewQuadruple(char *operand, char *argument1, char *argument2, char *res) {
+  quadruple_ptr quad;
+  if ((quad = malloc(sizeof(*quad))) == NULL) error(ERR_MEMORY);
+  strcpy(quad->op, operand);
+  strcpy(quad->arg1, argument1);
+  strcpy(quad->arg2, argument2);
+  strcpy(quad->result, res);
+  
+  return quad;
+}
+
 
 /**
  * @brief constructor for block root
@@ -34,7 +45,7 @@
  **/
 rootBlock initNewBlock() { 
   rootBlock knot_block;
-  if ((knot_block = malloc(sizeof(struct _block))) == NULL) error(ERR_MEMORY);
+  if ((knot_block = malloc(sizeof(*knot_block))) == NULL) error(ERR_MEMORY);
   return knot_block;
 }
 
@@ -45,7 +56,7 @@ rootBlock initNewBlock() {
  **/
 rootStmt initNewStmt() {
   rootStmt knot_stmt;
-  if ((knot_stmt = malloc(sizeof(struct _stmt))) == NULL) error(ERR_MEMORY);
+  if ((knot_stmt = malloc(sizeof(*knot_stmt))) == NULL) error(ERR_MEMORY);
   return knot_stmt;
 }
 
@@ -56,7 +67,7 @@ rootStmt initNewStmt() {
  **/
 rootExpr initNewExpr() {
   rootExpr knot_expr;
-  if ((knot_expr = malloc(sizeof(struct _expr))) == NULL) error(ERR_MEMORY);
+  if ((knot_expr = malloc(sizeof(*knot_expr))) == NULL) error(ERR_MEMORY);
   return knot_expr;
 }
 
@@ -73,7 +84,7 @@ rootBlock newBlock(rootBlock *block_ptr, char *s, enum block_id id) {
   if (id == _PROC_) {
     (*block_ptr)->tag = id;
     strcpy((*block_ptr)->block.proc.word, s);
-    printf("%s:\n", (*block_ptr)->block.proc.word);
+//    printf("%s:\n", (*block_ptr)->block.proc.word);
     rootBlock knotRight = initNewBlock();
     (*block_ptr)->block.proc.external_block = knotRight;
     rootBlock knotLeft = initNewBlock();
