@@ -293,6 +293,7 @@ void stmt(ml_ptr ml) {
       if (var == NULL) parseError(CODE, TYP_ID_NO_IN);
       else if (var->type_ID != PROCEDURE) parseError(CODE, TYP_ONLY_PROC);
       stmt_ptr = newStmt(&stmt_ptr, WORD, _CALL_);
+      meta_list_append(&three_adress_code, (quadruple_ptr) initNewQuadruple("goto", "", "", var->word));
       MOVE
       break;
     /* stmt -> READ identifier (only procedure)*/
