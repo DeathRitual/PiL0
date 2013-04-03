@@ -173,10 +173,11 @@ int parse(ml_ptr ml) {
   symbol_table = meta_list_init();
   three_adress_code = meta_list_init();
   block(ml); 
+  printf("\n\n");
   while (three_adress_code != NULL) {
     mle_ptr tmp = meta_list_top(three_adress_code);
     quadruple_ptr tac = (quadruple_ptr) tmp->content;
-    printf("OP: %s | ARG1: %s | ARG2: %s | RES: %s\n", tac->op, tac->arg1, tac->arg2, tac->result);
+    printf("%d: OP: %s | ARG1: %s | ARG2: %s | RES: %s\n", tmp->number, tac->op, tac->arg1, tac->arg2, tac->result);
     meta_list_remove_fifo(&three_adress_code);
   }
   if(TOKEN == '.') return TRUE;
@@ -281,9 +282,15 @@ void stmt(ml_ptr ml) {
       if ((var = get(&symbol_table->list, WORD)) == NULL) parseError(CODE, TYP_ID_NO_IN);
       stmt_ptr = newStmt(&stmt_ptr, WORD, _ASSIGN_);
       expr_ptr = stmt_ptr->stmt.assign.expr;
+      quadruple_ptr quad_tmp = initNewQuadruple("", "", "", stmt_ptr->stmt.assign.word);
       MOVE
-      if (TOKEN == '=') { MOVE } else parseError(CODE, SYN_MISS_ASS);
+      if (TOKEN == '=') { 
+	sprintf(quad_tmp->op, "%c", TOKEN);
+	MOVE 
+      } else parseError(CODE, SYN_MISS_ASS);
       expression(ml);
+      strcpy(quad_tmp->arg1, temp());
+      meta_list_append(&three_adress_code, (quadruple_ptr) quad_tmp);
       break;
     /* stmt -> CALL identifier (only procedure)*/
     case (CALL):
@@ -293,7 +300,7 @@ void stmt(ml_ptr ml) {
       if (var == NULL) parseError(CODE, TYP_ID_NO_IN);
       else if (var->type_ID != PROCEDURE) parseError(CODE, TYP_ONLY_PROC);
       stmt_ptr = newStmt(&stmt_ptr, WORD, _CALL_);
-      meta_list_append(&three_adress_code, (quadruple_ptr) initNewQuadruple("goto", "", "", var->word));
+      meta_list_append(&three_adress_code, (quadruple_ptr) initNewQuadruple("call", stmt_ptr->stmt.word, "", ""));
       MOVE
       break;
     /* stmt -> READ identifier (only procedure)*/
@@ -302,8 +309,11 @@ void stmt(ml_ptr ml) {
       MOVE
       var = get(&symbol_table->list, WORD);
       if (var == NULL) parseError(CODE, TYP_ID_NO_IN);
-      if (WORDID == IDENTIFIER && var->type_ID != PROCEDURE) { MOVE } else parseError(CODE, TYP_ONLY_INT);
-      stmt_ptr = newStmt(&stmt_ptr, WORD, _READ_);
+      if (WORDID == IDENTIFIER && var->type_ID != PROCEDURE) { 
+	stmt_ptr = newStmt(&stmt_ptr, WORD, _READ_);
+	meta_list_append(&three_adress_code, (quadruple_ptr) initNewQuadruple("in", stmt_ptr->stmt.word, "", ""));
+	MOVE 
+      } else parseError(CODE, TYP_ONLY_INT);
       break;
     /* stmt -> PRINT expression */
     case (PRINT):	
@@ -385,6 +395,7 @@ void condition(ml_ptr ml) {
     expr_tmp1 = expr_ptr->expr.rel.exprLeft;		/* save left branch for current iteration */
     expr_ptr = expr_ptr->expr.rel.exprRight;		/* use right branch */
     expression(ml); 
+    expr_ptr = expr_tmp1;
     //expr_ptr = expr_tmp1;				/* use left branch */
     if (TOKEN == '>' || TOKEN == '<') {
       expr_tmp2->expr.rel.op[0] = TOKEN;

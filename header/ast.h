@@ -140,6 +140,8 @@ struct _tac_quadruple {
 };
 
 extern quadruple_ptr initNewQuadruple(char *, char *, char *, char *);
+extern char *temp();
+extern void reset_temp();
 extern rootBlock initNewBlock();
 extern rootStmt initNewStmt();
 extern rootExpr initNewExpr();

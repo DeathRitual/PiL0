@@ -24,7 +24,7 @@
 
 #include"meta_list.h"
 
-
+int element_number = 0;
 /**
   * @brief constructor for new meta list
   *
@@ -35,6 +35,7 @@ ml_ptr meta_list_init() {
   if ((new_list = malloc(sizeof(*new_list))) == NULL) error(ERR_MEMORY);
   new_list->first = NULL;
   new_list->list = NULL;
+  element_number = 0;
   return new_list;
 }
 
@@ -48,6 +49,8 @@ static int meta_list_IsEmpty(const mle_ptr ml) {
   return ml == NULL;
 }
 
+
+
 /**
  * @brief create new element on meta list, connect it to the last element and actualize first element
  *
@@ -59,6 +62,7 @@ void meta_list_append(ml_ptr *ml, void *content) {
   if (ml == NULL) error(NULL_POINTER);
   mle_ptr new_element = NULL, old_element = (*ml)->list;
   if ((new_element = malloc(sizeof(*new_element))) == NULL) error(ERR_MEMORY); 
+  new_element->number = element_number++;
   new_element->content = content;      
   new_element->next = old_element;
   new_element->previous = NULL;

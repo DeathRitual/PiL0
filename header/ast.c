@@ -26,6 +26,9 @@
 
 #include"ast.h"
 
+int temp_number = 0;
+char t[3] = "";
+
 quadruple_ptr initNewQuadruple(char *operand, char *argument1, char *argument2, char *res) {
   quadruple_ptr quad;
   if ((quad = malloc(sizeof(*quad))) == NULL) error(ERR_MEMORY);
@@ -35,6 +38,16 @@ quadruple_ptr initNewQuadruple(char *operand, char *argument1, char *argument2, 
   strcpy(quad->result, res);
   
   return quad;
+}
+
+char *temp() {
+  sprintf(t, "t%d", temp_number);
+  temp_number++;
+  return t;
+}
+
+void reset_temp() {
+  temp_number = 0;
 }
 
 
@@ -80,22 +93,22 @@ rootExpr initNewExpr() {
  * @retval rootBlock**
  **/
 rootBlock newBlock(rootBlock *block_ptr, char *s, enum block_id id) {
-//  printf("ro %p\n", *block_ptr);
+  printf("ro %p\n", *block_ptr);
   if (id == _PROC_) {
     (*block_ptr)->tag = id;
     strcpy((*block_ptr)->block.proc.word, s);
-//    printf("%s:\n", (*block_ptr)->block.proc.word);
+    printf("%s:\n", (*block_ptr)->block.proc.word);
     rootBlock knotRight = initNewBlock();
     (*block_ptr)->block.proc.external_block = knotRight;
     rootBlock knotLeft = initNewBlock();
     (*block_ptr)->block.proc.internal_block = knotLeft;
-//    printf("ex %p \n", knotRight);
-//    printf("in %p \n", knotLeft);
+    printf("ex %p \n", knotRight);
+    printf("in %p \n", knotLeft);
   } else if (id == _STMT_) {
     (*block_ptr)->tag = id;
     rootStmt knot_stmt = initNewStmt();
     (*block_ptr)->block.stmt = knot_stmt;
-//    printf("st %p\n", knot_stmt);
+    printf("st %p\n", knot_stmt);
   } else error(WRONG_ID);
   return *block_ptr;
 } 
@@ -109,64 +122,66 @@ rootBlock newBlock(rootBlock *block_ptr, char *s, enum block_id id) {
   * @retval rootStmt**
   **/
  rootStmt newStmt(rootStmt *stmt_ptr, char *s, enum stmt_id id) {
-//  printf("ro %p\n", *stmt_ptr);
+  printf("ro %p\n", *stmt_ptr);
   switch (id) {
     case _IF_: 
-//      printf("if:\n");
+      printf("if:\n");
       (*stmt_ptr)->tag = id;
       rootExpr knotExprIf = initNewExpr();
       (*stmt_ptr)->stmt._if.condition = knotExprIf;
       rootStmt knotStmtIf = initNewStmt();
       (*stmt_ptr)->stmt._if.stmt = knotStmtIf;
-//      printf("co %p\n", knotExprIf);
-//      printf("st %p\n", knotStmtIf);
+      printf("co %p\n", knotExprIf);
+      printf("st %p\n", knotStmtIf);
       break;
     case _WHILE_:
-//      printf("wh:\n");
+      printf("wh:\n");
       (*stmt_ptr)->tag = id;
       rootExpr knotExprWhile = initNewExpr();
       (*stmt_ptr)->stmt._while.condition = knotExprWhile;
       rootStmt knotStmtWhile = initNewStmt();
       (*stmt_ptr)->stmt._while.stmt = knotStmtWhile;
-//      printf("co %p\n", knotExprIf);
-//      printf("st %p\n", knotStmtIf);
+      printf("co %p\n", knotExprIf);
+      printf("st %p\n", knotStmtIf);
       break;
     case _ASSIGN_:
-//      printf("as:\n");
+      printf("as:\n");
       (*stmt_ptr)->tag = id;
       strcpy((*stmt_ptr)->stmt.assign.word, s);
       rootExpr knotExprAssign = initNewExpr();
       (*stmt_ptr)->stmt.assign.expr = knotExprAssign;
-      //printf("ep %p\n", knotExprAssign);
+      printf("ep %p\n", knotExprAssign);
       break;
     case _CALL_: 
 
-      //printf("ca:\n");
+      printf("ca:\n");
       (*stmt_ptr)->tag = id;
       strcpy((*stmt_ptr)->stmt.word, s);
       break;
     case _READ_:
-      //printf("re:\n");
+      
+      printf("re:\n");
       (*stmt_ptr)->tag = id;
       strcpy((*stmt_ptr)->stmt.word, s);
       break;
     case _PRINT_: 
-      //printf("pr:\n");
+      
+      printf("pr:\n");
       (*stmt_ptr)->tag = id;
       rootExpr knotExpr = initNewExpr();
       (*stmt_ptr)->stmt.expr = knotExpr;
-      //printf("ep %p\n", knotExpr);
+      printf("ep %p\n", knotExpr);
       break;
       
     case _SEQ_:
-      //printf("se:\n");
+      printf("se:\n");
       (*stmt_ptr)->tag = id;
       rootStmt knotStmtRight = initNewStmt();
       (*stmt_ptr)->stmt.seq.stmtRight = knotStmtRight;
       rootStmt knotStmtLeft = initNewStmt();
       (*stmt_ptr)->stmt.seq.stmtLeft = knotStmtLeft;
-      //printf("ri %p\n", knotStmtRight);
-      //printf("le %p\n", knotStmtLeft);
+      printf("ri %p\n", knotStmtRight);
+      printf("le %p\n", knotStmtLeft);
       break;
     default:	
       
@@ -186,60 +201,60 @@ rootBlock newBlock(rootBlock *block_ptr, char *s, enum block_id id) {
  * @retval rootExpr**
  **/
 rootExpr newExpr(rootExpr *expr_ptr, char *s, int *n, enum expr_id id) {
-  //printf("ro %p\n", *expr_ptr);
+  printf("ro %p\n", *expr_ptr);
   switch (id) {
     case _NUMBER_:
       
-      //printf("nu:\n");
+      printf("nu:\n");
       (*expr_ptr)->tag = id;
       (*expr_ptr)->expr.number = *n;
       break;
     case _IDENTIFIER_:
       
-      //printf("id:\n");
+      printf("id:\n");
       (*expr_ptr)->tag = id;
       strcpy((*expr_ptr)->expr.word, s);
       break;
     case _ARITH_:
       
-      //printf("ar:\n");
+      printf("ar:\n");
       (*expr_ptr)->tag = id;
       (*expr_ptr)->expr.arith.op = *s;
       rootExpr knotExprRight1 = initNewExpr();
       (*expr_ptr)->expr.arith.exprRight = knotExprRight1;
       rootExpr knotExprLeft1 = initNewExpr();
       (*expr_ptr)->expr.arith.exprLeft = knotExprLeft1;
-      //printf("ri %p\n", knotExprRight1);
-      //printf("le %p\n", knotExprLeft1);
+      printf("ri %p\n", knotExprRight1);
+      printf("le %p\n", knotExprLeft1);
       break;
     case _UNARY_:
       
-      //printf("un:\n");
+      printf("un:\n");
       (*expr_ptr)->tag = id;
       (*expr_ptr)->expr.unary.op = *s;
       rootExpr knotExpr1 = initNewExpr();
       (*expr_ptr)->expr.unary.expr = knotExpr1;
-      //printf("un %p\n", knotExpr1);
+      printf("un %p\n", knotExpr1);
       break;
     case _REL_:
       
-      //printf("rel:\n");
+      printf("rel:\n");
       (*expr_ptr)->tag = id;
       strcpy((*expr_ptr)->expr.rel.op, s);
       rootExpr knotExprRight2 = initNewExpr();
       (*expr_ptr)->expr.rel.exprRight = knotExprRight2;
       rootExpr knotExprLeft2 = initNewExpr();
       (*expr_ptr)->expr.rel.exprLeft = knotExprLeft2;
-      //printf("ri %p\n", knotExprRight2);
-      //printf("le %p\n", knotExprLeft2);
+      printf("ri %p\n", knotExprRight2);
+      printf("le %p\n", knotExprLeft2);
       break;
     case _ODD_:
       
-      //printf("odd:\n");
+      printf("odd:\n");
       (*expr_ptr)->tag = id;
       rootExpr knotExpr2 = initNewExpr();
       (*expr_ptr)->expr.odd.expr = knotExpr2;
-      //printf("od %p\n", knotExpr2);
+      printf("od %p\n", knotExpr2);
       break;
     default:
       

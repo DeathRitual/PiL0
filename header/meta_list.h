@@ -37,6 +37,7 @@ typedef meta_list_element *mle_ptr;
  **/
 struct struct_meta_list_element {
     void **content; 	/**< pointer to any element */
+    int number; 	/**< element number */
     
     mle_ptr next; 	/**< pointer to next element */
     mle_ptr previous; 	/**< pointer to previous element */

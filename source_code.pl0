@@ -1,19 +1,8 @@
 VAR x,y,z,q,r,n,f;
-CONST a = 5, b = 6;
 
 PROCEDURE fact;
-PROCEDURE fact1;
-VAR sdf;
 BEGIN
-	IF fact > 1 THEN
-	BEGIN 
-		f = n * f; 
-		n = n - 1; 
-		CALL fact
-	END
-END ;
-BEGIN
-	IF fact > 1 THEN
+	IF n > 1 THEN
 	BEGIN 
 		f = n * f; 
 		n = n - 1; 
