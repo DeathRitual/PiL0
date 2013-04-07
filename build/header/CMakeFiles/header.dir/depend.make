@@ -24,3 +24,7 @@ header/CMakeFiles/header.dir/parser.c.o: ../header/frontend.h
 header/CMakeFiles/header.dir/parser.c.o: ../header/meta_list.h
 header/CMakeFiles/header.dir/parser.c.o: ../header/parser.c
 
+header/CMakeFiles/header.dir/trc_generator.c.o: ../header/ast.h
+header/CMakeFiles/header.dir/trc_generator.c.o: ../header/err_handling.h
+header/CMakeFiles/header.dir/trc_generator.c.o: ../header/trc_generator.c
+

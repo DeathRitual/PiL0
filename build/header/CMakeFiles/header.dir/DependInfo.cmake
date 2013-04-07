@@ -9,6 +9,7 @@ SET(CMAKE_DEPENDS_CHECK_C
   "/home/nirvash/Projects/PiL0/header/lexer.c" "/home/nirvash/Projects/PiL0/build/header/CMakeFiles/header.dir/lexer.c.o"
   "/home/nirvash/Projects/PiL0/header/meta_list.c" "/home/nirvash/Projects/PiL0/build/header/CMakeFiles/header.dir/meta_list.c.o"
   "/home/nirvash/Projects/PiL0/header/parser.c" "/home/nirvash/Projects/PiL0/build/header/CMakeFiles/header.dir/parser.c.o"
+  "/home/nirvash/Projects/PiL0/header/trc_generator.c" "/home/nirvash/Projects/PiL0/build/header/CMakeFiles/header.dir/trc_generator.c.o"
   )
 SET(CMAKE_C_COMPILER_ID "GNU")
 

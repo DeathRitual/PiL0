@@ -276,6 +276,30 @@ parser.c.s:
 	cd /home/nirvash/Projects/PiL0/build && $(MAKE) -f header/CMakeFiles/header.dir/build.make header/CMakeFiles/header.dir/parser.c.s
 .PHONY : parser.c.s
 
+trc_generator.o: trc_generator.c.o
+.PHONY : trc_generator.o
+
+# target to build an object file
+trc_generator.c.o:
+	cd /home/nirvash/Projects/PiL0/build && $(MAKE) -f header/CMakeFiles/header.dir/build.make header/CMakeFiles/header.dir/trc_generator.c.o
+.PHONY : trc_generator.c.o
+
+trc_generator.i: trc_generator.c.i
+.PHONY : trc_generator.i
+
+# target to preprocess a source file
+trc_generator.c.i:
+	cd /home/nirvash/Projects/PiL0/build && $(MAKE) -f header/CMakeFiles/header.dir/build.make header/CMakeFiles/header.dir/trc_generator.c.i
+.PHONY : trc_generator.c.i
+
+trc_generator.s: trc_generator.c.s
+.PHONY : trc_generator.s
+
+# target to generate assembly for a file
+trc_generator.c.s:
+	cd /home/nirvash/Projects/PiL0/build && $(MAKE) -f header/CMakeFiles/header.dir/build.make header/CMakeFiles/header.dir/trc_generator.c.s
+.PHONY : trc_generator.c.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -304,6 +328,9 @@ help:
 	@echo "... parser.o"
 	@echo "... parser.i"
 	@echo "... parser.s"
+	@echo "... trc_generator.o"
+	@echo "... trc_generator.i"
+	@echo "... trc_generator.s"
 .PHONY : help
 
 

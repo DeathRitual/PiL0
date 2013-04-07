@@ -129,17 +129,17 @@ struct _expr {
 };
 
 
-typedef struct _tac_quadruple quadruple;
-typedef quadruple *quadruple_ptr;
+typedef struct _tac tac;
+typedef tac *tac_ptr;
 
-struct _tac_quadruple {
+struct _tac {
   char op[MAX_LENGTH];
   char arg1[MAX_LENGTH];
   char arg2[MAX_LENGTH];
   char result[MAX_LENGTH];
+  char label[MAX_LENGTH];
 };
 
-extern quadruple_ptr initNewQuadruple(char *, char *, char *, char *);
 extern char *temp();
 extern void reset_temp();
 extern rootBlock initNewBlock();

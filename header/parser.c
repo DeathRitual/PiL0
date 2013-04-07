@@ -19,6 +19,8 @@
 /**
  * @file parser.c Library which inherits all necessary functions for parsing
  * 
+ * @TODO: three adress code generation out of abstract syntax tree. much easier this way! make quintuple of trc for adding labeling (jump points)!
+ * 
  * @defgroup parser Parser module
  * @ingroup frontend
  * 
@@ -158,7 +160,6 @@ te_ptr tok = NULL;
 mle_ptr mlToTok = NULL;
 table_ptr var = NULL;
 ml_ptr symbol_table = NULL;
-ml_ptr three_adress_code = NULL;
 
 /**
  * @brief start with parsing process
@@ -171,15 +172,7 @@ int parse(ml_ptr ml) {
   MOVE
   block_ptr = initNewBlock();
   symbol_table = meta_list_init();
-  three_adress_code = meta_list_init();
   block(ml); 
-  printf("\n\n");
-  while (three_adress_code != NULL) {
-    mle_ptr tmp = meta_list_top(three_adress_code);
-    quadruple_ptr tac = (quadruple_ptr) tmp->content;
-    printf("%d: OP: %s | ARG1: %s | ARG2: %s | RES: %s\n", tmp->number, tac->op, tac->arg1, tac->arg2, tac->result);
-    meta_list_remove_fifo(&three_adress_code);
-  }
   if(TOKEN == '.') return TRUE;
   else return FALSE;
 }
@@ -218,24 +211,19 @@ void block(ml_ptr ml) {
   if (WORDID == CONST) {
     MOVE
     do {
-      quadruple_ptr quad_tmp = NULL;
       if (WORDID == IDENTIFIER) {
 	if ((var = get(&symbol_table->list, WORD)) == NULL) put((table_ptr *) &symbol_table->list->content, WORD, CONST);
 	else parseError(CODE, TYP_DOUB_DEC);
-	quad_tmp = initNewQuadruple("", "", "", WORD);
 	MOVE
       } else parseError(CODE, TYP_NO_ID);
       if (TOKEN == '=') {
-	sprintf(quad_tmp->op, "%c", TOKEN);
 	MOVE 
       } else parseError(CODE, SYN_MISS_ASS);
       if (NUMBERID == NUM) {
-	sprintf(quad_tmp->arg1, "%d", NUMBER);
 	MOVE 	
       } else parseError(CODE, TYP_CONST_NUM);
       if (TOKEN == ',') { MOVE }
       else if (TOKEN != ';') parseError(CODE, SYN_MISS_COM);
-      meta_list_append(&three_adress_code, (quadruple_ptr) quad_tmp);
     } while (TOKEN != ';'); 
     MOVE
   }
@@ -282,15 +270,11 @@ void stmt(ml_ptr ml) {
       if ((var = get(&symbol_table->list, WORD)) == NULL) parseError(CODE, TYP_ID_NO_IN);
       stmt_ptr = newStmt(&stmt_ptr, WORD, _ASSIGN_);
       expr_ptr = stmt_ptr->stmt.assign.expr;
-      quadruple_ptr quad_tmp = initNewQuadruple("", "", "", stmt_ptr->stmt.assign.word);
       MOVE
       if (TOKEN == '=') { 
-	sprintf(quad_tmp->op, "%c", TOKEN);
 	MOVE 
       } else parseError(CODE, SYN_MISS_ASS);
       expression(ml);
-      strcpy(quad_tmp->arg1, temp());
-      meta_list_append(&three_adress_code, (quadruple_ptr) quad_tmp);
       break;
     /* stmt -> CALL identifier (only procedure)*/
     case (CALL):
@@ -300,7 +284,6 @@ void stmt(ml_ptr ml) {
       if (var == NULL) parseError(CODE, TYP_ID_NO_IN);
       else if (var->type_ID != PROCEDURE) parseError(CODE, TYP_ONLY_PROC);
       stmt_ptr = newStmt(&stmt_ptr, WORD, _CALL_);
-      meta_list_append(&three_adress_code, (quadruple_ptr) initNewQuadruple("call", stmt_ptr->stmt.word, "", ""));
       MOVE
       break;
     /* stmt -> READ identifier (only procedure)*/
@@ -311,7 +294,6 @@ void stmt(ml_ptr ml) {
       if (var == NULL) parseError(CODE, TYP_ID_NO_IN);
       if (WORDID == IDENTIFIER && var->type_ID != PROCEDURE) { 
 	stmt_ptr = newStmt(&stmt_ptr, WORD, _READ_);
-	meta_list_append(&three_adress_code, (quadruple_ptr) initNewQuadruple("in", stmt_ptr->stmt.word, "", ""));
 	MOVE 
       } else parseError(CODE, TYP_ONLY_INT);
       break;
@@ -322,6 +304,7 @@ void stmt(ml_ptr ml) {
       expr_ptr = stmt_ptr->stmt.expr;
       MOVE
       expression(ml);
+      reset_temp();
       break;
     /* stmt  -> BEGIN stmts END 
      * stmts -> stmts ; stmt | stmt */

@@ -26,31 +26,6 @@
 
 #include"ast.h"
 
-int temp_number = 0;
-char t[3] = "";
-
-quadruple_ptr initNewQuadruple(char *operand, char *argument1, char *argument2, char *res) {
-  quadruple_ptr quad;
-  if ((quad = malloc(sizeof(*quad))) == NULL) error(ERR_MEMORY);
-  strcpy(quad->op, operand);
-  strcpy(quad->arg1, argument1);
-  strcpy(quad->arg2, argument2);
-  strcpy(quad->result, res);
-  
-  return quad;
-}
-
-char *temp() {
-  sprintf(t, "t%d", temp_number);
-  temp_number++;
-  return t;
-}
-
-void reset_temp() {
-  temp_number = 0;
-}
-
-
 /**
  * @brief constructor for block root
  * 

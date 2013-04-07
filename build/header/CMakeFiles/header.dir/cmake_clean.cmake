@@ -1,4 +1,5 @@
 FILE(REMOVE_RECURSE
+  "CMakeFiles/header.dir/trc_generator.c.o"
   "CMakeFiles/header.dir/parser.c.o"
   "CMakeFiles/header.dir/lexer.c.o"
   "CMakeFiles/header.dir/ast.c.o"

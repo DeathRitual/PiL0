@@ -6,6 +6,10 @@
 
 #IncludeRegexTransform: 
 
+/home/nirvash/Projects/PiL0/header/ast.c
+ast.h
+/home/nirvash/Projects/PiL0/header/ast.h
+
 /home/nirvash/Projects/PiL0/header/ast.h
 err_handling.h
 /home/nirvash/Projects/PiL0/header/err_handling.h
@@ -43,6 +47,10 @@ stdio.h
 /home/nirvash/Projects/PiL0/header/parser.c
 frontend.h
 /home/nirvash/Projects/PiL0/header/frontend.h
+ast.h
+/home/nirvash/Projects/PiL0/header/ast.h
+
+/home/nirvash/Projects/PiL0/header/trc_generator.c
 ast.h
 /home/nirvash/Projects/PiL0/header/ast.h
 

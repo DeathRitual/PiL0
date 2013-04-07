@@ -24,3 +24,7 @@ header/CMakeFiles/header.dir/parser.c.o
  /home/nirvash/Projects/PiL0/header/frontend.h
  /home/nirvash/Projects/PiL0/header/meta_list.h
  /home/nirvash/Projects/PiL0/header/parser.c
+header/CMakeFiles/header.dir/trc_generator.c.o
+ /home/nirvash/Projects/PiL0/header/ast.h
+ /home/nirvash/Projects/PiL0/header/err_handling.h
+ /home/nirvash/Projects/PiL0/header/trc_generator.c
