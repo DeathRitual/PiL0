@@ -1,4 +1,0 @@
-#define PiL0_VERSION_MAJOR 1
-#define PiL0_VERSION_MINOR 0
-
-

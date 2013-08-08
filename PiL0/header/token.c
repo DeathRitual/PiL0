@@ -1,0 +1,225 @@
+/*
+ * PiL0 - PL0 Compiler for Raspberry PI
+ * Copyright (C) 2013  Philipp Wiesner
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+/**
+ * @file token.c Library for Token Generation and Global Objects
+ * 
+ * @ingroup lexer
+ */
+
+#include"frontend.h"
+#ifndef __TOKEN_C
+#define __TOKEN_C
+
+#define TOKEN_ERR "Token"
+
+/**
+ * @struct _token_element
+ *
+ * @brief stores one token, token type and line number
+ *
+ **/
+struct TOKEN_OBJECT {
+	char type; /**< Token-Type */
+	size_t line; /**< code line number */
+	
+	/**
+	 * @union _element
+	 *
+	 * @brief Different Token for storing symbols.
+	 *
+	 * Except for Token: token all token have an ID which helps identifying
+	 * the type of the keyword, identifer or number.
+	 **/
+	union _element {
+		/**
+		 * @struct token
+		 *
+		 * Stores single character symbols like: +, -, >, <, etc.
+		 **/
+		struct _token {
+			char t; /**< single character */
+		} token; /**< Can store single characters */
+		
+		/**
+		 * @struct number
+		 *
+		 * Stores numbers.
+		 **/
+		struct _number {
+			int n; /**< number */
+			unsigned int ID; /**< number identifier */
+		} number; /**< Can store numbers and the NUM-ID */
+		
+		/**
+		 * @struct word
+		 *
+		 * Stores keywords and identifier.
+		 **/
+		struct _word {
+			unsigned int ID; /**< keyword / identifier identifier */
+			char w[MAX_LENGTH]; /**< keyword / identifer */
+		} word; /**< Can store words and either the Keyword-ID or IDENTIFIER-ID */
+	
+	} element; /**< Structure to store different types of lexical tokens */
+};
+
+/**
+ * @brief create new token
+ *
+ * @param *t symbol, keyword, identifier or number to generate new token of
+ * @param *n identifier number of keyword, identifier or number
+ * @param *ln number of program code line
+ * @retval *new_token_element pointer to new token
+ **/
+TOPTR generate_token(const char *t, const int *n, const int *ln) {
+	TOPTR new_token_element = NULL;
+	
+	if ((new_token_element = malloc(sizeof(*new_token_element))) == NULL)
+		error(
+		TOKEN_ERR, __FILE__, __func__, __LINE__, ERR_MEMORY);
+	
+	if (isdigit(*t) > 0) {
+		new_token_element->type = 'n';
+		new_token_element->element.number.n = atoi(t);
+		new_token_element->element.number.ID = *n;
+	}
+
+	else if (isalpha(*t) > 0) {
+		new_token_element->type = 'w';
+		strcpy(new_token_element->element.word.w, t);
+		new_token_element->element.word.ID = *n;
+	}
+
+	else {
+		new_token_element->type = 't';
+		new_token_element->element.token.t = *t;
+	}
+	
+	new_token_element->line = *ln;
+	return new_token_element;
+}
+
+/**
+ * @brief free memory for token
+ *
+ * @param token_element token pointer
+ * @return void
+ */
+void free_token(TOPTR token_element) {
+	free(token_element);
+	token_element = NULL;
+}
+
+/**
+ * @brief remove element from qeue and free memory
+ *
+ * @param token_queue queue pointer
+ * @return void
+ */
+void release_token(const QUEUE token_queue) {
+	TOPTR tmp = (TOPTR) qudel(token_queue);
+	
+	free_token(tmp);
+	tmp = NULL;
+}
+
+/**
+ *
+ * @brief return token
+ *
+ * @param token_queue queue pointer
+ * @retval TOPTR
+ */
+TOPTR getTOKEN(const QUEUE token_queue) {
+	return (TOPTR) head(token_queue);
+}
+
+/**
+ * @brief return token type
+ *
+ * @param token_queue queue pointer
+ * @retval char
+ */
+char getType(const QUEUE token_queue) {
+	return getTOKEN(token_queue)->type;
+}
+
+/**
+ * @brief return line number of token
+ *
+ * @param token_queue queue pointer
+ * @retval size_t
+ */
+size_t getLine(const QUEUE token_queue) {
+	return getTOKEN(token_queue)->line;
+}
+
+/**
+ * @brief return number of token: number
+ *
+ * @param token_queue queue pointer
+ * @retval int
+ */
+int getNumber(const QUEUE token_queue) {
+	return getTOKEN(token_queue)->element.number.n;
+}
+
+/**
+ * @brief return id of token: number
+ *
+ * @param token_queue queue pointer
+ * @retval int
+ */
+int getNumberID(const QUEUE token_queue) {
+	return getTOKEN(token_queue)->element.number.ID;
+}
+
+/**
+ * @brief return pointer to word of token: word
+ *
+ * @param token_queue queue pointer
+ * @retval char*
+ */
+char *getWord(const QUEUE token_queue) {
+	return getTOKEN(token_queue)->element.word.w;
+}
+
+/**
+ * @brief return id of token: word
+ *
+ * @param token_queue queue pointer
+ * @retval int
+ */
+int getWordID(const QUEUE token_queue) {
+	return getTOKEN(token_queue)->element.word.ID;
+}
+
+/**
+ * @brief return symbol of token: token
+ *
+ * @param token_queue queue pointer
+ * @retval char
+ */
+char getToken(const QUEUE token_queue) {
+	return getTOKEN(token_queue)->element.token.t;
+}
+
+#endif
+
+/** @} */

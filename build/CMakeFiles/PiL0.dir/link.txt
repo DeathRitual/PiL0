@@ -1,1 +1,0 @@
-/usr/bin/gcc  -g    CMakeFiles/PiL0.dir/pl.c.o  -o PiL0 -rdynamic header/libheader.a 

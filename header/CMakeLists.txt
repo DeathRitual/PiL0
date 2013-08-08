@@ -1,1 +1,0 @@
-add_library(header trc_generator.c parser.c lexer.c ast.c err_handling.c meta_list.c)
