@@ -43,7 +43,7 @@ static const char *mod[] = { "meta-list", "stack", "queue" };
  **/
 struct META_LIST_ELEMENT {
 	void *content; /**< pointer to any element */
-	
+
 	struct META_LIST_ELEMENT *next; /**< pointer to next element */
 	struct META_LIST_ELEMENT *previous; /**< pointer to previous element */
 };
@@ -68,11 +68,11 @@ struct META_LIST {
  **/
 static MLPTR init_meta_list() {
 	MLPTR new_list = NULL;
-	
+
 	if ((new_list = malloc(sizeof(*new_list))) == NULL)
 		error(mod[ML_ERR],
 		__FILE__, __func__, __LINE__, ERR_MEMORY);
-	
+
 	new_list->first = NULL;
 	new_list->last = NULL;
 	new_list->tmp = NULL;
@@ -99,24 +99,24 @@ static int mlIsEmpty(const MLEPTR mle) {
  **/
 static void mlal(MLPTR ml, void *content) {
 	MLEPTR new_element = NULL, old_element = ml->last;
-	
+
 	if (ml == NULL)
 		error(mod[ML_ERR], __FILE__, __func__, __LINE__, NULL_POINTER);
-	
+
 	if ((new_element = malloc(sizeof(*new_element))) == NULL)
 		error(mod[ML_ERR],
 		__FILE__, __func__, __LINE__, ERR_MEMORY);
-	
+
 	new_element->content = content;
 	new_element->next = old_element;
 	new_element->previous = NULL;
-	
+
 	if (!mlIsEmpty(old_element))
 		old_element->previous = new_element;
-	
+
 	else
 		ml->first = new_element;
-	
+
 	ml->last = new_element;
 	ml->count++;
 }
@@ -130,24 +130,24 @@ static void mlal(MLPTR ml, void *content) {
  **/
 static void mlaf(MLPTR ml, void *content) {
 	MLEPTR new_element = NULL, old_element = ml->first;
-	
+
 	if (ml == NULL)
 		error(mod[ML_ERR], __FILE__, __func__, __LINE__, NULL_POINTER);
-	
+
 	if ((new_element = malloc(sizeof(*new_element))) == NULL)
 		error(mod[ML_ERR],
 		__FILE__, __func__, __LINE__, ERR_MEMORY);
-	
+
 	new_element->content = content;
 	new_element->next = NULL;
 	new_element->previous = old_element;
-	
+
 	if (!mlIsEmpty(old_element))
 		old_element->next = new_element;
-	
+
 	else
 		ml->last = new_element;
-	
+
 	ml->first = new_element;
 	ml->count++;
 }
@@ -161,11 +161,11 @@ static void mlaf(MLPTR ml, void *content) {
 static void mldel(MLPTR ml) {
 	if (ml == NULL)
 		error(mod[ML_ERR], __FILE__, __func__, __LINE__, NULL_POINTER);
-	
+
 	if (mlIsEmpty(ml->last) || mlIsEmpty(ml->first))
 		error(mod[ML_ERR],
 		__FILE__, __func__, __LINE__, EMPTY_LIST);
-	
+
 	if (ml->first == ml->last) {
 		ml->last->content = NULL;
 		free(ml->last);
@@ -175,13 +175,12 @@ static void mldel(MLPTR ml) {
 
 	else {
 		MLEPTR tmp = ml->first->previous;
-		;
 		tmp->next = NULL;
 		ml->first->previous = NULL;
 		free(ml->first);
 		ml->first = tmp;
 	}
-	
+
 	ml->count--;
 }
 
@@ -194,14 +193,14 @@ static void mldel(MLPTR ml) {
 static void mlflush(MLPTR ml) {
 	if (ml == NULL)
 		error(mod[ML_ERR], __FILE__, __func__, __LINE__, NULL_POINTER);
-	
+
 	if (mlIsEmpty(ml->last) || mlIsEmpty(ml->first))
 		error(mod[ML_ERR],
 		__FILE__, __func__, __LINE__, EMPTY_LIST);
-	
+
 	do
 		mldel(ml);
-	
+
 	while (!mlIsEmpty(ml->last) && !mlIsEmpty(ml->first));
 }
 
@@ -214,11 +213,11 @@ static void mlflush(MLPTR ml) {
 static void mlfree(MLPTR ml) {
 	if (ml == NULL)
 		error(mod[ML_ERR], __FILE__, __func__, __LINE__, NULL_POINTER);
-	
+
 	if (!mlIsEmpty(ml->last) && !mlIsEmpty(ml->first))
 		error(mod[ML_ERR],
 		__FILE__, __func__, __LINE__, NO_EMPTY_LIST);
-	
+
 	free(ml);
 	ml = NULL;
 }
@@ -232,11 +231,11 @@ static void mlfree(MLPTR ml) {
 static void *mlfirst(const MLPTR ml) {
 	if (ml == NULL)
 		error(mod[ML_ERR], __FILE__, __func__, __LINE__, NULL_POINTER);
-	
+
 	if (mlIsEmpty(ml->last) || mlIsEmpty(ml->first))
 		error(mod[ML_ERR],
 		__FILE__, __func__, __LINE__, EMPTY_LIST);
-	
+
 	return ml->first->content;
 }
 
@@ -249,11 +248,11 @@ static void *mlfirst(const MLPTR ml) {
 static void *mllast(const MLPTR ml) {
 	if (ml == NULL)
 		error(mod[ML_ERR], __FILE__, __func__, __LINE__, NULL_POINTER);
-	
+
 	if (mlIsEmpty(ml->last) || mlIsEmpty(ml->first))
 		error(mod[ML_ERR],
 		__FILE__, __func__, __LINE__, EMPTY_LIST);
-	
+
 	return ml->last->content;
 }
 
@@ -266,11 +265,11 @@ static void *mllast(const MLPTR ml) {
 static void *mltmp(const MLPTR ml) {
 	if (ml == NULL)
 		error(mod[ML_ERR], __FILE__, __func__, __LINE__, NULL_POINTER);
-	
+
 	if (mlIsEmpty(ml->last) || mlIsEmpty(ml->first))
 		error(mod[ML_ERR],
 		__FILE__, __func__, __LINE__, EMPTY_LIST);
-	
+
 	return ml->tmp->content;
 }
 
@@ -283,7 +282,7 @@ static void *mltmp(const MLPTR ml) {
 static int mlcount(const MLPTR ml) {
 	if (ml == NULL)
 		error(mod[ML_ERR], __FILE__, __func__, __LINE__, NULL_POINTER);
-	
+
 	return ml->count;
 }
 
@@ -296,7 +295,7 @@ static int mlcount(const MLPTR ml) {
 static int mlempty(const MLPTR ml) {
 	if (ml == NULL)
 		error(mod[ML_ERR], __FILE__, __func__, __LINE__, NULL_POINTER);
-	
+
 	return ml->count == 0;
 }
 
@@ -311,13 +310,13 @@ static int mlempty(const MLPTR ml) {
  */
 static void *mllookup(const MLPTR ml, void *compWith,
 		void * (*getContent)(void *), int (*comp_func)(void *, void *)) {
-	
+
 	ml->tmp = ml->first;
-	
+
 	while (ml->tmp != NULL
 			&& (*comp_func)((*getContent)(ml->tmp->content), compWith))
 		ml->tmp = ml->tmp->previous;
-	
+
 	return ml->tmp;
 }
 
@@ -328,10 +327,10 @@ static void *mllookup(const MLPTR ml, void *compWith,
  **/
 STACK init_stack() {
 	STACK stack;
-	
+
 	if ((stack = malloc(sizeof(*stack))) == NULL)
 		error(mod[ST_ERR], __FILE__, __func__, __LINE__, ERR_MEMORY);
-	
+
 	stack->stack_meta_list = init_meta_list();
 	return stack;
 }
@@ -391,9 +390,9 @@ void *top(const STACK st) {
  **/
 void *pop(STACK st) {
 	void *ext;
-	
+
 	ext = top(st);
-	
+
 	mldel(st->stack_meta_list);
 	return ext;
 }
@@ -445,10 +444,10 @@ int empty_stack(const STACK st) {
  **/
 QUEUE init_queue() {
 	QUEUE queue;
-	
+
 	if ((queue = malloc(sizeof(*queue))) == NULL)
 		error(mod[QU_ERR], __FILE__, __func__, __LINE__, ERR_MEMORY);
-	
+
 	queue->queue_meta_list = init_meta_list();
 	return queue;
 }
@@ -492,9 +491,9 @@ void *tail(const QUEUE qu) {
  **/
 void *qudel(QUEUE qu) {
 	void *ext;
-	
+
 	ext = head(qu);
-	
+
 	mldel(qu->queue_meta_list);
 	return ext;
 }

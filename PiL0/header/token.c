@@ -18,7 +18,7 @@
 
 /**
  * @file token.c Library for Token Generation and Global Objects
- * 
+ *
  * @ingroup lexer
  */
 
@@ -29,7 +29,7 @@
 #define TOKEN_ERR "Token"
 
 /**
- * @struct _token_element
+ * @struct TOKEN_OBJECT
  *
  * @brief stores one token, token type and line number
  *
@@ -37,46 +37,45 @@
 struct TOKEN_OBJECT {
 	char type; /**< Token-Type */
 	size_t line; /**< code line number */
-	
+
 	/**
-	 * @union _element
+	 * @union un_element
 	 *
 	 * @brief Different Token for storing symbols.
 	 *
 	 * Except for Token: token all token have an ID which helps identifying
-	 * the type of the keyword, identifer or number.
+	 * the type of the keyword, identifier or number.
 	 **/
-	union _element {
+	union un_element {
 		/**
-		 * @struct token
+		 * @struct st_token
 		 *
 		 * Stores single character symbols like: +, -, >, <, etc.
 		 **/
-		struct _token {
+		struct st_token {
 			char t; /**< single character */
-		} token; /**< Can store single characters */
-		
+		} token;
+
 		/**
-		 * @struct number
+		 * @struct st_number
 		 *
 		 * Stores numbers.
 		 **/
-		struct _number {
+		struct st_number {
 			int n; /**< number */
 			unsigned int ID; /**< number identifier */
-		} number; /**< Can store numbers and the NUM-ID */
-		
+		} number;
+
 		/**
-		 * @struct word
+		 * @struct st_word
 		 *
 		 * Stores keywords and identifier.
 		 **/
-		struct _word {
+		struct st_word {
 			unsigned int ID; /**< keyword / identifier identifier */
-			char w[MAX_LENGTH]; /**< keyword / identifer */
-		} word; /**< Can store words and either the Keyword-ID or IDENTIFIER-ID */
-	
-	} element; /**< Structure to store different types of lexical tokens */
+			char w[MAX_LENGTH]; /**< keyword / identifier */
+		} word;
+	} element;
 };
 
 /**
@@ -89,11 +88,11 @@ struct TOKEN_OBJECT {
  **/
 TOPTR generate_token(const char *t, const int *n, const int *ln) {
 	TOPTR new_token_element = NULL;
-	
+
 	if ((new_token_element = malloc(sizeof(*new_token_element))) == NULL)
 		error(
 		TOKEN_ERR, __FILE__, __func__, __LINE__, ERR_MEMORY);
-	
+
 	if (isdigit(*t) > 0) {
 		new_token_element->type = 'n';
 		new_token_element->element.number.n = atoi(t);
@@ -110,7 +109,7 @@ TOPTR generate_token(const char *t, const int *n, const int *ln) {
 		new_token_element->type = 't';
 		new_token_element->element.token.t = *t;
 	}
-	
+
 	new_token_element->line = *ln;
 	return new_token_element;
 }
@@ -134,7 +133,7 @@ void free_token(TOPTR token_element) {
  */
 void release_token(const QUEUE token_queue) {
 	TOPTR tmp = (TOPTR) qudel(token_queue);
-	
+
 	free_token(tmp);
 	tmp = NULL;
 }

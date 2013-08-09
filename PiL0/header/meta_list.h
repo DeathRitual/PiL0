@@ -22,7 +22,7 @@
  *
  * @defgroup meta_list Meta List
  * @brief Usefull to generate Queues and Stacks
- * @ingroup parser lexer
+ * @ingroup parser lexer meta_list
  */
 
 #include"err_handling.h"

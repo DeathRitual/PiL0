@@ -24,7 +24,7 @@
  *
  * @defgroup lexer Lexical Scanner
  * @brief Scans input source file for pre defined tokens and put them together in a LIFO structure
- * @ingroup global
+ * @ingroup global lexer
  */
 
 #include"frontend.h"

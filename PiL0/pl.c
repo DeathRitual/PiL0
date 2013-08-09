@@ -19,7 +19,7 @@
 /**
  * @file pl.c Main source file for PiL0-Compiler
  *
- *
+ * @ingroup global
  */
 
 #include"global.h"
@@ -30,7 +30,7 @@ int main(int argc, char *argv[]) {
 	FILE *raw_code;
 	int status;
 
-	raw_code = fopen("/home/nirvash/workspace/PiL0/source_code.pl0", "r");
+	raw_code = fopen("../source_code.pl0", "r");
 
 	if (raw_code != NULL)
 		status = compile(raw_code);

@@ -21,7 +21,7 @@
  *
  * @defgroup parser Parser
  * @brief check token stream (LIFO) from parser for predefined grammar
- * @ingroup global
+ * @ingroup global parser
  */
 
 #include"frontend.h"
@@ -33,6 +33,13 @@
 #define PARSE_ERR(line, mess)   parseError(line, mess)
 #else
 
+/**
+ * @brief debug-only: print to standard output token content read from source code
+ *
+ *
+ * @param tok token queue <- token stream generated from lexer
+ * @retval void
+ **/
 static void parse_debout(QUEUE tok) {
 	char c;
 	fputs("Token: ", stdout);
@@ -77,7 +84,7 @@ void factor(SOURCECODE);
 /**
  * @brief start with parsing process
  *
- * @param *code pointer to source code object
+ * @param code pointer to source code object
  * @retval TRUE/FALSE 1 or 0
  **/
 int init_parsing(SOURCECODE code) {
@@ -87,15 +94,10 @@ int init_parsing(SOURCECODE code) {
 	STACK symbol_table = NULL;
 
 	sc_set_st(code, init_stack());
-
 	symbol_table = sc_get_st(code);
-
 	sc_set_ast_bl(code, init_block());
-
 	block(code);
-
 	exit_status = (getToken(token_stream) == '.') ? TRUE : FALSE;
-
 	MTNT(token_stream);
 
 	if (empty_stack(symbol_table))
@@ -104,7 +106,6 @@ int init_parsing(SOURCECODE code) {
 		free_queue(token_stream);
 
 	puts("\nFinished parsing with status: ");
-
 	return exit_status;
 }
 
@@ -262,7 +263,6 @@ void stmt(SOURCECODE code) {
 				PARSE_ERR(getLine(token_stream), SYN_MISS_ASS);
 
 			sc_set_ast_ex(code, stmt_init_assignment(statement_ptr, getWord(token_stream)));
-
 			expression(code);
 			break;
 
@@ -270,7 +270,6 @@ void stmt(SOURCECODE code) {
 		case (CALL):
 
 			MTNT(token_stream);
-
 			table_entry = stlookup(symbol_table, getWord(token_stream));
 
 			if (table_entry == NULL)
@@ -286,7 +285,6 @@ void stmt(SOURCECODE code) {
 		case (READ):
 
 			MTNT(token_stream);
-
 			table_entry = stlookup(symbol_table, getWord(token_stream));
 
 			if (table_entry == NULL)
@@ -383,7 +381,6 @@ void condition(SOURCECODE code) {
 	AST_EXPR_PTR expression_ptr = sc_get_ast_ex(code);
 	AST_EXPR_PTR expression_tmp = NULL, expression_tmp_op = expression_ptr;
 	char buf[2];
-
 
 	/* condition -> ODD expression */
 	if (getWordID(token_stream) == ODD) {

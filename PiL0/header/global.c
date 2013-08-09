@@ -28,15 +28,15 @@
 /**
  * @struct SOURCE_OBJECT
  *
- * @brief global object which stores all pointers and temporary information
+ * @brief Global object which stores all pointers and temporary information.
  *
  **/
 struct SOURCE_OBJECT {
-	QUEUE token_stream; /** < pointer to token stream */
-	STACK symbol_table; /** < pointer to symbol table */
-	AST_BLOCK_PTR block_tmp; /** < pointer to temporary block */
-	AST_STMT_PTR stmt_tmp; /** < pointer to temporary statement */
-	AST_EXPR_PTR expr_tmp; /** < pointer to temporary expression */
+	QUEUE token_stream; 		/**< pointer to token stream */
+	STACK symbol_table; 		/**< pointer to symbol table */
+	AST_BLOCK_PTR block_tmp; 	/**< pointer to temporary block */
+	AST_STMT_PTR stmt_tmp; 		/**< pointer to temporary statement */
+	AST_EXPR_PTR expr_tmp; 		/**< pointer to temporary expression */
 };
 
 /**
@@ -112,26 +112,65 @@ STACK sc_get_st(const SOURCECODE sc) {
 	return sc->symbol_table;
 }
 
+/**
+ * @brief set AST block
+ *
+ * @param sc pointer to source code
+ * @param b pointer to AST block
+ * @retval void
+ */
 void sc_set_ast_bl(SOURCECODE sc, const AST_BLOCK_PTR b) {
 	sc->block_tmp = b;
 }
 
+/**
+ * @brief return AST block
+ *
+ * @param sc pointer to source code
+ * @retval sc->block_tmp
+ */
 AST_BLOCK_PTR sc_get_ast_bl(const SOURCECODE sc) {
 	return sc->block_tmp;
 }
 
+/**
+ * @brief set AST statement
+ *
+ * @param sc pointer to source code
+ * @param s pointer to AST statement
+ * @retval void
+ */
 void sc_set_ast_st(SOURCECODE sc, const AST_STMT_PTR s) {
 	sc->stmt_tmp = s;
 }
 
+/**
+ * @brief return AST statement
+ *
+ * @param sc pointer to source code
+ * @retval sc->stmt_tmp
+ */
 AST_STMT_PTR sc_get_ast_st(const SOURCECODE sc) {
 	return sc->stmt_tmp;
 }
 
+/**
+ * @brief set AST expression
+ *
+ * @param sc pointer to source code
+ * @param e pointer to AST expression
+ * @retval void
+ */
 void sc_set_ast_ex(SOURCECODE sc, const AST_EXPR_PTR e) {
 	sc->expr_tmp = e;
 }
 
+/**
+ * @brief return AST expression
+ *
+ * @param sc pointer to source code
+ * @retval sc->expr_tmp
+ */
 AST_EXPR_PTR sc_get_ast_ex(const SOURCECODE sc) {
 	return sc->expr_tmp;
 }

@@ -24,7 +24,7 @@
  * @defgroup error_handling Error Handler
  * @brief defines error and debug messages for all modules
  *
- * @ingroup meta_list lexer parser global
+ * @ingroup meta_list lexer parser global ast error_handling
  */
 
 #ifndef __ERR_HANDLING_H

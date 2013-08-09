@@ -20,7 +20,7 @@
  * @file global.h Header-File to provide compile function to main for encapsulating the whole compiler
  * @defgroup global Compiler
  * @brief Global Object for storing all neccessary information
- *
+ * @ingroup global
  */
 
 #ifndef __GLOBAL_H
