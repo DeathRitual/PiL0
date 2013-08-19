@@ -87,7 +87,7 @@ static keyword *init_ReservedKeys() {
 
 	int i;
 
-	if ((resKeys = malloc(sizeof *resKeys * get_keySize())) == NULL)
+	if ((resKeys = malloc(sizeof(*resKeys) * get_keySize())) == NULL)
 		error("KEYgetWord(lexical_scan)", __FILE__, __func__, __LINE__,
 				ERR_MEMORY);
 

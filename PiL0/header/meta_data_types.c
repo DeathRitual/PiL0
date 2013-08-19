@@ -17,24 +17,24 @@
  */
 
 /**
- * @file meta_list.c
+ * @file meta_data_types.c
  *
- * @ingroup meta_list
+ * @ingroup meta_data
  */
 
-#include"meta_list.h"
+#include"meta_data_types.h"
 
 /**
  * @brief module error codes
  **/
 enum err_modules {
-	ML_ERR, ST_ERR, QU_ERR
+	ML_ERR, ST_ERR, QU_ERR, HA_ERR
 };
 
 /**
  * @brief module error messages
  **/
-static const char *mod[] = { "meta-list", "stack", "queue" };
+static const char *mod[] = { "meta-list", "stack", "queue" , "hash"};
 
 /**
  * @struct META_LIST_ELEMENT
@@ -536,4 +536,127 @@ size_t size_queue(const QUEUE qu) {
  **/
 int empty_queue(const QUEUE qu) {
 	return mlempty(qu->queue_meta_list);
+}
+
+
+#define FULL_HASH -1
+
+/**
+ * @struct hash_table
+ *
+ * @brief Simple implementation for a hashtable.
+ */
+struct hash_table {
+		unsigned HASH_SIZE;
+		void **table;
+};
+
+/**
+ * @brief initialize new hash
+ *
+ * @param data_type define data which should be stored
+ * @param size how much entries should be stored into hash table
+ * @param cast function pointer to cast table type
+ * @retval new_hash pointer to new hash
+ */
+HASHTABLE init_hash(void *data_type, size_t *size, void *(*cast)(void *)) {
+	HASHTABLE new_hash = NULL;
+
+	if ((new_hash = malloc(sizeof(*new_hash))) == NULL)
+		error(mod[ML_ERR],
+		__FILE__, __func__, __LINE__, ERR_MEMORY);
+
+	if ((data_type = malloc(sizeof((cast)(data_type)) * *size)) == NULL)
+		error(mod[HA_ERR],
+			__FILE__, __func__, __LINE__, ERR_MEMORY);
+
+	new_hash->HASH_SIZE = (1 << (*size + 1)) - 1;
+	new_hash->table = &data_type;
+
+	return new_hash;
+}
+
+/**
+ * @brief check for size of hash.
+ *
+ * Size left of zero means hash is full
+ *
+ * @param hash hash table
+ * @retval size size of hash table
+ */
+int full_hash(HASHTABLE hash) {
+	return hash->HASH_SIZE;
+}
+
+/**
+ * @brief generate hash key.
+ *
+ * Hash key generating by double hashing.
+ *
+ * Hash functions used:\n
+ * \f$ h(k)  := (h(k) * 128 + k)\;mod\;13 \f$\n
+ * \f$ h'(k) := (h'(k) * 128 + k)\;mod\;11 \f$
+ *
+ * With probing function: \n
+ * \f$ h(k, i) := (h(k) + i * h'(k))\;mod\;13 \f$
+ *
+ * @param hash hash table
+ * @param s name for which hash key should be generated
+ * @retval hash key positive hash key
+ */
+static unsigned genHashKey(HASHTABLE hash, char *s) {
+	unsigned hashval1, hashval2, hashkey;
+	unsigned int i;
+
+	for (hashval1 = hashval2 = 0; *s != '\0'; s++) {
+		hashval1 = ((hashval1 << 7) + *s) % 13;
+		hashval2 = ((hashval2 << 7) + *s) % 11;
+	}
+
+	hashkey = hashval1;
+	if (hash->HASH_SIZE & (1 << hashkey)) {
+		hash->HASH_SIZE = hash->HASH_SIZE & ~(1 << hashkey);
+		return hashkey;
+	}
+	else {
+		for (i = 0; hash->HASH_SIZE > 0 && (hash->HASH_SIZE & (1 << hashkey)); i++)
+			hashkey = (hashval1 + i * hashval2) % 13;
+		hash->HASH_SIZE = hash->HASH_SIZE & ~(1 << hashkey);
+		return hashkey;
+	}
+}
+
+/**
+ * @brief add item to hash table.
+ *
+ * @param hash hash table
+ * @param s index of item
+ * @param element item to store
+ * @retval void
+ */
+void insertHash(HASHTABLE hash, char *s, void *element) {
+
+	if (hash == NULL)
+		error(mod[HA_ERR], __FILE__, __func__, __LINE__, NULL_POINTER);
+
+	if (full_hash(hash))
+		hash->table[genHashKey(hash, s)] = element;
+	else
+		error(mod[HA_ERR], __FILE__, __func__, __LINE__, HASH_FULL);
+}
+
+/**
+ * @brief get element for given index
+ *
+ * @param hash hash table
+ * @param s element index
+ * @retval *element pointer to element
+ */
+void *getHash(HASHTABLE hash, char *s) {
+	void *element;
+
+	if (hash == NULL)
+		error(mod[HA_ERR], __FILE__, __func__, __LINE__, NULL_POINTER);
+
+	return ((element = hash->table[genHashKey(hash, s)]) == NULL) ? NULL : element;
 }

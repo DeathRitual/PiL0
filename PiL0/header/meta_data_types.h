@@ -17,12 +17,12 @@
  */
 
 /**
- * @file meta_list.h
+ * @file meta_data_types.h
  *
  *
- * @defgroup meta_list Meta List
+ * @defgroup meta_data Meta Data Types
  * @brief Usefull to generate Queues and Stacks
- * @ingroup parser lexer meta_list
+ * @ingroup parser lexer meta_data
  */
 
 #include"err_handling.h"
@@ -30,9 +30,12 @@
 
 #pragma once
 
+/* meta list */
 typedef struct META_LIST_ELEMENT *MLEPTR;
 typedef struct META_LIST *MLPTR;
 
+
+/* stack */
 /**
  * @struct stack
  *
@@ -42,19 +45,8 @@ struct stack {
 	MLPTR stack_meta_list; /**< pointer to meta_list */
 };
 
-/**
- * @struct queue
- *
- * @brief composition object for stack
- */
-struct queue {
-	MLPTR queue_meta_list; /**< pointer to meta list */
-};
-
 typedef struct stack *STACK;
-typedef struct queue *QUEUE;
 
-/* stack functions */
 extern STACK init_stack();
 extern void push(STACK, void *);
 extern void *gettmp(const STACK);
@@ -67,7 +59,19 @@ extern void free_stack(STACK);
 extern size_t size_stack(const STACK);
 extern int empty_stack(const STACK);
 
-/* queue functions */
+
+/* queue */
+/**
+ * @struct queue
+ *
+ * @brief composition object for stack
+ */
+struct queue {
+	MLPTR queue_meta_list; /**< pointer to meta list */
+};
+
+typedef struct queue *QUEUE;
+
 extern QUEUE init_queue();
 extern void append(QUEUE, void *);
 extern void *head(const QUEUE);
@@ -77,3 +81,6 @@ extern void flush_queue(QUEUE);
 extern void free_queue(QUEUE);
 extern size_t size_queue(const QUEUE);
 extern int empty_queue(const QUEUE);
+
+/* hash table */
+typedef struct hash_table *HASHTABLE;
