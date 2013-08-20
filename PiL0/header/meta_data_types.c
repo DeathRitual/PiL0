@@ -547,12 +547,16 @@ int empty_queue(const QUEUE qu) {
  * @brief Simple implementation for a hashtable.
  */
 struct hash_table {
-		unsigned HASH_SIZE;
+		const size_t HASH_SIZE;
+		size_t used;
 		void **table;
 };
 
 /**
  * @brief initialize new hash
+ *
+ * Size of hash should be a prime number, but not a Mersenne-Prime (2^n - 1). Best choice
+ * for hash table size would be prime twins like 11 & 13; 17 & 19; 41 & 43 and so on.
  *
  * @param data_type define data which should be stored
  * @param size how much entries should be stored into hash table
@@ -561,6 +565,7 @@ struct hash_table {
  */
 HASHTABLE init_hash(void *data_type, size_t *size, void *(*cast)(void *)) {
 	HASHTABLE new_hash = NULL;
+	size_t i;
 
 	if ((new_hash = malloc(sizeof(*new_hash))) == NULL)
 		error(mod[ML_ERR],
@@ -570,8 +575,12 @@ HASHTABLE init_hash(void *data_type, size_t *size, void *(*cast)(void *)) {
 		error(mod[HA_ERR],
 			__FILE__, __func__, __LINE__, ERR_MEMORY);
 
-	new_hash->HASH_SIZE = (1 << (*size + 1)) - 1;
+	*(size_t *)&new_hash->HASH_SIZE = *size;
+	new_hash->used = 0;
 	new_hash->table = &data_type;
+
+	for (i = 0; i < new_hash->HASH_SIZE; ++i)
+		new_hash->table[i] = NULL;
 
 	return new_hash;
 }
@@ -585,7 +594,7 @@ HASHTABLE init_hash(void *data_type, size_t *size, void *(*cast)(void *)) {
  * @retval size size of hash table
  */
 int full_hash(HASHTABLE hash) {
-	return hash->HASH_SIZE;
+	return (hash->used == hash->HASH_SIZE);
 }
 
 /**
@@ -594,11 +603,11 @@ int full_hash(HASHTABLE hash) {
  * Hash key generating by double hashing.
  *
  * Hash functions used:\n
- * \f$ h(k)  := (h(k) * 128 + k)\;mod\;13 \f$\n
- * \f$ h'(k) := (h'(k) * 128 + k)\;mod\;11 \f$
+ * \f$ h(k)  := (h(k) * 128 + k)\;mod\;HASH_SIZE \f$\n
+ * \f$ h'(k) := (h'(k) * 128 + k)\;mod\;HASH_SIZE - 2 \f$
  *
  * With probing function: \n
- * \f$ h(k, i) := (h(k) + i * h'(k))\;mod\;13 \f$
+ * \f$ h(k, i) := (h(k) + i * h'(k))\;mod\;HASH_SIZE \f$
  *
  * @param hash hash table
  * @param s name for which hash key should be generated
@@ -609,21 +618,17 @@ static unsigned genHashKey(HASHTABLE hash, char *s) {
 	unsigned int i;
 
 	for (hashval1 = hashval2 = 0; *s != '\0'; s++) {
-		hashval1 = ((hashval1 << 7) + *s) % 13;
-		hashval2 = ((hashval2 << 7) + *s) % 11;
+		hashval1 = ((hashval1 << 7) + *s) % hash->HASH_SIZE;
+		hashval2 = ((hashval2 << 7) + *s) % (hash->HASH_SIZE - 2);
 	}
 
 	hashkey = hashval1;
-	if (hash->HASH_SIZE & (1 << hashkey)) {
-		hash->HASH_SIZE = hash->HASH_SIZE & ~(1 << hashkey);
-		return hashkey;
-	}
-	else {
-		for (i = 0; hash->HASH_SIZE > 0 && (hash->HASH_SIZE & (1 << hashkey)); i++)
-			hashkey = (hashval1 + i * hashval2) % 13;
-		hash->HASH_SIZE = hash->HASH_SIZE & ~(1 << hashkey);
-		return hashkey;
-	}
+	
+	for (i = 0; hash->table[hashkey] != NULL && i < hash->HASH_SIZE; i++)
+		hashkey = (hashval1 + i * hashval2) % hash->HASH_SIZE;
+
+	hash->used++;
+	return hashkey;
 }
 
 /**
@@ -639,7 +644,7 @@ void insertHash(HASHTABLE hash, char *s, void *element) {
 	if (hash == NULL)
 		error(mod[HA_ERR], __FILE__, __func__, __LINE__, NULL_POINTER);
 
-	if (full_hash(hash))
+	if (!full_hash(hash))
 		hash->table[genHashKey(hash, s)] = element;
 	else
 		error(mod[HA_ERR], __FILE__, __func__, __LINE__, HASH_FULL);
