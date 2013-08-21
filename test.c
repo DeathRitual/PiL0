@@ -35,15 +35,15 @@ int full_hash(HASHTABLE hash) {
 static unsigned genHashKey(HASHTABLE hash, char *s) {
 	unsigned hashval1, hashval2, hashkey;
 	unsigned int i;
+	char *name = s;
 
-	for (hashval1 = hashval2 = 0; *s != '\0'; s++) {
-		hashval1 = ((hashval1 << 7) + *s) % hash->HASH_SIZE;
-		hashval2 = ((hashval2 << 7) + *s) % (hash->HASH_SIZE - 2);
+	for (hashval1 = hashval2 = 0; *name != '\0'; name++) {
+		hashval1 = ((hashval1 << 7) + *name) % hash->HASH_SIZE;
+		hashval2 = ((hashval2 << 7) + *name) % (hash->HASH_SIZE - 2);
 	}
 
 	hashkey = hashval1;
-// calculate wrong key when trying to access element. change hash->table[hashkey] != NULL!!!	
-	for (i = 0; hash->table[hashkey] != NULL && i < hash->HASH_SIZE; i++)
+	for (i = 0; (hash->table[hashkey] == NULL || strcmp(hash->table[hashkey], s)) && i < hash->HASH_SIZE; i++)
 		hashkey = (hashval1 + i * hashval2) % hash->HASH_SIZE;
 
 	hash->used++;
@@ -110,8 +110,7 @@ int main() {
 	insertHash(init, point_thi.name, &point_thi);				
 
 	dummy = getHash(init, point_sec.name);
-	printf("%d", dummy);
-//	printf("Output Name: %s, x: %d, y: %d\n", dummy->name, dummy->x, dummy->y);
+	printf("Output Name: %s, x: %d, y: %d\n", dummy->name, dummy->x, dummy->y);
 
 
 	return 1;
