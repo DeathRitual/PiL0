@@ -33,13 +33,6 @@
 
 #define PL_DEBUG   1
 #define MAX_LENGTH 30
-#if __STDC_VERSION__ < 199901L
-# if __GNUC__ >= 2
-#  define __func__ __FUNCTION__
-# else
-#  define __func__ "<unknown>"
-# endif
-#endif
 
 typedef struct TOKEN_OBJECT *TOPTR;
 typedef struct TABLE_ENTRY *TEPTR;

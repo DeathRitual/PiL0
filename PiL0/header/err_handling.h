@@ -30,6 +30,16 @@
 #ifndef __ERR_HANDLING_H
 #define __ERR_HANDLING_H
 
+#if __STDC_VERSION__ < 199901L
+# if __GNUC__ >= 2
+#  define __func__ __FUNCTION__
+# else
+#  define __func__ "<unknown>"
+# endif
+#endif
+
+#define ERROR_EXCEPT(module, error_code) error(module, __FILE__, __func__, __LINE__, error_code)
+
 /**
  * @enum err_codes short strings used as variables for error messages
  */

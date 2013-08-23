@@ -70,8 +70,7 @@ static MLPTR init_meta_list() {
 	MLPTR new_list = NULL;
 
 	if ((new_list = malloc(sizeof(*new_list))) == NULL)
-		error(mod[ML_ERR],
-		__FILE__, __func__, __LINE__, ERR_MEMORY);
+		ERROR_EXCEPT(mod[ML_ERR], ERR_MEMORY);
 
 	new_list->first = NULL;
 	new_list->last = NULL;
@@ -101,11 +100,10 @@ static void mlal(MLPTR ml, void *content) {
 	MLEPTR new_element = NULL, old_element = ml->last;
 
 	if (ml == NULL)
-		error(mod[ML_ERR], __FILE__, __func__, __LINE__, NULL_POINTER);
+		ERROR_EXCEPT(mod[ML_ERR], NULL_POINTER);
 
 	if ((new_element = malloc(sizeof(*new_element))) == NULL)
-		error(mod[ML_ERR],
-		__FILE__, __func__, __LINE__, ERR_MEMORY);
+		ERROR_EXCEPT(mod[ML_ERR], ERR_MEMORY);
 
 	new_element->content = content;
 	new_element->next = old_element;
@@ -132,11 +130,10 @@ static void mlaf(MLPTR ml, void *content) {
 	MLEPTR new_element = NULL, old_element = ml->first;
 
 	if (ml == NULL)
-		error(mod[ML_ERR], __FILE__, __func__, __LINE__, NULL_POINTER);
+		ERROR_EXCEPT(mod[ML_ERR], NULL_POINTER);
 
 	if ((new_element = malloc(sizeof(*new_element))) == NULL)
-		error(mod[ML_ERR],
-		__FILE__, __func__, __LINE__, ERR_MEMORY);
+		ERROR_EXCEPT(mod[ML_ERR], ERR_MEMORY);
 
 	new_element->content = content;
 	new_element->next = NULL;
@@ -160,11 +157,10 @@ static void mlaf(MLPTR ml, void *content) {
  **/
 static void mldel(MLPTR ml) {
 	if (ml == NULL)
-		error(mod[ML_ERR], __FILE__, __func__, __LINE__, NULL_POINTER);
+		ERROR_EXCEPT(mod[ML_ERR], NULL_POINTER);
 
 	if (mlIsEmpty(ml->last) || mlIsEmpty(ml->first))
-		error(mod[ML_ERR],
-		__FILE__, __func__, __LINE__, EMPTY_LIST);
+		ERROR_EXCEPT(mod[ML_ERR], EMPTY_LIST);
 
 	if (ml->first == ml->last) {
 		ml->last->content = NULL;
@@ -192,11 +188,10 @@ static void mldel(MLPTR ml) {
  **/
 static void mlflush(MLPTR ml) {
 	if (ml == NULL)
-		error(mod[ML_ERR], __FILE__, __func__, __LINE__, NULL_POINTER);
+		ERROR_EXCEPT(mod[ML_ERR], NULL_POINTER);
 
 	if (mlIsEmpty(ml->last) || mlIsEmpty(ml->first))
-		error(mod[ML_ERR],
-		__FILE__, __func__, __LINE__, EMPTY_LIST);
+		ERROR_EXCEPT(mod[ML_ERR], EMPTY_LIST);
 
 	do
 		mldel(ml);
@@ -212,11 +207,10 @@ static void mlflush(MLPTR ml) {
  **/
 static void mlfree(MLPTR ml) {
 	if (ml == NULL)
-		error(mod[ML_ERR], __FILE__, __func__, __LINE__, NULL_POINTER);
+		ERROR_EXCEPT(mod[ML_ERR], NULL_POINTER);
 
 	if (!mlIsEmpty(ml->last) && !mlIsEmpty(ml->first))
-		error(mod[ML_ERR],
-		__FILE__, __func__, __LINE__, NO_EMPTY_LIST);
+		ERROR_EXCEPT(mod[ML_ERR], EMPTY_LIST);
 
 	free(ml);
 	ml = NULL;
@@ -230,11 +224,10 @@ static void mlfree(MLPTR ml) {
  **/
 static void *mlfirst(const MLPTR ml) {
 	if (ml == NULL)
-		error(mod[ML_ERR], __FILE__, __func__, __LINE__, NULL_POINTER);
+		ERROR_EXCEPT(mod[ML_ERR], NULL_POINTER);
 
 	if (mlIsEmpty(ml->last) || mlIsEmpty(ml->first))
-		error(mod[ML_ERR],
-		__FILE__, __func__, __LINE__, EMPTY_LIST);
+		ERROR_EXCEPT(mod[ML_ERR], EMPTY_LIST);
 
 	return ml->first->content;
 }
@@ -247,11 +240,10 @@ static void *mlfirst(const MLPTR ml) {
  **/
 static void *mllast(const MLPTR ml) {
 	if (ml == NULL)
-		error(mod[ML_ERR], __FILE__, __func__, __LINE__, NULL_POINTER);
+		ERROR_EXCEPT(mod[ML_ERR], NULL_POINTER);
 
 	if (mlIsEmpty(ml->last) || mlIsEmpty(ml->first))
-		error(mod[ML_ERR],
-		__FILE__, __func__, __LINE__, EMPTY_LIST);
+		ERROR_EXCEPT(mod[ML_ERR], EMPTY_LIST);
 
 	return ml->last->content;
 }
@@ -264,11 +256,10 @@ static void *mllast(const MLPTR ml) {
  */
 static void *mltmp(const MLPTR ml) {
 	if (ml == NULL)
-		error(mod[ML_ERR], __FILE__, __func__, __LINE__, NULL_POINTER);
+		ERROR_EXCEPT(mod[ML_ERR], NULL_POINTER);
 
 	if (mlIsEmpty(ml->last) || mlIsEmpty(ml->first))
-		error(mod[ML_ERR],
-		__FILE__, __func__, __LINE__, EMPTY_LIST);
+		ERROR_EXCEPT(mod[ML_ERR], EMPTY_LIST);
 
 	return ml->tmp->content;
 }
@@ -281,7 +272,7 @@ static void *mltmp(const MLPTR ml) {
  **/
 static int mlcount(const MLPTR ml) {
 	if (ml == NULL)
-		error(mod[ML_ERR], __FILE__, __func__, __LINE__, NULL_POINTER);
+		ERROR_EXCEPT(mod[ML_ERR], NULL_POINTER);
 
 	return ml->count;
 }
@@ -294,7 +285,7 @@ static int mlcount(const MLPTR ml) {
  **/
 static int mlempty(const MLPTR ml) {
 	if (ml == NULL)
-		error(mod[ML_ERR], __FILE__, __func__, __LINE__, NULL_POINTER);
+		ERROR_EXCEPT(mod[ML_ERR], NULL_POINTER);
 
 	return ml->count == 0;
 }
@@ -329,7 +320,7 @@ STACK init_stack() {
 	STACK stack;
 
 	if ((stack = malloc(sizeof(*stack))) == NULL)
-		error(mod[ST_ERR], __FILE__, __func__, __LINE__, ERR_MEMORY);
+		ERROR_EXCEPT(mod[ST_ERR], ERR_MEMORY);
 
 	stack->stack_meta_list = init_meta_list();
 	return stack;
@@ -446,7 +437,7 @@ QUEUE init_queue() {
 	QUEUE queue;
 
 	if ((queue = malloc(sizeof(*queue))) == NULL)
-		error(mod[QU_ERR], __FILE__, __func__, __LINE__, ERR_MEMORY);
+		ERROR_EXCEPT(mod[QU_ERR], ERR_MEMORY);
 
 	queue->queue_meta_list = init_meta_list();
 	return queue;
@@ -539,8 +530,6 @@ int empty_queue(const QUEUE qu) {
 }
 
 
-#define FULL_HASH -1
-
 /**
  * @struct hash_table
  *
@@ -563,19 +552,17 @@ struct hash_table {
  * @param cast function pointer to cast table type
  * @retval new_hash pointer to new hash
  */
-HASHTABLE init_hash(void *data_type, size_t *size, void *(*cast)(void *)) {
+HASHTABLE init_hash(void *data_type, size_t size, void *(*cast)(void *)) {
 	HASHTABLE new_hash = NULL;
 	size_t i;
 
 	if ((new_hash = malloc(sizeof(*new_hash))) == NULL)
-		error(mod[ML_ERR],
-		__FILE__, __func__, __LINE__, ERR_MEMORY);
+		ERROR_EXCEPT(mod[HA_ERR], ERR_MEMORY);
 
 	if ((data_type = malloc(sizeof((cast)(data_type)) * *size)) == NULL)
-		error(mod[HA_ERR],
-			__FILE__, __func__, __LINE__, ERR_MEMORY);
+		ERROR_EXCEPT("hash_elements", ERR_MEMORY);
 
-	*(size_t *)&new_hash->HASH_SIZE = *size;
+	*(size_t *)&new_hash->HASH_SIZE = size;
 	new_hash->used = 0;
 	new_hash->table = &data_type;
 
@@ -611,11 +598,10 @@ int full_hash(HASHTABLE hash) {
  *
  * @param hash hash table
  * @param s name for which hash key should be generated
- * @retval hash key positive hash key
+ * @retval hashkey positive hash key
  */
 static unsigned genHashKey(HASHTABLE hash, char *s) {
-	unsigned hashval1, hashval2, hashkey;
-	unsigned int i;
+	size_t hashval1, hashval2, hashkey, i;
 
 	for (hashval1 = hashval2 = 0; *s != '\0'; s++) {
 		hashval1 = ((hashval1 << 7) + *s) % hash->HASH_SIZE;
@@ -624,7 +610,7 @@ static unsigned genHashKey(HASHTABLE hash, char *s) {
 
 	hashkey = hashval1;
 	
-	for (i = 0; hash->table[hashkey] != NULL && i < hash->HASH_SIZE; i++)
+	for (i = 0; (hash->table[hashkey] == NULL || strcmp(hash->table[hashkey], s)) && i < hash->HASH_SIZE; i++)
 		hashkey = (hashval1 + i * hashval2) % hash->HASH_SIZE;
 
 	hash->used++;
@@ -641,13 +627,15 @@ static unsigned genHashKey(HASHTABLE hash, char *s) {
  */
 void insertHash(HASHTABLE hash, char *s, void *element) {
 
+	size_t key = genHashKey(hash, s);
+
 	if (hash == NULL)
-		error(mod[HA_ERR], __FILE__, __func__, __LINE__, NULL_POINTER);
+		ERROR_EXCEPT(mod[HA_ERR], NULL_POINTER);
 
 	if (!full_hash(hash))
-		hash->table[genHashKey(hash, s)] = element;
+		hash->table[key] = element;
 	else
-		error(mod[HA_ERR], __FILE__, __func__, __LINE__, HASH_FULL);
+		ERROR_EXCEPT(mod[HA_ERR], HASH_FULL);
 }
 
 /**
@@ -659,9 +647,10 @@ void insertHash(HASHTABLE hash, char *s, void *element) {
  */
 void *getHash(HASHTABLE hash, char *s) {
 	void *element;
+	size_t key = genHashKey(hash, s);
 
 	if (hash == NULL)
-		error(mod[HA_ERR], __FILE__, __func__, __LINE__, NULL_POINTER);
+		ERROR_EXCEPT(mod[HA_ERR], NULL_POINTER);
 
-	return ((element = hash->table[genHashKey(hash, s)]) == NULL) ? NULL : element;
+	return ((element = hash->table[key]) == NULL) ? NULL : element;
 }
