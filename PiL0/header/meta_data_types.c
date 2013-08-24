@@ -24,17 +24,27 @@
 
 #include"meta_data_types.h"
 
-/**
- * @brief module error codes
- **/
-enum err_modules {
-	ML_ERR, ST_ERR, QU_ERR, HA_ERR
-};
+#define MD_NAME_META_LIST "meta-list"
+#define MD_NAME_STACK "stack"
+#define MD_NAME_QUEUE "queue"
+#define MD_NAME_HASH "hash"
 
 /**
- * @brief module error messages
- **/
-static const char *mod[] = { "meta-list", "stack", "queue" , "hash"};
+ * @brief error exception for null pointer in meta list (ml).
+ */
+#define MD_NULL_POINTER_ML if (ml == NULL) ERROR_EXCEPT(MD_NAME_META_LIST, NULL_POINTER)
+/**
+ * @brief error exception for null pointer in stack (st).
+ */
+#define MD_NULL_POINTER_ST if (st == NULL) ERROR_EXCEPT(MD_NAME_STACK, NULL_POINTER)
+/**
+ * @brief error exception for null pointer in queue (qu).
+ */
+#define MD_NULL_POINTER_QU if (qu == NULL) ERROR_EXCEPT(MD_NAME_QUEUE, NULL_POINTER)
+/**
+ * @brief error exception for null pointer in hash (hash).
+ */
+#define MD_NULL_POINTER_HA if (hash == NULL) ERROR_EXCEPT(MD_NAME_HASH, NULL_POINTER)
 
 /**
  * @struct META_LIST_ELEMENT
@@ -70,7 +80,7 @@ static MLPTR init_meta_list() {
 	MLPTR new_list = NULL;
 
 	if ((new_list = malloc(sizeof(*new_list))) == NULL)
-		ERROR_EXCEPT(mod[ML_ERR], ERR_MEMORY);
+		ERROR_EXCEPT(MD_NAME_META_LIST, ERR_MEMORY);
 
 	new_list->first = NULL;
 	new_list->last = NULL;
@@ -99,11 +109,10 @@ static int mlIsEmpty(const MLEPTR mle) {
 static void mlal(MLPTR ml, void *content) {
 	MLEPTR new_element = NULL, old_element = ml->last;
 
-	if (ml == NULL)
-		ERROR_EXCEPT(mod[ML_ERR], NULL_POINTER);
+	MD_NULL_POINTER_ML;
 
 	if ((new_element = malloc(sizeof(*new_element))) == NULL)
-		ERROR_EXCEPT(mod[ML_ERR], ERR_MEMORY);
+		ERROR_EXCEPT(MD_NAME_META_LIST, ERR_MEMORY);
 
 	new_element->content = content;
 	new_element->next = old_element;
@@ -129,11 +138,10 @@ static void mlal(MLPTR ml, void *content) {
 static void mlaf(MLPTR ml, void *content) {
 	MLEPTR new_element = NULL, old_element = ml->first;
 
-	if (ml == NULL)
-		ERROR_EXCEPT(mod[ML_ERR], NULL_POINTER);
+	MD_NULL_POINTER_ML;
 
 	if ((new_element = malloc(sizeof(*new_element))) == NULL)
-		ERROR_EXCEPT(mod[ML_ERR], ERR_MEMORY);
+		ERROR_EXCEPT(MD_NAME_META_LIST, ERR_MEMORY);
 
 	new_element->content = content;
 	new_element->next = NULL;
@@ -156,11 +164,10 @@ static void mlaf(MLPTR ml, void *content) {
  * @retval void
  **/
 static void mldel(MLPTR ml) {
-	if (ml == NULL)
-		ERROR_EXCEPT(mod[ML_ERR], NULL_POINTER);
+	MD_NULL_POINTER_ML;
 
 	if (mlIsEmpty(ml->last) || mlIsEmpty(ml->first))
-		ERROR_EXCEPT(mod[ML_ERR], EMPTY_LIST);
+		ERROR_EXCEPT(MD_NAME_META_LIST, EMPTY_LIST);
 
 	if (ml->first == ml->last) {
 		ml->last->content = NULL;
@@ -187,11 +194,10 @@ static void mldel(MLPTR ml) {
  * @retval void
  **/
 static void mlflush(MLPTR ml) {
-	if (ml == NULL)
-		ERROR_EXCEPT(mod[ML_ERR], NULL_POINTER);
+	MD_NULL_POINTER_ML;
 
 	if (mlIsEmpty(ml->last) || mlIsEmpty(ml->first))
-		ERROR_EXCEPT(mod[ML_ERR], EMPTY_LIST);
+		ERROR_EXCEPT(MD_NAME_META_LIST, EMPTY_LIST);
 
 	do
 		mldel(ml);
@@ -206,11 +212,10 @@ static void mlflush(MLPTR ml) {
  * @retval void
  **/
 static void mlfree(MLPTR ml) {
-	if (ml == NULL)
-		ERROR_EXCEPT(mod[ML_ERR], NULL_POINTER);
+	MD_NULL_POINTER_ML;
 
 	if (!mlIsEmpty(ml->last) && !mlIsEmpty(ml->first))
-		ERROR_EXCEPT(mod[ML_ERR], EMPTY_LIST);
+		ERROR_EXCEPT(MD_NAME_META_LIST, EMPTY_LIST);
 
 	free(ml);
 	ml = NULL;
@@ -223,11 +228,10 @@ static void mlfree(MLPTR ml) {
  * @retval ml->first->content pointer to first element
  **/
 static void *mlfirst(const MLPTR ml) {
-	if (ml == NULL)
-		ERROR_EXCEPT(mod[ML_ERR], NULL_POINTER);
+	MD_NULL_POINTER_ML;
 
 	if (mlIsEmpty(ml->last) || mlIsEmpty(ml->first))
-		ERROR_EXCEPT(mod[ML_ERR], EMPTY_LIST);
+		ERROR_EXCEPT(MD_NAME_META_LIST, EMPTY_LIST);
 
 	return ml->first->content;
 }
@@ -239,11 +243,10 @@ static void *mlfirst(const MLPTR ml) {
  * @retval ml->first->content pointer to last element
  **/
 static void *mllast(const MLPTR ml) {
-	if (ml == NULL)
-		ERROR_EXCEPT(mod[ML_ERR], NULL_POINTER);
+	MD_NULL_POINTER_ML;
 
 	if (mlIsEmpty(ml->last) || mlIsEmpty(ml->first))
-		ERROR_EXCEPT(mod[ML_ERR], EMPTY_LIST);
+		ERROR_EXCEPT(MD_NAME_META_LIST, EMPTY_LIST);
 
 	return ml->last->content;
 }
@@ -255,11 +258,10 @@ static void *mllast(const MLPTR ml) {
  * @retval ml->tmp->content pointer to temporary element
  */
 static void *mltmp(const MLPTR ml) {
-	if (ml == NULL)
-		ERROR_EXCEPT(mod[ML_ERR], NULL_POINTER);
+	MD_NULL_POINTER_ML;
 
 	if (mlIsEmpty(ml->last) || mlIsEmpty(ml->first))
-		ERROR_EXCEPT(mod[ML_ERR], EMPTY_LIST);
+		ERROR_EXCEPT(MD_NAME_META_LIST, EMPTY_LIST);
 
 	return ml->tmp->content;
 }
@@ -271,8 +273,7 @@ static void *mltmp(const MLPTR ml) {
  * @retval ml->count number of elements in list
  **/
 static int mlcount(const MLPTR ml) {
-	if (ml == NULL)
-		ERROR_EXCEPT(mod[ML_ERR], NULL_POINTER);
+	MD_NULL_POINTER_ML;
 
 	return ml->count;
 }
@@ -284,8 +285,7 @@ static int mlcount(const MLPTR ml) {
  * @retval int ml->count == 0: 1; ml->count != 0: 0
  **/
 static int mlempty(const MLPTR ml) {
-	if (ml == NULL)
-		ERROR_EXCEPT(mod[ML_ERR], NULL_POINTER);
+	MD_NULL_POINTER_ML;
 
 	return ml->count == 0;
 }
@@ -301,6 +301,9 @@ static int mlempty(const MLPTR ml) {
  */
 static void *mllookup(const MLPTR ml, void *compWith,
 		void * (*getContent)(void *), int (*comp_func)(void *, void *)) {
+
+	if (ml == NULL || *getContent == NULL || *comp_func == NULL)
+		ERROR_EXCEPT(MD_NAME_META_LIST, NULL_POINTER);
 
 	ml->tmp = ml->first;
 
@@ -320,7 +323,7 @@ STACK init_stack() {
 	STACK stack;
 
 	if ((stack = malloc(sizeof(*stack))) == NULL)
-		ERROR_EXCEPT(mod[ST_ERR], ERR_MEMORY);
+		ERROR_EXCEPT(MD_NAME_STACK, ERR_MEMORY);
 
 	stack->stack_meta_list = init_meta_list();
 	return stack;
@@ -333,6 +336,8 @@ STACK init_stack() {
  * @retval void* pointer to element
  */
 void *gettmp(const STACK st) {
+	MD_NULL_POINTER_ST;
+
 	return mltmp(st->stack_meta_list);
 }
 
@@ -348,6 +353,9 @@ void *gettmp(const STACK st) {
 void *linst(const STACK st, void *content, void * (*getContent)(void *),
 		int (*comp_func)(void *, void *)) {
 	void *element;
+
+	MD_NULL_POINTER_ST;
+
 	return ((element = mllookup(st->stack_meta_list, content, getContent,
 			comp_func)) == NULL) ? element : mltmp(st->stack_meta_list);
 }
@@ -360,6 +368,7 @@ void *linst(const STACK st, void *content, void * (*getContent)(void *),
  * @retval void
  **/
 void push(STACK st, void *content) {
+	MD_NULL_POINTER_ST;
 	mlaf(st->stack_meta_list, content);
 }
 
@@ -370,6 +379,7 @@ void push(STACK st, void *content) {
  * @retval void* pointer to element
  **/
 void *top(const STACK st) {
+	MD_NULL_POINTER_ST;
 	return mlfirst(st->stack_meta_list);
 }
 
@@ -381,7 +391,7 @@ void *top(const STACK st) {
  **/
 void *pop(STACK st) {
 	void *ext;
-
+	MD_NULL_POINTER_ST;
 	ext = top(st);
 
 	mldel(st->stack_meta_list);
@@ -395,6 +405,7 @@ void *pop(STACK st) {
  * @retval void
  **/
 void flush_stack(STACK st) {
+	MD_NULL_POINTER_ST;
 	mlflush(st->stack_meta_list);
 }
 
@@ -405,6 +416,7 @@ void flush_stack(STACK st) {
  * @retval void
  **/
 void free_stack(STACK st) {
+	MD_NULL_POINTER_ST;
 	mlfree(st->stack_meta_list);
 }
 
@@ -415,6 +427,7 @@ void free_stack(STACK st) {
  * @retval size_t stacksize
  **/
 size_t size_stack(const STACK st) {
+	MD_NULL_POINTER_ST;
 	return mlcount(st->stack_meta_list);
 }
 
@@ -425,6 +438,7 @@ size_t size_stack(const STACK st) {
  * @retval int 1 if empty, 0 if full
  **/
 int empty_stack(const STACK st) {
+	MD_NULL_POINTER_ST;
 	return mlempty(st->stack_meta_list);
 }
 
@@ -437,7 +451,7 @@ QUEUE init_queue() {
 	QUEUE queue;
 
 	if ((queue = malloc(sizeof(*queue))) == NULL)
-		ERROR_EXCEPT(mod[QU_ERR], ERR_MEMORY);
+		ERROR_EXCEPT(MD_NAME_QUEUE, ERR_MEMORY);
 
 	queue->queue_meta_list = init_meta_list();
 	return queue;
@@ -451,6 +465,7 @@ QUEUE init_queue() {
  * @retval void
  **/
 void append(QUEUE qu, void *content) {
+	MD_NULL_POINTER_QU;
 	mlal(qu->queue_meta_list, content);
 }
 
@@ -461,6 +476,7 @@ void append(QUEUE qu, void *content) {
  * @retval void* pointer to content
  **/
 void *head(const QUEUE qu) {
+	MD_NULL_POINTER_QU;
 	return mlfirst(qu->queue_meta_list);
 }
 
@@ -471,6 +487,7 @@ void *head(const QUEUE qu) {
  * @retval void* pointer to content
  **/
 void *tail(const QUEUE qu) {
+	MD_NULL_POINTER_QU;
 	return mllast(qu->queue_meta_list);
 }
 
@@ -482,7 +499,7 @@ void *tail(const QUEUE qu) {
  **/
 void *qudel(QUEUE qu) {
 	void *ext;
-
+	MD_NULL_POINTER_QU;
 	ext = head(qu);
 
 	mldel(qu->queue_meta_list);
@@ -496,6 +513,7 @@ void *qudel(QUEUE qu) {
  * @retval void
  **/
 void flush_queue(QUEUE qu) {
+	MD_NULL_POINTER_QU;
 	mlflush(qu->queue_meta_list);
 }
 
@@ -506,6 +524,7 @@ void flush_queue(QUEUE qu) {
  * @retval void
  **/
 void free_queue(QUEUE qu) {
+	MD_NULL_POINTER_QU;
 	mlfree(qu->queue_meta_list);
 }
 /**
@@ -526,9 +545,9 @@ size_t size_queue(const QUEUE qu) {
  * @retval int 1 if empty, 0 if full
  **/
 int empty_queue(const QUEUE qu) {
+	MD_NULL_POINTER_QU;
 	return mlempty(qu->queue_meta_list);
 }
-
 
 /**
  * @struct hash_table
@@ -536,9 +555,9 @@ int empty_queue(const QUEUE qu) {
  * @brief Simple implementation for a hashtable.
  */
 struct hash_table {
-		const size_t HASH_SIZE;
-		size_t used;
-		void **table;
+	const size_t HASH_SIZE;
+	size_t used;
+	void **table;
 };
 
 /**
@@ -557,12 +576,12 @@ HASHTABLE init_hash(void *data_type, size_t size, void *(*cast)(void *)) {
 	size_t i;
 
 	if ((new_hash = malloc(sizeof(*new_hash))) == NULL)
-		ERROR_EXCEPT(mod[HA_ERR], ERR_MEMORY);
+		ERROR_EXCEPT(MD_NAME_HASH, ERR_MEMORY);
 
-	if ((data_type = malloc(sizeof((cast)(data_type)) * *size)) == NULL)
+	if ((data_type = malloc(sizeof((cast)(data_type)) * size)) == NULL)
 		ERROR_EXCEPT("hash_elements", ERR_MEMORY);
 
-	*(size_t *)&new_hash->HASH_SIZE = size;
+	*(size_t *) &new_hash->HASH_SIZE = size;
 	new_hash->used = 0;
 	new_hash->table = &data_type;
 
@@ -581,7 +600,14 @@ HASHTABLE init_hash(void *data_type, size_t size, void *(*cast)(void *)) {
  * @retval size size of hash table
  */
 int full_hash(HASHTABLE hash) {
+	MD_NULL_POINTER_HA;
 	return (hash->used == hash->HASH_SIZE);
+}
+
+static int strcmp(const char *s1, const char *s2) {
+	while (*s1++ == *s2++)
+		;
+	return (*s1 == '\0' && *s2 == '\0') ? 1 : 0;
 }
 
 /**
@@ -590,11 +616,11 @@ int full_hash(HASHTABLE hash) {
  * Hash key generating by double hashing.
  *
  * Hash functions used:\n
- * \f$ h(k)  := (h(k) * 128 + k)\;mod\;HASH_SIZE \f$\n
- * \f$ h'(k) := (h'(k) * 128 + k)\;mod\;HASH_SIZE - 2 \f$
+ * \f$ h(k)  := (h(k) * 128 + k)\;mod\;HASH\_SIZE \f$\n
+ * \f$ h'(k) := (h'(k) * 128 + k)\;mod\;HASH\_SIZE - 2 \f$
  *
  * With probing function: \n
- * \f$ h(k, i) := (h(k) + i * h'(k))\;mod\;HASH_SIZE \f$
+ * \f$ h(k, i) := (h(k) + i * h'(k))\;mod\;HASH\_SIZE \f$
  *
  * @param hash hash table
  * @param s name for which hash key should be generated
@@ -602,15 +628,20 @@ int full_hash(HASHTABLE hash) {
  */
 static unsigned genHashKey(HASHTABLE hash, char *s) {
 	size_t hashval1, hashval2, hashkey, i;
+	char *name = s;
 
-	for (hashval1 = hashval2 = 0; *s != '\0'; s++) {
-		hashval1 = ((hashval1 << 7) + *s) % hash->HASH_SIZE;
-		hashval2 = ((hashval2 << 7) + *s) % (hash->HASH_SIZE - 2);
+	MD_NULL_POINTER_HA;
+
+	for (hashval1 = hashval2 = 0; *name != '\0'; name++) {
+		hashval1 = ((hashval1 << 7) + *name) % hash->HASH_SIZE;
+		hashval2 = ((hashval2 << 7) + *name) % (hash->HASH_SIZE - 2);
 	}
 
 	hashkey = hashval1;
-	
-	for (i = 0; (hash->table[hashkey] == NULL || strcmp(hash->table[hashkey], s)) && i < hash->HASH_SIZE; i++)
+
+	for (i = 0;
+			(hash->table[hashkey] == NULL || strcmp(hash->table[hashkey], s))
+					&& i < hash->HASH_SIZE; i++)
 		hashkey = (hashval1 + i * hashval2) % hash->HASH_SIZE;
 
 	hash->used++;
@@ -629,13 +660,12 @@ void insertHash(HASHTABLE hash, char *s, void *element) {
 
 	size_t key = genHashKey(hash, s);
 
-	if (hash == NULL)
-		ERROR_EXCEPT(mod[HA_ERR], NULL_POINTER);
+	MD_NULL_POINTER_HA;
 
 	if (!full_hash(hash))
 		hash->table[key] = element;
 	else
-		ERROR_EXCEPT(mod[HA_ERR], HASH_FULL);
+		ERROR_EXCEPT(MD_NAME_HASH, HASH_FULL);
 }
 
 /**
@@ -649,8 +679,7 @@ void *getHash(HASHTABLE hash, char *s) {
 	void *element;
 	size_t key = genHashKey(hash, s);
 
-	if (hash == NULL)
-		ERROR_EXCEPT(mod[HA_ERR], NULL_POINTER);
+	MD_NULL_POINTER_HA;
 
 	return ((element = hash->table[key]) == NULL) ? NULL : element;
 }

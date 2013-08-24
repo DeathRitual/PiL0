@@ -26,9 +26,22 @@
 
 #include"frontend.h"
 
-#define __AST_BLOCK__ "AST Block"
-#define __AST_STMT__ "AST Statement"
-#define __AST_EXPR__ "AST Expression"
+#define AST_NAME_BLOCK "AST Block"
+#define AST_NAME_STMT "AST Statement"
+#define AST_NAME_EXPR "AST Expression"
+
+/**
+ * @brief error exception for null pointer in block (bl).
+ */
+#define AST_NULL_POINTER_BLOCK 	if (bl == NULL) ERROR_EXCEPT(AST_NAME_BLOCK, NULL_POINTER)
+/**
+ * @brief error exception for null pointer in statement (st).
+ */
+#define AST_NULL_POINTER_STMT 	if (st == NULL) ERROR_EXCEPT(AST_NAME_STMT, NULL_POINTER)
+/**
+ * @brief error exception for null pointer in expression (ex).
+ */
+#define AST_NULL_POINTER_EXPR 	if (ex == NULL) ERROR_EXCEPT(AST_NAME_EXPR, NULL_POINTER)
 
 #ifdef PL_DEBUG
 
@@ -232,7 +245,7 @@ struct AST_EXPR {
 AST_BLOCK_PTR init_block() {
 	AST_BLOCK_PTR new_knot;
 	if ((new_knot = malloc(sizeof(*new_knot))) == NULL)
-		error(__AST_BLOCK__, __FILE__, __func__, __LINE__, ERR_MEMORY);
+		ERROR_EXCEPT(AST_NAME_BLOCK, ERR_MEMORY);
 
 	return new_knot;
 }
@@ -245,7 +258,7 @@ AST_BLOCK_PTR init_block() {
 AST_STMT_PTR init_stmt() {
 	AST_STMT_PTR new_knot;
 	if ((new_knot = malloc(sizeof(*new_knot))) == NULL)
-		error(__AST_STMT__, __FILE__, __func__, __LINE__, ERR_MEMORY);
+		ERROR_EXCEPT(AST_NAME_STMT, ERR_MEMORY);
 
 	return new_knot;
 }
@@ -258,7 +271,7 @@ AST_STMT_PTR init_stmt() {
 AST_EXPR_PTR init_expr() {
 	AST_EXPR_PTR new_knot;
 	if ((new_knot = malloc(sizeof(*new_knot))) == NULL)
-		error(__AST_EXPR__, __FILE__, __func__, __LINE__, ERR_MEMORY);
+		ERROR_EXCEPT(AST_NAME_EXPR, ERR_MEMORY);
 
 	return new_knot;
 }
@@ -273,6 +286,7 @@ AST_EXPR_PTR init_expr() {
  * @retval void
  **/
 void block_init_procedure(AST_BLOCK_PTR bl, const char *s) {
+	AST_NULL_POINTER_BLOCK;
 	bl->tag = BLOCK_PROC;
 	strcpy(bl->block.procedure.identifier, s);
 	bl->block.procedure.function_path = init_block();
@@ -290,6 +304,7 @@ void block_init_procedure(AST_BLOCK_PTR bl, const char *s) {
  * @retval bl->block.procedure.function_path pointer branch refers to
  */
 AST_BLOCK_PTR block_get_function(const AST_BLOCK_PTR bl) {
+	AST_NULL_POINTER_BLOCK;
 	return bl->block.procedure.function_path;
 }
 
@@ -300,6 +315,7 @@ AST_BLOCK_PTR block_get_function(const AST_BLOCK_PTR bl) {
  * @retval bl->block.procedure.main_path pointer branch refers to
  */
 AST_BLOCK_PTR block_get_main(const AST_BLOCK_PTR bl) {
+	AST_NULL_POINTER_BLOCK;
 	return bl->block.procedure.main_path;
 }
 
@@ -312,6 +328,7 @@ AST_BLOCK_PTR block_get_main(const AST_BLOCK_PTR bl) {
  * @retval bl->block.statement pointer branch refers to
  */
 AST_STMT_PTR block_init_statement(AST_BLOCK_PTR bl) {
+	AST_NULL_POINTER_BLOCK;
 	bl->tag = BLOCK_STMT;
 #ifdef PL_DEBUG
 	bl->block.statement = init_stmt();
@@ -333,6 +350,7 @@ AST_STMT_PTR block_init_statement(AST_BLOCK_PTR bl) {
  * @retval void
  */
 void stmt_init_care(AST_STMT_PTR st, const char *s) {
+	AST_NULL_POINTER_STMT;
 	st->tag = STMT_CARE;
 	strcpy(st->statement.identifier, s);
 #ifdef PL_DEBUG
@@ -349,6 +367,7 @@ void stmt_init_care(AST_STMT_PTR st, const char *s) {
  * @retval st->statement.expression pointer to branch refers to
  */
 AST_EXPR_PTR stmt_init_print(AST_STMT_PTR st) {
+	AST_NULL_POINTER_STMT;
 	st->tag = STMT_PRINT;
 #ifdef PL_DEBUG
 	st->statement.expression = init_expr();
@@ -368,6 +387,7 @@ AST_EXPR_PTR stmt_init_print(AST_STMT_PTR st) {
  * @retval void
  */
 void stmt_init_jumpbac(AST_STMT_PTR st) {
+	AST_NULL_POINTER_STMT;
 	st->tag = STMT_WHILE;
 	st->statement.jumpbac.condition = init_expr();
 	st->statement.jumpbac.statement = init_stmt();
@@ -384,6 +404,7 @@ void stmt_init_jumpbac(AST_STMT_PTR st) {
  * @retval st->statement.jumpbac.condition condition branch
  */
 AST_EXPR_PTR stmt_get_jumpbac_condition(const AST_STMT_PTR st) {
+	AST_NULL_POINTER_STMT;
 	return st->statement.jumpbac.condition;
 }
 
@@ -394,6 +415,7 @@ AST_EXPR_PTR stmt_get_jumpbac_condition(const AST_STMT_PTR st) {
  * @return st->statement.jumpbac.statement statement branch
  */
 AST_STMT_PTR stmt_get_jumpbac_statement(const AST_STMT_PTR st) {
+	AST_NULL_POINTER_STMT;
 	return st->statement.jumpbac.statement;
 }
 
@@ -406,6 +428,7 @@ AST_STMT_PTR stmt_get_jumpbac_statement(const AST_STMT_PTR st) {
  * @retval void
  */
 void stmt_init_jumpfor(AST_STMT_PTR st) {
+	AST_NULL_POINTER_STMT;
 	st->tag = STMT_IF;
 	st->statement.jumpfor.condition = init_expr();
 	st->statement.jumpfor.statement = init_stmt();
@@ -422,6 +445,7 @@ void stmt_init_jumpfor(AST_STMT_PTR st) {
  * @retval st->statement.jumpfor.condition condition branch
  */
 AST_EXPR_PTR stmt_get_jumpfor_condition(const AST_STMT_PTR st) {
+	AST_NULL_POINTER_STMT;
 	return st->statement.jumpfor.condition;
 }
 
@@ -432,6 +456,7 @@ AST_EXPR_PTR stmt_get_jumpfor_condition(const AST_STMT_PTR st) {
  * @return st->statement.jumpfor.statement statement branch
  */
 AST_STMT_PTR stmt_get_jumpfor_statement(const AST_STMT_PTR st) {
+	AST_NULL_POINTER_STMT;
 	return st->statement.jumpfor.statement;
 }
 
@@ -445,6 +470,7 @@ AST_STMT_PTR stmt_get_jumpfor_statement(const AST_STMT_PTR st) {
  * @retval st->statement.assignment.expression branch to expression
  */
 AST_EXPR_PTR stmt_init_assignment(AST_STMT_PTR st, const char *s) {
+	AST_NULL_POINTER_STMT;
 	st->tag = STMT_ASSIGN;
 	strcpy(st->statement.assignment.identifier, s);
 #ifdef PL_DEBUG
@@ -463,6 +489,7 @@ AST_EXPR_PTR stmt_init_assignment(AST_STMT_PTR st, const char *s) {
  * @retval void
  */
 void stmt_init_sequence(AST_STMT_PTR st) {
+	AST_NULL_POINTER_STMT;
 	st->tag = STMT_SEQ;
 	st->statement.sequence.left_statement = init_stmt();
 	st->statement.sequence.right_statement = init_stmt();
@@ -479,6 +506,7 @@ void stmt_init_sequence(AST_STMT_PTR st) {
  * @retval st->statement.sequence.left_statement first statement branch
  */
 AST_STMT_PTR stmt_get_sequence_left(const AST_STMT_PTR st) {
+	AST_NULL_POINTER_STMT;
 	return st->statement.sequence.left_statement;
 }
 
@@ -489,6 +517,7 @@ AST_STMT_PTR stmt_get_sequence_left(const AST_STMT_PTR st) {
  * @retval st->statement.sequence.right_statement second statement branch
  */
 AST_STMT_PTR stmt_get_sequence_right(const AST_STMT_PTR st) {
+	AST_NULL_POINTER_STMT;
 	return st->statement.sequence.right_statement;
 }
 
@@ -501,6 +530,7 @@ AST_STMT_PTR stmt_get_sequence_right(const AST_STMT_PTR st) {
  * @retval void
  */
 void expr_init_number(AST_EXPR_PTR ex, const int n) {
+	AST_NULL_POINTER_EXPR;
 	ex->tag = EXPR_NUMBER;
 	ex->expression.number = n;
 #ifdef PL_DEBUG
@@ -516,6 +546,7 @@ void expr_init_number(AST_EXPR_PTR ex, const int n) {
  * @retval void
  */
 void expr_init_identifier(AST_EXPR_PTR ex, const char *s) {
+	AST_NULL_POINTER_EXPR;
 	ex->tag = EXPR_IDENTIFIER;
 	strcpy(ex->expression.identifier, s);
 #ifdef PL_DEBUG
@@ -530,6 +561,7 @@ void expr_init_identifier(AST_EXPR_PTR ex, const char *s) {
  * @retval void
  */
 void expr_init_arithmetic(AST_EXPR_PTR ex) {
+	AST_NULL_POINTER_EXPR;
 	ex->tag = EXPR_ARITH;
 	ex->expression.arithmetic.left_expression = init_expr();
 	ex->expression.arithmetic.right_expression = init_expr();
@@ -549,6 +581,7 @@ void expr_init_arithmetic(AST_EXPR_PTR ex) {
  * @retval void
  */
 void expr_arithmetic_set_op(AST_EXPR_PTR ex, const char c) {
+	AST_NULL_POINTER_EXPR;
 	ex->expression.arithmetic.operator = c;
 }
 
@@ -559,6 +592,7 @@ void expr_arithmetic_set_op(AST_EXPR_PTR ex, const char c) {
  * @retval ex->expression.arithmetic.left_expression left branch
  */
 AST_EXPR_PTR expr_get_arithmetic_left(const AST_EXPR_PTR ex) {
+	AST_NULL_POINTER_EXPR;
 	return ex->expression.arithmetic.left_expression;
 }
 
@@ -569,6 +603,7 @@ AST_EXPR_PTR expr_get_arithmetic_left(const AST_EXPR_PTR ex) {
  * @retval ex->expression.arithmetic.right_expression right branch
  */
 AST_EXPR_PTR expr_get_arithmetic_right(const AST_EXPR_PTR ex) {
+	AST_NULL_POINTER_EXPR;
 	return ex->expression.arithmetic.right_expression;
 }
 
@@ -579,6 +614,7 @@ AST_EXPR_PTR expr_get_arithmetic_right(const AST_EXPR_PTR ex) {
  * @retval void
  */
 void expr_init_relation(AST_EXPR_PTR ex) {
+	AST_NULL_POINTER_EXPR;
 	ex->tag = EXPR_REL;
 	ex->expression.relation.left_expression = init_expr();
 	ex->expression.relation.right_expression = init_expr();
@@ -598,6 +634,7 @@ void expr_init_relation(AST_EXPR_PTR ex) {
  * @retval void
  */
 void expr_relation_set_op(AST_EXPR_PTR ex, const char *s) {
+	AST_NULL_POINTER_EXPR;
 	strcpy(ex->expression.relation.operator, s);
 }
 
@@ -608,6 +645,7 @@ void expr_relation_set_op(AST_EXPR_PTR ex, const char *s) {
  * @retval ex->expression.relation.left_expression left branch
  */
 AST_EXPR_PTR expr_get_relation_left(const AST_EXPR_PTR ex) {
+	AST_NULL_POINTER_EXPR;
 	return ex->expression.relation.left_expression;
 }
 
@@ -618,6 +656,7 @@ AST_EXPR_PTR expr_get_relation_left(const AST_EXPR_PTR ex) {
  * @retval ex->expression.relation.left_expression right branch
  */
 AST_EXPR_PTR expr_get_relation_right(const AST_EXPR_PTR ex) {
+	AST_NULL_POINTER_EXPR;
 	return ex->expression.relation.right_expression;
 }
 
@@ -629,6 +668,7 @@ AST_EXPR_PTR expr_get_relation_right(const AST_EXPR_PTR ex) {
  * @retval ex->expression.unary.expression expression branch
  */
 AST_EXPR_PTR expr_init_unary(AST_EXPR_PTR ex, const char c) {
+	AST_NULL_POINTER_EXPR;
 	ex->tag = EXPR_UNARY;
 	ex->expression.unary.operator = c;
 #ifdef PL_DEBUG
@@ -647,6 +687,7 @@ AST_EXPR_PTR expr_init_unary(AST_EXPR_PTR ex, const char c) {
  * @retval ex->expression.odd expression branch
  */
 AST_EXPR_PTR expr_init_odd(AST_EXPR_PTR ex) {
+	AST_NULL_POINTER_EXPR;
 	ex->tag = EXPR_ODD;
 #ifdef PL_DEBUG
 	ex->expression.odd = init_expr();

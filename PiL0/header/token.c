@@ -29,6 +29,17 @@
 #define TOKEN_ERR "Token"
 
 /**
+ * @brief error exception for null pointer in token pointer (token_element).
+ */
+#define MD_NULL_POINTER_TOPTR if (token_element == NULL) ERROR_EXCEPT(TOKEN_ERR, NULL_POINTER)
+/**
+ * @brief error exception for null pointer in token queue (token_queue).
+ */
+#define MD_NULL_POINTER_TOKQU if (token_queue == NULL) ERROR_EXCEPT(TOKEN_ERR, NULL_POINTER)
+
+
+
+/**
  * @struct TOKEN_OBJECT
  *
  * @brief stores one token, token type and line number
@@ -90,8 +101,7 @@ TOPTR generate_token(const char *t, const int *n, const int *ln) {
 	TOPTR new_token_element = NULL;
 
 	if ((new_token_element = malloc(sizeof(*new_token_element))) == NULL)
-		error(
-		TOKEN_ERR, __FILE__, __func__, __LINE__, ERR_MEMORY);
+		ERROR_EXCEPT(TOKEN_ERR, ERR_MEMORY);
 
 	if (isdigit(*t) > 0) {
 		new_token_element->type = 'n';
@@ -121,6 +131,7 @@ TOPTR generate_token(const char *t, const int *n, const int *ln) {
  * @return void
  */
 void free_token(TOPTR token_element) {
+	MD_NULL_POINTER_TOPTR;
 	free(token_element);
 	token_element = NULL;
 }
@@ -132,8 +143,10 @@ void free_token(TOPTR token_element) {
  * @return void
  */
 void release_token(const QUEUE token_queue) {
-	TOPTR tmp = (TOPTR) qudel(token_queue);
+	TOPTR tmp = NULL;
+	MD_NULL_POINTER_TOKQU;
 
+	tmp = (TOPTR) qudel(token_queue);
 	free_token(tmp);
 	tmp = NULL;
 }
@@ -146,6 +159,7 @@ void release_token(const QUEUE token_queue) {
  * @retval TOPTR
  */
 TOPTR getTOKEN(const QUEUE token_queue) {
+	MD_NULL_POINTER_TOKQU;
 	return (TOPTR) head(token_queue);
 }
 
@@ -156,6 +170,7 @@ TOPTR getTOKEN(const QUEUE token_queue) {
  * @retval char
  */
 char getType(const QUEUE token_queue) {
+	MD_NULL_POINTER_TOKQU;
 	return getTOKEN(token_queue)->type;
 }
 
@@ -166,6 +181,7 @@ char getType(const QUEUE token_queue) {
  * @retval size_t
  */
 size_t getLine(const QUEUE token_queue) {
+	MD_NULL_POINTER_TOKQU;
 	return getTOKEN(token_queue)->line;
 }
 
@@ -176,6 +192,7 @@ size_t getLine(const QUEUE token_queue) {
  * @retval int
  */
 int getNumber(const QUEUE token_queue) {
+	MD_NULL_POINTER_TOKQU;
 	return getTOKEN(token_queue)->element.number.n;
 }
 
@@ -186,6 +203,7 @@ int getNumber(const QUEUE token_queue) {
  * @retval int
  */
 int getNumberID(const QUEUE token_queue) {
+	MD_NULL_POINTER_TOKQU;
 	return getTOKEN(token_queue)->element.number.ID;
 }
 
@@ -196,6 +214,7 @@ int getNumberID(const QUEUE token_queue) {
  * @retval char*
  */
 char *getWord(const QUEUE token_queue) {
+	MD_NULL_POINTER_TOKQU;
 	return getTOKEN(token_queue)->element.word.w;
 }
 
@@ -206,6 +225,7 @@ char *getWord(const QUEUE token_queue) {
  * @retval int
  */
 int getWordID(const QUEUE token_queue) {
+	MD_NULL_POINTER_TOKQU;
 	return getTOKEN(token_queue)->element.word.ID;
 }
 
@@ -216,6 +236,7 @@ int getWordID(const QUEUE token_queue) {
  * @retval char
  */
 char getToken(const QUEUE token_queue) {
+	MD_NULL_POINTER_TOKQU;
 	return getTOKEN(token_queue)->element.token.t;
 }
 

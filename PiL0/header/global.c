@@ -26,6 +26,11 @@
 #define SC_ERR "Source-Code Object"
 
 /**
+ * @brief error exception for null pointer in source code (sc).
+ */
+#define AST_NULL_POINTER_SC 	if (sc == NULL) ERROR_EXCEPT(SC_ERR, NULL_POINTER)
+
+/**
  * @struct SOURCE_OBJECT
  *
  * @brief Global object which stores all pointers and temporary information.
@@ -48,7 +53,7 @@ static SOURCECODE sc_init() {
 	SOURCECODE new_code = NULL;
 
 	if ((new_code = malloc(sizeof(*new_code))) == NULL)
-		error(SC_ERR, __FILE__, __func__, __LINE__, ERR_MEMORY);
+		ERROR_EXCEPT(SC_ERR, ERR_MEMORY);
 
 	new_code->symbol_table = NULL;
 	new_code->token_stream = NULL;
@@ -66,6 +71,7 @@ static SOURCECODE sc_init() {
  * @retval void
  */
 static void sc_destroy(SOURCECODE sc) {
+	AST_NULL_POINTER_SC;
 	free(sc);
 	sc = NULL;
 }
@@ -78,6 +84,7 @@ static void sc_destroy(SOURCECODE sc) {
  * @retval void
  */
 void sc_set_ts(SOURCECODE sc, const QUEUE ts) {
+	AST_NULL_POINTER_SC;
 	sc->token_stream = ts;
 }
 
@@ -88,6 +95,7 @@ void sc_set_ts(SOURCECODE sc, const QUEUE ts) {
  * @retval sc->token_stream
  */
 QUEUE sc_get_ts(const SOURCECODE sc) {
+	AST_NULL_POINTER_SC;
 	return sc->token_stream;
 }
 
@@ -99,6 +107,7 @@ QUEUE sc_get_ts(const SOURCECODE sc) {
  * @retval void
  */
 void sc_set_st(SOURCECODE sc, const STACK st) {
+	AST_NULL_POINTER_SC;
 	sc->symbol_table = st;
 }
 
@@ -109,6 +118,7 @@ void sc_set_st(SOURCECODE sc, const STACK st) {
  * @retval sc->symbol_table
  */
 STACK sc_get_st(const SOURCECODE sc) {
+	AST_NULL_POINTER_SC;
 	return sc->symbol_table;
 }
 
@@ -120,6 +130,7 @@ STACK sc_get_st(const SOURCECODE sc) {
  * @retval void
  */
 void sc_set_ast_bl(SOURCECODE sc, const AST_BLOCK_PTR b) {
+	AST_NULL_POINTER_SC;
 	sc->block_tmp = b;
 }
 
@@ -130,6 +141,7 @@ void sc_set_ast_bl(SOURCECODE sc, const AST_BLOCK_PTR b) {
  * @retval sc->block_tmp
  */
 AST_BLOCK_PTR sc_get_ast_bl(const SOURCECODE sc) {
+	AST_NULL_POINTER_SC;
 	return sc->block_tmp;
 }
 
@@ -141,6 +153,7 @@ AST_BLOCK_PTR sc_get_ast_bl(const SOURCECODE sc) {
  * @retval void
  */
 void sc_set_ast_st(SOURCECODE sc, const AST_STMT_PTR s) {
+	AST_NULL_POINTER_SC;
 	sc->stmt_tmp = s;
 }
 
@@ -151,6 +164,7 @@ void sc_set_ast_st(SOURCECODE sc, const AST_STMT_PTR s) {
  * @retval sc->stmt_tmp
  */
 AST_STMT_PTR sc_get_ast_st(const SOURCECODE sc) {
+	AST_NULL_POINTER_SC;
 	return sc->stmt_tmp;
 }
 
@@ -162,6 +176,7 @@ AST_STMT_PTR sc_get_ast_st(const SOURCECODE sc) {
  * @retval void
  */
 void sc_set_ast_ex(SOURCECODE sc, const AST_EXPR_PTR e) {
+	AST_NULL_POINTER_SC;
 	sc->expr_tmp = e;
 }
 
@@ -172,6 +187,7 @@ void sc_set_ast_ex(SOURCECODE sc, const AST_EXPR_PTR e) {
  * @retval sc->expr_tmp
  */
 AST_EXPR_PTR sc_get_ast_ex(const SOURCECODE sc) {
+	AST_NULL_POINTER_SC;
 	return sc->expr_tmp;
 }
 
