@@ -33,7 +33,7 @@
  * @brief Stringtable which stores all error messages
  **/
 static const char *err_msg[] = { "Null-Pointer", "No memory left", "Empty list",
-		"Table already empty", "Wrong ID", "List not empty", "Full Hash"};
+		"Table already empty", "Wrong ID", "List not empty", "Full Hash", "No Element"};
 
 /**
  * @var char *err_msg[]

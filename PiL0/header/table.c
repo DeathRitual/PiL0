@@ -24,7 +24,7 @@
 
 #include"frontend.h"
 
-#define TABLE "Symbol-Table"
+#define ST_NAME_TABLE "Symbol-Table"
 
 /**
  * @struct TABLE_ENTRY
@@ -37,55 +37,10 @@ struct TABLE_ENTRY {
 	int type_ID; /**< symbol ID */
 };
 
-/**
- * @brief create new symbol table entry
- *
- * @param *w Symbol which should be stored
- * @param n identifier-type ID
- * @retval new_entry
- **/
-TEPTR generate_tableEntry(const char *w, const int n) {
-	TEPTR new_entry = NULL;
-	
-	if ((new_entry = malloc(sizeof(*new_entry))) == NULL)
-		error(TABLE, __FILE__, __func__, __LINE__, ERR_MEMORY);
-	
-	strcpy(new_entry->word, w);
-	new_entry->type_ID = n;
-	return new_entry;
-}
-
-/**
- * @brief clean symbol table after scope finish
- *
- * @param *symbol_table pointer to symbol table
- * @retval void
- **/
-void stclean(STACK symbol_table) {
-	TEPTR tmp = pop(symbol_table);
-	
-	while (tmp->type_ID != -1) {
-		free(tmp);
-		tmp = NULL;
-		tmp = pop(symbol_table);
-	}
-	
-	free(tmp);
-}
-
-/**
- * @brief compare word of two table entries
- *
- * @param comp1 entry one
- * @param comp2 entry two
- * @retval int
- */
-static int stcompare(TEPTR comp1, TEPTR comp2) {
-	if (comp1 == NULL || comp2 == NULL)
-		return 0;
-	else
-		return strcmp(comp1->word, comp2->word);
-}
+struct SYMBOL_TABLE {
+		HASHTABLE hash;
+		struct SYMBOL_TABLE *last;
+};
 
 /**
  * @brief cast given object to table element type
@@ -97,33 +52,58 @@ static TEPTR stcast(void *obj) {
 	return (TEPTR) obj;
 }
 
-/**
- * @brief look for word in symbol table and return it
- *
- * @param symbol_table symbol table
- * @param *w word looking for
- * @retval TEPTR
- */
-TEPTR stlookup(STACK symbol_table, const char *w) {
-	TEPTR tmp = NULL;
-	
-	if ((tmp = malloc(sizeof(*tmp))) == NULL)
-		error(TABLE, __FILE__, __func__,
-		__LINE__, ERR_MEMORY);
-	
-	strcpy(tmp->word, w);
-	tmp->type_ID = 0;
-	
-	return (TEPTR) linst(symbol_table, tmp, (void *(*)(void *)) stcast,
-			(int (*)(void *, void *)) stcompare);
+STPTR initSymbolTable(const STPTR last) {
+	STPTR new_st = NULL;
+	TEPTR type;
+
+	if ((new_st = malloc(sizeof(*new_st))) == NULL)
+		ERROR_EXCEPT(ST_NAME_TABLE, ERR_MEMORY);
+
+	new_st->hash = init_hash(type, 13, stcast);
+	new_st->last = last;
+
+	return new_st;
 }
 
+void addToSymbolTable(const STPTR st, const char *w, const int n) {
+	TEPTR new_entry = NULL;
+
+	if ((new_entry = malloc(sizeof(*new_entry))) == NULL)
+		ERROR_EXCEPT(ST_NAME_TABLE, ERR_MEMORY);
+
+	strcpy(new_entry->word, w);
+	new_entry->type_ID = n;
+
+	insertHash(st, new_entry->word, new_entry);
+}
+
+int lookUpSymbolTable(const STPTR st, const char *w) {
+	return getHash(st, w) != NULL;
+}
+
+TEPTR getElement(const STPTR st, const char *w) {
+	TEPTR lookup = NULL;
+	if ((lookup = (TEPTR) getHash(st, w)) == NULL)
+		ERROR_EXCEPT(ST_NAME_TABLE, NO_ELEMENT);
+	return lookup;
+}
+
+void
+
 /**
- * @brief get type ID from table entry
+ * @brief clean symbol table after scope finish
  *
- * @param te pointer to table entry
- * @retval int
- */
-int st_get_typeID(TEPTR te) {
-	return (te == NULL) ? 0 : te->type_ID;
+ * @param *symbol_table pointer to symbol table
+ * @retval void
+ **/
+void stclean(STACK symbol_table) {
+	TEPTR tmp = pop(symbol_table);
+
+	while (tmp->type_ID != -1) {
+		free(tmp);
+		tmp = NULL;
+		tmp = pop(symbol_table);
+	}
+
+	free(tmp);
 }

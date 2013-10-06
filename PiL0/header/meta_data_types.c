@@ -599,12 +599,12 @@ HASHTABLE init_hash(void *data_type, size_t size, void *(*cast)(void *)) {
  * @param hash hash table
  * @retval size size of hash table
  */
-int full_hash(HASHTABLE hash) {
+static size_t full_hash(HASHTABLE hash) {
 	MD_NULL_POINTER_HA;
 	return (hash->used == hash->HASH_SIZE);
 }
 
-static int strcmp(const char *s1, const char *s2) {
+static unsigned int strcmp(const char *s1, const char *s2) {
 	while (*s1++ == *s2++)
 		;
 	return (*s1 == '\0' && *s2 == '\0') ? 1 : 0;
@@ -626,7 +626,7 @@ static int strcmp(const char *s1, const char *s2) {
  * @param s name for which hash key should be generated
  * @retval hashkey positive hash key
  */
-static unsigned genHashKey(HASHTABLE hash, char *s) {
+static size_t genHashKey(HASHTABLE hash, char *s) {
 	size_t hashval1, hashval2, hashkey, i;
 	char *name = s;
 

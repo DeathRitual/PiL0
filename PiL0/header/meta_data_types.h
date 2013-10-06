@@ -86,6 +86,5 @@ extern int empty_queue(const QUEUE);
 typedef struct hash_table *HASHTABLE;
 
 extern HASHTABLE init_hash(void *, size_t, void *(*cast)(void *));
-extern int full_hash(HASHTABLE);
 extern void insertHash(HASHTABLE, char *, void *);
 extern void *getHash(HASHTABLE, char *);

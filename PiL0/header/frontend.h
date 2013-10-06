@@ -36,6 +36,7 @@
 
 typedef struct TOKEN_OBJECT *TOPTR;
 typedef struct TABLE_ENTRY *TEPTR;
+typedef struct SYMBOL_TABLE *STPTR;
 typedef struct AST_BLOCK *AST_BLOCK_PTR;
 typedef struct AST_STMT *AST_STMT_PTR;
 typedef struct AST_EXPR *AST_EXPR_PTR;
